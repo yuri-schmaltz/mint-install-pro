@@ -5,9 +5,6 @@ import {
   X, 
   FileCheck, 
   Menu, 
-  Minus, 
-  Square, 
-  X as CloseIcon,
   ShieldCheck,
   RefreshCw,
   Info,
@@ -21,6 +18,7 @@ export default function HeaderBar({
   onBack, 
   installedOnly, 
   setInstalledOnly,
+  onToggleInstalledOnly,
   installedCount,
   simulationMode,
   setSimulationMode,
@@ -72,14 +70,7 @@ export default function HeaderBar({
         </div>
       </div>
 
-      {/* Center: Window Title */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 pointer-events-none hidden sm:block">
-        <h1 className="text-sm font-semibold tracking-wide text-[#f2f2f2] drop-shadow-sm">
-          Gerenciador de Aplicativos
-        </h1>
-      </div>
-
-      {/* Right controls: Sandbox, Installed Counter, Hamburger menu & Window Buttons */}
+      {/* Right controls: Sandbox, Installed Counter, Hamburger menu */}
       <div className="flex items-center space-x-2">
         {/* Safe Sandbox Indicator */}
         <div 
@@ -95,7 +86,7 @@ export default function HeaderBar({
 
         {/* Installed apps count button - com o mesmo comportamento e estilo dos contadores de categoria */}
         <button
-          onClick={() => setInstalledOnly(!installedOnly)}
+          onClick={onToggleInstalledOnly || (() => setInstalledOnly(!installedOnly))}
           title={installedOnly ? "Mostrar todos os aplicativos" : `Filtrar apenas instalados (${installedCount} ${installedLabel})`}
           className={`flex-shrink-0 h-[26px] px-2.5 rounded-full border transition-all flex items-center space-x-1.5 text-xs select-none shadow-xs cursor-pointer ${
             installedOnly 
@@ -156,31 +147,6 @@ export default function HeaderBar({
               </button>
             </div>
           )}
-        </div>
-
-        {/* Vertical divider */}
-        <div className="h-4 w-px bg-[#3b3f46] mx-1" />
-
-        {/* Window controls (Min, Max, Close) with Mint Cinnamon style */}
-        <div className="flex items-center space-x-1.5">
-          <button 
-            title="Minimizar"
-            className="w-4 h-4 rounded-full bg-[#3e4249] hover:bg-[#50555e] flex items-center justify-center transition-colors"
-          >
-            <Minus className="w-2.5 h-2.5 text-[#dcdcdc]" />
-          </button>
-          <button 
-            title="Maximizar"
-            className="w-4 h-4 rounded-full bg-[#3e4249] hover:bg-[#50555e] flex items-center justify-center transition-colors"
-          >
-            <Square className="w-2 h-2 text-[#dcdcdc]" />
-          </button>
-          <button 
-            title="Fechar"
-            className="w-4 h-4 rounded-full bg-[#3e4249] hover:bg-[#e81123] flex items-center justify-center transition-colors group"
-          >
-            <CloseIcon className="w-2.5 h-2.5 text-[#dcdcdc] group-hover:text-white" />
-          </button>
         </div>
       </div>
 

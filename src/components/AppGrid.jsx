@@ -30,6 +30,8 @@ export default function AppGrid({
 }) {
   const [packageTypeFilter, setPackageTypeFilter] = useState('all'); // 'all' | 'apt' | 'flatpak'
   const [displayLimit, setDisplayLimit] = useState(60);
+  const sentinelRef = React.useRef(null);
+  const containerRef = React.useRef(null);
 
   const isFlatpakTab = selectedCategory === 'flatpak';
   const isAllAppsTab = selectedCategory === 'all';
@@ -48,11 +50,48 @@ export default function AppGrid({
   const visibleApps = displayedApps.slice(0, displayLimit);
   const hasMore = displayedApps.length > displayLimit;
 
+  // Auto-carregamento com IntersectionObserver
+  React.useEffect(() => {
+    if (!hasMore) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setDisplayLimit(prev => Math.min(prev + 48, displayedApps.length));
+        }
+      },
+      { rootMargin: '350px' }
+    );
+
+    const currentSentinel = sentinelRef.current;
+    if (currentSentinel) {
+      observer.observe(currentSentinel);
+    }
+
+    return () => {
+      if (currentSentinel) {
+        observer.unobserve(currentSentinel);
+      }
+    };
+  }, [hasMore, displayedApps.length]);
+
+  // Fallback de auto-carregamento via scroll do container
+  const handleScroll = (e) => {
+    if (!hasMore) return;
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    if (scrollHeight - scrollTop - clientHeight < 350) {
+      setDisplayLimit(prev => Math.min(prev + 48, displayedApps.length));
+    }
+  };
+
   const aptCount = apps.filter(a => !a.flathub).length;
   const flatpakCount = apps.filter(a => a.flathub || a.packageType?.includes('Flatpak')).length;
 
   return (
-    <div className="flex-1 overflow-y-auto px-5 py-4 bg-[#26292d] relative">
+    <div 
+      ref={containerRef}
+      onScroll={handleScroll}
+      className="flex-1 overflow-y-auto px-5 py-4 bg-[#26292d] relative"
+    >
       
       {/* Flathub Special Banner when on Flatpak Tab */}
       {isFlatpakTab && (
@@ -186,14 +225,18 @@ export default function AppGrid({
             ))}
           </div>
 
-          {/* Pagination / Load More Button if more apps */}
+          {/* Auto-loading Sentinel / Load More */}
           {hasMore && (
-            <div className="pt-6 pb-20 flex justify-center">
+            <div ref={sentinelRef} className="pt-6 pb-24 flex flex-col items-center justify-center space-y-2 text-[#9ca3af]">
+              <div className="flex items-center space-x-2 text-xs bg-[#1f2226] px-4 py-2 rounded-full border border-[#35393f] shadow-sm">
+                <Loader2 className="w-3.5 h-3.5 animate-spin text-[#87cf3e]" />
+                <span>Carregando mais aplicativos... ({displayedApps.length - visibleApps.length} restantes)</span>
+              </div>
               <button
-                onClick={() => setDisplayLimit(prev => prev + 60)}
-                className="px-6 py-2 rounded-md bg-[#35393f] hover:bg-[#434850] text-[#e0e0e0] text-xs font-semibold border border-[#444a53] transition-colors shadow-md flex items-center space-x-2"
+                onClick={() => setDisplayLimit(prev => Math.min(prev + 48, displayedApps.length))}
+                className="text-[11px] text-[#787f8c] hover:text-[#e0e0e0] underline transition-colors"
               >
-                <span>Carregar Mais Aplicativos ({displayedApps.length - visibleApps.length} restantes)</span>
+                Clique para carregar mais imediatamente
               </button>
             </div>
           )}

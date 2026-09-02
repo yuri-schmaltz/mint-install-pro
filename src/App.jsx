@@ -104,6 +104,7 @@ export default function App() {
   const handleSelectCategory = (catId) => {
     if (catId === 'picks') {
       setCurrentView('landing');
+      setInstalledOnly(false); // Garante que a tela de Destaques seja a LandingPage oficial com banners e matriz 3x3
     } else {
       setCurrentView('list');
     }
@@ -307,9 +308,26 @@ export default function App() {
   // Category Title resolution
   const categoryTitle = useMemo(() => {
     if (searchQuery) return `Resultados da Pesquisa`;
+    if (installedOnly) return `Aplicativos Instalados`;
     const cat = categoriesList.find((c) => c.id === selectedCategory);
     return cat ? cat.label : 'Destaques';
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategory, searchQuery, installedOnly]);
+
+  const handleToggleInstalledOnly = () => {
+    const nextVal = !installedOnly;
+    setInstalledOnly(nextVal);
+    if (nextVal) {
+      setCurrentView('list');
+      if (selectedCategory === 'picks') {
+        setSelectedCategory('all');
+      }
+    } else {
+      if (selectedCategory === 'all' || selectedCategory === 'picks') {
+        setCurrentView('landing');
+        setSelectedCategory('picks');
+      }
+    }
+  };
 
   const installedCount = useMemo(() => {
     return apps.filter((a) => a.installed).length;
@@ -325,6 +343,7 @@ export default function App() {
           onBack={handleBack}
           installedOnly={installedOnly}
           setInstalledOnly={setInstalledOnly}
+          onToggleInstalledOnly={handleToggleInstalledOnly}
           installedCount={installedCount}
           simulationMode={settings.simulationMode}
           setSimulationMode={(val) => handleSaveSettings({ ...settings, simulationMode: val })}
@@ -341,7 +360,7 @@ export default function App() {
         />
 
         {/* View Switch: Landing Page or App Grid */}
-        {currentView === 'landing' && !searchQuery && !installedOnly ? (
+        {currentView === 'landing' && !searchQuery ? (
           <LandingPage
             onSelectCategory={handleSelectCategory}
             onSelectApp={(app) => setSelectedApp(app)}

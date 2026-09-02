@@ -95,18 +95,20 @@ export default function AppCard({
 
       {/* App Info (Name and Summary) */}
       <div className="flex-1 min-w-0 pr-8">
-        <h3 className="text-[13px] font-semibold text-[#f0f0f0] truncate leading-tight group-hover:text-white flex items-center space-x-1.5">
-          <span>{app.name}</span>
+        <div className="flex items-center space-x-1.5 min-w-0">
+          <h3 className="text-[13px] font-semibold text-[#f0f0f0] truncate min-w-0 leading-tight group-hover:text-white">
+            {app.name}
+          </h3>
           {isStagedForUninstall ? (
-            <span className="text-[10px] font-semibold text-amber-400 bg-amber-950/60 px-1.5 py-0.2 rounded border border-amber-600/40">
+            <span className="flex-shrink-0 text-[9.5px] font-bold text-amber-400 bg-amber-950/80 px-1.5 py-0.5 rounded border border-amber-600/50 shadow-xs whitespace-nowrap">
               Desinstalar
             </span>
           ) : isInstalled ? (
-            <span className="text-[10px] font-medium text-[#87cf3e]/80">
+            <span className="flex-shrink-0 text-[10px] font-medium text-[#87cf3e]/80">
               •
             </span>
           ) : null}
-        </h3>
+        </div>
         <p className="text-[11.5px] text-[#9ca3af] truncate mt-1 leading-tight font-normal">
           {app.summary}
         </p>
