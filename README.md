@@ -9,9 +9,9 @@
   <em>Fidelidade visual ao tema Mint-Y Dark, catálogo híbrido APT + Flatpak e operações em lote inteligentes.</em>
 </p>
 
-<p align="center">
   <a href="https://github.com/yuri-schmaltz/mint-install-pro"><img src="https://img.shields.io/badge/GitHub-mint--install--pro-87cf3e?style=flat-square&logo=github" alt="GitHub Repo"></a>
   <a href="https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.2.0"><img src="https://img.shields.io/badge/Release-v1.2.0%20.deb-blue?style=flat-square&logo=debian" alt="Download .deb"></a>
+  <img src="https://img.shields.io/badge/AI%20Enhanced-%E2%9C%A8%20Google%20DeepMind-7928CA?style=flat-square&logo=google" alt="AI Enhanced">
   <img src="https://img.shields.io/badge/Testes-48%20Passando-87cf3e?style=flat-square&logo=vitest" alt="Testes 48/48">
   <img src="https://img.shields.io/badge/Linux%20Mint-22.3%20Zena-87cf3e?style=flat-square&logo=linuxmint" alt="Linux Mint 22.3">
   <img src="https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react" alt="React 18">
@@ -19,6 +19,10 @@
   <img src="https://img.shields.io/badge/TailwindCSS-3-38bdf8?style=flat-square&logo=tailwindcss" alt="Tailwind CSS">
   <a href="LICENSE"><img src="https://img.shields.io/badge/Licen%C3%A7a-MIT-green.svg?style=flat-square" alt="Licença MIT"></a>
 </p>
+
+> [!TIP]
+> ### 🤖 Projeto Desenvolvido & Melhorado por Inteligência Artificial
+> Esta aplicação foi concebida, reestruturada e aperfeiçoada através de **Engenharia de Software Assistida por IA Avançada (Google DeepMind)**, combinando diagnóstico estratégico automatizado (Análise SWOT / Matriz GUT), ciclos contínuos de verificação (*Gauntlet Loops*), calibração cromática pixel-a-pixel por visão computacional e refatoração de alta reatividade.
 
 ---
 
