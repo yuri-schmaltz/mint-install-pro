@@ -316,11 +316,8 @@ export default function App() {
   }, [apps]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#181a1d] p-0 sm:p-3 md:p-6 overflow-hidden">
-      {/* Main GTK Window Frame simulating Linux Mint Cinnamon */}
-      <div className="w-full max-w-6xl h-screen sm:h-[88vh] bg-[#26292d] rounded-none sm:rounded-lg border border-[#3b3f46] shadow-2xl flex flex-col overflow-hidden relative">
-        
-        {/* Linux Mint GTK HeaderBar */}
+    <div className="w-full h-screen bg-[#26292d] flex flex-col overflow-hidden relative select-none">
+      {/* Linux Mint GTK HeaderBar */}
         <HeaderBar
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
@@ -409,8 +406,6 @@ export default function App() {
           onResetDefaults={handleResetDefaults}
           onClearCache={handleClearCache}
         />
-
-      </div>
     </div>
   );
 }
