@@ -71,6 +71,28 @@ assert(categoriesList.length >= 7, `Pelo menos 7 categorias do Mint configuradas
 const accessoriesApps = initialApps.filter(a => a.category === 'accessories');
 assert(accessoriesApps.length >= 21, `Categoria Acessórios contém pelo menos os 21 aplicativos esperados (total: ${accessoriesApps.length})`);
 
+// Test 6: Verificação de Operações em Lote (Batch Installation/Uninstallation Logic)
+console.log('\n6. Verificação da Lógica de Instalação/Desinstalação em Lote:');
+const testBatchIds = ['synapse', 'dconf-editor', 'grep'];
+const selectedApps = initialApps.filter(a => testBatchIds.includes(a.id));
+assert(selectedApps.length === 3, 'Seleção de 3 aplicativos para lote');
+
+const toInstall = selectedApps.filter(a => !a.installed);
+const toUninstall = selectedApps.filter(a => a.installed);
+assert(toInstall.length === 2, 'Cálculo correto de 2 aplicativos não-instalados a instalar');
+assert(toUninstall.length === 1, 'Cálculo correto de 1 aplicativo instalado a desinstalar');
+
+// Simulação de instalação em lote
+let stateMock = initialApps.map(a => ({ ...a }));
+stateMock = stateMock.map(a => toInstall.some(ti => ti.id === a.id) ? { ...a, installed: true } : a);
+const allNowInstalled = toInstall.every(ti => stateMock.find(a => a.id === ti.id).installed === true);
+assert(allNowInstalled, 'Instalação em lote atualiza o estado para instalado');
+
+// Simulação de desinstalação em lote
+stateMock = stateMock.map(a => testBatchIds.includes(a.id) ? { ...a, installed: false } : a);
+const allNowUninstalled = testBatchIds.every(id => stateMock.find(a => a.id === id).installed === false);
+assert(allNowUninstalled, 'Desinstalação em lote remove e atualiza o estado');
+
 console.log(`\n========================================`);
 console.log(`Resultado dos Testes: ${passed} passaram, ${failed} falharam.`);
 console.log(`========================================\n`);
