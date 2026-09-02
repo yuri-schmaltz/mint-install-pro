@@ -70,13 +70,13 @@ const banners = [
 ];
 
 const categoryCards = [
-  { id: "flatpak", label: "Flatpak (Flathub)", desc: "Milhares de softwares modernos em sandbox Flathub", icon: Boxes, color: "from-sky-900/50 to-blue-950/70" },
   { id: "accessories", label: "Acessórios", desc: "Utilitários essenciais e ferramentas do dia a dia", icon: Wrench, color: "from-emerald-800/40 to-emerald-950/60" },
-  { id: "internet", label: "Internet", desc: "Navegadores, clientes de e-mail e mensageiros", icon: Globe, color: "from-blue-800/40 to-blue-950/60" },
-  { id: "sound-video", label: "Som e Vídeo", desc: "Reprodutores, editores e gravadores de mídia", icon: Film, color: "from-purple-800/40 to-purple-950/60" },
+  { id: "system", label: "Ferramentas do Sistema", desc: "Monitoramento de disco, snapshots e particionador", icon: Cpu, color: "from-teal-800/40 to-teal-950/60" },
+  { id: "flatpak", label: "Flatpak (Flathub)", desc: "Milhares de softwares modernos em sandbox Flathub", icon: Boxes, color: "from-sky-900/50 to-blue-950/70" },
   { id: "graphics", label: "Gráficos", desc: "Modelagem 3D, pintura digital e fotografia", icon: Image, color: "from-amber-800/40 to-amber-950/60" },
+  { id: "internet", label: "Internet", desc: "Navegadores, clientes de e-mail e mensageiros", icon: Globe, color: "from-blue-800/40 to-blue-950/60" },
   { id: "games", label: "Jogos", desc: "Ação, estratégia, simuladores e arcades", icon: Gamepad2, color: "from-rose-800/40 to-rose-950/60" },
-  { id: "system", label: "Ferramentas do Sistema", desc: "Monitoramento de disco, snapshots e particionador", icon: Cpu, color: "from-teal-800/40 to-teal-950/60" }
+  { id: "sound-video", label: "Som e Vídeo", desc: "Reprodutores, editores e gravadores de mídia", icon: Film, color: "from-purple-800/40 to-purple-950/60" }
 ];
 
 export default function LandingPage({ onSelectCategory, onSelectApp, apps }) {
@@ -182,29 +182,39 @@ export default function LandingPage({ onSelectCategory, onSelectApp, apps }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {categoryCards.map((cat) => {
             const Icon = cat.icon;
-            const count = apps.filter(a => a.category === cat.id).length;
+            const count = apps.filter(a => {
+              if (cat.id === 'flatpak') return a.category === 'flatpak' || a.flathub || a.packageType?.includes('Flatpak');
+              return a.category === cat.id;
+            }).length;
+
             return (
               <div
                 key={cat.id}
                 onClick={() => onSelectCategory(cat.id)}
-                className={`gtk-card p-3.5 rounded-lg cursor-pointer flex items-center justify-between group hover:border-[#87cf3e]/50 transition-all bg-gradient-to-br ${cat.color}`}
+                className={`gtk-card p-3 sm:p-3.5 rounded-lg cursor-pointer flex items-center justify-between group hover:border-[#87cf3e]/50 transition-all bg-gradient-to-br ${cat.color}`}
               >
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 rounded-md bg-black/20 flex items-center justify-center border border-white/10 group-hover:bg-[#87cf3e]/20 transition-colors">
+                {/* Left: Icon + Text */}
+                <div className="flex items-center space-x-3 min-w-0 flex-1 mr-2">
+                  <div className="w-10 h-10 rounded-md bg-black/25 flex items-center justify-center border border-white/10 group-hover:bg-[#87cf3e]/20 transition-colors flex-shrink-0">
                     <Icon className="w-5 h-5 text-[#87cf3e]" />
                   </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-white group-hover:text-[#87cf3e] transition-colors">
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-sm font-semibold text-white group-hover:text-[#87cf3e] transition-colors truncate">
                       {cat.label}
                     </h4>
-                    <p className="text-[11px] text-[#9ca3af] line-clamp-1">
+                    <p className="text-[11.5px] text-[#9ca3af] truncate mt-0.5">
                       {cat.desc}
                     </p>
                   </div>
                 </div>
-                <span className="text-[11px] font-semibold text-[#87cf3e] px-2 py-0.5 rounded-full bg-black/30 border border-[#87cf3e]/20">
-                  {count} apps
-                </span>
+
+                {/* Right: Redesigned and Aligned Count Badge */}
+                <div className="flex-shrink-0 ml-2 flex items-center px-2.5 py-1 rounded-full bg-black/40 border border-[#87cf3e]/30 text-[#87cf3e] text-xs font-semibold whitespace-nowrap shadow-xs">
+                  <span>{count}</span>
+                  <span className="ml-1 text-[10.5px] text-[#9ca3af] font-normal">
+                    {count === 1 ? 'app' : 'apps'}
+                  </span>
+                </div>
               </div>
             );
           })}
