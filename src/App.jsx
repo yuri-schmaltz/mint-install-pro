@@ -58,6 +58,30 @@ export default function App() {
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
+  // Sincronizar status real de Flatpaks instalados com o sistema operacional
+  useEffect(() => {
+    fetch('/api/installed')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data && Array.isArray(data.flatpaks)) {
+          const installedSet = new Set(data.flatpaks);
+          setApps((prevApps) =>
+            prevApps.map((app) => {
+              const isFlatpak =
+                app.packageType?.toLowerCase().includes('flatpak') ||
+                app.category === 'flatpak' ||
+                (app.id && app.id.includes('.'));
+              if (isFlatpak) {
+                return { ...app, installed: installedSet.has(app.id) };
+              }
+              return app;
+            })
+          );
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   // Navigation and views - Destaques como aba inicial
   const [currentView, setCurrentView] = useState('landing'); // 'landing' | 'list'
   const [selectedCategory, setSelectedCategory] = useState('picks');
