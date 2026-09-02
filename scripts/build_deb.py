@@ -45,6 +45,8 @@ import socketserver
 import socket
 import webbrowser
 import time
+import json
+import subprocess
 
 APP_DIR = "/usr/share/mint-install-pro"
 
@@ -57,6 +59,55 @@ def run_server(port):
     class QuietHandler(http.server.SimpleHTTPRequestHandler):
         def log_message(self, format, *args):
             pass  # Silenciar logs HTTP padrão
+
+        def do_GET(self):
+            if self.path == '/api/installed':
+                try:
+                    fp = subprocess.check_output(['flatpak', 'list', '--app', '--columns=application'], text=True)
+                    flatpaks = [x.strip() for x in fp.strip().splitlines() if x.strip()]
+                except Exception:
+                    flatpaks = []
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json')
+                self.end_headers()
+                self.wfile.write(json.dumps({'flatpaks': flatpaks}).encode('utf-8'))
+                return
+            super().do_GET()
+
+        def do_POST(self):
+            if self.path in ('/api/install', '/api/uninstall'):
+                length = int(self.headers.get('Content-Length', 0))
+                body = json.loads(self.rfile.read(length).decode('utf-8') or '{}')
+                app_id = body.get('id', '')
+                pkg_type = body.get('packageType', '')
+                is_flatpak = 'flatpak' in pkg_type.lower() or '.' in app_id
+                is_install = self.path == '/api/install'
+
+                if is_flatpak:
+                    if is_install:
+                        cmd = ['flatpak', 'install', '--user', '-y', '--noninteractive', 'flathub', app_id]
+                    else:
+                        cmd = ['flatpak', 'uninstall', '--user', '-y', '--noninteractive', app_id]
+                else:
+                    if is_install:
+                        cmd = ['pkexec', 'apt-get', 'install', '-y', app_id]
+                    else:
+                        cmd = ['pkexec', 'apt-get', 'remove', '-y', app_id]
+
+                try:
+                    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=600)
+                    success = proc.returncode == 0
+                    out = proc.stdout
+                except Exception as e:
+                    success = False
+                    out = str(e)
+
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json')
+                self.end_headers()
+                self.wfile.write(json.dumps({'success': success, 'output': out[-1000:] if out else ''}).encode('utf-8'))
+                return
+            self.send_error(404)
             
     os.chdir(APP_DIR)
     with socketserver.TCPServer(("127.0.0.1", port), QuietHandler) as httpd:

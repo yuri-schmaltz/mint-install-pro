@@ -14,6 +14,7 @@ import {
   CheckCircle2,
   Loader2
 } from 'lucide-react';
+import { executeInstall, executeUninstall } from '../services/packageManager';
 
 export default function AppDetailsModal({ app, onClose, onToggleInstall, simulationMode }) {
   const [installing, setInstalling] = useState(false);
@@ -22,38 +23,28 @@ export default function AppDetailsModal({ app, onClose, onToggleInstall, simulat
 
   if (!app) return null;
 
-  const handleAction = () => {
+  const handleAction = async () => {
     setInstalling(true);
     const isInstalling = !app.installed;
     
     if (isInstalling) {
-      setInstallStep('Conectando aos repositórios do Linux Mint...');
-      setProgress(20);
-      setTimeout(() => {
-        setInstallStep('Baixando pacote e dependências...');
-        setProgress(55);
-        setTimeout(() => {
-          setInstallStep('Descompactando e configurando arquivos...');
-          setProgress(85);
-          setTimeout(() => {
-            setProgress(100);
-            setInstalling(false);
-            onToggleInstall(app.id);
-          }, 600);
-        }, 800);
-      }, 700);
+      setInstallStep('Iniciando transação e conectando aos repositórios...');
+      setProgress(25);
+      const res = await executeInstall(app, (msg) => {
+        setInstallStep(msg.replace(/^\[.*?\]\s*/, ''));
+      });
+      setProgress(100);
+      setInstalling(false);
+      onToggleInstall(app.id);
     } else {
-      setInstallStep('Removendo arquivos do pacote...');
+      setInstallStep('Removendo arquivos do pacote do sistema...');
       setProgress(40);
-      setTimeout(() => {
-        setInstallStep('Limpando configurações residuais...');
-        setProgress(85);
-        setTimeout(() => {
-          setProgress(100);
-          setInstalling(false);
-          onToggleInstall(app.id);
-        }, 500);
-      }, 600);
+      const res = await executeUninstall(app, (msg) => {
+        setInstallStep(msg.replace(/^\[.*?\]\s*/, ''));
+      });
+      setProgress(100);
+      setInstalling(false);
+      onToggleInstall(app.id);
     }
   };
 

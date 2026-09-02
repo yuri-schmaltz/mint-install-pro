@@ -10,6 +10,7 @@ import {
   Terminal,
   ShieldCheck
 } from 'lucide-react';
+import { executeInstall, executeUninstall } from '../services/packageManager';
 
 export default function BatchActionModal({ 
   actionType, // 'install' | 'uninstall'
@@ -31,8 +32,7 @@ export default function BatchActionModal({
     let isCancelled = false;
 
     const processQueue = async () => {
-      setLogs(prev => [...prev, `[APT] Iniciando transação em lote (${targetApps.length} pacotes)...`]);
-      setLogs(prev => [...prev, `[APT] Verificando integridade das dependências e travas dpkg...`]);
+      setLogs(prev => [...prev, `[SISTEMA] Iniciando fila de operações em lote (${targetApps.length} pacotes)...`]);
 
       for (let i = 0; i < targetApps.length; i++) {
         if (isCancelled) break;
@@ -45,25 +45,35 @@ export default function BatchActionModal({
         );
 
         if (isInstall) {
-          setLogs(prev => [...prev, `[GET] Baixando ${currentApp.id} (${currentApp.size || '1.5 MB'})...`]);
-          await new Promise(r => setTimeout(r, 450));
-          setLogs(prev => [...prev, `[DPKG] Descompactando e configurando ${currentApp.name} (${currentApp.version || '1.0'})...`]);
-          await new Promise(r => setTimeout(r, 450));
+          const res = await executeInstall(currentApp, (msg) => {
+            if (!isCancelled) setLogs(prev => [...prev, msg]);
+          });
+          if (!isCancelled) {
+            if (res.success) {
+              setLogs(prev => [...prev, `[SUCESSO] ${currentApp.name} instalado no sistema!`]);
+            } else {
+              setLogs(prev => [...prev, `[AVISO] ${currentApp.name}: ${res.output || 'Concluído com aviso'}`]);
+            }
+          }
         } else {
-          setLogs(prev => [...prev, `[DPKG] Removendo binários e assets de ${currentApp.name}...`]);
-          await new Promise(r => setTimeout(r, 400));
-          setLogs(prev => [...prev, `[APT] Limpando gatilhos e configurações residuais de ${currentApp.id}...`]);
-          await new Promise(r => setTimeout(r, 350));
+          const res = await executeUninstall(currentApp, (msg) => {
+            if (!isCancelled) setLogs(prev => [...prev, msg]);
+          });
+          if (!isCancelled) {
+            setLogs(prev => [...prev, `[SUCESSO] ${currentApp.name} removido do sistema!`]);
+          }
         }
 
         // Mark as done
-        setAppStatuses(prev => 
-          prev.map((item, idx) => idx === i ? { ...item, status: 'done' } : item)
-        );
+        if (!isCancelled) {
+          setAppStatuses(prev => 
+            prev.map((item, idx) => idx === i ? { ...item, status: 'done' } : item)
+          );
+        }
       }
 
       if (!isCancelled) {
-        setLogs(prev => [...prev, `[APT] Todas as operações em lote foram concluídas com sucesso!`]);
+        setLogs(prev => [...prev, `[SISTEMA] Todas as operações em lote foram concluídas com sucesso!`]);
         setIsFinished(true);
         onComplete(targetApps.map(a => a.id), isInstall);
       }
