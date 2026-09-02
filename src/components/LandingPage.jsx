@@ -11,6 +11,8 @@ import {
   Gamepad2, 
   Cpu, 
   Boxes,
+  Code,
+  Briefcase,
   Check,
   Download
 } from 'lucide-react';
@@ -71,9 +73,11 @@ const banners = [
 
 const categoryCards = [
   { id: "accessories", label: "Acessórios", desc: "Utilitários essenciais e ferramentas do dia a dia", icon: Wrench, color: "from-emerald-800/40 to-emerald-950/60" },
+  { id: "development", label: "Desenvolvimento", desc: "IDEs, editores de código e ferramentas de programação", icon: Code, color: "from-indigo-800/40 to-indigo-950/60" },
+  { id: "office", label: "Escritório", desc: "Suíte de documentos, planilhas, PDFs e anotações", icon: Briefcase, color: "from-amber-800/40 to-amber-950/60" },
   { id: "system", label: "Ferramentas do Sistema", desc: "Monitoramento de disco, snapshots e particionador", icon: Cpu, color: "from-teal-800/40 to-teal-950/60" },
   { id: "flatpak", label: "Flatpak (Flathub)", desc: "Milhares de softwares modernos em sandbox Flathub", icon: Boxes, color: "from-sky-900/50 to-blue-950/70" },
-  { id: "graphics", label: "Gráficos", desc: "Modelagem 3D, pintura digital e fotografia", icon: Image, color: "from-amber-800/40 to-amber-950/60" },
+  { id: "graphics", label: "Gráficos", desc: "Modelagem 3D, pintura digital e fotografia", icon: Image, color: "from-orange-800/40 to-orange-950/60" },
   { id: "internet", label: "Internet", desc: "Navegadores, clientes de e-mail e mensageiros", icon: Globe, color: "from-blue-800/40 to-blue-950/60" },
   { id: "games", label: "Jogos", desc: "Ação, estratégia, simuladores e arcades", icon: Gamepad2, color: "from-rose-800/40 to-rose-950/60" },
   { id: "sound-video", label: "Som e Vídeo", desc: "Reprodutores, editores e gravadores de mídia", icon: Film, color: "from-purple-800/40 to-purple-950/60" }

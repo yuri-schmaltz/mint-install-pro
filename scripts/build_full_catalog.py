@@ -8,7 +8,7 @@ import urllib.request
 import apt
 import subprocess
 
-print("Iniciando construção do catálogo completo de aplicativos...")
+print("Iniciando construção do catálogo completo com Desenvolvimento e Escritório...")
 
 os.makedirs("public/icons", exist_ok=True)
 os.makedirs("src/data", exist_ok=True)
@@ -98,7 +98,69 @@ for acc in EXACT_ACCESSORIES:
 
 print(f"21 Acessórios base inseridos.")
 
-# 4. Extrair Flatpaks da API Flathub
+# 4. Apps dedicados para Desenvolvimento
+DEV_APPS = [
+    {"id": "com.visualstudio.code", "name": "Visual Studio Code", "summary": "Editor de código fonte profissional e extensível", "desc": "Editor de código open-source poderoso desenvolvido pela Microsoft com suporte a extensões, depurador integrado, controle Git e terminal embutido.", "icon": "/featured/com.visualstudio.code.svg", "rating": 4.9, "pkg": "Flatpak (Flathub)"},
+    {"id": "sublime-text", "name": "Sublime Text", "summary": "Editor de texto veloz para código e marcação", "desc": "Um editor de texto sofisticado e ultra-rápido para código, marcação e prosa, com interface minimalista e poderosos atalhos.", "icon": "/featured/sublime-text.svg", "rating": 4.8, "pkg": "Pacote do Sistema (APT)"},
+    {"id": "geany", "name": "Geany", "summary": "IDE leve e rápido com suporte a dezenas de linguagens", "desc": "Geany é um ambiente de desenvolvimento integrado pequeno e rápido que depende apenas de poucas bibliotecas GTK.", "icon": "/icons/geany.png", "rating": 4.7, "pkg": "Pacote do Sistema (APT)"},
+    {"id": "meld", "name": "Meld", "summary": "Ferramenta gráfica de comparação e mesclagem de código", "desc": "Meld é uma ferramenta visual de comparação de arquivos e diretórios direcionada a desenvolvedores de software.", "icon": "/icons/meld.png", "rating": 4.8, "pkg": "Pacote do Sistema (APT)"},
+    {"id": "io.dbeaver.DBeaverCommunity", "name": "DBeaver", "summary": "Gerenciador universal de banco de dados e cliente SQL", "desc": "Ferramenta gráfica universal de banco de dados para desenvolvedores, analistas de dados e administradores com suporte a PostgreSQL, MySQL, SQLite e Oracle.", "icon": "/icons/grep.png", "rating": 4.8, "pkg": "Flatpak (Flathub)"},
+    {"id": "cc.arduino.IDE2", "name": "Arduino IDE v2", "summary": "Ambiente de desenvolvimento para placas e microcontroladores", "desc": "IDE de código aberto para prototipagem eletrônica e gravação de firmware em placas Arduino e microcontroladores compatíveis.", "icon": "/icons/grep.png", "rating": 4.7, "pkg": "Flatpak (Flathub)"}
+]
+
+for dev in DEV_APPS:
+    seen_ids.add(dev["id"])
+    catalog.append({
+        "id": dev["id"],
+        "name": dev["name"],
+        "summary": dev["summary"],
+        "fullSummary": dev["summary"],
+        "description": dev["desc"],
+        "category": "development",
+        "categoryLabel": "Desenvolvimento",
+        "rating": dev["rating"],
+        "installed": dev["id"] in installed_flatpaks or (dev["id"] in apt_cache and apt_cache[dev["id"]].is_installed),
+        "version": "latest",
+        "size": "65 MB",
+        "packageType": dev["pkg"],
+        "icon": dev["icon"],
+        "fallbackIcon": "💻",
+        "developer": "Comunidade de Desenvolvedores",
+        "license": "Open Source"
+    })
+
+# 5. Apps dedicados para Escritório
+OFFICE_APPS = [
+    {"id": "libreoffice-writer", "name": "LibreOffice Writer", "summary": "Processador de textos profissional e editor de documentos", "desc": "Componente de processamento de texto da suíte LibreOffice, compatível com DOCX, ODT e exportação direta para PDF.", "icon": "/icons/libreoffice-writer.png", "rating": 4.8, "pkg": "Pacote do Sistema (APT)"},
+    {"id": "libreoffice-calc", "name": "LibreOffice Calc", "summary": "Planilha eletrônica avançada com suporte a gráficos e fórmulas", "desc": "Poderoso gerenciador de planilhas de cálculo e tabelas dinâmicas, compatível com arquivos XLSX e macros.", "icon": "/icons/libreoffice-calc.png", "rating": 4.8, "pkg": "Pacote do Sistema (APT)"},
+    {"id": "libreoffice-draw", "name": "LibreOffice Draw", "summary": "Criador de diagramas técnicos, fluxogramas e edição PDF", "desc": "Ferramenta vetorial de diagramação técnica e ilustrações para relatórios corporativos e acadêmicos.", "icon": "/icons/libreoffice-draw.png", "rating": 4.7, "pkg": "Pacote do Sistema (APT)"},
+    {"id": "xreader", "name": "Leitor de Documentos (Xreader)", "summary": "Visualizador leve de arquivos PDF, PostScript e DjVu", "desc": "Leitor padrão de documentos do Linux Mint com suporte a índice, pesquisa de texto, miniaturas e impressão de alta fidelidade.", "icon": "/icons/xreader.png", "rating": 4.8, "pkg": "Pacote do Sistema (APT)"},
+    {"id": "sticky", "name": "Notas Adesivas (Sticky Notes)", "summary": "Anotações rápidas na área de trabalho", "desc": "Aplicativo simples para fixar pequenos lembretes coloridos na sua área de trabalho do Cinnamon com formatação rica.", "icon": "/icons/sticky.png", "rating": 4.6, "pkg": "Pacote do Sistema (APT)"},
+    {"id": "org.onlyoffice.desktopeditors", "name": "ONLYOFFICE", "summary": "Suíte corporativa de escritório com máxima compatibilidade MS Office", "desc": "Editores avançados para documentos de texto, planilhas e apresentações com colaboração e compatibilidade nativa com arquivos da Microsoft.", "icon": "/icons/grep.png", "rating": 4.8, "pkg": "Flatpak (Flathub)"}
+]
+
+for off in OFFICE_APPS:
+    seen_ids.add(off["id"])
+    catalog.append({
+        "id": off["id"],
+        "name": off["name"],
+        "summary": off["summary"],
+        "fullSummary": off["summary"],
+        "description": off["desc"],
+        "category": "office",
+        "categoryLabel": "Escritório",
+        "rating": off["rating"],
+        "installed": off["id"] in installed_flatpaks or (off["id"] in apt_cache and apt_cache[off["id"]].is_installed) or os.path.exists(f"/usr/bin/{off['id']}"),
+        "version": "24.2",
+        "size": "45 MB",
+        "packageType": off["pkg"],
+        "icon": off["icon"],
+        "fallbackIcon": "💼",
+        "developer": "The Document Foundation / Linux Mint",
+        "license": "MPL-2.0 / LGPL"
+    })
+
+# 6. Extrair Flatpaks da API Flathub
 print("Buscando catálogo de Flatpaks do Flathub...")
 try:
     req = urllib.request.Request(
@@ -119,12 +181,10 @@ try:
         name = hit.get("name", app_id)
         summary = hit.get("summary") or "Aplicativo disponível no Flathub"
         desc = hit.get("description") or summary
-        # Clean HTML tags if any in description
         import re
         desc_clean = re.sub(r'<[^>]+>', '', desc)[:350]
         
         icon_url = hit.get("icon")
-        # If no icon, try to find in featured
         local_icon = None
         for base in [app_id, name.lower().replace(" ", "-"), name.lower()]:
             if os.path.exists(f"public/featured/{base}.svg"):
@@ -135,10 +195,6 @@ try:
                 break
                 
         is_inst = app_id in installed_flatpaks
-        
-        # Determine specific secondary category
-        cats = hit.get("main_categories") or []
-        primary_cat = "flatpak"
         
         catalog.append({
             "id": app_id,
@@ -162,19 +218,19 @@ try:
 except Exception as e:
     print(f"Erro ao buscar do Flathub: {e}")
 
-# 5. Adicionar aplicações desktop nativas instaladas do sistema
+# 7. Adicionar aplicações desktop nativas instaladas do sistema
 print("Mapeando aplicações de desktop locais (/usr/share/applications/)...")
 desktop_files = glob.glob("/usr/share/applications/*.desktop")
 category_map = {
     "AudioVideo": ("sound-video", "Som e Vídeo"),
     "Audio": ("sound-video", "Som e Vídeo"),
     "Video": ("sound-video", "Som e Vídeo"),
-    "Development": ("system", "Ferramentas do Sistema"),
+    "Development": ("development", "Desenvolvimento"),
     "Education": ("accessories", "Acessórios"),
     "Game": ("games", "Jogos"),
     "Graphics": ("graphics", "Gráficos"),
     "Network": ("internet", "Internet"),
-    "Office": ("accessories", "Acessórios"),
+    "Office": ("office", "Escritório"),
     "System": ("system", "Ferramentas do Sistema"),
     "Utility": ("accessories", "Acessórios"),
     "Settings": ("system", "Ferramentas do Sistema")
@@ -255,20 +311,22 @@ for df in desktop_files:
 
 print(f"Total consolidado no catálogo da plataforma: {len(catalog)} aplicativos!")
 
-# 6. Gravar src/data/initialApps.js
+# 8. Gravar src/data/initialApps.js com ordenação estrita das categorias
 categories_list = [
-  {"id": "all", "label": "Todos os Aplicativos", "icon": "Grid"},
-  {"id": "flatpak", "label": "Flatpak", "icon": "Boxes"},
+  {"id": "picks", "label": "Destaques", "icon": "Sparkles"},
   {"id": "accessories", "label": "Acessórios", "icon": "Wrench"},
-  {"id": "internet", "label": "Internet", "icon": "Globe"},
-  {"id": "sound-video", "label": "Som e Vídeo", "icon": "Film"},
-  {"id": "graphics", "label": "Gráficos", "icon": "Image"},
-  {"id": "games", "label": "Jogos", "icon": "Gamepad2"},
+  {"id": "development", "label": "Desenvolvimento", "icon": "Code"},
+  {"id": "office", "label": "Escritório", "icon": "Briefcase"},
   {"id": "system", "label": "Ferramentas do Sistema", "icon": "Cpu"},
-  {"id": "picks", "label": "Destaques", "icon": "Sparkles"}
+  {"id": "flatpak", "label": "Flatpak", "icon": "Boxes"},
+  {"id": "graphics", "label": "Gráficos", "icon": "Image"},
+  {"id": "internet", "label": "Internet", "icon": "Globe"},
+  {"id": "games", "label": "Jogos", "icon": "Gamepad2"},
+  {"id": "sound-video", "label": "Som e Vídeo", "icon": "Film"},
+  {"id": "all", "label": "Todos os Aplicativos", "icon": "Grid"}
 ]
 
-js_content = f"""// Catálogo Completo da Plataforma Linux Mint (APT do Sistema + Flathub Oficial)
+js_content = f"""// Catálogo Completo da Plataforma Linux Mint com 9 Categorias Regulares (Total 11 abas)
 export const initialApps = {json.dumps(catalog, indent=2, ensure_ascii=False)};
 
 export const categoriesList = {json.dumps(categories_list, indent=2, ensure_ascii=False)};

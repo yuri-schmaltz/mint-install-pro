@@ -9,6 +9,8 @@ import {
   Cpu, 
   Sparkles,
   Boxes,
+  Code,
+  Briefcase,
   CheckCircle2
 } from 'lucide-react';
 
@@ -16,6 +18,8 @@ const iconMap = {
   Grid,
   Boxes,
   Wrench,
+  Code,
+  Briefcase,
   Globe,
   Film,
   Image,

@@ -81,6 +81,13 @@ assert(isAlphabetical, `Demais abas ordenadas alfabeticamente: [${intermediateLa
 const accessoriesApps = initialApps.filter(a => a.category === 'accessories');
 assert(accessoriesApps.length >= 21, `Categoria Acessórios contém pelo menos os 21 aplicativos esperados (total: ${accessoriesApps.length})`);
 
+// Validação das 2 novas categorias para formar a matriz 3x3 (9 categorias regulares)
+const devApps = initialApps.filter(a => a.category === 'development');
+assert(devApps.length >= 5, `Nova categoria "Desenvolvimento" configurada e populada (${devApps.length} apps)`);
+
+const officeApps = initialApps.filter(a => a.category === 'office');
+assert(officeApps.length >= 5, `Nova categoria "Escritório" configurada e populada (${officeApps.length} apps)`);
+
 // Test 6: Verificação de Operações em Lote
 console.log('\n6. Verificação da Lógica de Instalação/Desinstalação em Lote:');
 const testBatchIds = ['synapse', 'dconf-editor', 'grep'];
