@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import HeaderBar from './components/HeaderBar';
 import CategoryNav from './components/CategoryNav';
 import AppGrid from './components/AppGrid';
+import LandingPage from './components/LandingPage';
 import AppDetailsModal from './components/AppDetailsModal';
 import { initialApps, categoriesList } from './data/initialApps';
 
@@ -24,9 +25,11 @@ export default function App() {
     return initialApps;
   });
 
-  // Navigation and filter states
+  // Start with 'accessories' in the category to match the user's screenshot exactly!
+  // But history has 'landing' as root, so Back button '<' works seamlessly.
+  const [currentView, setCurrentView] = useState('list'); // 'list' | 'landing'
   const [selectedCategory, setSelectedCategory] = useState('accessories');
-  const [navHistory, setNavHistory] = useState(['accessories']);
+  const [navHistory, setNavHistory] = useState(['landing', 'accessories']);
   const [searchQuery, setSearchQuery] = useState('');
   const [installedOnly, setInstalledOnly] = useState(false);
   const [selectedApp, setSelectedApp] = useState(null);
@@ -41,25 +44,31 @@ export default function App() {
     }
   }, [apps]);
 
-  // Handle category navigation with history
+  // Handle category selection
   const handleSelectCategory = (catId) => {
-    if (catId === selectedCategory) return;
-    setNavHistory((prev) => [...prev, catId]);
+    setCurrentView('list');
     setSelectedCategory(catId);
     setSearchQuery('');
+    setNavHistory((prev) => [...prev, catId]);
   };
 
-  // Handle back button
+  // Handle back button navigation
   const handleBack = () => {
+    if (searchQuery) {
+      setSearchQuery('');
+      return;
+    }
     if (navHistory.length > 1) {
       const newHistory = [...navHistory];
       newHistory.pop();
-      const previousCat = newHistory[newHistory.length - 1];
+      const prev = newHistory[newHistory.length - 1];
       setNavHistory(newHistory);
-      setSelectedCategory(previousCat);
-      setSearchQuery('');
-    } else if (searchQuery) {
-      setSearchQuery('');
+      if (prev === 'landing') {
+        setCurrentView('landing');
+      } else {
+        setCurrentView('list');
+        setSelectedCategory(prev);
+      }
     }
   };
 
@@ -139,20 +148,28 @@ export default function App() {
         {/* Categories Bar */}
         <CategoryNav
           categories={categoriesList}
-          selectedCategory={selectedCategory}
+          selectedCategory={currentView === 'landing' && !searchQuery ? '' : selectedCategory}
           onSelectCategory={handleSelectCategory}
           installedOnly={installedOnly}
           setInstalledOnly={setInstalledOnly}
         />
 
-        {/* Main Application Grid View */}
-        <AppGrid
-          apps={filteredApps}
-          categoryTitle={categoryTitle}
-          searchQuery={searchQuery}
-          installedOnly={installedOnly}
-          onSelectApp={(app) => setSelectedApp(app)}
-        />
+        {/* View Switch: Landing Page or App Grid */}
+        {currentView === 'landing' && !searchQuery && !installedOnly ? (
+          <LandingPage
+            onSelectCategory={handleSelectCategory}
+            onSelectApp={(app) => setSelectedApp(app)}
+            apps={apps}
+          />
+        ) : (
+          <AppGrid
+            apps={filteredApps}
+            categoryTitle={categoryTitle}
+            searchQuery={searchQuery}
+            installedOnly={installedOnly}
+            onSelectApp={(app) => setSelectedApp(app)}
+          />
+        )}
 
         {/* Modal for App Details */}
         {selectedApp && (

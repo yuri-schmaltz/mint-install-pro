@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Gerenciador de Aplicativos (Clone)
+Comment=Instalar novos aplicativos com interface Mint-Y Dark
+Exec=/home/yuri/Documentos/app_manager/run.sh
+Icon=/home/yuri/Documentos/app_manager/public/mint-logo.svg
+Terminal=true
+Type=Application
+Categories=GNOME;GTK;System;PackageManager;
+StartupNotify=true
