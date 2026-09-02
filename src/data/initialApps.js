@@ -3258,14 +3258,9 @@ export const initialApps = [
 
 export const categoriesList = [
   {
-    "id": "all",
-    "label": "Todos os Aplicativos",
-    "icon": "Grid"
-  },
-  {
-    "id": "flatpak",
-    "label": "Flatpak",
-    "icon": "Boxes"
+    "id": "picks",
+    "label": "Destaques",
+    "icon": "Sparkles"
   },
   {
     "id": "accessories",
@@ -3273,14 +3268,14 @@ export const categoriesList = [
     "icon": "Wrench"
   },
   {
-    "id": "internet",
-    "label": "Internet",
-    "icon": "Globe"
+    "id": "system",
+    "label": "Ferramentas do Sistema",
+    "icon": "Cpu"
   },
   {
-    "id": "sound-video",
-    "label": "Som e Vídeo",
-    "icon": "Film"
+    "id": "flatpak",
+    "label": "Flatpak",
+    "icon": "Boxes"
   },
   {
     "id": "graphics",
@@ -3288,18 +3283,23 @@ export const categoriesList = [
     "icon": "Image"
   },
   {
+    "id": "internet",
+    "label": "Internet",
+    "icon": "Globe"
+  },
+  {
     "id": "games",
     "label": "Jogos",
     "icon": "Gamepad2"
   },
   {
-    "id": "system",
-    "label": "Ferramentas do Sistema",
-    "icon": "Cpu"
+    "id": "sound-video",
+    "label": "Som e Vídeo",
+    "icon": "Film"
   },
   {
-    "id": "picks",
-    "label": "Destaques",
-    "icon": "Sparkles"
+    "id": "all",
+    "label": "Todos os Aplicativos",
+    "icon": "Grid"
   }
 ];

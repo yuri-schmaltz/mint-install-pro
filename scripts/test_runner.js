@@ -66,9 +66,18 @@ assert(searchGrep.length >= 1 && searchGrep.some(a => a.name === 'Grep'), 'Busca
 const searchZip = initialApps.filter(a => a.name.toLowerCase().includes('zip') || a.summary.toLowerCase().includes('zip'));
 assert(searchZip.length >= 3, `Busca por "zip" retorna múltiplos compactadores (encontrados: ${searchZip.length})`);
 
-// Test 5: Categorias e Acessórios
-console.log('\n5. Verificação das Categorias do Linux Mint:');
+// Test 5: Categorias e Ordenação Estrita
+console.log('\n5. Verificação da Ordem das Abas (Destaques à esquerda, Todos à direita, intermediárias alfabéticas):');
 assert(categoriesList.length >= 8, `Pelo menos 8 categorias configuradas (configuradas: ${categoriesList.length})`);
+assert(categoriesList[0].id === 'picks', 'Aba "Destaques" está na extrema esquerda (primeira posição, índice 0)');
+assert(categoriesList[categoriesList.length - 1].id === 'all', 'Aba "Todos os Aplicativos" está na extrema direita (última posição)');
+
+// Validação de ordem alfabética das abas intermediárias
+const intermediateLabels = categoriesList.slice(1, -1).map(c => c.label);
+const sortedIntermediate = [...intermediateLabels].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+const isAlphabetical = intermediateLabels.every((label, idx) => label === sortedIntermediate[idx]);
+assert(isAlphabetical, `Demais abas ordenadas alfabeticamente: [${intermediateLabels.join(', ')}]`);
+
 const accessoriesApps = initialApps.filter(a => a.category === 'accessories');
 assert(accessoriesApps.length >= 21, `Categoria Acessórios contém pelo menos os 21 aplicativos esperados (total: ${accessoriesApps.length})`);
 

@@ -28,10 +28,10 @@ export default function App() {
     return initialApps;
   });
 
-  // Navigation and views
-  const [currentView, setCurrentView] = useState('list'); // 'list' | 'landing'
-  const [selectedCategory, setSelectedCategory] = useState('accessories');
-  const [navHistory, setNavHistory] = useState(['landing', 'accessories']);
+  // Navigation and views - Destaques como aba inicial
+  const [currentView, setCurrentView] = useState('landing'); // 'landing' | 'list'
+  const [selectedCategory, setSelectedCategory] = useState('picks');
+  const [navHistory, setNavHistory] = useState(['picks']);
   const [searchQuery, setSearchQuery] = useState('');
   const [installedOnly, setInstalledOnly] = useState(false);
   const [selectedApp, setSelectedApp] = useState(null);
@@ -55,7 +55,11 @@ export default function App() {
 
   // Handle category selection
   const handleSelectCategory = (catId) => {
-    setCurrentView('list');
+    if (catId === 'picks') {
+      setCurrentView('landing');
+    } else {
+      setCurrentView('list');
+    }
     setSelectedCategory(catId);
     setSearchQuery('');
     setNavHistory((prev) => [...prev, catId]);
@@ -72,8 +76,9 @@ export default function App() {
       newHistory.pop();
       const prev = newHistory[newHistory.length - 1];
       setNavHistory(newHistory);
-      if (prev === 'landing') {
+      if (prev === 'picks') {
         setCurrentView('landing');
+        setSelectedCategory('picks');
       } else {
         setCurrentView('list');
         setSelectedCategory(prev);
@@ -263,7 +268,7 @@ export default function App() {
         {/* Categories Bar */}
         <CategoryNav
           categories={categoriesList}
-          selectedCategory={currentView === 'landing' && !searchQuery ? '' : selectedCategory}
+          selectedCategory={searchQuery ? '' : selectedCategory}
           onSelectCategory={handleSelectCategory}
           installedOnly={installedOnly}
           setInstalledOnly={setInstalledOnly}
