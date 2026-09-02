@@ -14,12 +14,12 @@ export default function BatchActionBar({
   if (selectedCount === 0) return null;
 
   return (
-    <div className="absolute bottom-3 left-4 right-4 z-40 animate-in slide-in-from-bottom-3 duration-200">
-      <div className="bg-[#1e2125] border border-[#3b4049] rounded-lg shadow-2xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+    <div className="flex-shrink-0 w-full bg-[#1b1e22] border-t border-[#363a43] px-5 py-2.5 z-30 shadow-[0_-4px_16px_rgba(0,0,0,0.35)] animate-in slide-in-from-bottom-2 duration-150">
+      <div className="flex flex-wrap items-center justify-between gap-3 text-xs w-full">
         
         {/* Selection Info */}
         <div className="flex items-center space-x-3">
-          <div className="flex items-center space-x-2 bg-[#2a2d33] px-2.5 py-1 rounded border border-[#363a42]">
+          <div className="flex items-center space-x-2 bg-[#282b31] px-2.5 py-1.5 rounded border border-[#383d46]">
             <CheckSquare className="w-4 h-4 text-[#87cf3e]" />
             <span className="font-bold text-white">
               {selectedCount} {selectedCount === 1 ? 'selecionado' : 'selecionados'}

@@ -90,7 +90,7 @@ export default function AppGrid({
     <div 
       ref={containerRef}
       onScroll={handleScroll}
-      className="flex-1 overflow-y-auto px-5 py-4 bg-[#26292d] relative"
+      className="flex-1 min-h-0 overflow-y-auto px-5 py-4 bg-[#26292d] relative"
     >
       
       {/* Flathub Special Banner when on Flatpak Tab */}

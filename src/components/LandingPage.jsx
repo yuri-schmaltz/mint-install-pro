@@ -102,7 +102,7 @@ export default function LandingPage({ onSelectCategory, onSelectApp, apps }) {
     .slice(0, 6);
 
   return (
-    <div className="flex-1 overflow-y-auto px-5 py-4 bg-[#26292d] space-y-6">
+    <div className="flex-1 min-h-0 overflow-y-auto px-5 py-4 bg-[#26292d] space-y-6">
       
       {/* Featured Banner Hero */}
       <div className="relative rounded-lg overflow-hidden shadow-xl border border-[#3b3f46] h-52 sm:h-60 transition-all duration-300">
