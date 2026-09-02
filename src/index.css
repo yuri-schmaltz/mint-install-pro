@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #26292d;
+    color: #e4e4e4;
+    user-select: none;
+    font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+/* GTK-style custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #24272b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #464a51;
+  border-radius: 6px;
+  border: 3px solid #24272b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5d626c;
+}
+
+/* Card subtle border and elevation */
+.gtk-card {
+  background-color: #35393f;
+  border: 1px solid #282b30;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.gtk-card:hover {
+  background-color: #3d4249;
+  border-color: #454a53;
+}
+
+.gtk-card:active {
+  background-color: #31343a;
+  transform: translateY(1px);
+}
+
+/* GTK Header Button */
+.gtk-btn {
+  background: #2e3136;
+  border: 1px solid #202225;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  transition: all 0.15s ease;
+}
+
+.gtk-btn:hover {
+  background: #3a3e45;
+  border-color: #4f545c;
+}
+
+.gtk-btn:active {
+  background: #232528;
+}
+
+/* Search bar styling */
+.gtk-search-input {
+  background-color: #1e2023;
+  border: 1px solid #18191c;
+  color: #f0f0f0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gtk-search-input:focus {
+  border-color: #87cf3e;
+  outline: none;
+  box-shadow: 0 0 0 1px #87cf3e;
+}
