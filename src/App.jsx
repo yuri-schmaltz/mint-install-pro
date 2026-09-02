@@ -10,7 +10,7 @@ import SettingsModal from './components/SettingsModal';
 import { initialApps, categoriesList } from './data/initialApps';
 import { searchFlathub } from './services/flathubApi';
 
-const STORAGE_KEY = 'mint_apps_state_v3';
+const STORAGE_KEY = 'mint_apps_state_v4';
 const SETTINGS_KEY = 'mint_settings_v1';
 
 const defaultSettings = {

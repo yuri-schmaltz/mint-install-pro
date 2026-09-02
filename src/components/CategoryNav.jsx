@@ -57,11 +57,6 @@ export default function CategoryNav({
                 : 'text-[#7d828c]'
             }`} />
             <span>{cat.label}</span>
-            {cat.id === 'flatpak' && (
-              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30">
-                Flathub
-              </span>
-            )}
           </button>
         );
       })}

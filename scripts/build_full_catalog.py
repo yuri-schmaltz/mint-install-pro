@@ -222,18 +222,18 @@ except Exception as e:
 print("Mapeando aplicações de desktop locais (/usr/share/applications/)...")
 desktop_files = glob.glob("/usr/share/applications/*.desktop")
 category_map = {
-    "AudioVideo": ("sound-video", "Som e Vídeo"),
-    "Audio": ("sound-video", "Som e Vídeo"),
-    "Video": ("sound-video", "Som e Vídeo"),
+    "AudioVideo": ("sound-video", "Mídia"),
+    "Audio": ("sound-video", "Mídia"),
+    "Video": ("sound-video", "Mídia"),
     "Development": ("development", "Desenvolvimento"),
     "Education": ("accessories", "Acessórios"),
     "Game": ("games", "Jogos"),
     "Graphics": ("graphics", "Gráficos"),
     "Network": ("internet", "Internet"),
     "Office": ("office", "Escritório"),
-    "System": ("system", "Ferramentas do Sistema"),
+    "System": ("system", "Sistema"),
     "Utility": ("accessories", "Acessórios"),
-    "Settings": ("system", "Ferramentas do Sistema")
+    "Settings": ("system", "Sistema")
 }
 
 for df in desktop_files:
@@ -317,12 +317,12 @@ categories_list = [
   {"id": "accessories", "label": "Acessórios", "icon": "Wrench"},
   {"id": "development", "label": "Desenvolvimento", "icon": "Code"},
   {"id": "office", "label": "Escritório", "icon": "Briefcase"},
-  {"id": "system", "label": "Ferramentas do Sistema", "icon": "Cpu"},
   {"id": "flatpak", "label": "Flatpak", "icon": "Boxes"},
   {"id": "graphics", "label": "Gráficos", "icon": "Image"},
   {"id": "internet", "label": "Internet", "icon": "Globe"},
   {"id": "games", "label": "Jogos", "icon": "Gamepad2"},
-  {"id": "sound-video", "label": "Som e Vídeo", "icon": "Film"},
+  {"id": "sound-video", "label": "Mídia", "icon": "Film"},
+  {"id": "system", "label": "Sistema", "icon": "Cpu"},
   {"id": "all", "label": "Todos os Aplicativos", "icon": "Grid"}
 ]
 
