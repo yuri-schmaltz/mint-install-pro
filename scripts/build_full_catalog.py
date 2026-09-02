@@ -323,7 +323,7 @@ categories_list = [
   {"id": "games", "label": "Jogos", "icon": "Gamepad2"},
   {"id": "sound-video", "label": "Mídia", "icon": "Film"},
   {"id": "system", "label": "Sistema", "icon": "Cpu"},
-  {"id": "all", "label": "Todos os Aplicativos", "icon": "Grid"}
+  {"id": "all", "label": "Todos", "icon": "Grid"}
 ]
 
 js_content = f"""// Catálogo Completo da Plataforma Linux Mint com 9 Categorias Regulares (Total 11 abas)

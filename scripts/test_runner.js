@@ -70,7 +70,7 @@ assert(searchZip.length >= 3, `Busca por "zip" retorna múltiplos compactadores 
 console.log('\n5. Verificação da Ordem das Abas (Destaques à esquerda, Todos à direita, intermediárias alfabéticas):');
 assert(categoriesList.length >= 8, `Pelo menos 8 categorias configuradas (configuradas: ${categoriesList.length})`);
 assert(categoriesList[0].id === 'picks', 'Aba "Destaques" está na extrema esquerda (primeira posição, índice 0)');
-assert(categoriesList[categoriesList.length - 1].id === 'all', 'Aba "Todos os Aplicativos" está na extrema direita (última posição)');
+assert(categoriesList[categoriesList.length - 1].id === 'all' && categoriesList[categoriesList.length - 1].label === 'Todos', 'Aba da extrema direita está configurada com id "all" e rótulo "Todos"');
 
 // Validação de ordem alfabética das abas intermediárias
 const intermediateLabels = categoriesList.slice(1, -1).map(c => c.label);

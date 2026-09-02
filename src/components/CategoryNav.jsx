@@ -36,7 +36,7 @@ export default function CategoryNav({
   setInstalledOnly 
 }) {
   return (
-    <nav className="bg-[#202326] border-b border-[#2d3036] px-4 py-1.5 flex items-center space-x-1.5 overflow-x-auto text-xs select-none">
+    <nav className="bg-[#202326] border-b border-[#2d3036] px-3 sm:px-4 py-1.5 flex items-center space-x-1 sm:space-x-1.5 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden text-xs select-none">
       {categories.map((cat) => {
         const IconComponent = iconMap[cat.icon] || Grid;
         const isSelected = selectedCategory === cat.id;
@@ -45,7 +45,7 @@ export default function CategoryNav({
           <button
             key={cat.id}
             onClick={() => onSelectCategory(cat.id)}
-            className={`flex items-center space-x-1.5 px-3 py-1 rounded-md transition-colors whitespace-nowrap ${
+            className={`flex items-center space-x-1 sm:space-x-1.5 px-2.5 sm:px-3 py-1 rounded-md transition-colors whitespace-nowrap flex-shrink-0 ${
               isSelected
                 ? 'bg-[#35393f] text-white font-medium shadow-xs border border-[#444a53]'
                 : 'text-[#9ca3af] hover:text-[#e4e4e4] hover:bg-[#2a2d33]'

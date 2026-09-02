@@ -65,24 +65,6 @@ export default function HeaderBar({
             </button>
           )}
         </div>
-
-        {/* Installed apps / tasks filter button */}
-        <button
-          onClick={() => setInstalledOnly(!installedOnly)}
-          title={installedOnly ? "Mostrar todos os aplicativos" : "Mostrar apenas aplicativos instalados"}
-          className={`p-1.5 rounded border transition-colors flex items-center space-x-1 text-xs ${
-            installedOnly 
-              ? 'bg-[#87cf3e]/20 border-[#87cf3e] text-[#87cf3e]' 
-              : 'bg-[#2b2e33] border-[#232528] text-[#dcdcdc] hover:bg-[#383c42]'
-          }`}
-        >
-          <FileCheck className="w-4 h-4" />
-          {installedCount > 0 && (
-            <span className="text-[10px] font-semibold px-1 rounded-full bg-[#35393f] text-[#87cf3e]">
-              {installedCount}
-            </span>
-          )}
-        </button>
       </div>
 
       {/* Center: Window Title */}
@@ -92,7 +74,7 @@ export default function HeaderBar({
         </h1>
       </div>
 
-      {/* Right controls: Hamburger menu & Window Buttons */}
+      {/* Right controls: Sandbox, Installed Counter, Hamburger menu & Window Buttons */}
       <div className="flex items-center space-x-2">
         {/* Safe Sandbox Indicator */}
         <div 
@@ -105,6 +87,24 @@ export default function HeaderBar({
             {simulationMode ? 'Sandbox Seguro' : 'Modo Sistema'}
           </span>
         </div>
+
+        {/* Installed apps count button - Posicionado imediatamente à esquerda do menu e à direita de Sandbox Seguro */}
+        <button
+          onClick={() => setInstalledOnly(!installedOnly)}
+          title={installedOnly ? "Mostrar todos os aplicativos" : `Mostrar apenas aplicativos instalados (${installedCount})`}
+          className={`px-2 py-1 rounded border transition-colors flex items-center space-x-1.5 text-xs ${
+            installedOnly 
+              ? 'bg-[#87cf3e]/20 border-[#87cf3e] text-[#87cf3e]' 
+              : 'bg-[#2b2e33] border-[#232528] text-[#dcdcdc] hover:bg-[#383c42]'
+          }`}
+        >
+          <FileCheck className="w-3.5 h-3.5" />
+          {installedCount > 0 && (
+            <span className="text-[10px] font-semibold px-1.5 py-0.2 rounded-full bg-[#1b1c1e] text-[#87cf3e]">
+              {installedCount}
+            </span>
+          )}
+        </button>
 
         {/* Menu Dropdown */}
         <div className="relative">
