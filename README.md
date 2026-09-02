@@ -1,7 +1,7 @@
 # 🌿 Mint Install Pro
 
 <p align="center">
-  <img src="public/icons/software-manager.png" alt="Mint Install Pro Logo" width="96" height="96">
+  <img src="https://raw.githubusercontent.com/yuri-schmaltz/mint-install-pro/master/public/icons/software-manager.png" alt="Mint Install Pro Logo" width="96" height="96">
 </p>
 
 <p align="center">
