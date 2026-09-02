@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="https://github.com/yuri-schmaltz/mint-install-pro"><img src="https://img.shields.io/badge/GitHub-mint--install--pro-87cf3e?style=flat-square&logo=github" alt="GitHub Repo"></a>
+  <a href="https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.2.0"><img src="https://img.shields.io/badge/Release-v1.2.0%20.deb-blue?style=flat-square&logo=debian" alt="Download .deb"></a>
   <img src="https://img.shields.io/badge/Testes-48%20Passando-87cf3e?style=flat-square&logo=vitest" alt="Testes 48/48">
   <img src="https://img.shields.io/badge/Linux%20Mint-22.3%20Zena-87cf3e?style=flat-square&logo=linuxmint" alt="Linux Mint 22.3">
   <img src="https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react" alt="React 18">
