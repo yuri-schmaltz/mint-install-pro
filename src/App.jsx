@@ -6,10 +6,23 @@ import LandingPage from './components/LandingPage';
 import AppDetailsModal from './components/AppDetailsModal';
 import BatchActionBar from './components/BatchActionBar';
 import BatchActionModal from './components/BatchActionModal';
+import SettingsModal from './components/SettingsModal';
 import { initialApps, categoriesList } from './data/initialApps';
 import { searchFlathub } from './services/flathubApi';
 
 const STORAGE_KEY = 'mint_apps_state_v2';
+const SETTINGS_KEY = 'mint_settings_v1';
+
+const defaultSettings = {
+  searchInSummary: true,
+  searchInDescription: true,
+  searchInCategoryOnly: false,
+  enableFlathubLive: true,
+  allowUnverifiedFlatpaks: false,
+  packageTypePreference: 'all', // 'all' | 'flatpak' | 'apt'
+  simulationMode: true,
+  confirmBatchAction: true
+};
 
 export default function App() {
   // Load persisted apps or use comprehensive initialApps
@@ -28,6 +41,21 @@ export default function App() {
     return initialApps;
   });
 
+  // Settings State
+  const [settings, setSettings] = useState(() => {
+    try {
+      const saved = localStorage.getItem(SETTINGS_KEY);
+      if (saved) {
+        return { ...defaultSettings, ...JSON.parse(saved) };
+      }
+    } catch (e) {
+      console.error('Error loading settings', e);
+    }
+    return defaultSettings;
+  });
+
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
   // Navigation and views - Destaques como aba inicial
   const [currentView, setCurrentView] = useState('landing'); // 'landing' | 'list'
   const [selectedCategory, setSelectedCategory] = useState('picks');
@@ -35,7 +63,6 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [installedOnly, setInstalledOnly] = useState(false);
   const [selectedApp, setSelectedApp] = useState(null);
-  const [simulationMode, setSimulationMode] = useState(true);
 
   // Live Flathub search state
   const [isSearchingFlathub, setIsSearchingFlathub] = useState(false);
@@ -52,6 +79,26 @@ export default function App() {
       console.error('Error saving apps state', e);
     }
   }, [apps]);
+
+  // Persist settings when changed
+  const handleSaveSettings = (newSettings) => {
+    setSettings(newSettings);
+    try {
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify(newSettings));
+    } catch (e) {
+      console.error('Error saving settings', e);
+    }
+  };
+
+  const handleResetDefaults = () => {
+    handleSaveSettings(defaultSettings);
+  };
+
+  const handleClearCache = () => {
+    localStorage.removeItem(STORAGE_KEY);
+    setApps(initialApps);
+    window.location.reload();
+  };
 
   // Handle category selection
   const handleSelectCategory = (catId) => {
@@ -106,6 +153,7 @@ export default function App() {
 
   // Live Flathub search
   const handleSearchFlathubLive = async (term) => {
+    if (!settings.enableFlathubLive) return;
     const q = term || searchQuery || 'browser';
     setIsSearchingFlathub(true);
     try {
@@ -126,31 +174,51 @@ export default function App() {
 
   // Trigger live flathub search automatically when searching in flatpak tab
   useEffect(() => {
-    if (selectedCategory === 'flatpak' && searchQuery.trim().length >= 3) {
+    if (settings.enableFlathubLive && selectedCategory === 'flatpak' && searchQuery.trim().length >= 3) {
       const debounceTimer = setTimeout(() => {
         handleSearchFlathubLive(searchQuery);
       }, 500);
       return () => clearTimeout(debounceTimer);
     }
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, settings.enableFlathubLive]);
 
-  // Filtered apps based on search, category and installed filter
+  // Filtered apps based on search, category and preferences
   const filteredApps = useMemo(() => {
     return apps.filter((app) => {
       // Installed filter
       if (installedOnly && !app.installed) return false;
 
+      // Multi-format preference filter
+      if (settings.packageTypePreference === 'flatpak' && !app.flathub && !app.packageType?.includes('Flatpak')) {
+        const hasFlatpakVariant = apps.some(a => (a.flathub || a.packageType?.includes('Flatpak')) && a.name.toLowerCase() === app.name.toLowerCase());
+        if (hasFlatpakVariant) return false;
+      }
+      if (settings.packageTypePreference === 'apt' && (app.flathub || app.packageType?.includes('Flatpak'))) {
+        const hasAptVariant = apps.some(a => !a.flathub && a.packageType?.includes('APT') && a.name.toLowerCase() === app.name.toLowerCase());
+        if (hasAptVariant) return false;
+      }
+
       // Search query filter
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
+        
+        // Check category restriction preference
+        if (settings.searchInCategoryOnly && selectedCategory !== 'all' && selectedCategory !== 'picks') {
+          if (selectedCategory === 'flatpak' && !app.flathub && !app.packageType?.includes('Flatpak')) return false;
+          if (selectedCategory !== 'flatpak' && app.category !== selectedCategory) return false;
+        }
+
         const matchesName = app.name.toLowerCase().includes(q);
-        const matchesSummary = (app.summary || '').toLowerCase().includes(q);
-        const matchesFullSummary = (app.fullSummary || '').toLowerCase().includes(q);
-        const matchesDesc = (app.description || '').toLowerCase().includes(q);
+        const matchesSummary = settings.searchInSummary && (
+          (app.summary || '').toLowerCase().includes(q) || 
+          (app.fullSummary || '').toLowerCase().includes(q)
+        );
+        const matchesDesc = settings.searchInDescription && (app.description || '').toLowerCase().includes(q);
         const matchesCategory = (app.categoryLabel || '').toLowerCase().includes(q);
         const matchesType = (app.packageType || '').toLowerCase().includes(q);
         const matchesId = (app.id || '').toLowerCase().includes(q);
-        return matchesName || matchesSummary || matchesFullSummary || matchesDesc || matchesCategory || matchesType || matchesId;
+        
+        return matchesName || matchesSummary || matchesDesc || matchesCategory || matchesType || matchesId;
       }
 
       // "all" tab presents ALL applications available in the platform
@@ -164,13 +232,13 @@ export default function App() {
       }
 
       // Specific Category filter
-      if (selectedCategory) {
+      if (selectedCategory && selectedCategory !== 'picks') {
         return app.category === selectedCategory;
       }
 
       return true;
     });
-  }, [apps, searchQuery, selectedCategory, installedOnly]);
+  }, [apps, searchQuery, selectedCategory, installedOnly, settings]);
 
   // Batch selection handlers
   const handleToggleSelectApp = (appId) => {
@@ -240,7 +308,7 @@ export default function App() {
   const categoryTitle = useMemo(() => {
     if (searchQuery) return `Resultados da Pesquisa`;
     const cat = categoriesList.find((c) => c.id === selectedCategory);
-    return cat ? cat.label : 'Acessórios';
+    return cat ? cat.label : 'Destaques';
   }, [selectedCategory, searchQuery]);
 
   const installedCount = useMemo(() => {
@@ -261,8 +329,9 @@ export default function App() {
           installedOnly={installedOnly}
           setInstalledOnly={setInstalledOnly}
           installedCount={installedCount}
-          simulationMode={simulationMode}
-          setSimulationMode={setSimulationMode}
+          simulationMode={settings.simulationMode}
+          setSimulationMode={(val) => handleSaveSettings({ ...settings, simulationMode: val })}
+          onOpenSettings={() => setIsSettingsOpen(true)}
         />
 
         {/* Categories Bar */}
@@ -316,7 +385,7 @@ export default function App() {
             app={selectedApp}
             onClose={() => setSelectedApp(null)}
             onToggleInstall={handleToggleInstall}
-            simulationMode={simulationMode}
+            simulationMode={settings.simulationMode}
           />
         )}
 
@@ -327,9 +396,19 @@ export default function App() {
             targetApps={batchModal.apps}
             onClose={() => setBatchModal(null)}
             onComplete={handleBatchComplete}
-            simulationMode={simulationMode}
+            simulationMode={settings.simulationMode}
           />
         )}
+
+        {/* Preferences / Settings Modal */}
+        <SettingsModal
+          isOpen={isSettingsOpen}
+          onClose={() => setIsSettingsOpen(false)}
+          settings={settings}
+          onSaveSettings={handleSaveSettings}
+          onResetDefaults={handleResetDefaults}
+          onClearCache={handleClearCache}
+        />
 
       </div>
     </div>

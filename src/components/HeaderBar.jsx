@@ -10,7 +10,8 @@ import {
   X as CloseIcon,
   ShieldCheck,
   RefreshCw,
-  Info
+  Info,
+  Settings
 } from 'lucide-react';
 
 export default function HeaderBar({ 
@@ -22,7 +23,8 @@ export default function HeaderBar({
   setInstalledOnly,
   installedCount,
   simulationMode,
-  setSimulationMode
+  setSimulationMode,
+  onOpenSettings
 }) {
   const [showMenu, setShowMenu] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
@@ -116,6 +118,14 @@ export default function HeaderBar({
 
           {showMenu && (
             <div className="absolute right-0 mt-1 w-52 bg-[#2a2d32] border border-[#1b1c1e] rounded shadow-xl py-1 z-50 text-xs text-[#e4e4e4]">
+              <button 
+                onClick={() => { onOpenSettings(); setShowMenu(false); }}
+                className="w-full text-left px-3 py-2 hover:bg-[#35393f] flex items-center space-x-2 text-white font-medium transition-colors"
+              >
+                <Settings className="w-3.5 h-3.5 text-[#87cf3e]" />
+                <span>Preferências</span>
+              </button>
+              <div className="h-px bg-[#3b3f46] my-1" />
               <button 
                 onClick={() => { setSimulationMode(!simulationMode); setShowMenu(false); }}
                 className="w-full text-left px-3 py-2 hover:bg-[#35393f] flex items-center justify-between"
