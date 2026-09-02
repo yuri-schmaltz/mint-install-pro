@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=Gerenciador de Aplicativos (Clone)
-Comment=Instalar novos aplicativos com interface Mint-Y Dark
+Name=Mint Install Pro
+Comment=Gerenciador de Aplicativos Moderno para Linux Mint (MintInstall Clone)
 Exec=/home/yuri/Documentos/app_manager/run.sh
-Icon=/home/yuri/Documentos/app_manager/public/mint-logo.svg
+Icon=/home/yuri/Documentos/app_manager/public/icons/software-manager.png
 Terminal=true
 Type=Application
 Categories=GNOME;GTK;System;PackageManager;

@@ -154,7 +154,7 @@ export default function HeaderBar({
       {showAbout && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center z-50 p-4">
           <div className="bg-[#2a2d32] border border-[#3b3f46] rounded-lg max-w-sm w-full p-5 shadow-2xl text-center">
-            <img src="/mint-logo.svg" alt="Mint Logo" className="w-16 h-16 mx-auto mb-3" />
+            <img src="./icons/software-manager.png" alt="Mint Install Pro" className="w-16 h-16 mx-auto mb-3 drop-shadow-md object-contain" />
             <h2 className="text-lg font-bold text-white">Gerenciador de Aplicativos</h2>
             <p className="text-xs text-[#87cf3e] font-semibold mt-0.5">Versão 6.1.4 (Clone Mint-Y Dark)</p>
             <p className="text-xs text-[#a4a9b2] mt-3 leading-relaxed">
