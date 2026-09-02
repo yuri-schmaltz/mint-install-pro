@@ -182,9 +182,9 @@ assert(allLabelsMatch, `Todos os 11 rótulos concisos coincidem: [${expectedLabe
 
 // Test 12: Verificação de Empacotamento Debian e Documentos Oficiais
 console.log('\n12. Verificação de Empacotamento Debian e Documentos Oficiais:');
-const debPath = path.join(process.cwd(), 'mint-install-pro_1.2.0_all.deb');
+const debPath = path.join(process.cwd(), 'mint-install-pro_1.3.0_all.deb');
 const debExists = fs.existsSync(debPath);
-assert(debExists, 'Pacote Debian "mint-install-pro_1.2.0_all.deb" gerado na raiz do projeto');
+assert(debExists, 'Pacote Debian "mint-install-pro_1.3.0_all.deb" gerado na raiz do projeto');
 if (debExists) {
   const debSize = fs.statSync(debPath).size;
   assert(debSize > 500 * 1024, `Pacote Debian possui tamanho válido de produção (${(debSize / 1024).toFixed(1)} KB)`);

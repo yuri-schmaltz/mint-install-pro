@@ -4,7 +4,7 @@ import shutil
 import subprocess
 import stat
 
-VERSION = "1.2.0"
+VERSION = "1.3.0"
 PACKAGE_NAME = "mint-install-pro"
 DEB_DIR = f"/tmp/{PACKAGE_NAME}_{VERSION}_all"
 OUTPUT_DEB = f"{PACKAGE_NAME}_{VERSION}_all.deb"
