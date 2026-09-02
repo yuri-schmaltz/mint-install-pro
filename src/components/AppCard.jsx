@@ -9,19 +9,40 @@ export default function AppCard({
 }) {
   const [imgError, setImgError] = useState(false);
 
+  const isInstalled = !!app.installed;
+  const isStagedForUninstall = isInstalled && isSelected;
+  const isStagedForInstall = !isInstalled && isSelected;
+
+  // Determine card background and border styling
+  let cardClass = 'border-[#2e3238] bg-[#2a2d33] hover:bg-[#32363e]';
+
+  if (isStagedForUninstall) {
+    // Marcado para desinstalação (desmarcado o checkbox): fundo vermelho/laranja na mesma paleta e luminância do verde dos instalados
+    cardClass = 'bg-gradient-to-r from-[#332220] via-[#3a2522] to-[#332220] border-[#663830] ring-1 ring-amber-600/40 hover:bg-[#3d2724] hover:border-amber-500/60';
+  } else if (isStagedForInstall) {
+    // Marcado para instalação
+    cardClass = 'bg-[#2b3a2e] border-[#87cf3e] ring-1 ring-[#87cf3e]';
+  } else if (isInstalled) {
+    // Instalado no sistema: fundo sutil verde Mint
+    cardClass = 'bg-gradient-to-r from-[#233126] via-[#263529] to-[#243126] border-[#384e36] hover:border-[#87cf3e]/70 hover:bg-[#28392c]';
+  }
+
+  // O checkbox aparece marcado se:
+  // - Está instalado e NÃO foi desmarcado para remoção
+  // - OU não está instalado e foi marcado para instalação
+  const isCheckboxChecked = (isInstalled && !isSelected) || isStagedForInstall;
+
   return (
     <div
       onClick={() => onClick(app)}
-      className={`gtk-card group relative flex items-center p-2.5 sm:p-3 rounded-md cursor-pointer select-none transition-all duration-150 h-[74px] ${
-        isSelected 
-          ? 'ring-1 ring-[#87cf3e] border-[#87cf3e] bg-[#344037]' 
-          : app.installed
-            ? 'bg-gradient-to-r from-[#233126] via-[#263529] to-[#243126] border-[#384e36] hover:border-[#87cf3e]/70 hover:bg-[#28392c]'
-            : 'border-[#2e3238] bg-[#2a2d33] hover:bg-[#32363e]'
-      }`}
-      title={`${app.name}: ${app.fullSummary || app.summary}${app.installed ? ' (Instalado)' : ''}`}
+      className={`gtk-card group relative flex items-center p-2.5 sm:p-3 rounded-md cursor-pointer select-none transition-all duration-150 h-[74px] ${cardClass}`}
+      title={
+        isStagedForUninstall
+          ? `${app.name}: Desmarcado para desinstalação em lote`
+          : `${app.name}: ${app.fullSummary || app.summary}${isInstalled ? ' (Instalado)' : ''}`
+      }
     >
-      {/* Checkbox: Resolve o check verde de app instalado e seleção em lote */}
+      {/* Checkbox: Resolve o check verde de app instalado e a desmarcação para desinstalação */}
       {onToggleSelect && (
         <div
           onClick={(e) => {
@@ -30,20 +51,26 @@ export default function AppCard({
           }}
           className="mr-2.5 flex items-center justify-center p-0.5 cursor-pointer z-10"
           title={
-            isSelected 
-              ? (app.installed ? "Marcado para desinstalação em lote" : "Marcado para instalação em lote")
-              : (app.installed ? "Instalado no sistema (clique para marcar ação em lote)" : "Não instalado (clique para marcar para instalação)")
+            isStagedForUninstall
+              ? "Desmarcado para desinstalação (clique para cancelar remoção)"
+              : isStagedForInstall
+                ? "Marcado para instalação (clique para cancelar)"
+                : isInstalled
+                  ? "Instalado no sistema (clique para desmarcar e desinstalar)"
+                  : "Não instalado (clique para marcar e instalar)"
           }
         >
           <div className={`w-4 h-4 rounded-[3px] border flex items-center justify-center transition-all ${
-            isSelected
-              ? 'bg-[#87cf3e] border-[#87cf3e] text-[#132802]'
-              : app.installed
-                ? 'border-[#87cf3e] bg-[#87cf3e]/25 text-[#87cf3e] hover:bg-[#87cf3e]/35'
-                : 'border-[#555a64] bg-[#22252a] hover:border-[#87cf3e]'
+            isStagedForUninstall
+              ? 'border-amber-500/70 bg-amber-950/40 text-amber-400 hover:border-amber-400'
+              : isStagedForInstall
+                ? 'bg-[#87cf3e] border-[#87cf3e] text-[#132802]'
+                : isInstalled
+                  ? 'border-[#87cf3e] bg-[#87cf3e]/25 text-[#87cf3e] hover:bg-[#87cf3e]/35'
+                  : 'border-[#555a64] bg-[#22252a] hover:border-[#87cf3e]'
           }`}>
-            {(isSelected || app.installed) && (
-              <Check className={`w-3.5 h-3.5 stroke-[3] ${isSelected ? 'text-[#132802]' : 'text-[#87cf3e]'}`} />
+            {isCheckboxChecked && (
+              <Check className={`w-3.5 h-3.5 stroke-[3] ${isStagedForInstall ? 'text-[#132802]' : 'text-[#87cf3e]'}`} />
             )}
           </div>
         </div>
@@ -70,11 +97,15 @@ export default function AppCard({
       <div className="flex-1 min-w-0 pr-8">
         <h3 className="text-[13px] font-semibold text-[#f0f0f0] truncate leading-tight group-hover:text-white flex items-center space-x-1.5">
           <span>{app.name}</span>
-          {app.installed && (
+          {isStagedForUninstall ? (
+            <span className="text-[10px] font-semibold text-amber-400 bg-amber-950/60 px-1.5 py-0.2 rounded border border-amber-600/40">
+              Desinstalar
+            </span>
+          ) : isInstalled ? (
             <span className="text-[10px] font-medium text-[#87cf3e]/80">
               •
             </span>
-          )}
+          ) : null}
         </h3>
         <p className="text-[11.5px] text-[#9ca3af] truncate mt-1 leading-tight font-normal">
           {app.summary}
