@@ -21,7 +21,9 @@ const defaultSettings = {
   allowUnverifiedFlatpaks: false,
   packageTypePreference: 'all', // 'all' | 'flatpak' | 'apt'
   simulationMode: true,
-  confirmBatchAction: true
+  confirmBatchAction: true,
+  isDefaultPackageManager: true,
+  associateMimeTypes: true
 };
 
 export default function App() {

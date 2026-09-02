@@ -8,7 +8,8 @@ import {
   RotateCcw, 
   AlertTriangle,
   Check,
-  HardDrive
+  HardDrive,
+  Monitor
 } from 'lucide-react';
 
 export default function SettingsModal({ 
@@ -24,6 +25,7 @@ export default function SettingsModal({
   const [activeTab, setActiveTab] = useState('search'); // 'search' | 'flatpak' | 'security' | 'system'
   const [localSettings, setLocalSettings] = useState(settings);
   const [savedToast, setSavedToast] = useState(false);
+  const [defaultApplied, setDefaultApplied] = useState(false);
 
   const handleChange = (key, value) => {
     const updated = { ...localSettings, [key]: value };
@@ -99,8 +101,8 @@ export default function SettingsModal({
                 : 'border-transparent text-[#9ca3af] hover:text-[#dcdcdc]'
             }`}
           >
-            <HardDrive className="w-3.5 h-3.5" />
-            <span>Manutenção</span>
+            <Monitor className="w-3.5 h-3.5" />
+            <span>Sistema & Padrão</span>
           </button>
         </div>
 
@@ -272,12 +274,96 @@ export default function SettingsModal({
             </div>
           )}
 
-          {/* 4. Manutenção & Cache */}
+          {/* 4. Sistema & Gerenciador Padrão */}
           {activeTab === 'system' && (
             <div className="space-y-4">
+              {/* Integração com o Sistema Operacional */}
               <div>
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#87cf3e] mb-2">
-                  Manutenção do Cache e Dados
+                <h3 className="text-xs font-bold uppercase tracking-wider text-[#87cf3e] mb-2 flex items-center space-x-1.5">
+                  <Monitor className="w-3.5 h-3.5" />
+                  <span>Integração com o Sistema Operacional</span>
+                </h3>
+                <div className="bg-[#202226] border border-[#32363c] rounded-lg divide-y divide-[#2a2d33]">
+                  
+                  {/* Default App Manager Option */}
+                  <label className="p-3.5 flex items-center justify-between cursor-pointer hover:bg-[#25282e] transition-colors">
+                    <div className="pr-4">
+                      <div className="text-white font-medium flex items-center space-x-2">
+                        <span>Tornar o Mint Install Pro o gerenciador padrão do sistema</span>
+                        {localSettings.isDefaultPackageManager && (
+                          <span className="text-[10px] font-bold text-[#87cf3e] bg-[#87cf3e]/15 px-2 py-0.5 rounded-full border border-[#87cf3e]/30">
+                            Padrão Ativo
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-[11px] text-[#8e95a0] mt-0.5">
+                        Registra o Mint Install Pro como o manipulador padrão para protocolos <code className="text-[#87cf3e]">appstream://</code>, <code className="text-[#87cf3e]">apt://</code> e pacotes de instalação.
+                      </div>
+                    </div>
+                    <input
+                      type="checkbox"
+                      checked={localSettings.isDefaultPackageManager !== false}
+                      onChange={(e) => {
+                        handleChange('isDefaultPackageManager', e.target.checked);
+                        if (e.target.checked) {
+                          setDefaultApplied(true);
+                          setTimeout(() => setDefaultApplied(false), 2500);
+                        }
+                      }}
+                      className="w-4 h-4 rounded text-[#87cf3e] accent-[#87cf3e] cursor-pointer flex-shrink-0"
+                    />
+                  </label>
+
+                  {/* Association to .deb and flatpakref */}
+                  <label className="p-3.5 flex items-center justify-between cursor-pointer hover:bg-[#25282e] transition-colors">
+                    <div className="pr-4">
+                      <div className="text-white font-medium">
+                        Associar a pacotes de instalação (.deb e .flatpakref)
+                      </div>
+                      <div className="text-[11px] text-[#8e95a0] mt-0.5">
+                        Abre automaticamente instaladores de pacotes baixados pelo navegador ou gerenciador de arquivos diretamente no Mint Install Pro.
+                      </div>
+                    </div>
+                    <input
+                      type="checkbox"
+                      checked={localSettings.associateMimeTypes !== false}
+                      onChange={(e) => handleChange('associateMimeTypes', e.target.checked)}
+                      className="w-4 h-4 rounded text-[#87cf3e] accent-[#87cf3e] cursor-pointer flex-shrink-0"
+                    />
+                  </label>
+
+                  {/* Action & Command Helper */}
+                  <div className="p-3.5 bg-[#1a1c1f] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                    <div>
+                      <div className="text-[11.5px] text-[#cfd3db] font-medium">
+                        Associação de Protocolos XDG no Linux Mint:
+                      </div>
+                      <div className="text-[10px] text-[#8e95a0] mt-0.5">
+                        Mapeado para <span className="text-[#e0e0e0] font-mono">mint-install-pro.desktop</span>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        handleChange('isDefaultPackageManager', true);
+                        handleChange('associateMimeTypes', true);
+                        setDefaultApplied(true);
+                        setTimeout(() => setDefaultApplied(false), 2500);
+                      }}
+                      className="px-3.5 py-1.5 rounded bg-[#35393f] hover:bg-[#434850] text-[#e0e0e0] font-medium text-xs border border-[#444a53] transition-colors whitespace-nowrap self-start sm:self-center shadow-xs flex items-center space-x-1.5"
+                    >
+                      <Check className="w-3.5 h-3.5 text-[#87cf3e]" />
+                      <span>{defaultApplied ? 'Padrão Aplicado!' : 'Definir como Padrão do Sistema'}</span>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Manutenção do Cache e Dados */}
+              <div>
+                <h3 className="text-xs font-bold uppercase tracking-wider text-[#87cf3e] mb-2 flex items-center space-x-1.5">
+                  <HardDrive className="w-3.5 h-3.5" />
+                  <span>Manutenção do Cache e Dados</span>
                 </h3>
                 <div className="bg-[#202226] border border-[#32363c] rounded-lg p-4 space-y-3">
                   

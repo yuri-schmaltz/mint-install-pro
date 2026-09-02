@@ -130,6 +130,7 @@ Terminal=false
 Type=Application
 Categories=GNOME;GTK;System;Settings;PackageManager;
 Keywords=package;apt;software;install;uninstall;flatpak;flathub;
+MimeType=x-scheme-handler/appstream;x-scheme-handler/apt;application/vnd.debian.binary-package;application/vnd.flatpak.ref;application/vnd.flatpak.repo;
 StartupNotify=true
 """
 
@@ -169,6 +170,11 @@ if which update-desktop-database >/dev/null 2>&1; then
 fi
 if which gtk-update-icon-cache >/dev/null 2>&1; then
     gtk-update-icon-cache -q /usr/share/icons/hicolor || true
+fi
+if which xdg-mime >/dev/null 2>&1; then
+    xdg-mime default mint-install-pro.desktop x-scheme-handler/appstream >/dev/null 2>&1 || true
+    xdg-mime default mint-install-pro.desktop x-scheme-handler/apt >/dev/null 2>&1 || true
+    xdg-mime default mint-install-pro.desktop application/vnd.debian.binary-package >/dev/null 2>&1 || true
 fi
 exit 0
 """
