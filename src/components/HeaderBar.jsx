@@ -29,6 +29,11 @@ export default function HeaderBar({
   const [showMenu, setShowMenu] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
 
+  // Comportamento idêntico aos contadores de categoria (suporte a até 999 e transbordo +999)
+  const isInstalledOverflow = installedCount > 999;
+  const displayInstalledCount = isInstalledOverflow ? '+999' : installedCount;
+  const installedLabel = installedCount === 1 ? 'app' : 'apps';
+
   return (
     <header className="bg-[#202326] border-b border-[#1b1c1e] text-[#dcdcdc] px-3 py-2 flex items-center justify-between select-none relative z-30 shadow-md">
       {/* Left controls: Back, Search, Tasks */}
@@ -88,22 +93,23 @@ export default function HeaderBar({
           </span>
         </div>
 
-        {/* Installed apps count button - Posicionado imediatamente à esquerda do menu e à direita de Sandbox Seguro */}
+        {/* Installed apps count button - com o mesmo comportamento e estilo dos contadores de categoria */}
         <button
           onClick={() => setInstalledOnly(!installedOnly)}
-          title={installedOnly ? "Mostrar todos os aplicativos" : `Mostrar apenas aplicativos instalados (${installedCount})`}
-          className={`px-2 py-1 rounded border transition-colors flex items-center space-x-1.5 text-xs ${
+          title={installedOnly ? "Mostrar todos os aplicativos" : `Filtrar apenas instalados (${installedCount} ${installedLabel})`}
+          className={`flex-shrink-0 h-[26px] px-2.5 rounded-full border transition-all flex items-center space-x-1.5 text-xs select-none shadow-xs cursor-pointer ${
             installedOnly 
-              ? 'bg-[#87cf3e]/20 border-[#87cf3e] text-[#87cf3e]' 
-              : 'bg-[#2b2e33] border-[#232528] text-[#dcdcdc] hover:bg-[#383c42]'
+              ? 'bg-[#87cf3e]/20 border-[#87cf3e] text-[#87cf3e] ring-1 ring-[#87cf3e]/50' 
+              : 'bg-black/40 border-[#87cf3e]/30 hover:border-[#87cf3e] hover:bg-black/60'
           }`}
         >
-          <FileCheck className="w-3.5 h-3.5" />
-          {installedCount > 0 && (
-            <span className="text-[10px] font-semibold px-1.5 py-0.2 rounded-full bg-[#1b1c1e] text-[#87cf3e]">
-              {installedCount}
-            </span>
-          )}
+          <FileCheck className={`w-3.5 h-3.5 flex-shrink-0 ${installedOnly ? 'text-[#87cf3e]' : 'text-[#a0a4ab]'}`} />
+          <span className="font-semibold text-[#87cf3e]">
+            {displayInstalledCount}
+          </span>
+          <span className="text-[10.5px] text-[#9ca3af] font-normal">
+            {installedLabel}
+          </span>
         </button>
 
         {/* Menu Dropdown */}
