@@ -7,17 +7,18 @@ import AppDetailsModal from './components/AppDetailsModal';
 import BatchActionBar from './components/BatchActionBar';
 import BatchActionModal from './components/BatchActionModal';
 import { initialApps, categoriesList } from './data/initialApps';
+import { searchFlathub } from './services/flathubApi';
 
-const STORAGE_KEY = 'mint_apps_state_v1';
+const STORAGE_KEY = 'mint_apps_state_v2';
 
 export default function App() {
-  // Load persisted apps or use initialApps
+  // Load persisted apps or use comprehensive initialApps
   const [apps, setApps] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed) && parsed.length >= initialApps.length) {
           return parsed;
         }
       }
@@ -35,6 +36,9 @@ export default function App() {
   const [installedOnly, setInstalledOnly] = useState(false);
   const [selectedApp, setSelectedApp] = useState(null);
   const [simulationMode, setSimulationMode] = useState(true);
+
+  // Live Flathub search state
+  const [isSearchingFlathub, setIsSearchingFlathub] = useState(false);
 
   // Batch selection state
   const [selectedAppIds, setSelectedAppIds] = useState([]);
@@ -95,6 +99,36 @@ export default function App() {
     );
   };
 
+  // Live Flathub search
+  const handleSearchFlathubLive = async (term) => {
+    const q = term || searchQuery || 'browser';
+    setIsSearchingFlathub(true);
+    try {
+      const hits = await searchFlathub(q);
+      if (hits && hits.length > 0) {
+        setApps((prevApps) => {
+          const existingIds = new Set(prevApps.map((a) => a.id));
+          const newApps = hits.filter((h) => !existingIds.has(h.id));
+          return [...newApps, ...prevApps];
+        });
+      }
+    } catch (err) {
+      console.error('Erro na pesquisa ao vivo do Flathub', err);
+    } finally {
+      setIsSearchingFlathub(false);
+    }
+  };
+
+  // Trigger live flathub search automatically when searching in flatpak tab
+  useEffect(() => {
+    if (selectedCategory === 'flatpak' && searchQuery.trim().length >= 3) {
+      const debounceTimer = setTimeout(() => {
+        handleSearchFlathubLive(searchQuery);
+      }, 500);
+      return () => clearTimeout(debounceTimer);
+    }
+  }, [searchQuery, selectedCategory]);
+
   // Filtered apps based on search, category and installed filter
   const filteredApps = useMemo(() => {
     return apps.filter((app) => {
@@ -109,11 +143,23 @@ export default function App() {
         const matchesFullSummary = (app.fullSummary || '').toLowerCase().includes(q);
         const matchesDesc = (app.description || '').toLowerCase().includes(q);
         const matchesCategory = (app.categoryLabel || '').toLowerCase().includes(q);
-        return matchesName || matchesSummary || matchesFullSummary || matchesDesc || matchesCategory;
+        const matchesType = (app.packageType || '').toLowerCase().includes(q);
+        const matchesId = (app.id || '').toLowerCase().includes(q);
+        return matchesName || matchesSummary || matchesFullSummary || matchesDesc || matchesCategory || matchesType || matchesId;
       }
 
-      // Category filter (if not "all")
-      if (selectedCategory && selectedCategory !== 'all') {
+      // "all" tab presents ALL applications available in the platform
+      if (selectedCategory === 'all') {
+        return true;
+      }
+
+      // "flatpak" tab presents all Flatpaks from Flathub
+      if (selectedCategory === 'flatpak') {
+        return app.category === 'flatpak' || app.flathub || app.packageType?.includes('Flatpak');
+      }
+
+      // Specific Category filter
+      if (selectedCategory) {
         return app.category === selectedCategory;
       }
 
@@ -241,6 +287,9 @@ export default function App() {
             onToggleSelectApp={handleToggleSelectApp}
             onSelectAllVisible={handleSelectAllVisible}
             isAllVisibleSelected={isAllVisibleSelected}
+            selectedCategory={selectedCategory}
+            onSearchFlathubLive={handleSearchFlathubLive}
+            isSearchingFlathub={isSearchingFlathub}
           />
         )}
 

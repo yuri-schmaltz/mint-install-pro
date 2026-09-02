@@ -10,6 +10,7 @@ import {
   Image, 
   Gamepad2, 
   Cpu, 
+  Boxes,
   Check,
   Download
 } from 'lucide-react';
@@ -69,6 +70,7 @@ const banners = [
 ];
 
 const categoryCards = [
+  { id: "flatpak", label: "Flatpak (Flathub)", desc: "Milhares de softwares modernos em sandbox Flathub", icon: Boxes, color: "from-sky-900/50 to-blue-950/70" },
   { id: "accessories", label: "Acessórios", desc: "Utilitários essenciais e ferramentas do dia a dia", icon: Wrench, color: "from-emerald-800/40 to-emerald-950/60" },
   { id: "internet", label: "Internet", desc: "Navegadores, clientes de e-mail e mensageiros", icon: Globe, color: "from-blue-800/40 to-blue-950/60" },
   { id: "sound-video", label: "Som e Vídeo", desc: "Reprodutores, editores e gravadores de mídia", icon: Film, color: "from-purple-800/40 to-purple-950/60" },

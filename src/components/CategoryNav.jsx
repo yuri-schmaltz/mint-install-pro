@@ -8,11 +8,13 @@ import {
   Gamepad2, 
   Cpu, 
   Sparkles,
+  Boxes,
   CheckCircle2
 } from 'lucide-react';
 
 const iconMap = {
   Grid,
+  Boxes,
   Wrench,
   Globe,
   Film,
@@ -45,8 +47,17 @@ export default function CategoryNav({
                 : 'text-[#9ca3af] hover:text-[#e4e4e4] hover:bg-[#2a2d33]'
             }`}
           >
-            <IconComponent className={`w-3.5 h-3.5 ${isSelected ? 'text-[#87cf3e]' : 'text-[#7d828c]'}`} />
+            <IconComponent className={`w-3.5 h-3.5 ${
+              isSelected 
+                ? cat.id === 'flatpak' ? 'text-sky-400' : 'text-[#87cf3e]' 
+                : 'text-[#7d828c]'
+            }`} />
             <span>{cat.label}</span>
+            {cat.id === 'flatpak' && (
+              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30">
+                Flathub
+              </span>
+            )}
           </button>
         );
       })}
