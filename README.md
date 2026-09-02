@@ -114,29 +114,100 @@ mint-install-pro/
 
 ---
 
-## 🚀 Como Executar
+## 📥 Instalação (Installation)
 
-### 1. Inicialização Rápida
-No terminal do seu Linux Mint ou qualquer distribuição Linux:
+Você pode instalar e rodar o **Mint Install Pro** de três maneiras diferentes:
+
+### Opção 1: Pacote Oficial `.deb` (Recomendado para Linux Mint / Debian / Ubuntu)
+
+Esta é a forma mais prática para o usuário final, integrando a aplicação diretamente ao sistema operacional e aos menus do Cinnamon:
+
+1. **Baixe o arquivo `.deb` mais recente:**
+   ```bash
+   wget https://github.com/yuri-schmaltz/mint-install-pro/releases/download/v1.2.0/mint-install-pro_1.2.0_all.deb
+   ```
+2. **Instale via terminal:**
+   ```bash
+   sudo dpkg -i mint-install-pro_1.2.0_all.deb
+   sudo apt-get install -f # resolve dependências de sistema se necessário
+   ```
+   *(Ou dê um duplo clique no arquivo baixado para instalar pela interface gráfica do GDebi).*
+
+3. **Inicie a aplicação:**
+   - Procure por **"Mint Install Pro"** no menu Iniciar do Linux Mint (Cinnamon).
+   - Ou digite diretamente no terminal:
+     ```bash
+     mint-install-pro
+     ```
+
+---
+
+### Opção 2: Execução Portátil Rápida (Script `./run.sh`)
+
+Ideal para testar a aplicação sem instalar nada no sistema operacional hospedeiro:
+
 ```bash
+# Clone o repositório
+git clone https://github.com/yuri-schmaltz/mint-install-pro.git
+cd mint-install-pro
+
+# Execute o script automatizado
 ./run.sh
 ```
-O script verifica o ambiente, instala as dependências necessárias e abre automaticamente o navegador em `http://localhost:3000`.
+O script checa o ambiente, instala as dependências se necessário e abre a aplicação automaticamente em seu navegador padrão em `http://localhost:3000`.
 
-### 2. Execução Manual via npm
+---
+
+### Opção 3: Modo Desenvolvedor via `npm`
+
+Para desenvolvedores que desejam inspecionar o código, executar testes ou criar novas builds:
+
 ```bash
-# Instalação das dependências
+# Instalação das dependências do Node.js
 npm install
 
-# Inicialização em modo desenvolvimento
+# Inicialização do servidor com Hot Module Replacement (HMR)
 npm run dev
 
-# Build de produção otimizado
+# Execução da suíte completa de testes (48 testes)
+npm test
+
+# Compilação do build de produção otimizado
 npm run build
 
-# Pré-visualização do build de produção
-npm run preview
+# Geração de um novo pacote instalador .deb
+npm run build:deb
 ```
+
+---
+
+## 🎮 Guia de Uso Passo a Passo (Usage Guide)
+
+### 1. Navegação pelas Categorias
+- **Barra de 11 Abas:** Utilize a barra superior perfeitamente distribuída para alternar entre as categorias ordenadas alfabeticamente (*Acessórios*, *Desenvolvimento*, *Escritório*, *Flatpak*, *Gráficos*, *Internet*, *Jogos*, *Mídia*, *Sistema* e *Todos*).
+- **Tela de Destaques:** Na tela inicial (*Destaques*), utilize a **matriz 3x3** para visualizar a contagem de pacotes em cada área e o carrossel de softwares populares.
+
+### 2. Pesquisa Inteligente em Tempo Real
+- Digite na caixa de busca superior. A filtragem ocorre em menos de **5 milissegundos** e consulta nomes, resumos, descrições detalhadas e identificadores de pacotes APT e Flatpak.
+- Ao pesquisar dentro da aba **Flatpak**, a aplicação realiza consultas assíncronas ao vivo contra o catálogo do Flathub.
+
+### 3. Filtro de Aplicativos Instalados
+- No canto superior direito do cabeçalho, clique no botão em cápsula **`[ 📋 122 apps ]`** (posicionado entre *Sandbox Seguro* e o menu) para alternar instantaneamente a listagem entre todo o catálogo ou apenas os softwares instalados na sua máquina.
+
+### 4. Instalação e Desinstalação em Lote (Batch Actions)
+A aplicação possui um fluxo cromático inteligente para gerenciamento em lote:
+- **Para agendar a instalação:** Marque o checkbox de aplicativos que não possuem o check verde.
+- **Para agendar a desinstalação:** Desmarque o checkbox de qualquer aplicativo instalado. O card correspondente transiciona imediatamente para um **degradê suave vermelho/laranja escuro** na mesma paleta do tema e exibe a etiqueta `Desinstalar`.
+- **Execução:** Uma barra de ações flutuante surgirá na parte inferior informando `Instalar (X) • Desinstalar (Y)`. Clique em **"Executar Ações em Lote"** para abrir o modal de fila e acompanhar o terminal interativo com barras de progresso.
+
+### 5. Modo Sandbox Seguro vs. Modo Real
+- No cabeçalho, clique no botão **`🛡️ Sandbox Seguro`** para alternar entre:
+  - **Modo Sandbox:** Todas as ações de instalação e remoção são simuladas sem risco de alterar o sistema operacional hospedeiro.
+  - **Modo Sistema:** Permite integração direta para operações reais na máquina.
+
+### 6. Central de Preferências
+- Clique no botão de menu hambúrguer (`≡`) no canto superior direito e selecione **"Preferências"**.
+- Ajuste filtros de busca, habilite ou desabilite o Flathub online, configure preferências de tipo de pacote e limpe caches temporários.
 
 ---
 
