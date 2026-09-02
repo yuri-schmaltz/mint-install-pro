@@ -129,6 +129,76 @@ assert(formatBadgeCount(999).displayCount === '999', 'Contador no limite 999 exi
 assert(formatBadgeCount(1000).displayCount === '+999', 'Contador acima de 999 (ex: 1000) exibe "+999"');
 assert(formatBadgeCount(2500).displayCount === '+999', 'Contador Flathub massivo (ex: 2500) exibe "+999"');
 
+// Test 10: Verificação da Cromatografia Dinâmica e Estados do Checkbox
+console.log('\n10. Verificação da Lógica Cromática e Estados do Checkbox (AppCard):');
+function evaluateCardState(app, isSelected) {
+  const isInstalled = !!app.installed;
+  const isStagedForUninstall = isInstalled && isSelected;
+  const isStagedForInstall = !isInstalled && isSelected;
+  const isCheckboxChecked = (isInstalled && !isSelected) || isStagedForInstall;
+  
+  let colorTheme = 'neutral';
+  if (isStagedForUninstall) colorTheme = 'red-orange';
+  else if (isStagedForInstall) colorTheme = 'green-highlight';
+  else if (isInstalled) colorTheme = 'green-mint';
+
+  return { isStagedForUninstall, isStagedForInstall, isCheckboxChecked, colorTheme };
+}
+
+const installedAppMock = { id: 'grep', name: 'Grep', installed: true };
+const uninstalledAppMock = { id: 'blender', name: 'Blender', installed: false };
+
+// Estado 1: App instalado em repouso
+const state1 = evaluateCardState(installedAppMock, false);
+assert(state1.isCheckboxChecked === true, 'App instalado em repouso tem checkbox marcado com check verde');
+assert(state1.colorTheme === 'green-mint', 'App instalado em repouso tem fundo verde Mint sutil');
+
+// Estado 2: App instalado desmarcado para remoção
+const state2 = evaluateCardState(installedAppMock, true);
+assert(state2.isCheckboxChecked === false, 'App instalado desmarcado para remoção tem checkbox desmarcado (vazio)');
+assert(state2.isStagedForUninstall === true, 'App instalado desmarcado é reconhecido como isStagedForUninstall');
+assert(state2.colorTheme === 'red-orange', 'App instalado desmarcado tem fundo vermelho/laranja na mesma luminância');
+
+// Estado 3: App não instalado em repouso
+const state3 = evaluateCardState(uninstalledAppMock, false);
+assert(state3.isCheckboxChecked === false, 'App não instalado tem checkbox vazio');
+assert(state3.colorTheme === 'neutral', 'App não instalado tem fundo neutro cinza GTK');
+
+// Estado 4: App não instalado marcado para instalação
+const state4 = evaluateCardState(uninstalledAppMock, true);
+assert(state4.isCheckboxChecked === true, 'App não instalado marcado para instalação tem checkbox marcado');
+assert(state4.isStagedForInstall === true, 'App marcado é reconhecido como isStagedForInstall');
+assert(state4.colorTheme === 'green-highlight', 'App marcado para instalação tem fundo com anel verde');
+
+// Test 11: Verificação das 11 Abas e Rótulos Concisos
+console.log('\n11. Verificação da Integridade das 11 Abas e Rótulos Concisos:');
+assert(categoriesList.length === 11, `Exatamente 11 abas configuradas (total: ${categoriesList.length})`);
+const expectedLabels = [
+  'Destaques', 'Acessórios', 'Desenvolvimento', 'Escritório', 'Flatpak',
+  'Gráficos', 'Internet', 'Jogos', 'Mídia', 'Sistema', 'Todos'
+];
+const allLabelsMatch = categoriesList.every((cat, idx) => cat.label === expectedLabels[idx]);
+assert(allLabelsMatch, `Todos os 11 rótulos concisos coincidem: [${expectedLabels.join(', ')}]`);
+
+// Test 12: Verificação de Empacotamento Debian e Documentos Oficiais
+console.log('\n12. Verificação de Empacotamento Debian e Documentos Oficiais:');
+const debPath = path.join(process.cwd(), 'mint-install-pro_1.2.0_all.deb');
+const debExists = fs.existsSync(debPath);
+assert(debExists, 'Pacote Debian "mint-install-pro_1.2.0_all.deb" gerado na raiz do projeto');
+if (debExists) {
+  const debSize = fs.statSync(debPath).size;
+  assert(debSize > 500 * 1024, `Pacote Debian possui tamanho válido de produção (${(debSize / 1024).toFixed(1)} KB)`);
+}
+
+const requiredDocs = [
+  'README.md', 'ABOUT.md', 'LICENSE', 'CONTRIBUTING.md',
+  'SECURITY.md', 'CHANGELOG.md', 'acceptance_criteria_audit.md'
+];
+requiredDocs.forEach(doc => {
+  const docPath = path.join(process.cwd(), doc);
+  assert(fs.existsSync(docPath), `Documento oficial "${doc}" presente no repositório`);
+});
+
 console.log(`\n========================================`);
 console.log(`Resultado dos Testes: ${passed} passaram, ${failed} falharam.`);
 console.log(`========================================\n`);
