@@ -191,6 +191,10 @@ export default function LandingPage({ onSelectCategory, onSelectApp, apps }) {
               return a.category === cat.id;
             }).length;
 
+            const isOverflow = count > 999;
+            const displayCount = isOverflow ? '+999' : count;
+            const countLabel = count === 1 ? 'app' : 'apps';
+
             return (
               <div
                 key={cat.id}
@@ -212,11 +216,16 @@ export default function LandingPage({ onSelectCategory, onSelectApp, apps }) {
                   </div>
                 </div>
 
-                {/* Right: Redesigned and Aligned Count Badge */}
-                <div className="flex-shrink-0 ml-2 flex items-center px-2.5 py-1 rounded-full bg-black/40 border border-[#87cf3e]/30 text-[#87cf3e] text-xs font-semibold whitespace-nowrap shadow-xs">
-                  <span>{count}</span>
+                {/* Right: Fixed-Size Uniform Count Badge (Supports up to 999 and +999 overflow) */}
+                <div 
+                  className="flex-shrink-0 ml-2 w-[82px] h-[26px] flex items-center justify-center rounded-full bg-black/40 border border-[#87cf3e]/30 text-xs whitespace-nowrap shadow-xs select-none"
+                  title={isOverflow ? `${count} aplicativos disponíveis (excede o limite de exibição de 999)` : `${count} aplicativos disponíveis`}
+                >
+                  <span className="font-semibold text-[#87cf3e]">
+                    {displayCount}
+                  </span>
                   <span className="ml-1 text-[10.5px] text-[#9ca3af] font-normal">
-                    {count === 1 ? 'app' : 'apps'}
+                    {countLabel}
                   </span>
                 </div>
               </div>

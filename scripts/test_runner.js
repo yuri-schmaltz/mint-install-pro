@@ -114,6 +114,21 @@ assert(!!flatpakCategory, 'Aba "flatpak" está registrada em categoriesList');
 assert(typeof searchFlathub === 'function', 'Função de busca ao vivo no Flathub (searchFlathub) disponível');
 assert(typeof getPopularFlathub === 'function', 'Função de catálogo popular Flathub (getPopularFlathub) disponível');
 
+// Test 9: Lógica do Contador com Suporte até 999 e Prefixo '+' para Overflow
+console.log('\n9. Verificação do Contador de Categorias (Tamanho fixo e suporte a > 999):');
+function formatBadgeCount(count) {
+  const isOverflow = count > 999;
+  const displayCount = isOverflow ? '+999' : String(count);
+  const countLabel = count === 1 ? 'app' : 'apps';
+  return { displayCount, countLabel, isOverflow };
+}
+
+assert(formatBadgeCount(45).displayCount === '45', 'Contador normal 45 exibe "45"');
+assert(formatBadgeCount(1).countLabel === 'app', 'Contador singular 1 usa "app"');
+assert(formatBadgeCount(999).displayCount === '999', 'Contador no limite 999 exibe "999"');
+assert(formatBadgeCount(1000).displayCount === '+999', 'Contador acima de 999 (ex: 1000) exibe "+999"');
+assert(formatBadgeCount(2500).displayCount === '+999', 'Contador Flathub massivo (ex: 2500) exibe "+999"');
+
 console.log(`\n========================================`);
 console.log(`Resultado dos Testes: ${passed} passaram, ${failed} falharam.`);
 console.log(`========================================\n`);
