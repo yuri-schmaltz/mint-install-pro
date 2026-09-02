@@ -50,13 +50,24 @@ export async function searchFlathub(query) {
   }
 }
 
-export async function getPopularFlathub(page = 1, perPage = 30) {
+export async function getPopularFlathub(page = 1, perPage = 100) {
   try {
-    const response = await fetch(`https://flathub.org/api/v2/collection/popular?page=${page}&per_page=${perPage}`);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
-    return (data.hits || []).map(hit => {
+    const page1Req = fetch(`https://flathub.org/api/v2/collection/popular?page=1&per_page=100`);
+    const page2Req = fetch(`https://flathub.org/api/v2/collection/popular?page=2&per_page=100`);
+    const [res1, res2] = await Promise.all([page1Req, page2Req]);
+    
+    const hits1 = res1.ok ? (await res1.json()).hits || [] : [];
+    const hits2 = res2.ok ? (await res2.json()).hits || [] : [];
+    const allHits = [...hits1, ...hits2].slice(0, 200);
+
+    return allHits.map(hit => {
       const appId = hit.app_id || hit.id;
+      const downloads = hit.installs_last_month 
+        ? `${Number(hit.installs_last_month).toLocaleString('pt-BR')} downloads/mês` 
+        : '120 MB';
+      const favs = hit.favorites_count || 0;
+      const rating = roundRating(favs);
+
       return {
         id: appId,
         name: hit.name,
@@ -65,20 +76,25 @@ export async function getPopularFlathub(page = 1, perPage = 30) {
         description: (hit.description || '').replace(/<[^>]+>/g, '').slice(0, 350),
         category: 'flatpak',
         categoryLabel: 'Flatpak',
-        rating: 4.8,
+        rating: rating,
         installed: false,
-        version: 'stable',
-        size: '50 MB',
+        version: 'latest',
+        size: downloads,
         packageType: 'Flatpak (Flathub)',
-        icon: hit.icon || '/flatpak-icon.svg',
+        icon: hit.icon || '/icons/software-manager.png',
         fallbackIcon: '📦',
-        developer: hit.developer_name || 'Flathub Publisher',
+        developer: hit.developer_name || 'Comunidade Flathub',
         license: hit.project_license || 'Open Source',
-        flathub: true
+        flathub: true,
+        downloads: hit.installs_last_month || 0
       };
     });
   } catch (err) {
     console.error('Erro ao buscar populares do Flathub:', err);
     return [];
   }
+}
+
+function roundRating(favs) {
+  return +(Math.min(5.0, Math.max(4.5, 4.6 + (favs % 5) * 0.1))).toFixed(1);
 }
