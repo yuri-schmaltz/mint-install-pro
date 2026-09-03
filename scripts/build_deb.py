@@ -234,13 +234,12 @@ desktop_content = """[Desktop Entry]
 Name=Mint Install Pro
 Comment=Gerenciador de Aplicativos Moderno para Linux Mint
 Comment[pt_BR]=Gerenciador de Aplicativos Moderno para Linux Mint
-Exec=mint-install-pro %U
+Exec=mint-install-pro
 Icon=mint-install-pro
 Terminal=false
 Type=Application
 Categories=GNOME;GTK;System;Settings;PackageManager;
 Keywords=package;apt;software;install;uninstall;flatpak;flathub;
-MimeType=x-scheme-handler/appstream;x-scheme-handler/apt;application/vnd.debian.binary-package;application/vnd.flatpak.ref;application/vnd.flatpak.repo;
 StartupNotify=true
 """
 

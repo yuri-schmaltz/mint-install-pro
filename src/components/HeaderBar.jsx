@@ -3,7 +3,7 @@ import {
   ChevronLeft, 
   Search, 
   X, 
-  FileCheck, 
+  CheckSquare, 
   Menu, 
   RefreshCw,
   Info,
