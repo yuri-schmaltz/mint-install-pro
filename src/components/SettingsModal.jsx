@@ -4,7 +4,6 @@ import {
   Settings, 
   Search, 
   Boxes, 
-  ShieldCheck, 
   RotateCcw, 
   AlertTriangle,
   Check,
@@ -82,15 +81,15 @@ export default function SettingsModal({
           </button>
 
           <button
-            onClick={() => setActiveTab('security')}
+            onClick={() => setActiveTab('operations')}
             className={`px-3.5 py-2.5 flex items-center space-x-1.5 border-b-2 transition-colors ${
-              activeTab === 'security'
+              activeTab === 'operations'
                 ? 'border-[#87cf3e] text-white font-semibold'
                 : 'border-transparent text-[#9ca3af] hover:text-[#dcdcdc]'
             }`}
           >
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Segurança & Sandbox</span>
+            <HardDrive className="w-3.5 h-3.5" />
+            <span>Operações & Lote</span>
           </button>
 
           <button
@@ -224,37 +223,20 @@ export default function SettingsModal({
 
               <div className="p-3 rounded-lg bg-sky-950/30 border border-sky-500/30 text-[11.5px] text-sky-200/80 flex items-start space-x-2">
                 <Boxes className="w-4 h-4 text-sky-400 flex-shrink-0 mt-0.5" />
-                <span>Os aplicativos Flatpak são executados em sandbox seguro e independem das versões das bibliotecas do sistema base.</span>
+                <span>Os aplicativos Flatpak são executados com isolamento de dependências e independem das versões das bibliotecas do sistema base.</span>
               </div>
             </div>
           )}
 
-          {/* 3. Segurança & Sandbox */}
-          {activeTab === 'security' && (
+          {/* 3. Operações & Lote */}
+          {activeTab === 'operations' && (
             <div className="space-y-4">
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-wider text-[#87cf3e] mb-2">
-                  Diretrizes de Segurança e Isolamento
+                  Preferências de Execução de Pacotes
                 </h3>
                 <div className="bg-[#202226] border border-[#32363c] rounded-lg divide-y divide-[#2a2d33]">
                   
-                  {/* Simulation Sandbox Mode */}
-                  <label className="p-3.5 flex items-center justify-between cursor-pointer hover:bg-[#25282e] transition-colors">
-                    <div>
-                      <div className="text-white font-medium flex items-center space-x-1.5">
-                        <ShieldCheck className="w-3.5 h-3.5 text-[#87cf3e]" />
-                        <span>Modo Sandbox Seguro</span>
-                      </div>
-                      <div className="text-[11px] text-[#8e95a0]">Simula instalações e transações em memória sem risco de alteração nos arquivos do sistema operacional</div>
-                    </div>
-                    <input
-                      type="checkbox"
-                      checked={localSettings.simulationMode}
-                      onChange={(e) => handleChange('simulationMode', e.target.checked)}
-                      className="w-4 h-4 rounded text-[#87cf3e] accent-[#87cf3e] cursor-pointer"
-                    />
-                  </label>
-
                   {/* Confirm Batch Actions */}
                   <label className="p-3.5 flex items-center justify-between cursor-pointer hover:bg-[#25282e] transition-colors">
                     <div>
@@ -268,6 +250,20 @@ export default function SettingsModal({
                       className="w-4 h-4 rounded text-[#87cf3e] accent-[#87cf3e] cursor-pointer"
                     />
                   </label>
+
+                  {/* Cache clearing */}
+                  <div className="p-3.5 flex items-center justify-between">
+                    <div>
+                      <div className="text-white font-medium">Cache da aplicação e índices</div>
+                      <div className="text-[11px] text-[#8e95a0]">Limpa metadados e força recarregamento do estado do sistema</div>
+                    </div>
+                    <button
+                      onClick={onClearCache}
+                      className="px-3 py-1.5 rounded bg-[#2b2e34] hover:bg-[#383c44] text-[#e0e0e0] border border-[#383d47] font-medium text-xs transition-colors"
+                    >
+                      Limpar Cache
+                    </button>
+                  </div>
 
                 </div>
               </div>

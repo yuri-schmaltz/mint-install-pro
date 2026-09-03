@@ -7,8 +7,7 @@ import {
   CheckCircle2, 
   Download, 
   Trash2, 
-  Terminal,
-  ShieldCheck
+  Terminal
 } from 'lucide-react';
 import { executeInstall, executeUninstall } from '../services/packageManager';
 
@@ -16,8 +15,7 @@ export default function BatchActionModal({
   actionType, // 'install' | 'uninstall' | 'mixed'
   targetApps, 
   onClose, 
-  onComplete,
-  simulationMode 
+  onComplete
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [appStatuses, setAppStatuses] = useState(() => 
@@ -127,10 +125,6 @@ export default function BatchActionModal({
                   ? 'Desinstalação em Lote' 
                   : 'Execução de Ações em Lote'} ({targetApps.length} {targetApps.length === 1 ? 'aplicativo' : 'aplicativos'})
             </h3>
-          </div>
-          <div className="flex items-center space-x-1.5 text-xs text-[#87cf3e] font-semibold bg-[#87cf3e]/10 px-2 py-0.5 rounded border border-[#87cf3e]/20">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Sandbox Seguro</span>
           </div>
         </div>
 

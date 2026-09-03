@@ -67,8 +67,8 @@ O **Mint Install Pro** é uma reengenharia completa do Gerenciador de Aplicativo
 - Modal de configurações estilo GTK com 4 abas:
   - **Pesquisa:** Configuração de escopo (título, resumo, descrição, ID do pacote).
   - **Flatpaks:** Alternador de busca ao vivo e preferências de empacotamento (Todos, Apenas Flatpak, Apenas APT).
-  - **Segurança & Sandbox:** Modo Simulação Ativo e confirmação de ações em lote.
-  - **Manutenção:** Limpeza de cache local e restauração de padrões de fábrica.
+  - **Operações & Lote:** Confirmação de ações e limpeza de cache da aplicação.
+  - **Manutenção:** Restauração de padrões de fábrica.
 - Todas as preferências são persistidas em `localStorage`.
 
 ---
@@ -192,18 +192,19 @@ npm run build:deb
 - Ao pesquisar dentro da aba **Flatpak**, a aplicação realiza consultas assíncronas ao vivo contra o catálogo do Flathub.
 
 ### 3. Filtro de Aplicativos Instalados
-- No canto superior direito do cabeçalho, clique no botão em cápsula **`[ 📋 122 apps ]`** (posicionado entre *Sandbox Seguro* e o menu) para alternar instantaneamente a listagem entre todo o catálogo ou apenas os softwares instalados na sua máquina.
+- No canto superior direito do cabeçalho, clique no botão em cápsula **`[ 📋 186 apps ]`** para alternar instantaneamente a listagem entre todo o catálogo ou apenas os softwares instalados na sua máquina.
 
-### 4. Instalação e Desinstalação em Lote (Batch Actions)
+### 4. Instalação e Desinstalação em Lote (Executar Ações)
 A aplicação possui um fluxo cromático inteligente para gerenciamento em lote:
 - **Para agendar a instalação:** Marque o checkbox de aplicativos que não possuem o check verde.
 - **Para agendar a desinstalação:** Desmarque o checkbox de qualquer aplicativo instalado. O card correspondente transiciona imediatamente para um **degradê suave vermelho/laranja escuro** na mesma paleta do tema e exibe a etiqueta `Desinstalar`.
-- **Execução:** Uma barra de ações flutuante surgirá na parte inferior informando `Instalar (X) • Desinstalar (Y)`. Clique em **"Executar Ações em Lote"** para abrir o modal de fila e acompanhar o terminal interativo com barras de progresso.
+- **Execução:** A barra de ações no rodapé exibe o botão **"Executar Ações"** em verde Mint. Ao clicar, a fila completa de instalações e desinstalações é processada com segurança e terminal interativo com barras de progresso.
 
-### 5. Modo Sandbox Seguro vs. Modo Real
-- No cabeçalho, clique no botão **`🛡️ Sandbox Seguro`** para alternar entre:
-  - **Modo Sandbox:** Todas as ações de instalação e remoção são simuladas sem risco de alterar o sistema operacional hospedeiro.
-  - **Modo Sistema:** Permite integração direta para operações reais na máquina.
+### 5. Integração Nativa e Blindada (APT & Flatpak)
+- A aplicação executa comandos reais de forma segura no sistema operacional:
+  - **Flatpak:** Instalação e remoção nativa via `flatpak --user`.
+  - **APT:** Transações de sistema autenticadas via `pkexec apt-get`.
+  - **Blindagem:** Proteção contra Command/Argument Injection com regex estrita e delimitador `--`, binding estrito a `127.0.0.1` e mutex contra concorrência de travas do dpkg.
 
 ### 6. Central de Preferências
 - Clique no botão de menu hambúrguer (`≡`) no canto superior direito e selecione **"Preferências"**.
@@ -213,7 +214,7 @@ A aplicação possui um fluxo cromático inteligente para gerenciamento em lote:
 
 ## 🧪 Suíte de Testes Automatizados (Gauntlet Tests)
 
-O projeto possui uma suíte rigorosa de 48 testes cobrindo integridade de catálogo, algoritmos de ordenação, paridade visual e regras de negócio:
+O projeto possui uma suíte rigorosa de 82 testes cobrindo integridade de catálogo, segurança, ausência de sandbox simulado, algoritmos de ordenação e regras de negócio:
 
 ```bash
 npm test

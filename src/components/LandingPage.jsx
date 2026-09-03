@@ -75,7 +75,7 @@ const categoryCards = [
   { id: "accessories", label: "Acessórios", desc: "Utilitários essenciais e ferramentas do dia a dia", icon: Wrench, color: "from-emerald-800/40 to-emerald-950/60" },
   { id: "development", label: "Desenvolvimento", desc: "IDEs, editores de código e ferramentas de programação", icon: Code, color: "from-indigo-800/40 to-indigo-950/60" },
   { id: "office", label: "Escritório", desc: "Suíte de documentos, planilhas, PDFs e anotações", icon: Briefcase, color: "from-amber-800/40 to-amber-950/60" },
-  { id: "flatpak", label: "Flatpak", desc: "Milhares de softwares modernos em sandbox Flathub", icon: Boxes, color: "from-sky-900/50 to-blue-950/70" },
+  { id: "flatpak", label: "Flatpak", desc: "Milhares de softwares modernos e populares do Flathub", icon: Boxes, color: "from-sky-900/50 to-blue-950/70" },
   { id: "graphics", label: "Gráficos", desc: "Modelagem 3D, pintura digital e fotografia", icon: Image, color: "from-orange-800/40 to-orange-950/60" },
   { id: "internet", label: "Internet", desc: "Navegadores, clientes de e-mail e mensageiros", icon: Globe, color: "from-blue-800/40 to-blue-950/60" },
   { id: "games", label: "Jogos", desc: "Ação, estratégia, simuladores e arcades", icon: Gamepad2, color: "from-rose-800/40 to-rose-950/60" },

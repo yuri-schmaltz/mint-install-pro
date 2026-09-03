@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { executeInstall, executeUninstall } from '../services/packageManager';
 
-export default function AppDetailsModal({ app, onClose, onToggleInstall, simulationMode }) {
+export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
   const [installing, setInstalling] = useState(false);
   const [installStep, setInstallStep] = useState('');
   const [progress, setProgress] = useState(0);

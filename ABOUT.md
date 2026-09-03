@@ -17,7 +17,7 @@ O **Mint Install Pro** nasceu como uma reengenharia moderna do tradicional **Ger
 | **Navegação & Ergonomia** | 8 categorias originais em lista assimétrica; abas fixas | **11 abas com distribuição uniforme (100% de largura)**, 9 categorias em matriz 3x3 simétrica e ordenação alfabética estrita |
 | **Contadores de Categorias** | Números dinâmicos sem limitação visual de quebra | **Cápsulas fixas de 82px** com suporte inteligente a contagem até 999 e transbordo `+999 apps` |
 | **Conectividade Flathub** | Consulta Flatpak via chamadas síncronas locais de subprocessos | Integração híbrida: lê Flatpaks locais e consulta ao vivo a **API REST v2 oficial do Flathub** |
-| **Segurança & Testes** | Execução direta via `pkexec apt` com risco ao sistema hospedeiro | **Modo Sandbox Seguro integrado**: simulação completa de transações sem alterar pacotes vitais do SO |
+| **Segurança & Execução** | Execução direta sem sanitização rigorosa de argumentos | **Arquitetura blindada nativa**: whitelist regex contra Argument Injection (CWE-88), delimitador `--`, loopback estrito (127.0.0.1) e mutex de processos |
 
 ---
 
@@ -28,19 +28,20 @@ O projeto segue princípios de engenharia limpa e separação de preocupações:
 ```
 src/
 ├── components/
-│   ├── HeaderBar.jsx          # Barra superior GTK: controle de janela, busca, modo Sandbox e contador
+│   ├── HeaderBar.jsx          # Barra superior GTK: controle de janela, busca, contador e menu
 │   ├── CategoryNav.jsx        # Barra de 11 abas: distribuição uniforme e ordenação alfabética estrita
 │   ├── LandingPage.jsx        # Tela de Destaques: carrossel de banners e matriz 3x3 de categorias
-│   ├── AppGrid.jsx            # Grade responsiva de 3 colunas de cards de aplicativos
-│   ├── AppCard.jsx            # Card individual: checkbox com check verde integrado e transição de cor
+│   ├── AppGrid.jsx            # Grade responsiva de 3 colunas de cards com paginação dinâmica
+│   ├── AppCard.jsx            # Card individual memoizado: checkbox, transição cromática e rating
 │   ├── AppDetailsModal.jsx    # Modal de detalhes técnicos, screenshots, permissões e dependências
-│   ├── BatchActionBar.jsx     # Barra flutuante de ações em lote (instalações e desinstalações)
-│   ├── BatchExecutionModal.jsx# Terminal de progresso e simulação de execução de comandos APT/Flatpak
+│   ├── BatchActionBar.jsx     # Barra de rodapé dedicada com botão unificado "Executar Ações"
+│   ├── BatchActionModal.jsx   # Terminal de progresso e execução real de pacotes APT/Flatpak
 │   └── SettingsModal.jsx      # Central de preferências persistidas em localStorage
 ├── data/
-│   └── initialApps.js         # Catálogo com 183 aplicações e definições de categorias
+│   └── initialApps.js         # Catálogo de 1.800 aplicações estruturadas
 └── services/
-    └── flathubApi.js          # Cliente HTTP para a API REST v2 do Flathub
+    ├── flathubApi.js          # Cliente HTTP para a API REST v2 do Flathub
+    └── packageManager.js      # Despachador seguro de comandos reais APT e Flatpak
 ```
 
 ---

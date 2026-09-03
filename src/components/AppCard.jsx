@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Check, Star } from 'lucide-react';
 
-export default function AppCard({ 
+function AppCard({ 
   app, 
   onClick, 
   isSelected = false, 
@@ -124,3 +124,5 @@ export default function AppCard({
     </div>
   );
 }
+
+export default React.memo(AppCard);

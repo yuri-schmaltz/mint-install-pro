@@ -5,7 +5,6 @@ import {
   X, 
   FileCheck, 
   Menu, 
-  ShieldCheck,
   RefreshCw,
   Info,
   Settings
@@ -19,9 +18,7 @@ export default function HeaderBar({
   installedOnly, 
   setInstalledOnly,
   onToggleInstalledOnly,
-  installedCount,
-  simulationMode,
-  setSimulationMode,
+  installedCount = 0,
   onOpenSettings
 }) {
   const [showMenu, setShowMenu] = useState(false);
@@ -70,20 +67,8 @@ export default function HeaderBar({
         </div>
       </div>
 
-      {/* Right controls: Sandbox, Installed Counter, Hamburger menu */}
+      {/* Right controls: Installed Counter, Hamburger menu */}
       <div className="flex items-center space-x-2">
-        {/* Safe Sandbox Indicator */}
-        <div 
-          onClick={() => setSimulationMode(!simulationMode)}
-          title={simulationMode ? "Modo Simulação Ativo (Seguro)" : "Modo Real"}
-          className="cursor-pointer hidden lg:flex items-center space-x-1 px-2 py-0.5 rounded text-[11px] bg-[#1a1c1e] border border-[#2b2e33] hover:border-[#87cf3e] transition-all"
-        >
-          <ShieldCheck className={`w-3.5 h-3.5 ${simulationMode ? 'text-[#87cf3e]' : 'text-amber-400'}`} />
-          <span className="text-[#a0a4ab]">
-            {simulationMode ? 'Sandbox Seguro' : 'Modo Sistema'}
-          </span>
-        </div>
-
         {/* Installed apps count button - com o mesmo comportamento e estilo dos contadores de categoria */}
         <button
           onClick={onToggleInstalledOnly || (() => setInstalledOnly(!installedOnly))}
@@ -94,23 +79,23 @@ export default function HeaderBar({
               : 'bg-black/40 border-[#87cf3e]/30 hover:border-[#87cf3e] hover:bg-black/60'
           }`}
         >
-          <FileCheck className={`w-3.5 h-3.5 flex-shrink-0 ${installedOnly ? 'text-[#87cf3e]' : 'text-[#a0a4ab]'}`} />
-          <span className="font-semibold text-[#87cf3e]">
-            {displayInstalledCount}
+          <CheckSquare className="w-3.5 h-3.5 text-[#87cf3e]" />
+          <span className="font-semibold text-white">
+            {installedCount}
           </span>
-          <span className="text-[10.5px] text-[#9ca3af] font-normal">
+          <span className="text-[#a4a9b2] text-[11px]">
             {installedLabel}
           </span>
         </button>
 
-        {/* Menu Dropdown */}
+        {/* Hamburger Menu button */}
         <div className="relative">
-          <button
+          <button 
             onClick={() => setShowMenu(!showMenu)}
-            title="Menu"
-            className="p-1.5 rounded bg-[#2b2e33] border border-[#232528] hover:bg-[#383c42] active:bg-[#1e2023] transition-colors"
+            title="Menu do aplicativo"
+            className="p-1.5 rounded hover:bg-[#35393f] text-[#cfd3d8] transition-colors"
           >
-            <Menu className="w-4 h-4 text-[#e0e0e0]" />
+            <Menu className="w-4 h-4" />
           </button>
 
           {showMenu && (
@@ -123,13 +108,6 @@ export default function HeaderBar({
                 <span>Preferências</span>
               </button>
               <div className="h-px bg-[#3b3f46] my-1" />
-              <button 
-                onClick={() => { setSimulationMode(!simulationMode); setShowMenu(false); }}
-                className="w-full text-left px-3 py-2 hover:bg-[#35393f] flex items-center justify-between"
-              >
-                <span>Modo Sandbox Seguro</span>
-                <span className={`w-2 h-2 rounded-full ${simulationMode ? 'bg-[#87cf3e]' : 'bg-zinc-500'}`} />
-              </button>
               <button 
                 onClick={() => { window.location.reload(); }}
                 className="w-full text-left px-3 py-2 hover:bg-[#35393f] flex items-center space-x-2"
@@ -158,7 +136,7 @@ export default function HeaderBar({
             <h2 className="text-lg font-bold text-white">Gerenciador de Aplicativos</h2>
             <p className="text-xs text-[#87cf3e] font-semibold mt-0.5">Versão 6.1.4 (Clone Mint-Y Dark)</p>
             <p className="text-xs text-[#a4a9b2] mt-3 leading-relaxed">
-              Réplica interativa e de alta fidelidade visual do Gerenciador de Aplicativos oficial do Linux Mint (mintinstall), com suporte a catálogo reativo, busca instantânea e modo sandbox seguro.
+              Réplica interativa e de alta fidelidade visual do Gerenciador de Aplicativos oficial do Linux Mint (mintinstall), com suporte a catálogo reativo de 1.800 aplicativos, integração nativa APT e Flathub.
             </p>
             <button
               onClick={() => setShowAbout(false)}

@@ -199,6 +199,35 @@ requiredDocs.forEach(doc => {
   assert(fs.existsSync(docPath), `Documento oficial "${doc}" presente no repositório`);
 });
 
+// Test 13: Verificação de Segurança, Blindagem de Parâmetros e Ausência de Sandbox
+console.log('\n13. Auditoria de Segurança, Sanitização de IDs e Ausência de Sandbox:');
+const APT_PKG_REGEX = /^[a-z0-9][a-z0-9+\.\-]{1,63}$/;
+const FLATPAK_ID_REGEX = /^[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)+$/;
+
+// Validação de pacotes legítimos
+assert(FLATPAK_ID_REGEX.test('org.mozilla.firefox'), 'Flatpak ID legítimo "org.mozilla.firefox" aceito');
+assert(FLATPAK_ID_REGEX.test('com.discordapp.Discord'), 'Flatpak ID legítimo "com.discordapp.Discord" aceito');
+assert(APT_PKG_REGEX.test('grep'), 'Pacote APT legítimo "grep" aceito');
+assert(APT_PKG_REGEX.test('p7zip-full'), 'Pacote APT legítimo "p7zip-full" aceito');
+
+// Validação de rejeição de vetores de injeção de parâmetros (CWE-88)
+assert(!FLATPAK_ID_REGEX.test('--command=sh'), 'Vetor de injeção "--command=sh" rejeitado');
+assert(!FLATPAK_ID_REGEX.test('org.test; rm -rf /'), 'Vetor de injeção com metacaracteres shell rejeitado');
+assert(!FLATPAK_ID_REGEX.test('../../../etc/passwd'), 'Vetor de path traversal rejeitado');
+assert(!APT_PKG_REGEX.test('--allow-unauthenticated'), 'Vetor APT de injeção de opções "--allow-unauthenticated" rejeitado');
+assert(!APT_PKG_REGEX.test('pkg; id'), 'Vetor APT com comando acoplado rejeitado');
+
+// Validação de ausência de código simulado de Sandbox no App.jsx e HeaderBar.jsx
+const appJsxContent = fs.readFileSync(path.join(process.cwd(), 'src/App.jsx'), 'utf-8');
+const headerBarContent = fs.readFileSync(path.join(process.cwd(), 'src/components/HeaderBar.jsx'), 'utf-8');
+assert(!appJsxContent.includes('simulationMode'), 'Código de simulação Sandbox ("simulationMode") removido de App.jsx');
+assert(!headerBarContent.includes('Sandbox Seguro'), 'Indicador fake de "Sandbox Seguro" removido de HeaderBar.jsx');
+
+// Validação de binding estrito de loopback no vite.config.js
+const viteConfigContent = fs.readFileSync(path.join(process.cwd(), 'vite.config.js'), 'utf-8');
+assert(viteConfigContent.includes("'127.0.0.1'"), 'Servidor Vite configurado com binding estrito para loopback ("127.0.0.1")');
+assert(viteConfigContent.includes('manualChunks'), 'Otimização de empacotamento com code-splitting ("manualChunks") ativa');
+
 console.log(`\n========================================`);
 console.log(`Resultado dos Testes: ${passed} passaram, ${failed} falharam.`);
 console.log(`========================================\n`);

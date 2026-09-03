@@ -20,7 +20,6 @@ const defaultSettings = {
   enableFlathubLive: true,
   allowUnverifiedFlatpaks: false,
   packageTypePreference: 'all', // 'all' | 'flatpak' | 'apt'
-  simulationMode: true,
   confirmBatchAction: true,
   isDefaultPackageManager: true,
   associateMimeTypes: true
@@ -388,8 +387,6 @@ export default function App() {
           setInstalledOnly={setInstalledOnly}
           onToggleInstalledOnly={handleToggleInstalledOnly}
           installedCount={installedCount}
-          simulationMode={settings.simulationMode}
-          setSimulationMode={(val) => handleSaveSettings({ ...settings, simulationMode: val })}
           onOpenSettings={() => setIsSettingsOpen(true)}
         />
 
@@ -445,7 +442,6 @@ export default function App() {
             app={selectedApp}
             onClose={() => setSelectedApp(null)}
             onToggleInstall={handleToggleInstall}
-            simulationMode={settings.simulationMode}
           />
         )}
 
@@ -456,7 +452,6 @@ export default function App() {
             targetApps={batchModal.apps}
             onClose={() => setBatchModal(null)}
             onComplete={handleBatchComplete}
-            simulationMode={settings.simulationMode}
           />
         )}
 

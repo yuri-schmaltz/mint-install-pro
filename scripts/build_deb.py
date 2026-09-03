@@ -36,7 +36,7 @@ if not os.path.exists(dist_dir):
 shutil.copytree(dist_dir, f"{DEB_DIR}/usr/share/{PACKAGE_NAME}", dirs_exist_ok=True)
 
 # 2. Criar script executável /usr/bin/mint-install-pro
-launcher_content = """#!/usr/bin/env python3
+launcher_content = r"""#!/usr/bin/env python3
 import sys
 import os
 import threading
@@ -48,7 +48,12 @@ import time
 import json
 import subprocess
 
+import re
+
 APP_DIR = "/usr/share/mint-install-pro"
+APT_PKG_REGEX = re.compile(r'^[a-z0-9][a-z0-9+\.\-]{1,63}$')
+FLATPAK_ID_REGEX = re.compile(r'^[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)+$')
+is_processing_lock = threading.Lock()
 
 def find_free_port():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -61,6 +66,12 @@ def run_server(port):
             pass  # Silenciar logs HTTP padrão
 
         def do_GET(self):
+            # Acesso restrito a loopback local
+            client_ip = self.client_address[0] if self.client_address else ''
+            if self.path.startswith('/api/') and client_ip not in ('127.0.0.1', '::1', 'localhost'):
+                self.send_error(403, "Acesso negado: apenas chamadas locais permitidas")
+                return
+
             if self.path == '/api/installed':
                 try:
                     fp = subprocess.check_output(['flatpak', 'list', '--app', '--columns=application'], text=True)
@@ -75,32 +86,80 @@ def run_server(port):
             super().do_GET()
 
         def do_POST(self):
+            client_ip = self.client_address[0] if self.client_address else ''
+            if self.path.startswith('/api/') and client_ip not in ('127.0.0.1', '::1', 'localhost'):
+                self.send_error(403, "Acesso negado: apenas chamadas locais permitidas")
+                return
+
             if self.path in ('/api/install', '/api/uninstall'):
                 length = int(self.headers.get('Content-Length', 0))
-                body = json.loads(self.rfile.read(length).decode('utf-8') or '{}')
-                app_id = body.get('id', '')
-                pkg_type = body.get('packageType', '')
+                try:
+                    body = json.loads(self.rfile.read(length).decode('utf-8') or '{}')
+                except Exception:
+                    self.send_error(400, "JSON invalido")
+                    return
+
+                app_id = str(body.get('id', '')).strip()
+                pkg_type = str(body.get('packageType', ''))
                 is_flatpak = 'flatpak' in pkg_type.lower() or '.' in app_id
                 is_install = self.path == '/api/install'
 
-                if is_flatpak:
-                    if is_install:
-                        cmd = ['flatpak', 'install', '--user', '-y', '--noninteractive', 'flathub', app_id]
-                    else:
-                        cmd = ['flatpak', 'uninstall', '--user', '-y', '--noninteractive', app_id]
-                else:
-                    if is_install:
-                        cmd = ['pkexec', 'apt-get', 'install', '-y', app_id]
-                    else:
-                        cmd = ['pkexec', 'apt-get', 'remove', '-y', app_id]
+                # Validacao estrita contra Argument Injection
+                if not app_id or app_id.startswith('-'):
+                    self.send_response(400)
+                    self.send_header('Content-Type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(json.dumps({'success': False, 'error': 'Identificador de pacote invalido'}).encode('utf-8'))
+                    return
+
+                if is_flatpak and not FLATPAK_ID_REGEX.match(app_id):
+                    self.send_response(400)
+                    self.send_header('Content-Type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(json.dumps({'success': False, 'error': 'Identificador Flatpak com formato invalido'}).encode('utf-8'))
+                    return
+
+                if not is_flatpak and not APT_PKG_REGEX.match(app_id):
+                    self.send_response(400)
+                    self.send_header('Content-Type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(json.dumps({'success': False, 'error': 'Identificador APT com formato invalido'}).encode('utf-8'))
+                    return
+
+                if not is_processing_lock.acquire(blocking=False):
+                    self.send_response(429)
+                    self.send_header('Content-Type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(json.dumps({'success': False, 'error': 'Outra operacao ja esta em processamento'}).encode('utf-8'))
+                    return
 
                 try:
-                    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=600)
+                    if is_flatpak:
+                        if is_install:
+                            cmd = ['flatpak', 'install', '--user', '-y', '--noninteractive', 'flathub', '--', app_id]
+                        else:
+                            cmd = ['flatpak', 'uninstall', '--user', '-y', '--noninteractive', '--', app_id]
+                    else:
+                        if is_install:
+                            cmd = ['pkexec', 'apt-get', 'install', '-y', '--', app_id]
+                        else:
+                            cmd = ['pkexec', 'apt-get', 'remove', '-y', '--', app_id]
+
+                    proc = subprocess.run(
+                        cmd,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT,
+                        text=True,
+                        timeout=300,
+                        env={**os.environ, 'DEBIAN_FRONTEND': 'noninteractive'}
+                    )
                     success = proc.returncode == 0
                     out = proc.stdout
                 except Exception as e:
                     success = False
                     out = str(e)
+                finally:
+                    is_processing_lock.release()
 
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/json')
