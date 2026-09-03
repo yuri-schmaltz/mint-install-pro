@@ -79,3 +79,16 @@
   outline: none;
   box-shadow: 0 0 0 1px #87cf3e;
 }
+
+/* Combobox and Select dark overrides */
+select {
+  background-color: #181a1d !important;
+  color: #ffffff !important;
+  color-scheme: dark;
+}
+
+select option {
+  background-color: #202328 !important;
+  color: #ffffff !important;
+}
+

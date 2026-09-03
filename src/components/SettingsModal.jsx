@@ -8,7 +8,8 @@ import {
   AlertTriangle,
   Check,
   HardDrive,
-  Monitor
+  Monitor,
+  ChevronDown
 } from 'lucide-react';
 
 export default function SettingsModal({ 
@@ -207,15 +208,20 @@ export default function SettingsModal({
                   {/* Multi-format preference */}
                   <div className="p-3.5 space-y-2">
                     <div className="text-white font-medium">Quando um aplicativo existir em múltiplos formatos (APT / Flatpak):</div>
-                    <select
-                      value={localSettings.packageTypePreference}
-                      onChange={(e) => handleChange('packageTypePreference', e.target.value)}
-                      className="w-full px-3 py-1.5 rounded bg-[#181a1d] border border-[#3a3f47] text-white focus:outline-none focus:border-sky-400 text-xs"
-                    >
-                      <option value="all">Listar todos os formatos (Padrão)</option>
-                      <option value="flatpak">Apenas listar a versão Flatpak</option>
-                      <option value="apt">Apenas listar a versão do sistema (APT)</option>
-                    </select>
+                    <div className="relative">
+                      <select
+                        value={localSettings.packageTypePreference}
+                        onChange={(e) => handleChange('packageTypePreference', e.target.value)}
+                        className="w-full appearance-none px-3.5 py-2.5 pr-10 rounded-md bg-[#181a1d] hover:bg-[#202227] border border-[#3e444e] hover:border-[#4d5460] text-white font-medium focus:outline-none focus:border-[#87cf3e] focus:ring-1 focus:ring-[#87cf3e]/50 text-xs cursor-pointer transition-colors shadow-inner"
+                      >
+                        <option value="all" className="bg-[#181a1d] text-white py-1">Listar todos os formatos (Padrão)</option>
+                        <option value="flatpak" className="bg-[#181a1d] text-white py-1">Apenas listar a versão Flatpak</option>
+                        <option value="apt" className="bg-[#181a1d] text-white py-1">Apenas listar a versão do sistema (APT)</option>
+                      </select>
+                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-[#a0a5ad]">
+                        <ChevronDown className="w-4 h-4" />
+                      </div>
+                    </div>
                   </div>
 
                 </div>
