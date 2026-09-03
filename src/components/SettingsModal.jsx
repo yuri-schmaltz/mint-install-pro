@@ -299,7 +299,7 @@ export default function SettingsModal({
                         )}
                       </div>
                       <div className="text-[11px] text-[#8e95a0] mt-0.5">
-                        Registra o Mint Install Pro como o manipulador padrão para protocolos <code className="text-[#87cf3e]">appstream://</code>, <code className="text-[#87cf3e]">apt://</code> e pacotes de instalação.
+                        Registra o Mint Install Pro como o manipulador para protocolos <code className="text-[#87cf3e]">appstream://</code> e <code className="text-[#87cf3e]">apt://</code>.
                       </div>
                     </div>
                     <input
@@ -312,24 +312,6 @@ export default function SettingsModal({
                           setTimeout(() => setDefaultApplied(false), 2500);
                         }
                       }}
-                      className="w-4 h-4 rounded text-[#87cf3e] accent-[#87cf3e] cursor-pointer flex-shrink-0"
-                    />
-                  </label>
-
-                  {/* Association to .deb and flatpakref */}
-                  <label className="p-3.5 flex items-center justify-between cursor-pointer hover:bg-[#25282e] transition-colors">
-                    <div className="pr-4">
-                      <div className="text-white font-medium">
-                        Associar a pacotes de instalação (.deb e .flatpakref)
-                      </div>
-                      <div className="text-[11px] text-[#8e95a0] mt-0.5">
-                        Abre automaticamente instaladores de pacotes baixados pelo navegador ou gerenciador de arquivos diretamente no Mint Install Pro.
-                      </div>
-                    </div>
-                    <input
-                      type="checkbox"
-                      checked={localSettings.associateMimeTypes !== false}
-                      onChange={(e) => handleChange('associateMimeTypes', e.target.checked)}
                       className="w-4 h-4 rounded text-[#87cf3e] accent-[#87cf3e] cursor-pointer flex-shrink-0"
                     />
                   </label>
@@ -347,7 +329,6 @@ export default function SettingsModal({
                     <button
                       onClick={() => {
                         handleChange('isDefaultPackageManager', true);
-                        handleChange('associateMimeTypes', true);
                         setDefaultApplied(true);
                         setTimeout(() => setDefaultApplied(false), 2500);
                       }}

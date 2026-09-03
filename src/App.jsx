@@ -21,8 +21,7 @@ const defaultSettings = {
   allowUnverifiedFlatpaks: false,
   packageTypePreference: 'all', // 'all' | 'flatpak' | 'apt'
   confirmBatchAction: true,
-  isDefaultPackageManager: true,
-  associateMimeTypes: true
+  isDefaultPackageManager: true
 };
 
 export default function App() {
@@ -32,7 +31,7 @@ export default function App() {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length >= initialApps.length) {
+        if (Array.isArray(parsed) && parsed.length > 0) {
           return parsed;
         }
       }
@@ -47,7 +46,9 @@ export default function App() {
     try {
       const saved = localStorage.getItem(SETTINGS_KEY);
       if (saved) {
-        return { ...defaultSettings, ...JSON.parse(saved) };
+        const parsed = JSON.parse(saved);
+        delete parsed.associateMimeTypes;
+        return { ...defaultSettings, ...parsed };
       }
     } catch (e) {
       console.error('Error loading settings', e);
