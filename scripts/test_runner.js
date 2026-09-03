@@ -192,7 +192,7 @@ if (debExists) {
 
 const requiredDocs = [
   'README.md', 'ABOUT.md', 'LICENSE', 'CONTRIBUTING.md',
-  'SECURITY.md', 'CHANGELOG.md', 'acceptance_criteria_audit.md'
+  'SECURITY.md', 'CHANGELOG.md', 'docs/acceptance_criteria_audit.md'
 ];
 requiredDocs.forEach(doc => {
   const docPath = path.join(process.cwd(), doc);
