@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Mint Install Pro
-Comment=Gerenciador de Aplicativos Moderno para Linux Mint (MintInstall Clone)
-Exec=/home/yuri/Documentos/app_manager/run.sh
-Icon=/home/yuri/Documentos/app_manager/public/icons/software-manager.png
-Terminal=true
-Type=Application
-Categories=GNOME;GTK;System;PackageManager;
-StartupNotify=true
