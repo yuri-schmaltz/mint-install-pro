@@ -1,10 +1,11 @@
 import React from 'react';
-import { Download, Trash2, X, CheckSquare, Layers } from 'lucide-react';
+import { Play, X, CheckSquare } from 'lucide-react';
 
 export default function BatchActionBar({
   selectedCount,
   toInstallCount,
   toUninstallCount,
+  onExecuteBatch,
   onInstallBatch,
   onUninstallBatch,
   onClearSelection,
@@ -12,6 +13,8 @@ export default function BatchActionBar({
   isAllVisibleSelected
 }) {
   if (selectedCount === 0) return null;
+
+  const handleAction = onExecuteBatch || onInstallBatch || onUninstallBatch;
 
   return (
     <div className="flex-shrink-0 w-full bg-[#1b1e22] border-t border-[#363a43] px-5 py-2.5 z-30 shadow-[0_-4px_16px_rgba(0,0,0,0.35)] animate-in slide-in-from-bottom-2 duration-150">
@@ -51,27 +54,14 @@ export default function BatchActionBar({
             {isAllVisibleSelected ? 'Desmarcar Visíveis' : 'Marcar Todos'}
           </button>
 
-          {/* Batch Install Button */}
-          {toInstallCount > 0 && (
-            <button
-              onClick={onInstallBatch}
-              className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded bg-[#87cf3e] hover:bg-[#97df4e] text-[#132802] font-bold transition-transform active:scale-95 shadow-md"
-            >
-              <Download className="w-3.5 h-3.5 stroke-[2.5]" />
-              <span>Instalar ({toInstallCount})</span>
-            </button>
-          )}
-
-          {/* Batch Uninstall Button */}
-          {toUninstallCount > 0 && (
-            <button
-              onClick={onUninstallBatch}
-              className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded bg-rose-600/90 hover:bg-rose-600 text-white font-semibold transition-transform active:scale-95 shadow-md border border-rose-500/40"
-            >
-              <Trash2 className="w-3.5 h-3.5" />
-              <span>Desinstalar ({toUninstallCount})</span>
-            </button>
-          )}
+          {/* Single Unified Action Button */}
+          <button
+            onClick={handleAction}
+            className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded bg-[#87cf3e] hover:bg-[#97df4e] text-[#132802] font-bold transition-transform active:scale-95 shadow-md"
+          >
+            <Play className="w-3.5 h-3.5 fill-current" />
+            <span>Executar Ações</span>
+          </button>
 
           {/* Clear Button */}
           <button

@@ -318,17 +318,34 @@ export default function App() {
     setBatchModal({ type: 'uninstall', apps: toUninstallApps });
   };
 
-  const handleBatchComplete = (affectedIds, isInstall) => {
+  const handleStartBatchExecution = () => {
+    if (selectedAppsList.length === 0) return;
+    const appsToProcess = selectedAppsList.map((app) => ({
+      ...app,
+      batchAction: app.installed ? 'uninstall' : 'install'
+    }));
+    setBatchModal({ type: 'mixed', apps: appsToProcess });
+  };
+
+  const handleBatchComplete = (res, maybeIsInstall) => {
+    if (Array.isArray(res)) {
+      setApps((prevApps) =>
+        prevApps.map((a) => (res.includes(a.id) ? { ...a, installed: maybeIsInstall } : a))
+      );
+      setSelectedAppIds((prev) => prev.filter((id) => !res.includes(id)));
+      return;
+    }
+
+    const { installedIds = [], uninstalledIds = [] } = res || {};
     setApps((prevApps) =>
       prevApps.map((a) => {
-        if (affectedIds.includes(a.id)) {
-          return { ...a, installed: isInstall };
-        }
+        if (installedIds.includes(a.id)) return { ...a, installed: true };
+        if (uninstalledIds.includes(a.id)) return { ...a, installed: false };
         return a;
       })
     );
-    // Remove completed from selection
-    setSelectedAppIds((prev) => prev.filter((id) => !affectedIds.includes(id)));
+    const allAffected = [...installedIds, ...uninstalledIds];
+    setSelectedAppIds((prev) => prev.filter((id) => !allAffected.includes(id)));
   };
 
   // Category Title resolution
@@ -409,13 +426,14 @@ export default function App() {
           />
         )}
 
-        {/* Floating Batch Action Bar */}
+        {/* Dedicated Batch Action Bar */}
         <BatchActionBar
           selectedCount={selectedAppIds.length}
           toInstallCount={toInstallApps.length}
           toUninstallCount={toUninstallApps.length}
-          onInstallBatch={handleStartBatchInstall}
-          onUninstallBatch={handleStartBatchUninstall}
+          onExecuteBatch={handleStartBatchExecution}
+          onInstallBatch={handleStartBatchExecution}
+          onUninstallBatch={handleStartBatchExecution}
           onClearSelection={handleClearSelection}
           onSelectAllVisible={handleSelectAllVisible}
           isAllVisibleSelected={isAllVisibleSelected}

@@ -13,7 +13,7 @@ import {
 import { executeInstall, executeUninstall } from '../services/packageManager';
 
 export default function BatchActionModal({ 
-  actionType, // 'install' | 'uninstall'
+  actionType, // 'install' | 'uninstall' | 'mixed'
   targetApps, 
   onClose, 
   onComplete,
@@ -21,12 +21,16 @@ export default function BatchActionModal({
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [appStatuses, setAppStatuses] = useState(() => 
-    targetApps.map(app => ({ id: app.id, name: app.name, icon: app.icon, status: 'pending' }))
+    targetApps.map(app => ({ 
+      id: app.id, 
+      name: app.name, 
+      icon: app.icon, 
+      status: 'pending',
+      action: app.batchAction || (app.installed ? 'uninstall' : 'install')
+    }))
   );
   const [logs, setLogs] = useState([]);
   const [isFinished, setIsFinished] = useState(false);
-
-  const isInstall = actionType === 'install';
 
   useEffect(() => {
     let isCancelled = false;
@@ -34,9 +38,13 @@ export default function BatchActionModal({
     const processQueue = async () => {
       setLogs(prev => [...prev, `[SISTEMA] Iniciando fila de operações em lote (${targetApps.length} pacotes)...`]);
 
+      const successfullyInstalled = [];
+      const successfullyUninstalled = [];
+
       for (let i = 0; i < targetApps.length; i++) {
         if (isCancelled) break;
         const currentApp = targetApps[i];
+        const currentAction = currentApp.batchAction || (currentApp.installed ? 'uninstall' : 'install');
         setCurrentIndex(i);
 
         // Update to processing
@@ -44,12 +52,13 @@ export default function BatchActionModal({
           prev.map((item, idx) => idx === i ? { ...item, status: 'processing' } : item)
         );
 
-        if (isInstall) {
+        if (currentAction === 'install') {
           const res = await executeInstall(currentApp, (msg) => {
             if (!isCancelled) setLogs(prev => [...prev, msg]);
           });
           if (!isCancelled) {
             if (res.success) {
+              successfullyInstalled.push(currentApp.id);
               setLogs(prev => [...prev, `[SUCESSO] ${currentApp.name} instalado no sistema!`]);
             } else {
               setLogs(prev => [...prev, `[AVISO] ${currentApp.name}: ${res.output || 'Concluído com aviso'}`]);
@@ -60,6 +69,7 @@ export default function BatchActionModal({
             if (!isCancelled) setLogs(prev => [...prev, msg]);
           });
           if (!isCancelled) {
+            successfullyUninstalled.push(currentApp.id);
             setLogs(prev => [...prev, `[SUCESSO] ${currentApp.name} removido do sistema!`]);
           }
         }
@@ -75,7 +85,7 @@ export default function BatchActionModal({
       if (!isCancelled) {
         setLogs(prev => [...prev, `[SISTEMA] Todas as operações em lote foram concluídas com sucesso!`]);
         setIsFinished(true);
-        onComplete(targetApps.map(a => a.id), isInstall);
+        onComplete({ installedIds: successfullyInstalled, uninstalledIds: successfullyUninstalled });
       }
     };
 
@@ -97,17 +107,25 @@ export default function BatchActionModal({
         {/* Header */}
         <div className="px-5 py-3.5 bg-[#202326] border-b border-[#1b1c1e] flex items-center justify-between">
           <div className="flex items-center space-x-2.5">
-            {isInstall ? (
+            {actionType === 'install' ? (
               <div className="p-1 rounded bg-[#87cf3e]/20 text-[#87cf3e]">
                 <Download className="w-4 h-4" />
               </div>
-            ) : (
+            ) : actionType === 'uninstall' ? (
               <div className="p-1 rounded bg-rose-500/20 text-rose-400">
                 <Trash2 className="w-4 h-4" />
               </div>
+            ) : (
+              <div className="p-1 rounded bg-[#87cf3e]/20 text-[#87cf3e]">
+                <Play className="w-4 h-4 fill-current" />
+              </div>
             )}
             <h3 className="text-sm font-bold text-white">
-              {isInstall ? 'Instalação em Lote' : 'Desinstalação em Lote'} ({targetApps.length} {targetApps.length === 1 ? 'aplicativo' : 'aplicativos'})
+              {actionType === 'install' 
+                ? 'Instalação em Lote' 
+                : actionType === 'uninstall' 
+                  ? 'Desinstalação em Lote' 
+                  : 'Execução de Ações em Lote'} ({targetApps.length} {targetApps.length === 1 ? 'aplicativo' : 'aplicativos'})
             </h3>
           </div>
           <div className="flex items-center space-x-1.5 text-xs text-[#87cf3e] font-semibold bg-[#87cf3e]/10 px-2 py-0.5 rounded border border-[#87cf3e]/20">
@@ -162,13 +180,13 @@ export default function BatchActionModal({
                   {app.status === 'processing' && (
                     <span className="inline-flex items-center text-[#87cf3e] text-[11px] font-medium">
                       <Loader2 className="w-3 h-3 animate-spin mr-1" />
-                      {isInstall ? 'Instalando' : 'Removendo'}
+                      {app.action === 'install' ? 'Instalando' : 'Removendo'}
                     </span>
                   )}
                   {app.status === 'done' && (
                     <span className="inline-flex items-center text-[#55b335] text-[11px] font-semibold">
                       <Check className="w-3.5 h-3.5 mr-0.5 stroke-[3]" />
-                      {isInstall ? 'Instalado' : 'Removido'}
+                      {app.action === 'install' ? 'Instalado' : 'Removido'}
                     </span>
                   )}
                 </div>
