@@ -37,7 +37,7 @@ export default function SettingsModal({
 
   return (
     <div className="fixed inset-0 bg-black/75 backdrop-blur-xs flex items-center justify-center z-50 p-4 animate-in fade-in duration-150">
-      <div className="bg-[#2a2d32] border border-[#3c4149] rounded-lg max-w-xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden text-[#e0e0e0]">
+      <div className="bg-[#2a2d32] border border-[#3c4149] rounded-lg max-w-xl w-full h-[530px] max-h-[90vh] flex flex-col shadow-2xl overflow-hidden text-[#e0e0e0]">
         
         {/* Header */}
         <div className="px-5 py-3.5 bg-[#202326] border-b border-[#1b1c1e] flex items-center justify-between">
@@ -107,7 +107,7 @@ export default function SettingsModal({
         </div>
 
         {/* Tab Contents */}
-        <div className="p-5 overflow-y-auto space-y-5 text-xs">
+        <div className="p-5 overflow-y-auto space-y-5 text-xs flex-1">
           
           {/* 1. Opções de Pesquisa */}
           {activeTab === 'search' && (
