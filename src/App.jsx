@@ -7,11 +7,29 @@ import AppDetailsModal from './components/AppDetailsModal';
 import BatchActionBar from './components/BatchActionBar';
 import BatchActionModal from './components/BatchActionModal';
 import SettingsModal from './components/SettingsModal';
-import { initialApps, categoriesList } from './data/initialApps';
+import { categoriesList } from './data/categoriesList';
 import { searchFlathub } from './services/flathubApi';
+import { loadFullCatalog, prefetchCatalog, getCachedCatalog } from './services/catalog';
 
 const STORAGE_KEY = 'mint_apps_state_v5';
 const SETTINGS_KEY = 'mint_settings_v1';
+
+// Heurística única para detectar Flatpak.
+// Usada por App.jsx, packageManager.js e flathubApi.js. Mantida em um só lugar
+// para evitar divergência. APT packages nunca contém '.', enquanto Flatpak IDs
+// sempre têm formato reverso-DNS (org.mozilla.firefox, com.discordapp.Discord).
+function isFlatpakApp(app) {
+  if (!app) return false;
+  if (app.kind === 'flatpak') return true;
+  if (app.kind === 'apt') return false;
+  if (app.packageType?.toLowerCase().includes('flatpak')) return true;
+  if (app.packageType?.toLowerCase().includes('apt')) return false;
+  if (app.category === 'flatpak') return true;
+  if (app.category === 'all' || app.category === 'picks') return false;
+  // Fallback: id com ponto no formato reverso-DNS é fortemente indicativo de Flatpak
+  if (app.id && app.id.includes('.') && /^[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)+$/.test(app.id)) return true;
+  return false;
+}
 
 const defaultSettings = {
   searchInSummary: true,
@@ -25,7 +43,7 @@ const defaultSettings = {
 };
 
 export default function App() {
-  // Load persisted apps or use comprehensive initialApps
+  // Carrega apps com prioridae: localStorage > JSON lazy > initialApps estático
   const [apps, setApps] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -38,8 +56,38 @@ export default function App() {
     } catch (e) {
       console.error('Error loading saved apps state', e);
     }
-    return initialApps;
+    // Inicia vazio; o useEffect abaixo carrega o catálogo async via JSON lazy
+    return [];
   });
+
+  // Carrega o catálogo completo de forma assíncrona (code-split via fetch)
+  useEffect(() => {
+    let cancelled = false;
+    loadFullCatalog().then((catalog) => {
+      if (cancelled) return;
+      // Só substitui se o usuário ainda não tem dados locais diferentes
+      // (preserva edições em installed: true/false do localStorage)
+      setApps((prev) => {
+        if (prev.length > 0) {
+          // Merge: mantém status de installed do que já estava em prev
+          const installedMap = new Map(prev.map((a) => [a.id, a.installed]));
+          return catalog.map((a) => {
+            const wasInstalled = installedMap.get(a.id);
+            return wasInstalled !== undefined ? { ...a, installed: wasInstalled } : a;
+          });
+        }
+        return catalog;
+      });
+    }).catch((err) => {
+      console.error('Falha ao carregar catálogo:', err);
+      // Sem fallback estático aqui: se nem o JSON nem o import lazy funcionarem,
+      // o usuário verá o empty state com mensagem clara.
+      setApps((prev) => (prev.length > 0 ? prev : []));
+    });
+    // Pré-carrega em idle para a próxima navegação
+    prefetchCatalog();
+    return () => { cancelled = true; };
+  }, []);
 
   // Settings State
   const [settings, setSettings] = useState(() => {
@@ -67,10 +115,7 @@ export default function App() {
           const installedSet = new Set(data.flatpaks);
           setApps((prevApps) =>
             prevApps.map((app) => {
-              const isFlatpak =
-                app.packageType?.toLowerCase().includes('flatpak') ||
-                app.category === 'flatpak' ||
-                (app.id && app.id.includes('.'));
+              const isFlatpak = isFlatpakApp(app);
               if (isFlatpak) {
                 return { ...app, installed: installedSet.has(app.id) };
               }
@@ -122,7 +167,8 @@ export default function App() {
 
   const handleClearCache = () => {
     localStorage.removeItem(STORAGE_KEY);
-    setApps(initialApps);
+    // Recarrega via JSON lazy; se o fetch falhar, o catch do effect faz fallback
+    setApps([]);
     window.location.reload();
   };
 
