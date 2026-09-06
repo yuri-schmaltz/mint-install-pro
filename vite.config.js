@@ -1,6 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { spawn, exec } from 'child_process';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Lê versão do package.json e expõe como VITE_APP_VERSION no build
+const pkg = JSON.parse(readFileSync(join(__dirname, 'package.json'), 'utf-8'));
 
 // Validações rigorosas de identificadores de pacotes (prevenção de Command/Argument Injection)
 const APT_PKG_REGEX = /^[a-z0-9][a-z0-9+\.\-]{1,63}$/;
@@ -43,8 +52,25 @@ function systemPackagePlugin() {
         }
 
         if (req.url === '/api/installed' && req.method === 'GET') {
-          exec('flatpak list --app --columns=application', (err, stdout) => {
-            const flatpaks = err ? [] : stdout.trim().split('\n').filter(Boolean);
+          exec('flatpak list --app --columns=application', (err, stdout, stderr) => {
+            // Distingue "flatpak não instalado" (ENOENT) de "flatpak instalado mas sem apps"
+            if (err) {
+              const isMissing = err.code === 'ENOENT' || /not found|comando não encontrado/i.test(stderr || '');
+              res.setHeader('Content-Type', 'application/json');
+              if (isMissing) {
+                res.statusCode = 503;
+                res.end(JSON.stringify({
+                  flatpaks: [],
+                  warning: 'flatpak_not_available',
+                  message: 'O utilitário flatpak não está instalado neste sistema. Instale-o para listar Flatpaks.'
+                }));
+              } else {
+                // Erro de execução (sem apps instalados é sucesso com lista vazia)
+                res.end(JSON.stringify({ flatpaks: [] }));
+              }
+              return;
+            }
+            const flatpaks = stdout.trim().split('\n').filter(Boolean);
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({ flatpaks }));
           });
@@ -162,6 +188,9 @@ function systemPackagePlugin() {
 
 export default defineConfig({
   base: './',
+  define: {
+    'import.meta.env.VITE_APP_VERSION': JSON.stringify(pkg.version)
+  },
   plugins: [react(), systemPackagePlugin()],
   server: {
     port: 3000,
