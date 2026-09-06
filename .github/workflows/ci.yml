@@ -1,0 +1,112 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  test-and-build:
+    name: Testes + Build (Node ${{ matrix.node-version }} / ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Rodar suíte de testes (Gauntlet)
+        run: npm test
+
+      - name: Build de produção
+        run: npm run build
+
+      - name: Upload do bundle de produção (artifact)
+        if: matrix.node-version == '20.x' && matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ matrix.node-version }}-${{ matrix.os }}
+          path: dist/
+          retention-days: 14
+
+  deb-package:
+    name: Empacotamento .deb (Ubuntu)
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Instalar Python 3 + dpkg-deb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg-dev python3
+
+      - name: Instalar dependências npm
+        run: npm ci
+
+      - name: Rodar testes
+        run: npm test
+
+      - name: Build de produção
+        run: npm run build
+
+      - name: Gerar pacote .deb
+        run: npm run build:deb
+
+      - name: Upload do .deb
+        uses: actions/upload-artifact@v4
+        with:
+          name: mint-install-pro-deb
+          path: '*.deb'
+          retention-days: 30
+
+  lint:
+    name: Sanidade do catálogo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Instalar dependências
+        run: npm ci
+
+      # Sanidade: o catálogo está sincronizado entre .js (source of truth)
+      # e .json (para code-split lazy). Se rodar o migrate_catalog.py regerar
+      # o JSON sem alterar o .js, o CI pega.
+      - name: Verificar sincronia catálogo .js ↔ .json
+        run: |
+          python3 scripts/migrate_catalog.py
+          # Confere que o JSON gerado bate com o commitado
+          if ! git diff --exit-code public/data/ >/dev/null 2>&1; then
+            echo "::error::Catálogo fora de sincronia. Rode scripts/migrate_catalog.py e commite public/data/"
+            git diff public/data/ | head -50
+            exit 1
+          fi
+          echo "✓ Catálogo .js e .json estão em sincronia"
