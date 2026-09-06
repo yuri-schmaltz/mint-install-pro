@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Check, 
-  Loader2, 
-  Package, 
-  AlertCircle, 
-  CheckCircle2, 
-  Download, 
-  Trash2, 
+import {
+  Check,
+  Loader2,
+  Package,
+  Download,
+  Trash2,
+  Play,
   Terminal
 } from 'lucide-react';
 import { executeInstall, executeUninstall } from '../services/packageManager';
@@ -98,6 +97,12 @@ export default function BatchActionModal({
   const completedCount = appStatuses.filter(s => s.status === 'done').length;
   const progressPercent = total > 0 ? Math.round((completedCount / total) * 100) : 0;
 
+  // Determina a cor da barra: instalação (verde), desinstalação (rosa), mista usa verde (ação predominante no Mint)
+  const progressBarColor =
+    actionType === 'uninstall'
+      ? 'bg-rose-500'
+      : 'bg-[#87cf3e]';
+
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-xs flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
       <div className="bg-[#2a2d32] border border-[#3b3f46] rounded-lg max-w-xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden text-[#e0e0e0]">
@@ -143,10 +148,8 @@ export default function BatchActionModal({
               </span>
             </div>
             <div className="w-full bg-[#1b1c1e] rounded-full h-2.5 overflow-hidden border border-[#35393f]">
-              <div 
-                className={`h-full transition-all duration-300 rounded-full ${
-                  isInstall ? 'bg-[#87cf3e]' : 'bg-rose-500'
-                }`}
+              <div
+                className={`h-full transition-all duration-300 rounded-full ${progressBarColor}`}
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
