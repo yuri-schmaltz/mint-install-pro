@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { 
-  ChevronLeft, 
-  Search, 
-  X, 
-  CheckSquare, 
-  Menu, 
+import {
+  ChevronLeft,
+  Search,
+  X,
+  CheckSquare,
+  Menu,
   RefreshCw,
   Info,
   Settings
 } from 'lucide-react';
+
+// Versão injetada pelo Vite a partir de package.json. Default seguro para SSR/tests.
+const APP_VERSION = import.meta.env?.VITE_APP_VERSION || '1.3.0';
 
 export default function HeaderBar({ 
   searchQuery, 
@@ -134,7 +137,7 @@ export default function HeaderBar({
           <div className="bg-[#2a2d32] border border-[#3b3f46] rounded-lg max-w-sm w-full p-5 shadow-2xl text-center">
             <img src="./icons/software-manager.png" alt="Mint Install Pro" className="w-16 h-16 mx-auto mb-3 drop-shadow-md object-contain" />
             <h2 className="text-lg font-bold text-white">Gerenciador de Aplicativos</h2>
-            <p className="text-xs text-[#87cf3e] font-semibold mt-0.5">Versão 6.1.4 (Clone Mint-Y Dark)</p>
+            <p className="text-xs text-[#87cf3e] font-semibold mt-0.5">Versão {APP_VERSION} (Clone Mint-Y Dark)</p>
             <p className="text-xs text-[#a4a9b2] mt-3 leading-relaxed">
               Réplica interativa e de alta fidelidade visual do Gerenciador de Aplicativos oficial do Linux Mint (mintinstall), com suporte a catálogo reativo de 1.800 aplicativos, integração nativa APT e Flathub.
             </p>
