@@ -1,4 +1,6 @@
-// Serviço para integração direta com a API v2 pública do Flathub
+// Fallback único para ícones do Flathub quando a API não retorna `icon`
+const FALLBACK_FLATPAK_ICON = '/icons/software-manager.png';
+
 export async function searchFlathub(query) {
   if (!query || !query.trim()) return [];
   
@@ -37,7 +39,7 @@ export async function searchFlathub(query) {
         version: 'stable',
         size: '50 MB',
         packageType: 'Flatpak (Flathub)',
-        icon: hit.icon || '/flatpak-icon.svg',
+        icon: hit.icon || FALLBACK_FLATPAK_ICON,
         fallbackIcon: '📦',
         developer: hit.developer_name || 'Flathub Publisher',
         license: hit.project_license || 'Open Source',
@@ -81,7 +83,7 @@ export async function getPopularFlathub(page = 1, perPage = 100) {
         version: 'latest',
         size: downloads,
         packageType: 'Flatpak (Flathub)',
-        icon: hit.icon || '/icons/software-manager.png',
+        icon: hit.icon || FALLBACK_FLATPAK_ICON,
         fallbackIcon: '📦',
         developer: hit.developer_name || 'Comunidade Flathub',
         license: hit.project_license || 'Open Source',
