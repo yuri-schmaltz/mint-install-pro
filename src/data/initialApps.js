@@ -1,4 +1,5 @@
 // Catálogo Completo da Plataforma Linux Mint com ~200 Apps por Categoria (Idêntico ao MintInstall Oficial)
+// Cada app possui o campo `kind` explícito: 'apt' | 'flatpak' (migração 1.3.1).
 export const initialApps = [
   {
     "id": "synapse",
@@ -16,7 +17,9 @@ export const initialApps = [
     "icon": "/icons/synapse.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dconf-editor",
@@ -34,7 +37,9 @@ export const initialApps = [
     "icon": "/icons/dconf-editor.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "grep",
@@ -52,7 +57,9 @@ export const initialApps = [
     "icon": "/icons/grep.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mediainfo-gui",
@@ -70,7 +77,9 @@ export const initialApps = [
     "icon": "/icons/mediainfo-gui.svg",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "artha",
@@ -88,7 +97,9 @@ export const initialApps = [
     "icon": "/icons/artha.svg",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "doublecmd-gtk",
@@ -106,7 +117,9 @@ export const initialApps = [
     "icon": "/icons/doublecmd-gtk.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "htop",
@@ -124,7 +137,9 @@ export const initialApps = [
     "icon": "/icons/htop.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "p7zip-full",
@@ -142,7 +157,9 @@ export const initialApps = [
     "icon": "/icons/p7zip-full.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "unzip",
@@ -160,7 +177,9 @@ export const initialApps = [
     "icon": "/icons/unzip.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fdupes",
@@ -178,7 +197,9 @@ export const initialApps = [
     "icon": "/icons/fdupes.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gtkhash",
@@ -196,7 +217,9 @@ export const initialApps = [
     "icon": "/icons/gtkhash.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "keepassxc",
@@ -214,7 +237,9 @@ export const initialApps = [
     "icon": "/icons/keepassxc.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mc",
@@ -232,7 +257,9 @@ export const initialApps = [
     "icon": "/icons/mc.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "p7zip",
@@ -250,7 +277,9 @@ export const initialApps = [
     "icon": "/icons/p7zip.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sshfs",
@@ -268,7 +297,9 @@ export const initialApps = [
     "icon": "/icons/sshfs.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "devede",
@@ -286,7 +317,9 @@ export const initialApps = [
     "icon": "/icons/devede.svg",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kupfer",
@@ -304,7 +337,9 @@ export const initialApps = [
     "icon": "/icons/kupfer.svg",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "unrar",
@@ -322,7 +357,9 @@ export const initialApps = [
     "icon": "/icons/unrar.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "goldendict",
@@ -340,7 +377,9 @@ export const initialApps = [
     "icon": "/icons/goldendict.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hplip-gui",
@@ -358,7 +397,9 @@ export const initialApps = [
     "icon": "/icons/hplip-gui.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "krename",
@@ -376,7 +417,9 @@ export const initialApps = [
     "icon": "/icons/krename.png",
     "fallbackIcon": "📦",
     "developer": "Equipe Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "krusader",
@@ -394,7 +437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "stacer",
@@ -412,7 +457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tlp",
@@ -430,7 +477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mdm",
@@ -448,7 +497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "p7zip-rar",
@@ -466,7 +517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "keepass2",
@@ -484,7 +537,9 @@ export const initialApps = [
     "icon": "/icons/keepass2.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "luckybackup",
@@ -502,7 +557,9 @@ export const initialApps = [
     "icon": "/icons/luckybackup.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "psensor",
@@ -520,7 +577,9 @@ export const initialApps = [
     "icon": "/icons/psensor.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "alacarte",
@@ -538,7 +597,9 @@ export const initialApps = [
     "icon": "/icons/alacarte.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qshutdown",
@@ -556,7 +617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "josm",
@@ -574,7 +637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "doublecmd-qt",
@@ -592,7 +657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cycle",
@@ -610,7 +677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "diodon",
@@ -628,7 +697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "powertop",
@@ -646,7 +717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "btop",
@@ -664,7 +737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "jstest-gtk",
@@ -682,7 +757,9 @@ export const initialApps = [
     "icon": "/icons/jstest-gtk.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ibus-unikey",
@@ -700,7 +777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "conky-all",
@@ -718,7 +797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gsmartcontrol",
@@ -736,7 +817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "plank",
@@ -754,7 +837,9 @@ export const initialApps = [
     "icon": "/icons/plank.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "zip",
@@ -772,7 +857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dvdbackup",
@@ -790,7 +877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "screenfetch",
@@ -808,7 +897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "deja-dup",
@@ -826,7 +917,9 @@ export const initialApps = [
     "icon": "/icons/deja-dup.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "stardict",
@@ -844,7 +937,9 @@ export const initialApps = [
     "icon": "/icons/stardict.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pcmanfm",
@@ -862,7 +957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ibus",
@@ -880,7 +977,9 @@ export const initialApps = [
     "icon": "/icons/ibus.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "subdownloader",
@@ -898,7 +997,9 @@ export const initialApps = [
     "icon": "/icons/subdownloader.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "indicator-multiload",
@@ -916,7 +1017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ark",
@@ -934,7 +1037,9 @@ export const initialApps = [
     "icon": "/icons/ark.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openssl",
@@ -952,7 +1057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "catfish",
@@ -970,7 +1077,9 @@ export const initialApps = [
     "icon": "/icons/catfish.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "encfs",
@@ -988,7 +1097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "weather-util",
@@ -1006,7 +1117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gameconqueror",
@@ -1024,7 +1137,9 @@ export const initialApps = [
     "icon": "/icons/gameconqueror.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnupg",
@@ -1042,7 +1157,9 @@ export const initialApps = [
     "icon": "/icons/gnupg.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "clamtk",
@@ -1060,7 +1177,9 @@ export const initialApps = [
     "icon": "/icons/clamtk.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gscan2pdf",
@@ -1078,7 +1197,9 @@ export const initialApps = [
     "icon": "/icons/gscan2pdf.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hplip",
@@ -1096,7 +1217,9 @@ export const initialApps = [
     "icon": "/icons/hplip.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ibus-pinyin",
@@ -1114,7 +1237,9 @@ export const initialApps = [
     "icon": "/icons/ibus-pinyin.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gprename",
@@ -1132,7 +1257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "laptop-mode-tools",
@@ -1150,7 +1277,9 @@ export const initialApps = [
     "icon": "/icons/laptop-mode-tools.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "b43-fwcutter",
@@ -1168,7 +1297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fcitx",
@@ -1186,7 +1317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lshw",
@@ -1204,7 +1337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "viking",
@@ -1222,7 +1357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "copyq",
@@ -1240,7 +1377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "treeline",
@@ -1258,7 +1397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "clamav",
@@ -1276,7 +1417,9 @@ export const initialApps = [
     "icon": "/icons/clamav.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gworldclock",
@@ -1294,7 +1437,9 @@ export const initialApps = [
     "icon": "/icons/gworldclock.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "backintime-qt",
@@ -1312,7 +1457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "macfanctld",
@@ -1330,7 +1477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nemo-gtkhash",
@@ -1348,7 +1497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "searchmonkey",
@@ -1366,7 +1517,9 @@ export const initialApps = [
     "icon": "/icons/searchmonkey.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "g15daemon",
@@ -1384,7 +1537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ibus-hangul",
@@ -1402,7 +1557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kcalc",
@@ -1420,7 +1577,9 @@ export const initialApps = [
     "icon": "/icons/kcalc.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lynis",
@@ -1438,7 +1597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nfoview",
@@ -1456,7 +1617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "secure-delete",
@@ -1474,7 +1637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "devtodo",
@@ -1492,7 +1657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "glances",
@@ -1510,7 +1677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mediainfo",
@@ -1528,7 +1697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "spacefm",
@@ -1546,7 +1717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lm-sensors",
@@ -1564,7 +1737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "syncevolution",
@@ -1582,7 +1757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vobcopy",
@@ -1600,7 +1777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "timeshift",
@@ -1618,7 +1797,9 @@ export const initialApps = [
     "icon": "/icons/timeshift.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lshw-gtk",
@@ -1636,7 +1817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "stopwatch",
@@ -1654,7 +1837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nixnote2",
@@ -1672,7 +1857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kdf",
@@ -1690,7 +1877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ccrypt",
@@ -1708,7 +1897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lxsplit",
@@ -1726,7 +1917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "zulucrypt-gui",
@@ -1744,7 +1937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "caja",
@@ -1762,7 +1957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "speedtest-cli",
@@ -1780,7 +1977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "img2pdf",
@@ -1798,7 +1997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kfind",
@@ -1816,7 +2017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ibus-avro",
@@ -1834,7 +2037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "unrar-free",
@@ -1852,7 +2057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gcin",
@@ -1870,7 +2077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "glogg",
@@ -1888,7 +2097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gpa",
@@ -1906,7 +2117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mbpfan",
@@ -1924,7 +2137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nwipe",
@@ -1942,7 +2157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "par2",
@@ -1960,7 +2177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "passwordsafe",
@@ -1978,7 +2197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pbzip2",
@@ -1996,7 +2217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ppa-purge",
@@ -2014,7 +2237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tree",
@@ -2032,7 +2257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wallch",
@@ -2050,7 +2277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rar",
@@ -2068,7 +2297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "calcurse",
@@ -2086,7 +2317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fatsort",
@@ -2104,7 +2337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "neofetch",
@@ -2122,7 +2357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ranger",
@@ -2140,7 +2377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "firejail",
@@ -2158,7 +2397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "smartmontools",
@@ -2176,7 +2417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "i8kutils",
@@ -2194,7 +2437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "screenkey",
@@ -2212,7 +2457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "freefilesync",
@@ -2230,7 +2477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "garmin-forerunner-tools",
@@ -2248,7 +2497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gkamus",
@@ -2266,7 +2517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gpsbabel",
@@ -2284,7 +2537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qv4l2",
@@ -2302,7 +2557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ratbagd",
@@ -2320,7 +2577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "remind",
@@ -2338,7 +2597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "safeeyes",
@@ -2356,7 +2617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sed",
@@ -2374,7 +2637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xygrib",
@@ -2392,7 +2657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "autofs",
@@ -2410,7 +2677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "backuppc",
@@ -2428,7 +2697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ciso",
@@ -2446,7 +2717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "clamav-freshclam",
@@ -2464,7 +2737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "extlinux",
@@ -2482,7 +2757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "f3",
@@ -2500,7 +2777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "findutils",
@@ -2518,7 +2797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kgb",
@@ -2536,7 +2817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lxsession-edit",
@@ -2554,7 +2837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mbw",
@@ -2572,7 +2857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "thunar-gtkhash",
@@ -2590,7 +2877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tiled",
@@ -2608,7 +2897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tty-clock",
@@ -2626,7 +2917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "v4l-utils",
@@ -2644,7 +2937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "zeal",
@@ -2662,7 +2957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nvtop",
@@ -2680,7 +2977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rsnapshot",
@@ -2698,7 +2997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "antimicro",
@@ -2716,7 +3017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "deepin-screen-recorder",
@@ -2734,7 +3037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "eject",
@@ -2752,7 +3057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xz-utils",
@@ -2770,7 +3077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ausweisapp",
@@ -2788,7 +3097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "boomaga",
@@ -2806,7 +3117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bumblebee",
@@ -2824,7 +3137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cardpeek",
@@ -2842,7 +3157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "diffpdf",
@@ -2860,7 +3177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "folder-color-switcher",
@@ -2878,7 +3197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mcrypt",
@@ -2896,7 +3217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nmon",
@@ -2914,7 +3237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pdfcrack",
@@ -2932,7 +3257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pv",
@@ -2950,7 +3277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "scim",
@@ -2968,7 +3297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "scim-unikey",
@@ -2986,7 +3317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "syslinux",
@@ -3004,7 +3337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "time",
@@ -3022,7 +3357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mozo",
@@ -3040,7 +3377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bpytop",
@@ -3058,7 +3397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "debian-installer-launcher",
@@ -3076,7 +3417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dirdiff",
@@ -3094,7 +3437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "flamerobin",
@@ -3112,7 +3457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "k3b-extrathemes",
@@ -3130,7 +3477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lxappearance",
@@ -3148,7 +3497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pytrainer",
@@ -3166,7 +3517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "yubioath-desktop",
@@ -3184,7 +3537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "zipcmp",
@@ -3202,7 +3557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "actiona",
@@ -3220,7 +3577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "activity-log-manager",
@@ -3238,7 +3597,9 @@ export const initialApps = [
     "icon": "/icons/activity-log-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "antpm",
@@ -3256,7 +3617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "arj",
@@ -3274,7 +3637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "atool",
@@ -3292,7 +3657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "authbind",
@@ -3310,7 +3677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "clamav-base",
@@ -3328,7 +3697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "clamav-daemon",
@@ -3346,7 +3717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cpio",
@@ -3364,7 +3737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cpufrequtils",
@@ -3382,7 +3757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "crow-translate",
@@ -3400,7 +3777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "csstidy",
@@ -3418,7 +3797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dconf-cli",
@@ -3436,7 +3817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ddate",
@@ -3454,7 +3837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "diffutils",
@@ -3472,7 +3857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dislocker",
@@ -3490,7 +3877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dmidecode",
@@ -3508,7 +3897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "doublecmd-plugins",
@@ -3526,7 +3917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dvd+rw-tools",
@@ -3544,7 +3937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ekeyd",
@@ -3562,7 +3957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ethtool",
@@ -3580,7 +3977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "eureka",
@@ -3598,7 +3997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fpc",
@@ -3616,7 +4017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "build-essential",
@@ -3634,7 +4037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mercurial",
@@ -3652,7 +4057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nasm",
@@ -3670,7 +4077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "geany",
@@ -3688,7 +4097,9 @@ export const initialApps = [
     "icon": "/icons/geany.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gcc",
@@ -3706,7 +4117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "subversion",
@@ -3724,7 +4137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "g++",
@@ -3742,7 +4157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "variety",
@@ -3760,7 +4177,9 @@ export const initialApps = [
     "icon": "/icons/variety.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "geany-plugins",
@@ -3778,7 +4197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lazarus",
@@ -3796,7 +4217,9 @@ export const initialApps = [
     "icon": "/icons/lazarus.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qtcreator",
@@ -3814,7 +4237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "geogebra",
@@ -3832,7 +4257,9 @@ export const initialApps = [
     "icon": "/icons/geogebra.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "matlab-support",
@@ -3850,7 +4277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cmake",
@@ -3868,7 +4297,9 @@ export const initialApps = [
     "icon": "/icons/cmake.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "codeblocks",
@@ -3886,7 +4317,9 @@ export const initialApps = [
     "icon": "/icons/codeblocks.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "spyder",
@@ -3904,7 +4337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sweethome3d",
@@ -3922,7 +4357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "glade",
@@ -3940,7 +4377,9 @@ export const initialApps = [
     "icon": "/icons/glade.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sqlitebrowser",
@@ -3958,7 +4397,9 @@ export const initialApps = [
     "icon": "/icons/sqlitebrowser.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "codelite",
@@ -3976,7 +4417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rabbitvcs-core",
@@ -3994,7 +4437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "clang",
@@ -4012,7 +4457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lazarus-ide",
@@ -4030,7 +4477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "scala",
@@ -4048,7 +4497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "thonny",
@@ -4066,7 +4517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pychess",
@@ -4084,7 +4537,9 @@ export const initialApps = [
     "icon": "/icons/pychess.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gambas3",
@@ -4102,7 +4557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kdevelop",
@@ -4120,7 +4577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "umbrello",
@@ -4138,7 +4597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "git-gui",
@@ -4156,7 +4617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3",
@@ -4174,7 +4637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gdb",
@@ -4192,7 +4657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "typecatcher",
@@ -4210,7 +4677,9 @@ export const initialApps = [
     "icon": "/icons/typecatcher.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gitk",
@@ -4228,7 +4697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "syncthing",
@@ -4246,7 +4717,9 @@ export const initialApps = [
     "icon": "/icons/syncthing.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "eric",
@@ -4264,7 +4737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "git-cola",
@@ -4282,7 +4757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bzr",
@@ -4300,7 +4777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kompare",
@@ -4318,7 +4797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gfortran",
@@ -4336,7 +4817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "valgrind",
@@ -4354,7 +4837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qtqr",
@@ -4372,7 +4857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bpython",
@@ -4390,7 +4877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "indicator-cpufreq",
@@ -4408,7 +4897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "code",
@@ -4426,7 +4917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "logisim",
@@ -4444,7 +4937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-tk",
@@ -4462,7 +4957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sbcl",
@@ -4480,7 +4977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "codeblocks-contrib",
@@ -4498,7 +4997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "devhelp",
@@ -4516,7 +5017,9 @@ export const initialApps = [
     "icon": "/icons/devhelp.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "git-svn",
@@ -4534,7 +5037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "maven",
@@ -4552,7 +5057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python-is-python3",
@@ -4570,7 +5077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-pip",
@@ -4588,7 +5097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "regexxer",
@@ -4606,7 +5117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tcc",
@@ -4624,7 +5137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xmlcopyeditor",
@@ -4642,7 +5157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bookletimposer",
@@ -4660,7 +5177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "flex",
@@ -4678,7 +5197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nvidia-cuda-toolkit",
@@ -4696,7 +5217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "torbrowser-launcher",
@@ -4714,7 +5237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "basic256",
@@ -4732,7 +5257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fp-ide",
@@ -4750,7 +5277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-setuptools",
@@ -4768,7 +5297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "asciinema",
@@ -4786,7 +5317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cgdb",
@@ -4804,7 +5337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "default-jdk",
@@ -4822,7 +5357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "heimdall-flash",
@@ -4840,7 +5377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "scons",
@@ -4858,7 +5397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tkcvs",
@@ -4876,7 +5417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wxglade",
@@ -4894,7 +5437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "yasm",
@@ -4912,7 +5457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kdevelop-php",
@@ -4930,7 +5477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mit-scheme",
@@ -4948,7 +5497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qreator",
@@ -4966,7 +5517,9 @@ export const initialApps = [
     "icon": "/icons/qreator.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnat",
@@ -4984,7 +5537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pasaffe",
@@ -5002,7 +5557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-all",
@@ -5020,7 +5577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-bsddb3",
@@ -5038,7 +5597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-examples",
@@ -5056,7 +5617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-gdbm",
@@ -5074,7 +5637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-minimal",
@@ -5092,7 +5657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-pkg-resources",
@@ -5110,7 +5677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rustc",
@@ -5128,7 +5697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "system-config-printer-udev",
@@ -5146,7 +5717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "z80dasm",
@@ -5164,7 +5737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "2to3",
@@ -5182,7 +5757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "adb",
@@ -5200,7 +5777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "astyle",
@@ -5218,7 +5797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "automake",
@@ -5236,7 +5817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "brotli",
@@ -5254,7 +5837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cloc",
@@ -5272,7 +5857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cmake-curses-gui",
@@ -5290,7 +5877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cmake-qt-gui",
@@ -5308,7 +5897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "containerd.io",
@@ -5326,7 +5917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "debdelta",
@@ -5344,7 +5937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dia2code",
@@ -5362,7 +5957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dotnet-sdk-8.0",
@@ -5380,7 +5977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dotnet10",
@@ -5398,7 +5997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fastboot",
@@ -5416,7 +6017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fonts-powerline",
@@ -5434,7 +6037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gcc-avr",
@@ -5452,7 +6057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "geany-plugin-lua",
@@ -5470,7 +6077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "geany-plugin-markdown",
@@ -5488,7 +6097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "geany-plugin-prj",
@@ -5506,7 +6117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnucobol3",
@@ -5524,7 +6137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "heimdall-flash-frontend",
@@ -5542,7 +6157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ht",
@@ -5560,7 +6177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "idle",
@@ -5578,7 +6197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "indent",
@@ -5596,7 +6217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kcachegrind",
@@ -5614,7 +6237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lldb",
@@ -5632,7 +6257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lokalize",
@@ -5650,7 +6277,9 @@ export const initialApps = [
     "icon": "/icons/lokalize.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "meteo-qt",
@@ -5668,7 +6297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openjfx",
@@ -5686,7 +6317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "phing",
@@ -5704,7 +6337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-lxml",
@@ -5722,7 +6357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-pydrive",
@@ -5740,7 +6377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-scipy",
@@ -5758,7 +6397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "shellcheck",
@@ -5776,7 +6417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "slime",
@@ -5794,7 +6437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "stress",
@@ -5812,7 +6457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "stress-ng",
@@ -5830,7 +6477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sublime-merge",
@@ -5848,7 +6497,9 @@ export const initialApps = [
     "icon": "/icons/sublime-merge.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "thrift-compiler",
@@ -5866,7 +6517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ucblogo",
@@ -5884,7 +6537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "valac",
@@ -5902,7 +6557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "visualvm",
@@ -5920,7 +6577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xdot",
@@ -5938,7 +6597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "z80asm",
@@ -5956,7 +6617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cvs",
@@ -5974,7 +6637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "golang",
@@ -5992,7 +6657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ddd",
@@ -6010,7 +6677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "giggle",
@@ -6028,7 +6697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gradle",
@@ -6046,7 +6717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "intltool",
@@ -6064,7 +6737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ipython3",
@@ -6082,7 +6757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mwrap",
@@ -6100,7 +6777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "virt-viewer",
@@ -6118,7 +6797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bsh",
@@ -6136,7 +6817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cl-umlisp",
@@ -6154,7 +6837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "debhelper",
@@ -6172,7 +6857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dh-make",
@@ -6190,7 +6877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "diceware",
@@ -6208,7 +6897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "doxygen",
@@ -6226,7 +6917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "flatpak-builder",
@@ -6244,7 +6937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kdump-tools",
@@ -6262,7 +6957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kturtle",
@@ -6280,7 +6977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mathpiper",
@@ -6298,7 +6997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pbuilder",
@@ -6316,7 +7017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "protobuf-compiler",
@@ -6334,7 +7037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pylint",
@@ -6352,7 +7057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python-simpy-gui",
@@ -6370,7 +7077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-av",
@@ -6388,7 +7097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-cherrypy3",
@@ -6406,7 +7117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-opencv",
@@ -6424,7 +7137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "python3-zmq",
@@ -6442,7 +7157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "quantlib-python",
@@ -6460,7 +7177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "relational",
@@ -6478,7 +7197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "remotetea",
@@ -6496,7 +7217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "snimpy",
@@ -6514,7 +7237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "spf-tools-python",
@@ -6532,7 +7257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "splint",
@@ -6550,7 +7277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "testrepository",
@@ -6568,7 +7297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tox",
@@ -6586,7 +7317,9 @@ export const initialApps = [
     "icon": "/icons/tox.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "trac-accountmanager",
@@ -6604,7 +7337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "translate-toolkit",
@@ -6622,7 +7357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-client",
@@ -6640,7 +7377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-account",
@@ -6658,7 +7397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-account-be",
@@ -6676,7 +7417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-account-de-skr03",
@@ -6694,7 +7437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-account-invoice",
@@ -6712,7 +7457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-account-invoice-history",
@@ -6730,7 +7477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-account-invoice-line-standalone",
@@ -6748,7 +7497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-account-product",
@@ -6766,7 +7517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-account-statement",
@@ -6784,7 +7537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-all",
@@ -6802,7 +7557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-analytic-account",
@@ -6820,7 +7577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-analytic-invoice",
@@ -6838,7 +7597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-analytic-purchase",
@@ -6856,7 +7617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-analytic-sale",
@@ -6874,7 +7637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-company",
@@ -6892,7 +7657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-company-work-time",
@@ -6910,7 +7677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-country",
@@ -6928,7 +7697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-currency",
@@ -6946,7 +7717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-google-maps",
@@ -6964,7 +7737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-ldap-authentication",
@@ -6982,7 +7757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-party",
@@ -7000,7 +7777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-product",
@@ -7018,7 +7797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-product-cost-history",
@@ -7036,7 +7817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-product-price-list",
@@ -7054,7 +7837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-project",
@@ -7072,7 +7857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-project-revenue",
@@ -7090,7 +7877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-purchase",
@@ -7108,7 +7897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-purchase-invoice-line-standalone",
@@ -7126,7 +7917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-sale",
@@ -7144,7 +7937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-sale-price-list",
@@ -7162,7 +7957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-stock",
@@ -7180,7 +7977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tryton-modules-stock-forecast",
@@ -7198,7 +7997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "scite",
@@ -7216,7 +8017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "texstudio",
@@ -7234,7 +8037,9 @@ export const initialApps = [
     "icon": "/icons/texstudio.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nano",
@@ -7252,7 +8057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lyx",
@@ -7270,7 +8077,9 @@ export const initialApps = [
     "icon": "/icons/lyx.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "focuswriter",
@@ -7288,7 +8097,9 @@ export const initialApps = [
     "icon": "/icons/focuswriter.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cherrytree",
@@ -7306,7 +8117,9 @@ export const initialApps = [
     "icon": "/icons/cherrytree.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vim",
@@ -7324,7 +8137,9 @@ export const initialApps = [
     "icon": "/icons/vim.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "jedit",
@@ -7342,7 +8157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "joe",
@@ -7360,7 +8177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "frescobaldi",
@@ -7378,7 +8197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "emacs",
@@ -7396,7 +8217,9 @@ export const initialApps = [
     "icon": "/icons/emacs.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "freeplane",
@@ -7414,7 +8237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kate",
@@ -7432,7 +8257,9 @@ export const initialApps = [
     "icon": "/icons/kate.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mousepad",
@@ -7450,7 +8277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "diffuse",
@@ -7468,7 +8297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sublime-text",
@@ -7486,7 +8317,9 @@ export const initialApps = [
     "icon": "/icons/sublime-text.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "retext",
@@ -7504,7 +8337,9 @@ export const initialApps = [
     "icon": "/icons/retext.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kwrite",
@@ -7522,7 +8357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ghostwriter",
@@ -7540,7 +8377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sigil",
@@ -7558,7 +8397,9 @@ export const initialApps = [
     "icon": "/icons/sigil.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "micro",
@@ -7576,7 +8417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wordgrinder",
@@ -7594,7 +8437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "omegat",
@@ -7612,7 +8457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "texworks",
@@ -7630,7 +8477,9 @@ export const initialApps = [
     "icon": "/icons/texworks.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vim-latexsuite",
@@ -7648,7 +8497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "e3",
@@ -7666,7 +8517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnome-builder",
@@ -7684,7 +8537,9 @@ export const initialApps = [
     "icon": "/icons/gnome-builder.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "neovim",
@@ -7702,7 +8557,9 @@ export const initialApps = [
     "icon": "/icons/neovim.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xtrkcad",
@@ -7720,7 +8577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nedit",
@@ -7738,7 +8597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "noblenote",
@@ -7756,7 +8617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vim-tiny",
@@ -7774,7 +8637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "l3afpad",
@@ -7792,7 +8657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "manuskript",
@@ -7810,7 +8677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tea",
@@ -7828,7 +8697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tilde",
@@ -7846,7 +8717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "exuberant-ctags",
@@ -7864,7 +8737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ne",
@@ -7882,7 +8757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "the",
@@ -7900,7 +8777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "notepadqq",
@@ -7918,7 +8797,9 @@ export const initialApps = [
     "icon": "/icons/notepadqq.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cream",
@@ -7936,7 +8817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "juffed",
@@ -7954,7 +8837,9 @@ export const initialApps = [
     "icon": "/icons/juffed.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "efte",
@@ -7972,7 +8857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "emacs-el",
@@ -7990,7 +8877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "featherpad",
@@ -8008,7 +8897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vim-gtk3",
@@ -8026,7 +8917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vim-nox",
@@ -8044,7 +8937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vim-pathogen",
@@ -8062,7 +8957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vim-youcompleteme",
@@ -8080,7 +8977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wxhexeditor",
@@ -8098,7 +8997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xemacs21",
@@ -8116,7 +9017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vim-addon-manager",
@@ -8134,7 +9037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hexedit",
@@ -8152,7 +9057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ed",
@@ -8170,7 +9077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "jove",
@@ -8188,7 +9097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rlwrap",
@@ -8206,7 +9117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "treesheets",
@@ -8224,7 +9137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "zile",
@@ -8242,7 +9157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pageedit",
@@ -8260,7 +9177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "abiword-plugin-grammar",
@@ -8278,7 +9197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "jaxe",
@@ -8296,7 +9217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "neovim-qt",
@@ -8314,7 +9237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tweak",
@@ -8332,7 +9257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "plume-creator",
@@ -8350,7 +9277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dhex",
@@ -8368,7 +9297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "entagged",
@@ -8386,7 +9317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "jeex",
@@ -8404,7 +9337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "alpine-pico",
@@ -8422,7 +9357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aoeui",
@@ -8440,7 +9377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apel",
@@ -8458,7 +9397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aplus-fsf-el",
@@ -8476,7 +9417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "arduino-ctags",
@@ -8494,7 +9437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bbe",
@@ -8512,7 +9457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "beav",
@@ -8530,7 +9477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bibledit-cloud",
@@ -8548,7 +9497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bvi",
@@ -8566,7 +9517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "crypt++el",
@@ -8584,7 +9537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cxref-emacs",
@@ -8602,7 +9557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "develock-el",
@@ -8620,7 +9577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "devscripts-el",
@@ -8638,7 +9597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dte",
@@ -8656,7 +9617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "e-wrapper",
@@ -8674,7 +9637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "edict-el",
@@ -8692,7 +9657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-a",
@@ -8710,7 +9677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-adaptive-wrap",
@@ -8728,7 +9697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-ag",
@@ -8746,7 +9717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-agda2-mode",
@@ -8764,7 +9737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-apache-mode",
@@ -8782,7 +9757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-atomic-chrome",
@@ -8800,7 +9777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-autothemer",
@@ -8818,7 +9797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-bash-completion",
@@ -8836,7 +9817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-bison-mode",
@@ -8854,7 +9837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-bpftrace-mode",
@@ -8872,7 +9857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-bui",
@@ -8890,7 +9877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-citar",
@@ -8908,7 +9897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-cmake-mode",
@@ -8926,7 +9917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-compat",
@@ -8944,7 +9937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-consult",
@@ -8962,7 +9957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-corfu",
@@ -8980,7 +9977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-darkroom",
@@ -8998,7 +9997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-debase",
@@ -9016,7 +10017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-delight",
@@ -9034,7 +10037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-dimmer",
@@ -9052,7 +10057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-discomfort",
@@ -9070,7 +10077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-editorconfig",
@@ -9088,7 +10097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-ednc",
@@ -9106,7 +10117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-eglot",
@@ -9124,7 +10137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-elenv",
@@ -9142,7 +10157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-elm-mode",
@@ -9160,7 +10177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-emacs-dashboard",
@@ -9178,7 +10197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-emacsql",
@@ -9196,7 +10217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-emacsql-mysql",
@@ -9214,7 +10237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-emacsql-psql",
@@ -9232,7 +10257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-emacsql-sqlite",
@@ -9250,7 +10277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-embark",
@@ -9268,7 +10297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-ement",
@@ -9286,7 +10317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-eproject",
@@ -9304,7 +10337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-erc",
@@ -9322,7 +10357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-expand-region",
@@ -9340,7 +10377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-exwm",
@@ -9358,7 +10397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-exwm-mff",
@@ -9376,7 +10417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-format-all",
@@ -9394,7 +10437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-ggtags",
@@ -9412,7 +10457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-git-auto-commit-mode",
@@ -9430,7 +10477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-haskell-tab-indent",
@@ -9448,7 +10497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-helm-org",
@@ -9466,7 +10517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-inheritenv",
@@ -9484,7 +10537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-js2-mode",
@@ -9502,7 +10557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-kivy-mode",
@@ -9520,7 +10577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-kotlin-mode",
@@ -9538,7 +10597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-language-id",
@@ -9556,7 +10617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-lintian",
@@ -9574,7 +10637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-macaulay2",
@@ -9592,7 +10657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-marginalia",
@@ -9610,7 +10677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-mastodon",
@@ -9628,7 +10697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-mpv",
@@ -9646,7 +10717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-muse",
@@ -9664,7 +10737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-ol-notmuch",
@@ -9682,7 +10757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-orderless",
@@ -9700,7 +10777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-org-appear",
@@ -9718,7 +10797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-org-caldav",
@@ -9736,7 +10817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-org-contrib",
@@ -9754,7 +10837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-org-d20",
@@ -9772,7 +10857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-org-make-toc",
@@ -9790,7 +10877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-org-present",
@@ -9808,7 +10897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-org-roam",
@@ -9826,7 +10917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-org-tree-slide",
@@ -9844,7 +10937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-orgalist",
@@ -9862,7 +10957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-ox-texinfo+",
@@ -9880,7 +10977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-page-break-lines",
@@ -9898,7 +10997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-pass",
@@ -9916,7 +11017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-persist",
@@ -9934,7 +11037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-pfuture",
@@ -9952,7 +11057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-plz",
@@ -9970,7 +11077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-pod-mode",
@@ -9988,7 +11097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-pos-tip",
@@ -10006,7 +11117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-project",
@@ -10024,7 +11137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-protobuf-mode",
@@ -10042,7 +11157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-pyim",
@@ -10060,7 +11177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-pyim-basedict",
@@ -10078,7 +11197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-relint",
@@ -10096,7 +11217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-rust-mode",
@@ -10114,7 +11237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-scala-mode",
@@ -10132,7 +11257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-sml-mode",
@@ -10150,7 +11277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-snakemake",
@@ -10168,7 +11297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-snakemake-mode",
@@ -10186,7 +11317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-subed",
@@ -10204,7 +11337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-svg-lib",
@@ -10222,7 +11357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-sxiv",
@@ -10240,7 +11377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-tabbar",
@@ -10258,7 +11397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-taxy",
@@ -10276,7 +11417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-taxy-magit-section",
@@ -10294,7 +11437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-transient",
@@ -10312,7 +11457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-treemacs",
@@ -10330,7 +11477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-treemacs-evil",
@@ -10348,7 +11497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-treemacs-magit",
@@ -10366,7 +11517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-treemacs-projectile",
@@ -10384,7 +11537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-vala-mode",
@@ -10402,7 +11557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-vertico",
@@ -10420,7 +11577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-volume",
@@ -10438,7 +11597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-vterm",
@@ -10456,7 +11617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-wgrep",
@@ -10474,7 +11637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-wgrep-ack",
@@ -10492,7 +11657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-wgrep-ag",
@@ -10510,7 +11677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-wgrep-helm",
@@ -10528,7 +11697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-writeroom-mode",
@@ -10546,7 +11717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-xcscope",
@@ -10564,7 +11737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-xelb",
@@ -10582,7 +11757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-xref",
@@ -10600,7 +11777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elpa-yaml-mode",
@@ -10618,7 +11797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elvis-tiny",
@@ -10636,7 +11817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "emacs-common-non-dfsg",
@@ -10654,7 +11837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "emacs-goodies-el",
@@ -10672,7 +11857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "emacs-gtk",
@@ -10690,7 +11877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "emacs-libvterm",
@@ -10708,7 +11897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "emacs-lucid",
@@ -10726,7 +11917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "emacs-nox",
@@ -10744,7 +11937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "emacs-pgtk",
@@ -10762,7 +11957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "emacspeak",
@@ -10780,7 +11977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "emacspeak-espeak-server",
@@ -10798,7 +11997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mkvtoolnix-gui",
@@ -10816,7 +12017,9 @@ export const initialApps = [
     "icon": "/icons/mkvtoolnix-gui.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kcolorchooser",
@@ -10834,7 +12037,9 @@ export const initialApps = [
     "icon": "/icons/kcolorchooser.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rapid-photo-downloader",
@@ -10852,7 +12057,9 @@ export const initialApps = [
     "icon": "/icons/rapid-photo-downloader.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "smplayer",
@@ -10870,7 +12077,9 @@ export const initialApps = [
     "icon": "/icons/smplayer.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hugin",
@@ -10888,7 +12097,9 @@ export const initialApps = [
     "icon": "/icons/hugin.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kolourpaint",
@@ -10906,7 +12117,9 @@ export const initialApps = [
     "icon": "/icons/kolourpaint.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xaos",
@@ -10924,7 +12137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pdfarranger",
@@ -10942,7 +12157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vlc",
@@ -10960,7 +12177,9 @@ export const initialApps = [
     "icon": "/icons/vlc.svg",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gimp",
@@ -10978,7 +12197,9 @@ export const initialApps = [
     "icon": "/icons/gimp.svg",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "inkscape",
@@ -10996,7 +12217,9 @@ export const initialApps = [
     "icon": "/icons/inkscape.svg",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "blender",
@@ -11014,7 +12237,9 @@ export const initialApps = [
     "icon": "/icons/blender.svg",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "shutter",
@@ -11032,7 +12257,9 @@ export const initialApps = [
     "icon": "/icons/shutter.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "darktable",
@@ -11050,7 +12277,9 @@ export const initialApps = [
     "icon": "/icons/darktable.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tuxpaint",
@@ -11068,7 +12297,9 @@ export const initialApps = [
     "icon": "/icons/tuxpaint.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "flameshot",
@@ -11086,7 +12317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "guvcview",
@@ -11104,7 +12337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "handbrake",
@@ -11122,7 +12357,9 @@ export const initialApps = [
     "icon": "/icons/handbrake.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rawtherapee",
@@ -11140,7 +12377,9 @@ export const initialApps = [
     "icon": "/icons/rawtherapee.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "posterazor",
@@ -11158,7 +12397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gimp-gap",
@@ -11176,7 +12417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mypaint",
@@ -11194,7 +12437,9 @@ export const initialApps = [
     "icon": "/icons/mypaint.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dia",
@@ -11212,7 +12457,9 @@ export const initialApps = [
     "icon": "/icons/dia.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gimp-data-extras",
@@ -11230,7 +12477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "scribus",
@@ -11248,7 +12497,9 @@ export const initialApps = [
     "icon": "/icons/scribus.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "geeqie",
@@ -11266,7 +12517,9 @@ export const initialApps = [
     "icon": "/icons/geeqie.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gpick",
@@ -11284,7 +12537,9 @@ export const initialApps = [
     "icon": "/icons/gpick.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "converseen",
@@ -11302,7 +12557,9 @@ export const initialApps = [
     "icon": "/icons/converseen.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wings3d",
@@ -11320,7 +12577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gdmap",
@@ -11338,7 +12597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cairo-dock",
@@ -11356,7 +12617,9 @@ export const initialApps = [
     "icon": "/icons/cairo-dock.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "okular",
@@ -11374,7 +12637,9 @@ export const initialApps = [
     "icon": "/icons/okular.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gwenview",
@@ -11392,7 +12657,9 @@ export const initialApps = [
     "icon": "/icons/gwenview.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gimp-plugin-registry",
@@ -11410,7 +12677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tesseract-ocr",
@@ -11428,7 +12697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nomacs",
@@ -11446,7 +12717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ksnip",
@@ -11464,7 +12737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kdenlive",
@@ -11482,7 +12757,9 @@ export const initialApps = [
     "icon": "/icons/kdenlive.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qpdfview",
@@ -11500,7 +12777,9 @@ export const initialApps = [
     "icon": "/icons/qpdfview.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fotoxx",
@@ -11518,7 +12797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gimp-texturize",
@@ -11536,7 +12817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "winff",
@@ -11554,7 +12837,9 @@ export const initialApps = [
     "icon": "/icons/winff.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gpicview",
@@ -11572,7 +12857,9 @@ export const initialApps = [
     "icon": "/icons/gpicview.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fontmatrix",
@@ -11590,7 +12877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cairo-dock-core",
@@ -11608,7 +12897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "feh",
@@ -11626,7 +12917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xsane",
@@ -11644,7 +12937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "digikam",
@@ -11662,7 +12957,9 @@ export const initialApps = [
     "icon": "/icons/digikam.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "recordmydesktop",
@@ -11680,7 +12977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "font-manager",
@@ -11698,7 +12997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mirage",
@@ -11716,7 +13017,9 @@ export const initialApps = [
     "icon": "/icons/mirage.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gimagereader",
@@ -11734,7 +13037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "synfigstudio",
@@ -11752,7 +13057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "meshlab",
@@ -11770,7 +13077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ristretto",
@@ -11788,7 +13097,9 @@ export const initialApps = [
     "icon": "/icons/ristretto.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qcomicbook",
@@ -11806,7 +13117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "handbrake-cli",
@@ -11824,7 +13137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xfig",
@@ -11842,7 +13157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kruler",
@@ -11860,7 +13177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openscad",
@@ -11878,7 +13197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "printer-driver-gutenprint",
@@ -11896,7 +13217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gimp-gmic",
@@ -11914,7 +13237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "djview4",
@@ -11932,7 +13257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "motion",
@@ -11950,7 +13277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "deepin-picker",
@@ -11968,7 +13297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mtpaint",
@@ -11986,7 +13317,9 @@ export const initialApps = [
     "icon": "/icons/mtpaint.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mythtv",
@@ -12004,7 +13337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "scrot",
@@ -12022,7 +13357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "flpsed",
@@ -12040,7 +13377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "showfoto",
@@ -12058,7 +13397,9 @@ export const initialApps = [
     "icon": "/icons/showfoto.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dvbcut",
@@ -12076,7 +13417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "jhead",
@@ -12094,7 +13437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "jpegoptim",
@@ -12112,7 +13457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mkvtoolnix",
@@ -12130,7 +13477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "photocollage",
@@ -12148,7 +13497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xine-ui",
@@ -12166,7 +13517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "imagemagick",
@@ -12184,7 +13537,9 @@ export const initialApps = [
     "icon": "/icons/imagemagick.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cuneiform",
@@ -12202,7 +13557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rgbpaint",
@@ -12220,7 +13577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fstl",
@@ -12238,7 +13597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "photoflare",
@@ -12256,7 +13617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "printer-driver-cups-pdf",
@@ -12274,7 +13637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hasciicam",
@@ -12292,7 +13657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "smplayer-themes",
@@ -12310,7 +13677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "trimage",
@@ -12328,7 +13697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "exif",
@@ -12346,7 +13717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "screengrab",
@@ -12364,7 +13737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tesseract-ocr-deu",
@@ -12382,7 +13757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tesseract-ocr-eng",
@@ -12400,7 +13777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tesseract-ocr-ita",
@@ -12418,7 +13797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "structure-synth",
@@ -12436,7 +13817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "peek",
@@ -12454,7 +13837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cairo-dock-plug-ins",
@@ -12472,7 +13857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "f3d",
@@ -12490,7 +13877,9 @@ export const initialApps = [
     "icon": "/icons/f3d.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "color-picker",
@@ -12508,7 +13897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lazpaint-gtk2",
@@ -12526,7 +13917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openclipart-libreoffice",
@@ -12544,7 +13937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "optipng",
@@ -12562,7 +13957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "viewnior",
@@ -12580,7 +13977,9 @@ export const initialApps = [
     "icon": "/icons/viewnior.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xpaint",
@@ -12598,7 +13997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xviewer",
@@ -12616,7 +14017,9 @@ export const initialApps = [
     "icon": "/icons/xviewer.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ocrmypdf",
@@ -12634,7 +14037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kde-spectacle",
@@ -12652,7 +14057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pstoedit",
@@ -12670,7 +14077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gimp-gutenprint",
@@ -12688,7 +14097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lazpaint-qt5",
@@ -12706,7 +14117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nip2",
@@ -12724,7 +14137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tesseract-ocr-all",
@@ -12742,7 +14157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cloudcompare",
@@ -12760,7 +14177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dcraw",
@@ -12778,7 +14197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dvgrab",
@@ -12796,7 +14217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gimp-lensfun",
@@ -12814,7 +14237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gopchop",
@@ -12832,7 +14257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ink-generator",
@@ -12850,7 +14277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "inkscape-tutorials",
@@ -12868,7 +14297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mesa-utils",
@@ -12886,7 +14317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mypaint-data-extras",
@@ -12904,7 +14337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openorienteering-mapper",
@@ -12922,7 +14357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "povray",
@@ -12940,7 +14377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sane",
@@ -12958,7 +14397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tesseract-ocr-kat",
@@ -12976,7 +14417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tesseract-ocr-ltz",
@@ -12994,7 +14437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tesseract-ocr-rus",
@@ -13012,7 +14457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tesseract-ocr-spa",
@@ -13030,7 +14477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tesseract-ocr-srp",
@@ -13048,7 +14497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tesseract-ocr-srp-latn",
@@ -13066,7 +14517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "zbar-tools",
@@ -13084,7 +14537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ocrfeeder",
@@ -13102,7 +14557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cdlabelgen",
@@ -13120,7 +14577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "exiv2",
@@ -13138,7 +14597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fracplanet",
@@ -13156,7 +14617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sweethome3d-furniture",
@@ -13174,7 +14637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "yagf",
@@ -13192,7 +14657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "camera.app",
@@ -13210,7 +14677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dicomscope",
@@ -13228,7 +14697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gtkam",
@@ -13246,7 +14717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "latexdraw",
@@ -13264,7 +14737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fswebcam",
@@ -13282,7 +14757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mythtv-frontend",
@@ -13300,7 +14777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sunflow",
@@ -13318,7 +14797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apngasm",
@@ -13336,7 +14817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aview",
@@ -13354,7 +14837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dia-shapes",
@@ -13372,7 +14857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dvd-slideshow",
@@ -13390,7 +14877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "eom",
@@ -13408,7 +14897,9 @@ export const initialApps = [
     "icon": "/icons/eom.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "evolvotron",
@@ -13426,7 +14917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fbtv",
@@ -13444,7 +14937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gpac",
@@ -13462,7 +14957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hydrapaper",
@@ -13480,7 +14977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "javamorph",
@@ -13498,7 +14997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "jp2a",
@@ -13516,7 +15017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mplayer-skins",
@@ -13534,7 +15037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "netpbm",
@@ -13552,7 +15057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "png2html",
@@ -13570,7 +15077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qiv",
@@ -13588,7 +15097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qtikz",
@@ -13606,7 +15117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sane-utils",
@@ -13624,7 +15137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "scribus-template",
@@ -13642,7 +15157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "solvespace",
@@ -13660,7 +15177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tesseract-ocr-ind",
@@ -13678,7 +15197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vlc-plugin-jack",
@@ -13696,7 +15217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xmedcon",
@@ -13714,7 +15237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xvid4conf",
@@ -13732,7 +15257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ffmpegthumbnailer",
@@ -13750,7 +15277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gocr",
@@ -13768,7 +15297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "karbon",
@@ -13786,7 +15317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "synfig-examples",
@@ -13804,7 +15337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ale",
@@ -13822,7 +15357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apng2gif",
@@ -13840,7 +15377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "displaycal",
@@ -13858,7 +15397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "exactimage",
@@ -13876,7 +15417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fractgen",
@@ -13894,7 +15437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "graphicsmagick",
@@ -13912,7 +15457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "phototonic",
@@ -13930,7 +15477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pqiv",
@@ -13948,7 +15497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "textdraw",
@@ -13966,7 +15517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "drawing",
@@ -13984,7 +15537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "byzanz",
@@ -14002,7 +15557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "simple-image-reducer",
@@ -14020,7 +15577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xplanet",
@@ -14038,7 +15597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "font-viewer",
@@ -14056,7 +15617,9 @@ export const initialApps = [
     "icon": "/icons/font-viewer.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gocr-tk",
@@ -14074,7 +15637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "imagemagick-6.q16",
@@ -14092,7 +15657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "imagemagick-6.q16hdri",
@@ -14110,7 +15677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lios",
@@ -14128,7 +15697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mythtv-database",
@@ -14146,7 +15717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mythzoneminder",
@@ -14164,7 +15737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tintii",
@@ -14182,7 +15757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnome-paint",
@@ -14200,7 +15777,9 @@ export const initialApps = [
     "icon": "/icons/gnome-paint.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sagcad",
@@ -14218,7 +15797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vgrabbj",
@@ -14236,7 +15817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "3d-ascii-viewer",
@@ -14254,7 +15837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aa3d",
@@ -14272,7 +15857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aaphoto",
@@ -14290,7 +15877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "amide",
@@ -14308,7 +15897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ansilove",
@@ -14326,7 +15917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "antimony",
@@ -14344,7 +15937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apitrace",
@@ -14362,7 +15957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apitrace-gui",
@@ -14380,7 +15977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apitrace-tracers",
@@ -14398,7 +15997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sabnzbdplus",
@@ -14416,7 +16017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openssh-server",
@@ -14434,7 +16037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "irssi",
@@ -14452,7 +16057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aria2",
@@ -14470,7 +16077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rsync",
@@ -14488,7 +16097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pidgin-otr",
@@ -14506,7 +16117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qnapi",
@@ -14524,7 +16137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fail2ban",
@@ -14542,7 +16157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wireshark",
@@ -14560,7 +16177,9 @@ export const initialApps = [
     "icon": "/icons/wireshark.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apache2",
@@ -14578,7 +16197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "phpmyadmin",
@@ -14596,7 +16217,9 @@ export const initialApps = [
     "icon": "/icons/phpmyadmin.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "transgui",
@@ -14614,7 +16237,9 @@ export const initialApps = [
     "icon": "/icons/transgui.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "axel",
@@ -14632,7 +16257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rtorrent",
@@ -14650,7 +16277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "filezilla",
@@ -14668,7 +16297,9 @@ export const initialApps = [
     "icon": "/icons/filezilla.svg",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qbittorrent",
@@ -14686,7 +16317,9 @@ export const initialApps = [
     "icon": "/icons/qbittorrent.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hexchat",
@@ -14704,7 +16337,9 @@ export const initialApps = [
     "icon": "/icons/hexchat.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "zenmap",
@@ -14722,7 +16357,9 @@ export const initialApps = [
     "icon": "/icons/zenmap.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nmap",
@@ -14740,7 +16377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gajim",
@@ -14758,7 +16397,9 @@ export const initialApps = [
     "icon": "/icons/gajim.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "network-manager-openvpn-gnome",
@@ -14776,7 +16417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "elinks",
@@ -14794,7 +16437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "deluge",
@@ -14812,7 +16457,9 @@ export const initialApps = [
     "icon": "/icons/deluge.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bluefish",
@@ -14830,7 +16477,9 @@ export const initialApps = [
     "icon": "/icons/bluefish.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openvpn",
@@ -14848,7 +16497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "webhttrack",
@@ -14866,7 +16517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wget",
@@ -14884,7 +16537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ntp",
@@ -14902,7 +16557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "putty",
@@ -14920,7 +16577,9 @@ export const initialApps = [
     "icon": "/icons/putty.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ktorrent",
@@ -14938,7 +16597,9 @@ export const initialApps = [
     "icon": "/icons/ktorrent.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "boinc",
@@ -14956,7 +16617,9 @@ export const initialApps = [
     "icon": "/icons/boinc.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "modem-manager-gui",
@@ -14974,7 +16637,9 @@ export const initialApps = [
     "icon": "/icons/modem-manager-gui.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "links2",
@@ -14992,7 +16657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "weechat",
@@ -15010,7 +16677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "firefox",
@@ -15028,7 +16697,9 @@ export const initialApps = [
     "icon": "/icons/firefox.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nicotine",
@@ -15046,7 +16717,9 @@ export const initialApps = [
     "icon": "/icons/nicotine.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "krdc",
@@ -15064,7 +16737,9 @@ export const initialApps = [
     "icon": "/icons/krdc.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "chromium",
@@ -15082,7 +16757,9 @@ export const initialApps = [
     "icon": "/icons/chromium.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "thunderbird",
@@ -15100,7 +16777,9 @@ export const initialApps = [
     "icon": "/icons/thunderbird.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pidgin",
@@ -15118,7 +16797,9 @@ export const initialApps = [
     "icon": "/icons/pidgin.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "transmission",
@@ -15136,7 +16817,9 @@ export const initialApps = [
     "icon": "/icons/transmission.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "uget",
@@ -15154,7 +16837,9 @@ export const initialApps = [
     "icon": "/icons/uget.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "amule",
@@ -15172,7 +16857,9 @@ export const initialApps = [
     "icon": "/icons/amule.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "samba",
@@ -15190,7 +16877,9 @@ export const initialApps = [
     "icon": "/icons/samba.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "falkon",
@@ -15208,7 +16897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xrdp",
@@ -15226,7 +16917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "transmission-gtk",
@@ -15244,7 +16937,9 @@ export const initialApps = [
     "icon": "/icons/transmission-gtk.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aircrack-ng",
@@ -15262,7 +16957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "claws-mail",
@@ -15280,7 +16977,9 @@ export const initialApps = [
     "icon": "/icons/claws-mail.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "curl",
@@ -15298,7 +16997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "unison",
@@ -15316,7 +17017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gftp",
@@ -15334,7 +17037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "httrack",
@@ -15352,7 +17057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vnstat",
@@ -15370,7 +17077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "iptux",
@@ -15388,7 +17097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "macchanger",
@@ -15406,7 +17117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "psi-plus",
@@ -15424,7 +17137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sylpheed",
@@ -15442,7 +17157,9 @@ export const initialApps = [
     "icon": "/icons/sylpheed.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "scrcpy",
@@ -15460,7 +17177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "quiterss",
@@ -15478,7 +17197,9 @@ export const initialApps = [
     "icon": "/icons/quiterss.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vsftpd",
@@ -15496,7 +17217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "alpine",
@@ -15514,7 +17237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "iptables",
@@ -15532,7 +17257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "winbind",
@@ -15550,7 +17277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lynx",
@@ -15568,7 +17297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nodejs",
@@ -15586,7 +17317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "akregator",
@@ -15604,7 +17337,9 @@ export const initialApps = [
     "icon": "/icons/akregator.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nextcloud-desktop",
@@ -15622,7 +17357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pidgin-plugin-pack",
@@ -15640,7 +17377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "quassel",
@@ -15658,7 +17397,9 @@ export const initialApps = [
     "icon": "/icons/quassel.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ssvnc",
@@ -15676,7 +17417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "htmldoc",
@@ -15694,7 +17437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kleopatra",
@@ -15712,7 +17457,9 @@ export const initialApps = [
     "icon": "/icons/kleopatra.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mangler",
@@ -15730,7 +17477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "transmission-qt",
@@ -15748,7 +17497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "owncloud-client",
@@ -15766,7 +17517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "unison-gtk",
@@ -15784,7 +17537,9 @@ export const initialApps = [
     "icon": "/icons/unison-gtk.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vpnc",
@@ -15802,7 +17557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "psi",
@@ -15820,7 +17577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "minidlna",
@@ -15838,7 +17597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cups",
@@ -15856,7 +17617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gwakeonlan",
@@ -15874,7 +17637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mtr",
@@ -15892,7 +17657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mutt",
@@ -15910,7 +17677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "network-manager-openconnect-gnome",
@@ -15928,7 +17697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openconnect",
@@ -15946,7 +17717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tidy",
@@ -15964,7 +17737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kget",
@@ -15982,7 +17757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "privoxy",
@@ -16000,7 +17777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "iftop",
@@ -16018,7 +17797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kvirc",
@@ -16036,7 +17817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openssh-client",
@@ -16054,7 +17837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rygel",
@@ -16072,7 +17857,9 @@ export const initialApps = [
     "icon": "/icons/rygel.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sendemail",
@@ -16090,7 +17877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "google-earth-pro-stable",
@@ -16108,7 +17897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "konqueror",
@@ -16126,7 +17917,9 @@ export const initialApps = [
     "icon": "/icons/konqueror.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "onedrive",
@@ -16144,7 +17937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "onedriver",
@@ -16162,7 +17957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "putty-tools",
@@ -16180,7 +17977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "reaver",
@@ -16198,7 +17997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "firewall-config",
@@ -16216,7 +18017,9 @@ export const initialApps = [
     "icon": "/icons/firewall-config.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lftp",
@@ -16234,7 +18037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lighttpd",
@@ -16252,7 +18057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "seafile-gui",
@@ -16270,7 +18077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wavemon",
@@ -16288,7 +18097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "network-manager-openvpn",
@@ -16306,7 +18117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bluedevil",
@@ -16324,7 +18137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pidgin-skype",
@@ -16342,7 +18157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ckeditor",
@@ -16360,7 +18177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "linssid",
@@ -16378,7 +18197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "network-manager-pptp",
@@ -16396,7 +18217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pidgin-themes",
@@ -16414,7 +18237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "arpon",
@@ -16432,7 +18257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bitlbee",
@@ -16450,7 +18277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bmon",
@@ -16468,7 +18297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cups-ppdc",
@@ -16486,7 +18317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "empathy-skype",
@@ -16504,7 +18337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nginx",
@@ -16522,7 +18357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "prosody",
@@ -16540,7 +18377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "servefile",
@@ -16558,7 +18397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "smartdns",
@@ -16576,7 +18417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "spamassassin",
@@ -16594,7 +18437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sqlmap",
@@ -16612,7 +18457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "squid-cgi",
@@ -16630,7 +18477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wireguard",
@@ -16648,7 +18497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wondershaper",
@@ -16666,7 +18517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kmail",
@@ -16684,7 +18537,9 @@ export const initialApps = [
     "icon": "/icons/kmail.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dillo",
@@ -16702,7 +18557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "yt-dlp",
@@ -16720,7 +18577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tor",
@@ -16738,7 +18597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rclone-browser",
@@ -16756,7 +18617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnubiff",
@@ -16774,7 +18637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "chatty",
@@ -16792,7 +18657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nemo-nextcloud",
@@ -16810,7 +18677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "onionshare",
@@ -16828,7 +18697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rclone",
@@ -16846,7 +18717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tickr",
@@ -16864,7 +18737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "whois",
@@ -16882,7 +18757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "deluge-gtk",
@@ -16900,7 +18777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "finch",
@@ -16918,7 +18797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hostapd",
@@ -16936,7 +18817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "links",
@@ -16954,7 +18837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mtr-tiny",
@@ -16972,7 +18857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "netcat-openbsd",
@@ -16990,7 +18877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nethogs",
@@ -17008,7 +18897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ns3",
@@ -17026,7 +18917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "persepolis",
@@ -17044,7 +18937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "postfix",
@@ -17062,7 +18957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "samba-vfs-modules",
@@ -17080,7 +18977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "webcam",
@@ -17098,7 +18997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wpasupplicant",
@@ -17116,7 +19017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ddclient",
@@ -17134,7 +19037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "secpanel",
@@ -17152,7 +19057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "abook",
@@ -17170,7 +19077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bind9-dnsutils",
@@ -17188,7 +19097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bridge-utils",
@@ -17206,7 +19117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "iperf",
@@ -17224,7 +19137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pppoe",
@@ -17242,7 +19157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pppoeconf",
@@ -17260,7 +19177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rygel-preferences",
@@ -17278,7 +19197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "unbound",
@@ -17296,7 +19217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ziproxy",
@@ -17314,7 +19237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "amule-gnome-support",
@@ -17332,7 +19257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "atheme-services",
@@ -17350,7 +19277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "autossh",
@@ -17368,7 +19297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cdpr",
@@ -17386,7 +19317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "claws-mail-fancy-plugin",
@@ -17404,7 +19337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "claws-mail-pgpmime",
@@ -17422,7 +19357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "clawsker",
@@ -17440,7 +19377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cleancss",
@@ -17458,7 +19397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cntlm",
@@ -17476,7 +19417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "davical",
@@ -17494,7 +19437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "debmirror",
@@ -17512,7 +19457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dianara",
@@ -17530,7 +19477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ettercap-graphical",
@@ -17548,7 +19497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "firewalld",
@@ -17566,7 +19517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gallery-dl",
@@ -17584,7 +19537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hping3",
@@ -17602,7 +19557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "httpie",
@@ -17620,7 +19577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "httraqt",
@@ -17638,7 +19597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "inadyn",
@@ -17656,7 +19617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "inspircd",
@@ -17674,7 +19637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ipv6calc",
@@ -17692,7 +19657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "jmeter",
@@ -17710,7 +19677,9 @@ export const initialApps = [
     "icon": "/icons/jmeter.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kimagemapeditor",
@@ -17728,7 +19697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "miniupnpc",
@@ -17746,7 +19717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "miredo",
@@ -17764,7 +19737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mitmproxy",
@@ -17782,7 +19757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "muttprint",
@@ -17800,7 +19777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "neomutt",
@@ -17818,7 +19797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "network-manager-l2tp",
@@ -17836,7 +19817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "network-manager-vpnc-gnome",
@@ -17854,7 +19837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nikto",
@@ -17872,7 +19857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nzbget",
@@ -17890,7 +19877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "offlineimap",
@@ -17908,7 +19897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openfortivpn",
@@ -17926,7 +19917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openssh-sftp-server",
@@ -17944,7 +19937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ostinato",
@@ -17962,7 +19957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "packeth",
@@ -17980,7 +19977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "php-getid3",
@@ -17998,7 +19997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "blobby",
@@ -18016,7 +20017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openttd",
@@ -18034,7 +20037,9 @@ export const initialApps = [
     "icon": "/icons/openttd.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kpat",
@@ -18052,7 +20057,9 @@ export const initialApps = [
     "icon": "/icons/kpat.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "uqm",
@@ -18070,7 +20077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "burgerspace",
@@ -18088,7 +20097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "beneath-a-steel-sky",
@@ -18106,7 +20117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wesnoth",
@@ -18124,7 +20137,9 @@ export const initialApps = [
     "icon": "/icons/wesnoth.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hedgewars",
@@ -18142,7 +20157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "teeworlds",
@@ -18160,7 +20177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "0ad",
@@ -18178,7 +20197,9 @@ export const initialApps = [
     "icon": "/icons/0ad.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "maelstrom",
@@ -18196,7 +20217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gbrainy",
@@ -18214,7 +20237,9 @@ export const initialApps = [
     "icon": "/icons/gbrainy.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "armagetronad",
@@ -18232,7 +20257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pysolfc",
@@ -18250,7 +20277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "scummvm",
@@ -18268,7 +20297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "freedoom",
@@ -18286,7 +20317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hex-a-hop",
@@ -18304,7 +20337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "supertux",
@@ -18322,7 +20357,9 @@ export const initialApps = [
     "icon": "/icons/supertux.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pingus",
@@ -18340,7 +20377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "singularity",
@@ -18358,7 +20397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tuxmath",
@@ -18376,7 +20417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "blockout2",
@@ -18394,7 +20437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fillets-ng",
@@ -18412,7 +20457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "supertuxkart",
@@ -18430,7 +20477,9 @@ export const initialApps = [
     "icon": "/icons/supertuxkart.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "warzone2100",
@@ -18448,7 +20497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnome-mahjongg",
@@ -18466,7 +20517,9 @@ export const initialApps = [
     "icon": "/icons/gnome-mahjongg.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "neverball",
@@ -18484,7 +20537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "steam-installer",
@@ -18502,7 +20557,9 @@ export const initialApps = [
     "icon": "/icons/steam-installer.svg",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tuxtype",
@@ -18520,7 +20577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "frogatto",
@@ -18538,7 +20597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnome-mines",
@@ -18556,7 +20617,9 @@ export const initialApps = [
     "icon": "/icons/gnome-mines.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "crawl",
@@ -18574,7 +20637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pinball",
@@ -18592,7 +20657,9 @@ export const initialApps = [
     "icon": "/icons/pinball.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "crawl-tiles",
@@ -18610,7 +20677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "frozen-bubble",
@@ -18628,7 +20697,9 @@ export const initialApps = [
     "icon": "/icons/frozen-bubble.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "minetest",
@@ -18646,7 +20717,9 @@ export const initialApps = [
     "icon": "/icons/minetest.svg",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pokerth",
@@ -18664,7 +20737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "extremetuxracer",
@@ -18682,7 +20757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnome-sudoku",
@@ -18700,7 +20777,9 @@ export const initialApps = [
     "icon": "/icons/gnome-sudoku.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kmahjongg",
@@ -18718,7 +20797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "einstein",
@@ -18736,7 +20817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fceux",
@@ -18754,7 +20837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bsdgames",
@@ -18772,7 +20857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sgt-puzzles",
@@ -18790,7 +20877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nexuiz",
@@ -18808,7 +20897,9 @@ export const initialApps = [
     "icon": "/icons/nexuiz.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openarena",
@@ -18826,7 +20917,9 @@ export const initialApps = [
     "icon": "/icons/openarena.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "widelands",
@@ -18844,7 +20937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xmoto",
@@ -18862,7 +20957,9 @@ export const initialApps = [
     "icon": "/icons/xmoto.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "desmume",
@@ -18880,7 +20977,9 @@ export const initialApps = [
     "icon": "/icons/desmume.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "enigma",
@@ -18898,7 +20997,9 @@ export const initialApps = [
     "icon": "/icons/enigma.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "zaz",
@@ -18916,7 +21017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "scid",
@@ -18934,7 +21037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kbounce",
@@ -18952,7 +21057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "palapeli",
@@ -18970,7 +21077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pipewalker",
@@ -18988,7 +21097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sauerbraten",
@@ -19006,7 +21117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aisleriot",
@@ -19024,7 +21137,9 @@ export const initialApps = [
     "icon": "/icons/aisleriot.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "neverputt",
@@ -19042,7 +21157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mednafen",
@@ -19060,7 +21177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "scorched3d",
@@ -19078,7 +21197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "flobopuyo",
@@ -19096,7 +21217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ri-li",
@@ -19114,7 +21237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sdl-ball",
@@ -19132,7 +21257,9 @@ export const initialApps = [
     "icon": "/icons/sdl-ball.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gweled",
@@ -19150,7 +21277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "flight-of-the-amazon-queen",
@@ -19168,7 +21297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bzflag",
@@ -19186,7 +21317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "flare",
@@ -19204,7 +21337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnujump",
@@ -19222,7 +21357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xskat",
@@ -19240,7 +21377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "golly",
@@ -19258,7 +21397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "assaultcube",
@@ -19276,7 +21417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dreamchess",
@@ -19294,7 +21437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "chromium-bsu",
@@ -19312,7 +21457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnubg",
@@ -19330,7 +21477,9 @@ export const initialApps = [
     "icon": "/icons/gnubg.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "alex4",
@@ -19348,7 +21497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xboard",
@@ -19366,7 +21517,9 @@ export const initialApps = [
     "icon": "/icons/xboard.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "crack-attack",
@@ -19384,7 +21537,9 @@ export const initialApps = [
     "icon": "/icons/crack-attack.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "knetwalk",
@@ -19402,7 +21557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnome-mastermind",
@@ -19420,7 +21577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kapman",
@@ -19438,7 +21597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kshisen",
@@ -19456,7 +21617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "boswars",
@@ -19474,7 +21637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mame",
@@ -19492,7 +21657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "visualboyadvance",
@@ -19510,7 +21677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "redeclipse",
@@ -19528,7 +21697,9 @@ export const initialApps = [
     "icon": "/icons/redeclipse.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bovo",
@@ -19546,7 +21717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kobodeluxe",
@@ -19564,7 +21737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "stockfish",
@@ -19582,7 +21757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "berusky",
@@ -19600,7 +21777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kanatest",
@@ -19618,7 +21797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openmw",
@@ -19636,7 +21817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pcsxr",
@@ -19654,7 +21837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnome-chess",
@@ -19672,7 +21857,9 @@ export const initialApps = [
     "icon": "/icons/gnome-chess.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "simutrans",
@@ -19690,7 +21877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "funguloids",
@@ -19708,7 +21897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xbomb",
@@ -19726,7 +21917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "alien-arena",
@@ -19744,7 +21937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lutris",
@@ -19762,7 +21957,9 @@ export const initialApps = [
     "icon": "/icons/lutris.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "brutalchess",
@@ -19780,7 +21977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ltris",
@@ -19798,7 +21997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "freedink",
@@ -19816,7 +22017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dopewars",
@@ -19834,7 +22037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnome-tetravex",
@@ -19852,7 +22057,9 @@ export const initialApps = [
     "icon": "/icons/gnome-tetravex.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "glob2",
@@ -19870,7 +22077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "springlobby",
@@ -19888,7 +22097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "megaglest",
@@ -19906,7 +22117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "monsterz",
@@ -19924,7 +22137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pysolfc-cardsets",
@@ -19942,7 +22157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lincity-ng",
@@ -19960,7 +22177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fortune-mod",
@@ -19978,7 +22197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "billard-gl",
@@ -19996,7 +22217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rrootage",
@@ -20014,7 +22237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "airstrike",
@@ -20032,7 +22257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "chocolate-doom",
@@ -20050,7 +22277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "snake4",
@@ -20068,7 +22297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "2048-qt",
@@ -20086,7 +22317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "blobwars",
@@ -20104,7 +22337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mednaffe",
@@ -20122,7 +22357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pianobooster",
@@ -20140,7 +22377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "flightgear",
@@ -20158,7 +22397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "trigger-rally",
@@ -20176,7 +22417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "quadrapassel",
@@ -20194,7 +22437,9 @@ export const initialApps = [
     "icon": "/icons/quadrapassel.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "epiphany",
@@ -20212,7 +22457,9 @@ export const initialApps = [
     "icon": "/icons/epiphany.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "oneko",
@@ -20230,7 +22477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "asc",
@@ -20248,7 +22497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hannah",
@@ -20266,7 +22517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "laby",
@@ -20284,7 +22537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "steam-devices",
@@ -20302,7 +22557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "endless-sky",
@@ -20320,7 +22577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "jumpnbump",
@@ -20338,7 +22597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "torus-trooper",
@@ -20356,7 +22617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "triplea",
@@ -20374,7 +22637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cowsay",
@@ -20392,7 +22657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "freecol",
@@ -20410,7 +22677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "torcs",
@@ -20428,7 +22697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cytadela",
@@ -20446,7 +22717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gl-117",
@@ -20464,7 +22737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "konquest",
@@ -20482,7 +22757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nestopia",
@@ -20500,7 +22777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openyahtzee",
@@ -20518,7 +22797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "njam",
@@ -20536,7 +22817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "a7xpg",
@@ -20554,7 +22837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "chessx",
@@ -20572,7 +22857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ioquake3",
@@ -20590,7 +22877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "micropolis",
@@ -20608,7 +22897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "solarwolf",
@@ -20626,7 +22917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xjump",
@@ -20644,7 +22937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lightyears",
@@ -20662,7 +22957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lordsawar",
@@ -20680,7 +22977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pq",
@@ -20698,7 +22997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "renpy",
@@ -20716,7 +23017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "atanks",
@@ -20734,7 +23037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "four-in-a-row",
@@ -20752,7 +23057,9 @@ export const initialApps = [
     "icon": "/icons/four-in-a-row.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mah-jong",
@@ -20770,7 +23077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "angband",
@@ -20788,7 +23097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "crafty",
@@ -20806,7 +23117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "foobillardplus",
@@ -20824,7 +23137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "katomic",
@@ -20842,7 +23157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kfourinline",
@@ -20860,7 +23177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kmines",
@@ -20878,7 +23197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openttd-opensfx",
@@ -20896,7 +23217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rolldice",
@@ -20914,7 +23237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "titanion",
@@ -20932,7 +23257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "zangband",
@@ -20950,7 +23277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "doomsday",
@@ -20968,7 +23297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "freedroidrpg",
@@ -20986,7 +23317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnome-nibbles",
@@ -21004,7 +23337,9 @@ export const initialApps = [
     "icon": "/icons/gnome-nibbles.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lincity",
@@ -21022,7 +23357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ksudoku",
@@ -21040,7 +23377,9 @@ export const initialApps = [
     "icon": "/icons/ksudoku.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ktuberling",
@@ -21058,7 +23397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "open-invaders",
@@ -21076,7 +23417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "passage",
@@ -21094,7 +23437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tint",
@@ -21112,7 +23457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mupen64plus-qt",
@@ -21130,7 +23477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cuyo",
@@ -21148,7 +23497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "funnyboat",
@@ -21166,7 +23517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "geekcode",
@@ -21184,7 +23537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kgoldrunner",
@@ -21202,7 +23557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ksquares",
@@ -21220,7 +23577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "liquidwar",
@@ -21238,7 +23597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "meritous",
@@ -21256,7 +23617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qgo",
@@ -21274,7 +23637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tomatoes",
@@ -21292,7 +23657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tumiki-fighters",
@@ -21310,7 +23677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "asciijump",
@@ -21328,7 +23697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bb",
@@ -21346,7 +23717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "biloba",
@@ -21364,7 +23737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dvorak7min",
@@ -21382,7 +23757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dwarf-fortress",
@@ -21400,7 +23777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fortunes-de",
@@ -21418,7 +23797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "freedroid",
@@ -21436,7 +23817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gamine",
@@ -21454,7 +23837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gargoyle-free",
@@ -21472,7 +23857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lierolibre",
@@ -21490,7 +23877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "love",
@@ -21508,7 +23897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rocksndiamonds",
@@ -21526,7 +23917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tali",
@@ -21544,7 +23937,9 @@ export const initialApps = [
     "icon": "/icons/tali.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ufoai",
@@ -21562,7 +23957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xscavenger",
@@ -21580,7 +23977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "swell-foop",
@@ -21598,7 +23997,9 @@ export const initialApps = [
     "icon": "/icons/swell-foop.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "moc",
@@ -21616,7 +24017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mumble",
@@ -21634,7 +24037,9 @@ export const initialApps = [
     "icon": "/icons/mumble.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lame",
@@ -21652,7 +24057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "audacious",
@@ -21670,7 +24077,9 @@ export const initialApps = [
     "icon": "/icons/audacious.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "clementine",
@@ -21688,7 +24097,9 @@ export const initialApps = [
     "icon": "/icons/clementine.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lmms",
@@ -21706,7 +24117,9 @@ export const initialApps = [
     "icon": "/icons/lmms.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "simplescreenrecorder",
@@ -21724,7 +24137,9 @@ export const initialApps = [
     "icon": "/icons/simplescreenrecorder.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "musescore",
@@ -21742,7 +24157,9 @@ export const initialApps = [
     "icon": "/icons/musescore.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "audacity",
@@ -21760,7 +24177,9 @@ export const initialApps = [
     "icon": "/icons/audacity.svg",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "soundconverter",
@@ -21778,7 +24197,9 @@ export const initialApps = [
     "icon": "/icons/soundconverter.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "asunder",
@@ -21796,7 +24217,9 @@ export const initialApps = [
     "icon": "/icons/asunder.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ffmpeg",
@@ -21814,7 +24237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qmmp",
@@ -21832,7 +24257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "quodlibet",
@@ -21850,7 +24277,9 @@ export const initialApps = [
     "icon": "/icons/quodlibet.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mediathekview",
@@ -21868,7 +24297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pavucontrol",
@@ -21886,7 +24317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "puddletag",
@@ -21904,7 +24337,9 @@ export const initialApps = [
     "icon": "/icons/puddletag.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cmus",
@@ -21922,7 +24357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "easytag",
@@ -21940,7 +24377,9 @@ export const initialApps = [
     "icon": "/icons/easytag.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mixxx",
@@ -21958,7 +24397,9 @@ export const initialApps = [
     "icon": "/icons/mixxx.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mpv",
@@ -21976,7 +24417,9 @@ export const initialApps = [
     "icon": "/icons/mpv.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "exaile",
@@ -21994,7 +24437,9 @@ export const initialApps = [
     "icon": "/icons/exaile.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mplayer",
@@ -22012,7 +24457,9 @@ export const initialApps = [
     "icon": "/icons/mplayer.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aegisub",
@@ -22030,7 +24477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "spek",
@@ -22048,7 +24497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "zynaddsubfx",
@@ -22066,7 +24517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "spotify-client",
@@ -22084,7 +24537,9 @@ export const initialApps = [
     "icon": "/icons/spotify-client.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ardour",
@@ -22102,7 +24557,9 @@ export const initialApps = [
     "icon": "/icons/ardour.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "imagination",
@@ -22120,7 +24577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "picard",
@@ -22138,7 +24597,9 @@ export const initialApps = [
     "icon": "/icons/picard.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xcfa",
@@ -22156,7 +24617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tuxguitar",
@@ -22174,7 +24637,9 @@ export const initialApps = [
     "icon": "/icons/tuxguitar.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hydrogen",
@@ -22192,7 +24657,9 @@ export const initialApps = [
     "icon": "/icons/hydrogen.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mp3gain",
@@ -22210,7 +24677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "streamripper",
@@ -22228,7 +24697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "obs-studio",
@@ -22246,7 +24717,9 @@ export const initialApps = [
     "icon": "/icons/obs-studio.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mp3splt-gtk",
@@ -22264,7 +24737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "abcde",
@@ -22282,7 +24757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "calf-plugins",
@@ -22300,7 +24777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qwinff",
@@ -22318,7 +24797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kazam",
@@ -22336,7 +24817,9 @@ export const initialApps = [
     "icon": "/icons/kazam.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ripperx",
@@ -22354,7 +24837,9 @@ export const initialApps = [
     "icon": "/icons/ripperx.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "photofilmstrip",
@@ -22372,7 +24857,9 @@ export const initialApps = [
     "icon": "/icons/photofilmstrip.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qasmixer",
@@ -22390,7 +24877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vlc-plugin-fluidsynth",
@@ -22408,7 +24897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pulseeffects",
@@ -22426,7 +24917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rosegarden",
@@ -22444,7 +24937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "frei0r-plugins",
@@ -22462,7 +24957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kodi",
@@ -22480,7 +24977,9 @@ export const initialApps = [
     "icon": "/icons/kodi.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qtractor",
@@ -22498,7 +24997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "timidity",
@@ -22516,7 +25017,9 @@ export const initialApps = [
     "icon": "/icons/timidity.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mplayer-gui",
@@ -22534,7 +25037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qjackctl",
@@ -22552,7 +25057,9 @@ export const initialApps = [
     "icon": "/icons/qjackctl.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mencoder",
@@ -22570,7 +25077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sox",
@@ -22588,7 +25097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tuxguitar-jsa",
@@ -22606,7 +25117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mp3splt",
@@ -22624,7 +25137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hypnotix",
@@ -22642,7 +25157,9 @@ export const initialApps = [
     "icon": "/icons/hypnotix.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "smtube",
@@ -22660,7 +25177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vmpk",
@@ -22678,7 +25197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mkchromecast",
@@ -22696,7 +25217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mudita24",
@@ -22714,7 +25237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "milkytracker",
@@ -22732,7 +25257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "minitube",
@@ -22750,7 +25277,9 @@ export const initialApps = [
     "icon": "/icons/minitube.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "celluloid",
@@ -22768,7 +25297,9 @@ export const initialApps = [
     "icon": "/icons/celluloid.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "exfalso",
@@ -22786,7 +25317,9 @@ export const initialApps = [
     "icon": "/icons/exfalso.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gmtp",
@@ -22804,7 +25337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pianobar",
@@ -22822,7 +25357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gmpc",
@@ -22840,7 +25377,9 @@ export const initialApps = [
     "icon": "/icons/gmpc.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qsynth",
@@ -22858,7 +25397,9 @@ export const initialApps = [
     "icon": "/icons/qsynth.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "winff-qt",
@@ -22876,7 +25417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xmms2",
@@ -22894,7 +25437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "alsa-tools-gui",
@@ -22912,7 +25457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ario",
@@ -22930,7 +25477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mp3blaster",
@@ -22948,7 +25497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mpd",
@@ -22966,7 +25517,9 @@ export const initialApps = [
     "icon": "/icons/mpd.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "opencubicplayer",
@@ -22984,7 +25537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rakarrack",
@@ -23002,7 +25557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sonata",
@@ -23020,7 +25577,9 @@ export const initialApps = [
     "icon": "/icons/sonata.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sonic-visualiser",
@@ -23038,7 +25597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vokoscreen-ng",
@@ -23056,7 +25617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "yoshimi",
@@ -23074,7 +25637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "shotcut",
@@ -23092,7 +25657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "easyeffects",
@@ -23110,7 +25677,9 @@ export const initialApps = [
     "icon": "/icons/easyeffects.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "streamtuner2",
@@ -23128,7 +25697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mhwaveedit",
@@ -23146,7 +25717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "randomplay",
@@ -23164,7 +25737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sound-theme-freedesktop",
@@ -23182,7 +25757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "terminatorx",
@@ -23200,7 +25777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "guitarix",
@@ -23218,7 +25797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "haruna",
@@ -23236,7 +25817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "knowthelist",
@@ -23254,7 +25837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mpc",
@@ -23272,7 +25857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ncmpcpp",
@@ -23290,7 +25877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pragha",
@@ -23308,7 +25897,9 @@ export const initialApps = [
     "icon": "/icons/pragha.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "puredata",
@@ -23326,7 +25917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sayonara",
@@ -23344,7 +25937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bino",
@@ -23362,7 +25957,9 @@ export const initialApps = [
     "icon": "/icons/bino.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "traverso",
@@ -23380,7 +25977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ripit",
@@ -23398,7 +25997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fmit",
@@ -23416,7 +26017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vlc-plugin-notify",
@@ -23434,7 +26037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "audacious-plugins",
@@ -23452,7 +26057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "eyed3",
@@ -23470,7 +26077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "festival",
@@ -23488,7 +26097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "polyphone",
@@ -23506,7 +26117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tablet-encode",
@@ -23524,7 +26137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xmms2-core",
@@ -23542,7 +26157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vlc-plugin-svg",
@@ -23560,7 +26177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mp3diags",
@@ -23578,7 +26197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "denemo",
@@ -23596,7 +26217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "flac",
@@ -23614,7 +26237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fluid-soundfont-gs",
@@ -23632,7 +26257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hydrogen-drumkits",
@@ -23650,7 +26277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pacpl",
@@ -23668,7 +26297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "saytime",
@@ -23686,7 +26317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "speech-dispatcher",
@@ -23704,7 +26337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "swh-plugins",
@@ -23722,7 +26357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "timidity-daemon",
@@ -23740,7 +26377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "vorbis-tools",
@@ -23758,7 +26397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wavesurfer",
@@ -23776,7 +26417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aeolus",
@@ -23794,7 +26437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ams",
@@ -23812,7 +26457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "amsynth",
@@ -23830,7 +26477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cava",
@@ -23848,7 +26497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cdparanoia",
@@ -23866,7 +26517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "csound",
@@ -23884,7 +26537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cutmp3",
@@ -23902,7 +26557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dumphd",
@@ -23920,7 +26577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "etktab",
@@ -23938,7 +26597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "festival-hi",
@@ -23956,7 +26617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ffado-mixer-qt4",
@@ -23974,7 +26637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ffado-tools",
@@ -23992,7 +26657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "helvum",
@@ -24010,7 +26677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "icecast2",
@@ -24028,7 +26697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "id3",
@@ -24046,7 +26717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "id3ren",
@@ -24064,7 +26737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "id3v2",
@@ -24082,7 +26757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "invada-studio-plugins-lv2",
@@ -24100,7 +26777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "japa",
@@ -24118,7 +26797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "jmeters",
@@ -24136,7 +26817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "madfuload",
@@ -24154,7 +26837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mopidy-somafm",
@@ -24172,7 +26857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mpg123",
@@ -24190,7 +26877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mpg321",
@@ -24208,7 +26897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mustang-plug",
@@ -24226,7 +26917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "opus-tools",
@@ -24244,7 +26937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "oss4-base",
@@ -24262,7 +26957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "parlatype",
@@ -24280,7 +26977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "setbfree",
@@ -24298,7 +26997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "squeezelite",
@@ -24316,7 +27017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "strawberry",
@@ -24334,7 +27037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "whipper",
@@ -24352,7 +27057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wireplumber",
@@ -24370,7 +27077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "openshot-qt",
@@ -24388,7 +27097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nted",
@@ -24406,7 +27117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pavumeter",
@@ -24424,7 +27137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qstopmotion",
@@ -24442,7 +27157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kmix",
@@ -24460,7 +27177,9 @@ export const initialApps = [
     "icon": "/icons/kmix.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ripoff",
@@ -24478,7 +27197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "silverjuke",
@@ -24496,7 +27217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "volumeicon-alsa",
@@ -24514,7 +27237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnomad2",
@@ -24532,7 +27257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ripoff-mp3-plugin",
@@ -24550,7 +27277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "espeak",
@@ -24568,7 +27297,9 @@ export const initialApps = [
     "icon": "/icons/espeak.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "musescore3",
@@ -24586,7 +27317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pulseaudio-utils",
@@ -24604,7 +27337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "songwrite",
@@ -24622,7 +27357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cecilia",
@@ -24640,7 +27377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gbsplay",
@@ -24658,7 +27397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "normalize-audio",
@@ -24676,7 +27417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "quelcom",
@@ -24694,7 +27437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "streamlink",
@@ -24712,7 +27457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "butt",
@@ -24730,7 +27477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "csoundqt",
@@ -24748,7 +27497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dir2ogg",
@@ -24766,7 +27517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "easyh10",
@@ -24784,7 +27537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fil-plugins",
@@ -24802,7 +27557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "flite",
@@ -24820,7 +27577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fluid-soundfont-gm",
@@ -24838,7 +27597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "jack-capture",
@@ -24856,7 +27617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kinect-audio-setup",
@@ -24874,7 +27637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "m2vrequantiser",
@@ -24892,7 +27657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mcp-plugins",
@@ -24910,7 +27677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "meterbridge",
@@ -24928,7 +27697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mopidy",
@@ -24946,7 +27717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mopidy-tunein",
@@ -24964,7 +27737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "omins",
@@ -24982,7 +27757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "oss-compat",
@@ -25000,7 +27777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pmidi",
@@ -25018,7 +27797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qmidiarp",
@@ -25036,7 +27817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qmidiroute",
@@ -25054,7 +27837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "qsampler",
@@ -25072,7 +27857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "raysession",
@@ -25090,7 +27877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rev-plugins",
@@ -25108,7 +27897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rexima",
@@ -25126,7 +27917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rio",
@@ -25144,7 +27937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rotter",
@@ -25162,7 +27957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rplay-client",
@@ -25180,7 +27977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rplay-contrib",
@@ -25198,7 +27997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sudo",
@@ -25216,7 +28017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gdebi",
@@ -25234,7 +28037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apt",
@@ -25252,7 +28057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "synaptic",
@@ -25270,7 +28077,9 @@ export const initialApps = [
     "icon": "/icons/synaptic.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bleachbit",
@@ -25288,7 +28097,9 @@ export const initialApps = [
     "icon": "/icons/bleachbit.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gnome-disk-utility",
@@ -25306,7 +28117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "usb-creator-gtk",
@@ -25324,7 +28137,9 @@ export const initialApps = [
     "icon": "/icons/usb-creator-gtk.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apturl",
@@ -25342,7 +28157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mintmenu",
@@ -25360,7 +28177,9 @@ export const initialApps = [
     "icon": "/icons/mintmenu.svg",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mintupdate",
@@ -25378,7 +28197,9 @@ export const initialApps = [
     "icon": "/icons/mintupdate.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gufw",
@@ -25396,7 +28217,9 @@ export const initialApps = [
     "icon": "/icons/gufw.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "testdisk",
@@ -25414,7 +28237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rkhunter",
@@ -25432,7 +28257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ncdu",
@@ -25450,7 +28277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tmux",
@@ -25468,7 +28297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "alien",
@@ -25486,7 +28317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-meta-codecs",
@@ -25504,7 +28337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ufw",
@@ -25522,7 +28357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "boot-repair",
@@ -25540,7 +28377,9 @@ export const initialApps = [
     "icon": "/icons/boot-repair.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "virt-manager",
@@ -25558,7 +28397,9 @@ export const initialApps = [
     "icon": "/icons/virt-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "checkinstall",
@@ -25576,7 +28417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-meta-mate",
@@ -25594,7 +28437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aptitude",
@@ -25612,7 +28457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lvm2",
@@ -25630,7 +28477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "webapp-manager",
@@ -25648,7 +28497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pwgen",
@@ -25666,7 +28517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "localepurge",
@@ -25684,7 +28537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mintdesktop",
@@ -25702,7 +28557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dphys-swapfile",
@@ -25720,7 +28577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "prelink",
@@ -25738,7 +28597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "safecopy",
@@ -25756,7 +28617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "swapspace",
@@ -25774,7 +28637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "intel-microcode",
@@ -25792,7 +28657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "grub2",
@@ -25810,7 +28677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mdadm",
@@ -25828,7 +28697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mintwelcome",
@@ -25846,7 +28717,9 @@ export const initialApps = [
     "icon": "/icons/mintwelcome.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "grub2-splashimages",
@@ -25864,7 +28737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apg",
@@ -25882,7 +28757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "docker.io",
@@ -25900,7 +28777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ia32-libs",
@@ -25918,7 +28797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-meta-cinnamon",
@@ -25936,7 +28817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mintdrivers",
@@ -25954,7 +28837,9 @@ export const initialApps = [
     "icon": "/icons/mintdrivers.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mate-desktop-environment",
@@ -25972,7 +28857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mintinstall",
@@ -25990,7 +28877,9 @@ export const initialApps = [
     "icon": "/icons/mintinstall.svg",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wine-installer",
@@ -26008,7 +28897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apcupsd",
@@ -26026,7 +28917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mintsources",
@@ -26044,7 +28937,9 @@ export const initialApps = [
     "icon": "/icons/mintsources.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nvidia-prime",
@@ -26062,7 +28957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mintnanny",
@@ -26080,7 +28977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "clonezilla",
@@ -26098,7 +28997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-backgrounds-sonya",
@@ -26116,7 +29017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nala",
@@ -26134,7 +29037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sysstat",
@@ -26152,7 +29057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tiger",
@@ -26170,7 +29077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "atop",
@@ -26188,7 +29097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "partitionmanager",
@@ -26206,7 +29117,9 @@ export const initialApps = [
     "icon": "/icons/partitionmanager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "deborphan",
@@ -26224,7 +29137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "borgbackup",
@@ -26242,7 +29157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "fsarchiver",
@@ -26260,7 +29177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "grub-splashimages",
@@ -26278,7 +29197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "refind",
@@ -26296,7 +29217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "discover",
@@ -26314,7 +29237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dmraid",
@@ -26332,7 +29257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "grub-pc",
@@ -26350,7 +29277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "iotop",
@@ -26368,7 +29297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "usb-creator-kde",
@@ -26386,7 +29317,9 @@ export const initialApps = [
     "icon": "/icons/usb-creator-kde.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apt-btrfs-snapshot",
@@ -26404,7 +29337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aptitude-doc-cs",
@@ -26422,7 +29357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "automysqlbackup",
@@ -26440,7 +29377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "coolkey",
@@ -26458,7 +29397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gdisk",
@@ -26476,7 +29417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "molly-guard",
@@ -26494,7 +29437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pass",
@@ -26512,7 +29457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "clusterssh",
@@ -26530,7 +29477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rpi-imager",
@@ -26548,7 +29497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tasksel",
@@ -26566,7 +29517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ukopp",
@@ -26584,7 +29537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apt-offline",
@@ -26602,7 +29557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "chntpw",
@@ -26620,7 +29577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cpulimit",
@@ -26638,7 +29597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "crack",
@@ -26656,7 +29617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "galternatives",
@@ -26674,7 +29637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gdebi-core",
@@ -26692,7 +29657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "packagesearch",
@@ -26710,7 +29677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rsyslog",
@@ -26728,7 +29697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "upower",
@@ -26746,7 +29717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "arp-scan",
@@ -26764,7 +29737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gpart",
@@ -26782,7 +29757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gtimelog",
@@ -26800,7 +29777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-backgrounds-qiana",
@@ -26818,7 +29797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ophcrack",
@@ -26836,7 +29817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "powerstat",
@@ -26854,7 +29837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ppp",
@@ -26872,7 +29857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rtkit",
@@ -26890,7 +29877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ubiquity",
@@ -26908,7 +29897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "abootimg",
@@ -26926,7 +29917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "adduser",
@@ -26944,7 +29937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "aide",
@@ -26962,7 +29957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ansible",
@@ -26980,7 +29977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apt-file",
@@ -26998,7 +29997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "auditd",
@@ -27016,7 +30017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bacula-fd",
@@ -27034,7 +30037,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "chrony",
@@ -27052,7 +30057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cpupower-gui",
@@ -27070,7 +30077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "crack-md5",
@@ -27088,7 +30097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "debfoster",
@@ -27106,7 +30117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "doas",
@@ -27124,7 +30137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "docker-buildx",
@@ -27142,7 +30157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dpkg-repack",
@@ -27160,7 +30177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "earlyoom",
@@ -27178,7 +30197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "f2fs-tools",
@@ -27196,7 +30217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hollywood",
@@ -27214,7 +30237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "idle3-tools",
@@ -27232,7 +30257,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "logrotate",
@@ -27250,7 +30277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "lsyncd",
@@ -27268,7 +30297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "memlockd",
@@ -27286,7 +30317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-backgrounds-serena",
@@ -27304,7 +30337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-backgrounds-sylvia",
@@ -27322,7 +30357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-meta-xfce",
@@ -27340,7 +30377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-upgrade-info",
@@ -27358,7 +30397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mobile-broadband-provider-info",
@@ -27376,7 +30417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pm-utils",
@@ -27394,7 +30437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "power-profiles-daemon",
@@ -27412,7 +30457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "psmisc",
@@ -27430,7 +30477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "puppet",
@@ -27448,7 +30497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "rear",
@@ -27466,7 +30517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "samdump2",
@@ -27484,7 +30537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "timekpr-next",
@@ -27502,7 +30557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "upgrade-system",
@@ -27520,7 +30577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xwatch",
@@ -27538,7 +30597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "menulibre",
@@ -27556,7 +30617,9 @@ export const initialApps = [
     "icon": "/icons/menulibre.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "partimage",
@@ -27574,7 +30637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "foremost",
@@ -27592,7 +30657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cpuid",
@@ -27610,7 +30677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "acorn-fdisk",
@@ -27628,7 +30697,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nut",
@@ -27646,7 +30717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ubuntu-system-adjustments",
@@ -27664,7 +30737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "tcplay",
@@ -27682,7 +30757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dselect",
@@ -27700,7 +30777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-meta-core",
@@ -27718,7 +30797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "parted",
@@ -27736,7 +30817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "conspy",
@@ -27754,7 +30837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cryptsetup",
@@ -27772,7 +30857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "drbl",
@@ -27790,7 +30877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "wine-desktop-files",
@@ -27808,7 +30897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apt-xapian-index",
@@ -27826,7 +30917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cron",
@@ -27844,7 +30937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "cryptmount",
@@ -27862,7 +30957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "dkms",
@@ -27880,7 +30977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "e2fsck-static",
@@ -27898,7 +30997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "gringotts",
@@ -27916,7 +31017,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hwinfo",
@@ -27934,7 +31037,9 @@ export const initialApps = [
     "icon": "/icons/hwinfo.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "i7z",
@@ -27952,7 +31057,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "iptstate",
@@ -27970,7 +31077,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "members",
@@ -27988,7 +31097,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-backgrounds-maya",
@@ -28006,7 +31117,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-backgrounds-nadia",
@@ -28024,7 +31137,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-backgrounds-olivia",
@@ -28042,7 +31157,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-backgrounds-petra",
@@ -28060,7 +31177,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-backgrounds-sarah",
@@ -28078,7 +31197,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-backgrounds-ulyana",
@@ -28096,7 +31217,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-mirrors",
@@ -28114,7 +31237,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mintlocale",
@@ -28132,7 +31257,9 @@ export const initialApps = [
     "icon": "/icons/mintlocale.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mintsystem",
@@ -28150,7 +31277,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mount",
@@ -28168,7 +31297,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "needrestart",
@@ -28186,7 +31317,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "needrestart-session",
@@ -28204,7 +31337,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "netbase",
@@ -28222,7 +31357,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "nut-monitor",
@@ -28240,7 +31377,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "oem-config",
@@ -28258,7 +31397,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "passwd",
@@ -28276,7 +31417,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pciutils",
@@ -28294,7 +31437,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "pppconfig",
@@ -28312,7 +31457,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "procps",
@@ -28330,7 +31477,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "reiserfsprogs",
@@ -28348,7 +31497,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "squashfs-tools",
@@ -28366,7 +31517,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sysvinit-utils",
@@ -28384,7 +31537,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "thermald",
@@ -28402,7 +31557,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "udev",
@@ -28420,7 +31577,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "udisks2",
@@ -28438,7 +31597,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "update-inetd",
@@ -28456,7 +31617,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "user-setup",
@@ -28474,7 +31637,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "xfsprogs",
@@ -28492,7 +31657,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "zerofree",
@@ -28510,7 +31677,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mintbackup",
@@ -28528,7 +31697,9 @@ export const initialApps = [
     "icon": "/icons/mintbackup.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mate-tweak",
@@ -28546,7 +31717,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apparmor-notify",
@@ -28564,7 +31737,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "ayatana-settings",
@@ -28582,7 +31757,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "bacula-common-sqlite3",
@@ -28600,7 +31777,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "checksecurity",
@@ -28618,7 +31797,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "debtags",
@@ -28636,7 +31817,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "docker-compose",
@@ -28654,7 +31837,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "e2fsprogs",
@@ -28672,7 +31857,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "extrepo",
@@ -28690,7 +31877,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "hwloc",
@@ -28708,7 +31897,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "kexec-tools",
@@ -28726,7 +31917,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-backgrounds-wallpapers",
@@ -28744,7 +31937,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "mint-info-xfce",
@@ -28762,7 +31957,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "sucrack",
@@ -28780,7 +31977,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "apparmor",
@@ -28798,7 +31997,9 @@ export const initialApps = [
     "icon": "/icons/software-manager.png",
     "fallbackIcon": "📦",
     "developer": "Linux Mint / Debian",
-    "license": "Open Source"
+    "license": "Open Source",
+    "kind": "apt",
+    "flathub": false
   },
   {
     "id": "org.vinegarhq.Sober",
@@ -28817,7 +32018,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "VinegarHQ & Sober contributors",
     "license": "LicenseRef-proprietary=https://sober.vinegarhq.org/notice.txt",
-    "downloads": 210486
+    "downloads": 210486,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.mozilla.firefox",
@@ -28836,7 +32039,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Mozilla",
     "license": "MPL-2.0",
-    "downloads": 191208
+    "downloads": 191208,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.discordapp.Discord",
@@ -28855,7 +32060,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Discord Inc.",
     "license": "LicenseRef-proprietary",
-    "downloads": 186488
+    "downloads": 186488,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.google.Chrome",
@@ -28874,7 +32081,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Google",
     "license": "LicenseRef-proprietary",
-    "downloads": 177994
+    "downloads": 177994,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.brave.Browser",
@@ -28893,7 +32102,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Brave Software",
     "license": "MPL-2.0",
-    "downloads": 168857
+    "downloads": 168857,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.usebottles.bottles",
@@ -28912,7 +32123,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The Bottles Contributors",
     "license": "GPL-3.0-only",
-    "downloads": 151628
+    "downloads": 151628,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.videolan.VLC",
@@ -28931,7 +32144,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "VideoLAN et al.",
     "license": "GPL-2.0+",
-    "downloads": 124212
+    "downloads": 124212,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.spotify.Client",
@@ -28950,7 +32165,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Spotify",
     "license": "LicenseRef-proprietary=https://www.spotify.com/us/legal/end-user-agreement/",
-    "downloads": 122432
+    "downloads": 122432,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.heroicgameslauncher.hgl",
@@ -28969,7 +32186,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Heroic Games Launcher",
     "license": "GPL-3.0",
-    "downloads": 101545
+    "downloads": 101545,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.valvesoftware.Steam",
@@ -28988,7 +32207,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Valve Corporation",
     "license": "LicenseRef-proprietary",
-    "downloads": 101016
+    "downloads": 101016,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.github.tchx84.Flatseal",
@@ -29007,7 +32228,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Martin Abente Lahaye",
     "license": "GPL-3.0-or-later",
-    "downloads": 95539
+    "downloads": 95539,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.obsproject.Studio",
@@ -29026,7 +32249,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "OBS Project",
     "license": "GPL-2.0-or-later",
-    "downloads": 94623
+    "downloads": 94623,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.telegram.desktop",
@@ -29045,7 +32270,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Telegram FZ-LLC",
     "license": "GPL-3.0",
-    "downloads": 93147
+    "downloads": 93147,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.prismlauncher.PrismLauncher",
@@ -29064,7 +32291,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Prism Launcher Contributors",
     "license": "GPL-3.0-only",
-    "downloads": 84761
+    "downloads": 84761,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "md.obsidian.Obsidian",
@@ -29083,7 +32312,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Obsidian",
     "license": "LicenseRef-proprietary=https://obsidian.md/eula",
-    "downloads": 81858
+    "downloads": 81858,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.onlyoffice.desktopeditors",
@@ -29102,7 +32333,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "ONLYOFFICE",
     "license": "AGPL-3.0-only",
-    "downloads": 81633
+    "downloads": 81633,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.libretro.RetroArch",
@@ -29121,7 +32354,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "libretro",
     "license": "GPL-3.0-or-later",
-    "downloads": 72062
+    "downloads": 72062,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "net.davidotek.pupgui2",
@@ -29140,7 +32375,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "DavidoTek",
     "license": "GPL-3.0",
-    "downloads": 71673
+    "downloads": 71673,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.localsend.localsend_app",
@@ -29159,7 +32396,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Tien Do Nam",
     "license": "Apache-2.0",
-    "downloads": 69317
+    "downloads": 69317,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "app.zen_browser.zen",
@@ -29178,7 +32417,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Zen Team",
     "license": "MPL-2.0",
-    "downloads": 67687
+    "downloads": 67687,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.mattjakeman.ExtensionManager",
@@ -29197,7 +32438,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Matthew Jakeman",
     "license": "GPL-3.0-or-later",
-    "downloads": 66780
+    "downloads": 66780,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gimp.GIMP",
@@ -29216,7 +32459,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The GIMP team",
     "license": "GPL-3.0+ AND LGPL-3.0+",
-    "downloads": 65018
+    "downloads": 65018,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.DolphinEmu.dolphin-emu",
@@ -29235,7 +32480,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Dolphin Emulator Project",
     "license": "GPL-2.0+",
-    "downloads": 63846
+    "downloads": 63846,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.qbittorrent.qBittorrent",
@@ -29254,7 +32501,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The qBittorrent Project",
     "license": "GPL-3.0-or-later and OpenSSL",
-    "downloads": 60302
+    "downloads": 60302,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.ppsspp.PPSSPP",
@@ -29273,7 +32522,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Henrik Rydgård",
     "license": "GPL-2.0-or-later",
-    "downloads": 58826
+    "downloads": 58826,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.visualstudio.code",
@@ -29292,7 +32543,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Microsoft Corporation",
     "license": "LicenseRef-proprietary=https://code.visualstudio.com/license",
-    "downloads": 57092
+    "downloads": 57092,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "it.mijorus.gearlever",
@@ -29311,7 +32564,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Lorenzo Paderi",
     "license": "GPL-3.0-or-later",
-    "downloads": 57041
+    "downloads": 57041,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "net.lutris.Lutris",
@@ -29330,7 +32585,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Lutris Team",
     "license": "GPL-3.0-or-later",
-    "downloads": 56606
+    "downloads": 56606,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.protonvpn.www",
@@ -29349,7 +32606,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Proton AG",
     "license": "GPL-3.0",
-    "downloads": 55868
+    "downloads": 55868,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.libreoffice.LibreOffice",
@@ -29368,7 +32627,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The Document Foundation",
     "license": "MPL-2.0",
-    "downloads": 53956
+    "downloads": 53956,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.vysp3r.ProtonPlus",
@@ -29387,7 +32648,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Vysp3r",
     "license": "GPL-3.0-or-later",
-    "downloads": 51895
+    "downloads": 51895,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.bitwarden.desktop",
@@ -29406,7 +32669,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Bitwarden Inc.",
     "license": "GPL-3.0",
-    "downloads": 49739
+    "downloads": 49739,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "net.kuribo64.melonDS",
@@ -29425,7 +32690,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Arisotura",
     "license": "GPL-3.0",
-    "downloads": 49241
+    "downloads": 49241,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.stremio.Stremio",
@@ -29444,7 +32711,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Stremio",
     "license": "GPL-3.0-only",
-    "downloads": 49221
+    "downloads": 49221,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.github.Matoking.protontricks",
@@ -29463,7 +32732,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Janne Pulkkinen",
     "license": "GPL-3.0",
-    "downloads": 47955
+    "downloads": 47955,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "app.xemu.xemu",
@@ -29482,7 +32753,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "xemu project",
     "license": "GPL-2.0-only",
-    "downloads": 47058
+    "downloads": 47058,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.missioncenter.MissionCenter",
@@ -29501,7 +32774,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Mission Center Developers",
     "license": "GPL-3.0-or-later",
-    "downloads": 45164
+    "downloads": 45164,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.gitlab.librewolf-community",
@@ -29520,7 +32795,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "LibreWolf Community",
     "license": "MPL-2.0",
-    "downloads": 44121
+    "downloads": 44121,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.kolunmi.Bazaar",
@@ -29539,7 +32816,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The Bazaar Contributors",
     "license": "GPL-3.0-or-later",
-    "downloads": 41696
+    "downloads": 41696,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.shiiion.primehack",
@@ -29558,7 +32837,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Shiiion, SirMangler",
     "license": "GPL-2.0+",
-    "downloads": 39327
+    "downloads": 39327,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.freetubeapp.FreeTube",
@@ -29577,7 +32858,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "FreeTube Team",
     "license": "AGPL-3.0+",
-    "downloads": 38715
+    "downloads": 38715,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.scummvm.ScummVM",
@@ -29596,7 +32879,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The ScummVM Team",
     "license": "GPL-3.0-or-later",
-    "downloads": 38696
+    "downloads": 38696,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.supermodel3.Supermodel",
@@ -29615,7 +32900,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The Supermodel Team",
     "license": "GPL-3.0-or-later",
-    "downloads": 38461
+    "downloads": 38461,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.kde.kdenlive",
@@ -29634,7 +32921,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "KDE",
     "license": "GPL-3.0-only",
-    "downloads": 38208
+    "downloads": 38208,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.fedoraproject.MediaWriter",
@@ -29653,7 +32942,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Jan Grulich",
     "license": "GPL-2.0+",
-    "downloads": 37793
+    "downloads": 37793,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.microsoft.Edge",
@@ -29672,7 +32963,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Microsoft Corporation",
     "license": "LicenseRef-proprietary",
-    "downloads": 37344
+    "downloads": 37344,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.kde.krita",
@@ -29691,7 +32984,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Krita Foundation",
     "license": "GPL-3.0-only",
-    "downloads": 36446
+    "downloads": 36446,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.ktechpit.whatsie",
@@ -29710,7 +33005,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Keshav Bhatt",
     "license": "MIT",
-    "downloads": 32610
+    "downloads": 32610,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.torproject.torbrowser-launcher",
@@ -29729,7 +33026,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Tor Project",
     "license": "MIT",
-    "downloads": 32435
+    "downloads": 32435,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.freecad.FreeCAD",
@@ -29748,7 +33047,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The FreeCAD Team",
     "license": "LGPL-2.1",
-    "downloads": 31900
+    "downloads": 31900,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.github.wwmm.easyeffects",
@@ -29767,7 +33068,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Wellington Wallace",
     "license": "GPL-3.0-or-later",
-    "downloads": 31434
+    "downloads": 31434,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.rustdesk.RustDesk",
@@ -29786,7 +33089,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "RustDesk",
     "license": "AGPL-3.0-only",
-    "downloads": 30181
+    "downloads": 30181,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "dev.vencord.Vesktop",
@@ -29805,7 +33110,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Vencord Contributors",
     "license": "GPL-3.0-or-later",
-    "downloads": 30055
+    "downloads": 30055,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.peazip.PeaZip",
@@ -29824,7 +33131,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Giorgio Tani",
     "license": "LGPL-3.0-only",
-    "downloads": 29558
+    "downloads": 29558,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.mozilla.thunderbird",
@@ -29843,7 +33152,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "MZLA Technologies, part of the Mozilla Foundation",
     "license": "MPL-2.0",
-    "downloads": 29517
+    "downloads": 29517,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.github.unrud.VideoDownloader",
@@ -29862,7 +33173,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Unrud",
     "license": "GPL-3.0-or-later",
-    "downloads": 29508
+    "downloads": 29508,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.mozilla.thunderbird_esr",
@@ -29881,7 +33194,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "MZLA Technologies, part of the Mozilla Foundation",
     "license": "MPL-2.0",
-    "downloads": 28660
+    "downloads": 28660,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.rtosta.zapzap",
@@ -29900,7 +33215,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Rafael Tosta",
     "license": "GPL-3.0-or-later",
-    "downloads": 28644
+    "downloads": 28644,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.mrarm.mcpelauncher",
@@ -29919,7 +33236,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "minecraft-linux",
     "license": "GPL-3.0",
-    "downloads": 28151
+    "downloads": 28151,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.chromium.Chromium",
@@ -29938,7 +33257,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The Chromium Authors",
     "license": "BSD-3-Clause and LGPL-2.1+ and Apache-2.0 and IJG and MIT and GPL-2.0+ and ISC and OpenSSL and (MPL-1.1 or GPL-2.0 or LGPL-2.0)",
-    "downloads": 27019
+    "downloads": 27019,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.jellyfin.JellyfinDesktop",
@@ -29957,7 +33278,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Jellyfin",
     "license": "GPL-2.0",
-    "downloads": 26593
+    "downloads": 26593,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.moonlight_stream.Moonlight",
@@ -29976,7 +33299,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Moonlight Game Streaming Team",
     "license": "GPL-3.0+",
-    "downloads": 26273
+    "downloads": 26273,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "fr.handbrake.ghb",
@@ -29995,7 +33320,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "HandBrake Team",
     "license": "GPL-2.0-only",
-    "downloads": 25678
+    "downloads": 25678,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.winehq.Wine",
@@ -30014,7 +33341,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Wine Project",
     "license": "LGPL-2.1+",
-    "downloads": 25320
+    "downloads": 25320,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.ilya_zlobintsev.LACT",
@@ -30033,7 +33362,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Ilya Zlobintsev",
     "license": "MIT",
-    "downloads": 25301
+    "downloads": 25301,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "net.pcsx2.PCSX2",
@@ -30052,7 +33383,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "PCSX2 Team",
     "license": "GPL-3.0+",
-    "downloads": 24955
+    "downloads": 24955,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.signal.Signal",
@@ -30071,7 +33404,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Signal Foundation",
     "license": "AGPL-3.0-only",
-    "downloads": 24825
+    "downloads": 24825,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.darktable.Darktable",
@@ -30090,7 +33425,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "darktable developers",
     "license": "GPL-3.0+",
-    "downloads": 24768
+    "downloads": 24768,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.opera.opera-gx",
@@ -30109,7 +33446,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Opera",
     "license": "LicenseRef-proprietary=https://www.opera.com/legal/eula-computers",
-    "downloads": 24619
+    "downloads": 24619,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "us.zoom.Zoom",
@@ -30128,7 +33467,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "zoom.us",
     "license": "LicenseRef-proprietary",
-    "downloads": 24516
+    "downloads": 24516,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "ru.linux_gaming.PortProton",
@@ -30147,7 +33488,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Mikhail Tergoev",
     "license": "MIT",
-    "downloads": 24396
+    "downloads": 24396,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.bambulab.BambuStudio",
@@ -30166,7 +33509,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Bambu Lab",
     "license": "AGPL-3.0-only",
-    "downloads": 23872
+    "downloads": 23872,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.keepassxc.KeePassXC",
@@ -30185,7 +33530,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "KeePassXC Team",
     "license": "GPL-3.0-or-later",
-    "downloads": 23636
+    "downloads": 23636,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.inkscape.Inkscape",
@@ -30204,7 +33551,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The Inkscape Community",
     "license": "GPL-2.0-or-later",
-    "downloads": 23270
+    "downloads": 23270,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.mojang.Minecraft",
@@ -30223,7 +33572,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Mojang AB",
     "license": "LicenseRef-proprietary",
-    "downloads": 23270
+    "downloads": 23270,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.blender.Blender",
@@ -30242,7 +33593,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Blender Foundation",
     "license": "GPL-3.0",
-    "downloads": 22953
+    "downloads": 22953,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.gitlab.adhami3310.Impression",
@@ -30261,7 +33614,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Khaleel Al-Adhami",
     "license": "GPL-3.0",
-    "downloads": 22944
+    "downloads": 22944,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.flattool.Warehouse",
@@ -30280,7 +33635,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Heliguy",
     "license": "GPL-3.0-only",
-    "downloads": 22459
+    "downloads": 22459,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.modrinth.ModrinthApp",
@@ -30299,7 +33656,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Rinth, Inc",
     "license": "GPL-3.0-only",
-    "downloads": 22033
+    "downloads": 22033,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.vscodium.codium",
@@ -30318,7 +33677,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The VSCodium team",
     "license": "MIT",
-    "downloads": 22014
+    "downloads": 22014,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.jeffshee.Hidamari",
@@ -30337,7 +33698,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Jeff Shee",
     "license": "GPL-3.0-or-later",
-    "downloads": 21785
+    "downloads": 21785,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.audacityteam.Audacity",
@@ -30356,7 +33719,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Muse Group",
     "license": "GPL-3.0-only",
-    "downloads": 21770
+    "downloads": 21770,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "dev.lizardbyte.app.Sunshine",
@@ -30375,7 +33740,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "LizardByte",
     "license": "GPL-3.0-only",
-    "downloads": 20615
+    "downloads": 20615,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.orcaslicer.OrcaSlicer",
@@ -30394,7 +33761,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "SoftFever",
     "license": "AGPL-3.0-only",
-    "downloads": 19899
+    "downloads": 19899,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.vinegarhq.Vinegar",
@@ -30413,7 +33782,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "VinegarHQ",
     "license": "GPL-3.0-only",
-    "downloads": 19783
+    "downloads": 19783,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "de.haeckerfelix.Shortwave",
@@ -30432,7 +33803,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Felix Häcker",
     "license": "GPL-3.0-or-later",
-    "downloads": 19743
+    "downloads": 19743,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.github.jeromerobert.pdfarranger",
@@ -30451,7 +33824,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The PDF Arranger team",
     "license": "GPL-3.0-or-later",
-    "downloads": 18773
+    "downloads": 18773,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.vivaldi.Vivaldi",
@@ -30470,7 +33845,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Vivaldi Technologies",
     "license": "LicenseRef-proprietary",
-    "downloads": 18687
+    "downloads": 18687,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "net.retrodeck.retrodeck",
@@ -30489,7 +33866,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "RetroDECK Team",
     "license": "GPL-3.0",
-    "downloads": 18554
+    "downloads": 18554,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gnome.Boxes",
@@ -30508,7 +33887,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The GNOME Project",
     "license": "LGPL-2.1+",
-    "downloads": 18274
+    "downloads": 18274,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.openrgb.OpenRGB",
@@ -30527,7 +33908,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Adam Honse, OpenRGB Team",
     "license": "GPL-2.0-or-later",
-    "downloads": 18005
+    "downloads": 18005,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.ungoogled_software.ungoogled_chromium",
@@ -30546,7 +33929,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Ungoogled Software",
     "license": "BSD-3-Clause and LGPL-2.1+ and Apache-2.0 and IJG and MIT and GPL-2.0+ and ISC and OpenSSL and (MPL-1.1 or GPL-2.0 or LGPL-2.0)",
-    "downloads": 17731
+    "downloads": 17731,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.anydesk.Anydesk",
@@ -30565,7 +33950,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "AnyDesk Software GmbH",
     "license": "LicenseRef-proprietary",
-    "downloads": 17419
+    "downloads": 17419,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.Faugus.faugus-launcher",
@@ -30584,7 +33971,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Faugus",
     "license": "MIT",
-    "downloads": 17277
+    "downloads": 17277,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.github.IsmaelMartinez.teams_for_linux",
@@ -30603,7 +33992,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Ismael Martinez",
     "license": "GPL-3.0",
-    "downloads": 17191
+    "downloads": 17191,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.kde.konsole",
@@ -30622,7 +34013,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "KDE",
     "license": "GPL-2.0+",
-    "downloads": 17042
+    "downloads": 17042,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "tv.kodi.Kodi",
@@ -30641,7 +34034,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Team Kodi",
     "license": "GPL-2.0-only GPL-2.0-or-later LGPL-2.1-or-later MIT BSD-3-Clause BSD-4-Clause",
-    "downloads": 16867
+    "downloads": 16867,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "ai.lmstudio.lm-studio",
@@ -30660,7 +34055,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Element Labs, Inc.",
     "license": "LicenseRef-proprietary=https://lmstudio.ai/app-terms",
-    "downloads": 16860
+    "downloads": 16860,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "net.nokyan.Resources",
@@ -30679,7 +34076,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "nokyan",
     "license": "GPL-3.0-or-later",
-    "downloads": 16817
+    "downloads": 16817,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.remmina.Remmina",
@@ -30698,7 +34097,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Hiroyuki_Tanaka",
     "license": "GPL-2.0+",
-    "downloads": 16702
+    "downloads": 16702,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.nickvision.tubeconverter",
@@ -30717,7 +34118,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Nickvision",
     "license": "MIT",
-    "downloads": 16521
+    "downloads": 16521,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.dec05eba.gpu_screen_recorder",
@@ -30736,7 +34139,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "dec05eba",
     "license": "GPL-3.0-only",
-    "downloads": 15780
+    "downloads": 15780,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.wps.Office",
@@ -30755,7 +34160,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Kingsoft Office Corporation",
     "license": "LicenseRef-proprietary=https://www.wps.com/eula/",
-    "downloads": 15725
+    "downloads": 15725,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.jdownloader.JDownloader",
@@ -30774,7 +34181,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Appwork GmbH",
     "license": "LicenseRef-proprietary",
-    "downloads": 15657
+    "downloads": 15657,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.opera.Opera",
@@ -30793,7 +34202,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Opera",
     "license": "LicenseRef-proprietary",
-    "downloads": 15590
+    "downloads": 15590,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.logseq.Logseq",
@@ -30812,7 +34223,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Logseq, Inc.",
     "license": "AGPL-3.0-or-later",
-    "downloads": 15458
+    "downloads": 15458,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.kde.okular",
@@ -30831,7 +34244,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "KDE",
     "license": "GPL-2.0+ and GFDL-1.3",
-    "downloads": 15271
+    "downloads": 15271,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.shotcut.Shotcut",
@@ -30850,7 +34265,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Meltytech, LLC",
     "license": "GPL-3.0-only",
-    "downloads": 15212
+    "downloads": 15212,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "rocks.shy.VacuumTube",
@@ -30869,7 +34286,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "shy",
     "license": "MIT",
-    "downloads": 15070
+    "downloads": 15070,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.alainm23.planify",
@@ -30888,7 +34307,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Alain",
     "license": "GPL-3.0+",
-    "downloads": 14452
+    "downloads": 14452,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.dbeaver.DBeaverCommunity",
@@ -30907,7 +34328,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "DBeaver Corporation",
     "license": "Apache-2.0",
-    "downloads": 14391
+    "downloads": 14391,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.linx_systems.ClamUI",
@@ -30926,7 +34349,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "ClamUI Contributors",
     "license": "MIT",
-    "downloads": 14148
+    "downloads": 14148,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.github.johnfactotum.Foliate",
@@ -30945,7 +34370,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "John Factotum",
     "license": "GPL-3.0-or-later",
-    "downloads": 14141
+    "downloads": 14141,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.kde.dolphin",
@@ -30964,7 +34391,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "KDE",
     "license": "GPL-2.0-or-later",
-    "downloads": 13977
+    "downloads": 13977,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "space.bigrat.mocktail",
@@ -30983,7 +34412,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Mocktail Project Authors",
     "license": "Apache-2.0",
-    "downloads": 13941
+    "downloads": 13941,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.github.PintaProject.Pinta",
@@ -31002,7 +34433,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Jonathan Pobst",
     "license": "MIT",
-    "downloads": 13755
+    "downloads": 13755,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.kde.isoimagewriter",
@@ -31021,7 +34454,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "KDE",
     "license": "GPL-3.0",
-    "downloads": 13748
+    "downloads": 13748,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gnome.Snapshot",
@@ -31040,7 +34475,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The GNOME Project",
     "license": "GPL-3.0-or-later",
-    "downloads": 13596
+    "downloads": 13596,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.freedownloadmanager.Manager",
@@ -31059,7 +34496,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "FreeDownloadManager Team",
     "license": "LicenseRef-proprietary",
-    "downloads": 13522
+    "downloads": 13522,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "me.proton.Mail",
@@ -31078,7 +34517,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Proton AG",
     "license": "GPL-3.0",
-    "downloads": 13453
+    "downloads": 13453,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "net.waterfox.waterfox",
@@ -31097,7 +34538,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "BrowserWorks",
     "license": "MPL-2.0",
-    "downloads": 13434
+    "downloads": 13434,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.slack.Slack",
@@ -31116,7 +34559,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Slack Technologies Inc.",
     "license": "LicenseRef-proprietary",
-    "downloads": 13316
+    "downloads": 13316,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.giantpinkrobots.bootqt",
@@ -31135,7 +34580,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Giant Pink Robots!",
     "license": "GPL-3.0-only",
-    "downloads": 13158
+    "downloads": 13158,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gnome.Calculator",
@@ -31154,7 +34601,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The GNOME Project",
     "license": "GPL-3.0-or-later",
-    "downloads": 13110
+    "downloads": 13110,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.thetumultuousunicornofdarkness.cpu-x",
@@ -31173,7 +34622,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The Tumultuous Unicorn Of Darkness",
     "license": "GPL-3.0+",
-    "downloads": 12873
+    "downloads": 12873,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.podman_desktop.PodmanDesktop",
@@ -31192,7 +34643,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Red Hat, Inc.",
     "license": "Apache-2.0",
-    "downloads": 12649
+    "downloads": 12649,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.google.AndroidStudio",
@@ -31211,7 +34664,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Android Open Source Project",
     "license": "LicenseRef-proprietary",
-    "downloads": 12642
+    "downloads": 12642,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.flameshot.Flameshot",
@@ -31230,7 +34685,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Flameshot Developers",
     "license": "GPL-3.0-or-later",
-    "downloads": 12638
+    "downloads": 12638,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gnome.baobab",
@@ -31249,7 +34706,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The GNOME Project",
     "license": "GPL-2.0+",
-    "downloads": 12401
+    "downloads": 12401,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.cosmic_utils.camera",
@@ -31268,7 +34727,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Frederic Laing",
     "license": "GPL-3.0-only",
-    "downloads": 12167
+    "downloads": 12167,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.calibre_ebook.calibre",
@@ -31287,7 +34748,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Kovid Goyal",
     "license": "GPL-3.0",
-    "downloads": 12128
+    "downloads": 12128,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "cc.arduino.IDE2",
@@ -31306,7 +34769,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Arduino SA",
     "license": "AGPL-3.0",
-    "downloads": 11829
+    "downloads": 11829,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.filezillaproject.Filezilla",
@@ -31325,7 +34790,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Tim Kosse",
     "license": "GPL-2.0-or-later",
-    "downloads": 11784
+    "downloads": 11784,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "net.rpcs3.RPCS3",
@@ -31344,7 +34811,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "RPCS3 Developers",
     "license": "GPL-2.0-only",
-    "downloads": 11743
+    "downloads": 11743,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.makemkv.MakeMKV",
@@ -31363,7 +34832,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "GuinpinSoft inc",
     "license": "LicenseRef-proprietary AND GPL-2.0 AND LGPL-2.1-only",
-    "downloads": 11596
+    "downloads": 11596,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.getpostman.Postman",
@@ -31382,7 +34853,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Postman Inc.",
     "license": "LicenseRef-proprietary",
-    "downloads": 11541
+    "downloads": 11541,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.warlordsoftwares.youtube-downloader-4ktube",
@@ -31401,7 +34874,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Warlord Softwares",
     "license": "LicenseRef-proprietary=https://gitlab.com/warlordsoftwares/4ktube/-/raw/main/share/license/LICENSE",
-    "downloads": 11509
+    "downloads": 11509,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.aandrew_me.ytdn",
@@ -31420,7 +34895,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Andrew",
     "license": "GPL-3.0",
-    "downloads": 11230
+    "downloads": 11230,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.shiftey.Desktop",
@@ -31439,7 +34916,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "shiftkey",
     "license": "MIT",
-    "downloads": 10998
+    "downloads": 10998,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gnome.Loupe",
@@ -31458,7 +34937,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The GNOME Project",
     "license": "GPL-3.0-or-later",
-    "downloads": 10945
+    "downloads": 10945,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.github.Rosalie241.RMG",
@@ -31477,7 +34958,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Rosalie",
     "license": "GPL-3.0-only",
-    "downloads": 10784
+    "downloads": 10784,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gnome.NetworkDisplays",
@@ -31496,7 +34979,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Benjamin Berg, Christian Glombek",
     "license": "GPL-3.0-or-later",
-    "downloads": 10767
+    "downloads": 10767,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.jeffser.Alpaca",
@@ -31515,7 +35000,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Jeffry Samuel Eduarte Rojas",
     "license": "GPL-3.0-or-later",
-    "downloads": 10678
+    "downloads": 10678,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.virt_manager.virt-manager",
@@ -31534,7 +35021,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The Virtual Machine Manager contributors",
     "license": "GPL-2.0+",
-    "downloads": 10623
+    "downloads": 10623,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "dev.zed.Zed",
@@ -31553,7 +35042,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Zed Industries, Inc.",
     "license": "AGPL-3.0-or-later and Apache-2.0 and GPL-3.0-or-later",
-    "downloads": 10604
+    "downloads": 10604,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.flycast.Flycast",
@@ -31572,7 +35063,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Flyinghead",
     "license": "GPL-2.0",
-    "downloads": 10494
+    "downloads": 10494,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.github.xournalpp.xournalpp",
@@ -31591,7 +35084,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Xournalpp Developers",
     "license": "GPL-2.0",
-    "downloads": 10470
+    "downloads": 10470,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.kde.haruna",
@@ -31610,7 +35105,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "George Florea Bănuș",
     "license": "GPL-3.0-or-later",
-    "downloads": 10389
+    "downloads": 10389,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "eu.betterbird.Betterbird",
@@ -31629,7 +35126,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Betterbird Project",
     "license": "MPL-2.0",
-    "downloads": 10364
+    "downloads": 10364,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.nextcloud.desktopclient.nextcloud",
@@ -31648,7 +35147,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Nextcloud GmbH",
     "license": "GPL-2.0+",
-    "downloads": 10258
+    "downloads": 10258,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.mpv.Mpv",
@@ -31667,7 +35168,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The mpv player contributors",
     "license": "GPL-2.0+ AND LGPL-2.0-or-later",
-    "downloads": 10005
+    "downloads": 10005,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "edu.mit.Scratch",
@@ -31686,7 +35189,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Lifelong Kindergarten Group at the MIT Media Lab",
     "license": "BSD-3-Clause",
-    "downloads": 9947
+    "downloads": 9947,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "tv.plex.PlexDesktop",
@@ -31705,7 +35210,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Plex",
     "license": "LicenseRef-proprietary=https://www.plex.tv/en-gb/about/privacy-legal/plex-terms-of-service/",
-    "downloads": 9937
+    "downloads": 9937,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "me.proton.Pass",
@@ -31724,7 +35231,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Proton AG",
     "license": "GPL-3.0",
-    "downloads": 9716
+    "downloads": 9716,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.ktechpit.ultimate-media-downloader",
@@ -31743,7 +35252,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Keshav Bhatt",
     "license": "GPL-2.0-or-later",
-    "downloads": 9710
+    "downloads": 9710,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gnome.TextEditor",
@@ -31762,7 +35273,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The GNOME Project",
     "license": "GPL-3.0-or-later",
-    "downloads": 9678
+    "downloads": 9678,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.prusa3d.PrusaSlicer",
@@ -31781,7 +35294,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Prusa Research a.s",
     "license": "AGPL-3.0-only",
-    "downloads": 9565
+    "downloads": 9565,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gnome.SimpleScan",
@@ -31800,7 +35315,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The GNOME Project",
     "license": "GPL-3.0+",
-    "downloads": 9517
+    "downloads": 9517,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.streetpea.Chiaki4deck",
@@ -31819,7 +35336,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Street Pea",
     "license": "AGPL-3.0-only",
-    "downloads": 9435
+    "downloads": 9435,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "net.cozic.joplin_desktop",
@@ -31838,7 +35357,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "laurent22",
     "license": "MIT",
-    "downloads": 9411
+    "downloads": 9411,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.waywallen.waywallen",
@@ -31857,7 +35378,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "hypengw",
     "license": "GPL-3.0-or-later",
-    "downloads": 9384
+    "downloads": 9384,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.wiiznokes.fan-control",
@@ -31876,7 +35399,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "wiiznokes",
     "license": "GPL-3.0-only",
-    "downloads": 9289
+    "downloads": 9289,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.azahar_emu.Azahar",
@@ -31895,7 +35420,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Azahar Emulator Developers",
     "license": "GPL-2.0",
-    "downloads": 9285
+    "downloads": 9285,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.ryubing.Ryujinx",
@@ -31914,7 +35441,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Ryubing",
     "license": "MIT",
-    "downloads": 9170
+    "downloads": 9170,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "ch.tlaun.TL",
@@ -31933,7 +35462,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Legacy Launcher Team",
     "license": "LicenseRef-proprietary",
-    "downloads": 9068
+    "downloads": 9068,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.ranfdev.DistroShelf",
@@ -31952,7 +35483,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Lorenzo Miglietta",
     "license": "GPL-3.0-or-later",
-    "downloads": 9059
+    "downloads": 9059,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.benjamimgois.goverlay",
@@ -31971,7 +35504,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Benjamim Gois",
     "license": "GPL-3.0",
-    "downloads": 9017
+    "downloads": 9017,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "sh.ppy.osu",
@@ -31990,7 +35525,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "ppy Pty Ltd",
     "license": "MIT",
-    "downloads": 8969
+    "downloads": 8969,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.surfshark.Surfshark",
@@ -32009,7 +35546,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Surfshark B.V",
     "license": "LicenseRef-proprietary=https://surfshark.com/terms-of-service",
-    "downloads": 8968
+    "downloads": 8968,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.geogebra.GeoGebra",
@@ -32028,7 +35567,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "GeoGebra Institute",
     "license": "LicenseRef-proprietary",
-    "downloads": 8896
+    "downloads": 8896,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.strawberrymusicplayer.strawberry",
@@ -32047,7 +35588,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Jonas Kvinge",
     "license": "GPL-3.0+",
-    "downloads": 8867
+    "downloads": 8867,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.jellyfin.JellyfinServer",
@@ -32066,7 +35609,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Jellyfin",
     "license": "GPL-2.0-or-later",
-    "downloads": 8813
+    "downloads": 8813,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.adobe.Reader",
@@ -32085,7 +35630,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Adobe Inc.",
     "license": "LicenseRef-proprietary=https://www.adobe.com/products/eulas/pdfs/Reader_Player_AIR_WWEULA-Combined-20080204_1313.pdf",
-    "downloads": 8776
+    "downloads": 8776,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gnome.Showtime",
@@ -32104,7 +35651,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The GNOME Project",
     "license": "GPL-3.0-or-later",
-    "downloads": 8612
+    "downloads": 8612,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "xyz.xclicker.xclicker",
@@ -32123,7 +35672,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Elliot (Robiot)",
     "license": "GPL-3.0",
-    "downloads": 8609
+    "downloads": 8609,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.rafaelmardojai.Blanket",
@@ -32142,7 +35693,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Rafael Mardojai CM",
     "license": "GPL-3.0-or-later",
-    "downloads": 8523
+    "downloads": 8523,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.valvesoftware.SteamLink",
@@ -32161,7 +35714,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Valve Corporation",
     "license": "LicenseRef-proprietary",
-    "downloads": 8505
+    "downloads": 8505,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "net.mkiol.SpeechNote",
@@ -32180,7 +35735,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Michal Kosciesza",
     "license": "MPL-2.0",
-    "downloads": 8480
+    "downloads": 8480,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.system76.Popsicle",
@@ -32199,7 +35756,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "System76",
     "license": "MIT",
-    "downloads": 8452
+    "downloads": 8452,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "one.ablaze.floorp",
@@ -32218,7 +35777,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Ablaze",
     "license": "MPL-2.0",
-    "downloads": 8337
+    "downloads": 8337,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.kde.filelight",
@@ -32237,7 +35798,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "KDE",
     "license": "GPL-2.0+",
-    "downloads": 8337
+    "downloads": 8337,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "net.mullvad.MullvadBrowser",
@@ -32256,7 +35819,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Mullvad VPN AB",
     "license": "MPL-2.0",
-    "downloads": 8274
+    "downloads": 8274,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "no.bragefuglseth.Keypunch",
@@ -32275,7 +35840,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Brage Fuglseth",
     "license": "GPL-3.0-or-later",
-    "downloads": 8074
+    "downloads": 8074,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.godotengine.Godot",
@@ -32294,7 +35861,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The Godot Engine Community",
     "license": "MIT",
-    "downloads": 8027
+    "downloads": 8027,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "net.ankiweb.Anki",
@@ -32313,7 +35882,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Damien Elmes",
     "license": "AGPL-3.0+",
-    "downloads": 7988
+    "downloads": 7988,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gnome.Weather",
@@ -32332,7 +35903,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The GNOME Project",
     "license": "GPL-2.0-or-later",
-    "downloads": 7983
+    "downloads": 7983,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "ai.jan.Jan",
@@ -32351,7 +35924,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Menlo Research Pte. Ltd.",
     "license": "Apache-2.0",
-    "downloads": 7908
+    "downloads": 7908,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "page.tesk.Refine",
@@ -32370,7 +35945,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Hari Rana (TheEvilSkeleton)",
     "license": "GPL-3.0-or-later",
-    "downloads": 7902
+    "downloads": 7902,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "com.freerdp.FreeRDP",
@@ -32389,7 +35966,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "FreeRDP developers",
     "license": "Apache-2.0",
-    "downloads": 7885
+    "downloads": 7885,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gnome.Calendar",
@@ -32408,7 +35987,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The GNOME Project",
     "license": "GPL-3.0-or-later",
-    "downloads": 7863
+    "downloads": 7863,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "ru.yandex.Browser",
@@ -32427,7 +36008,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Yandex",
     "license": "LicenseRef-proprietary=https://yandex.ru/legal/browser_agreement",
-    "downloads": 7849
+    "downloads": 7849,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.pwr_solaar.solaar",
@@ -32446,7 +36029,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "pwr-Solaar",
     "license": "GPL-2.0-only",
-    "downloads": 7837
+    "downloads": 7837,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.upscayl.Upscayl",
@@ -32465,7 +36050,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Upscayl",
     "license": "AGPL-3.0",
-    "downloads": 7750
+    "downloads": 7750,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.kde.gwenview",
@@ -32484,7 +36071,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "KDE",
     "license": "GPL-2.0+",
-    "downloads": 7745
+    "downloads": 7745,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "im.riot.Riot",
@@ -32503,7 +36092,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Element Creations Ltd",
     "license": "AGPL-3.0-only OR GPL-3.0-only",
-    "downloads": 7739
+    "downloads": 7739,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "dev.edfloreshz.CosmicTweaks",
@@ -32522,7 +36113,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "edfloreshz",
     "license": "GPL-3.0-only",
-    "downloads": 7653
+    "downloads": 7653,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "me.timschneeberger.jdsp4linux",
@@ -32541,7 +36134,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Tim Schneeberger",
     "license": "GPL-3.0-or-later",
-    "downloads": 7562
+    "downloads": 7562,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.kicad.KiCad",
@@ -32560,7 +36155,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "The KiCad Developers",
     "license": "GPL-3.0-or-later",
-    "downloads": 7540
+    "downloads": 7540,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "org.gnome.World.PikaBackup",
@@ -32579,7 +36176,9 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Small Mammal Collective",
     "license": "GPL-3.0",
-    "downloads": 7523
+    "downloads": 7523,
+    "kind": "flatpak",
+    "flathub": true
   },
   {
     "id": "io.github.diegopvlk.Cine",
@@ -32598,64 +36197,12 @@ export const initialApps = [
     "fallbackIcon": "📦",
     "developer": "Diego Povliuk",
     "license": "GPL-3.0-or-later",
-    "downloads": 7399
+    "downloads": 7399,
+    "kind": "flatpak",
+    "flathub": true
   }
 ];
 
-export const categoriesList = [
-  {
-    "id": "picks",
-    "label": "Destaques",
-    "icon": "Sparkles"
-  },
-  {
-    "id": "accessories",
-    "label": "Acessórios",
-    "icon": "Wrench"
-  },
-  {
-    "id": "development",
-    "label": "Desenvolvimento",
-    "icon": "Code"
-  },
-  {
-    "id": "office",
-    "label": "Escritório",
-    "icon": "Briefcase"
-  },
-  {
-    "id": "flatpak",
-    "label": "Flatpak",
-    "icon": "Boxes"
-  },
-  {
-    "id": "graphics",
-    "label": "Gráficos",
-    "icon": "Image"
-  },
-  {
-    "id": "internet",
-    "label": "Internet",
-    "icon": "Globe"
-  },
-  {
-    "id": "games",
-    "label": "Jogos",
-    "icon": "Gamepad2"
-  },
-  {
-    "id": "sound-video",
-    "label": "Mídia",
-    "icon": "Film"
-  },
-  {
-    "id": "system",
-    "label": "Sistema",
-    "icon": "Cpu"
-  },
-  {
-    "id": "all",
-    "label": "Todos",
-    "icon": "Grid"
-  }
-];
+
+// Re-exporta categoriesList de arquivo separado (code-split)
+export { categoriesList } from "./categoriesList.js";
