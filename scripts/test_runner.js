@@ -182,9 +182,9 @@ assert(allLabelsMatch, `Todos os 11 rótulos concisos coincidem: [${expectedLabe
 
 // Test 12: Verificação de Empacotamento Debian e Documentos Oficiais
 console.log('\n12. Verificação de Empacotamento Debian e Documentos Oficiais:');
-const debPath = path.join(process.cwd(), 'mint-install-pro_1.3.0_all.deb');
+const debPath = path.join(process.cwd(), 'mint-install-pro_1.3.1_all.deb');
 const debExists = fs.existsSync(debPath);
-assert(debExists, 'Pacote Debian "mint-install-pro_1.3.0_all.deb" gerado na raiz do projeto');
+assert(debExists, 'Pacote Debian "mint-install-pro_1.3.1_all.deb" gerado na raiz do projeto');
 if (debExists) {
   const debSize = fs.statSync(debPath).size;
   assert(debSize > 500 * 1024, `Pacote Debian possui tamanho válido de produção (${(debSize / 1024).toFixed(1)} KB)`);
@@ -227,6 +227,62 @@ assert(!headerBarContent.includes('Sandbox Seguro'), 'Indicador fake de "Sandbox
 const viteConfigContent = fs.readFileSync(path.join(process.cwd(), 'vite.config.js'), 'utf-8');
 assert(viteConfigContent.includes("'127.0.0.1'"), 'Servidor Vite configurado com binding estrito para loopback ("127.0.0.1")');
 assert(viteConfigContent.includes('manualChunks'), 'Otimização de empacotamento com code-splitting ("manualChunks") ativa');
+
+// Test 14: Verificação da tag `kind` explícita em todos os apps (migração 1.3.1)
+console.log('\n14. Verificação da tag `kind` explícita em todos os apps:');
+const appsWithoutKind = initialApps.filter(a => a.kind !== 'apt' && a.kind !== 'flatpak');
+assert(appsWithoutKind.length === 0, `Todos os apps têm tag \`kind\` explícita (sem tag: ${appsWithoutKind.length})`);
+
+const aptKindCount = initialApps.filter(a => a.kind === 'apt').length;
+const flatpakKindCount = initialApps.filter(a => a.kind === 'flatpak').length;
+assert(aptKindCount > 0 && flatpakKindCount > 0, `Tag \`kind\` distribui apps entre APT (${aptKindCount}) e Flatpak (${flatpakKindCount})`);
+
+// Consistência: kind === 'flatpak' deve corresponder a flathub: true
+const inconsistentFlatpaks = initialApps.filter(a => a.kind === 'flatpak' && a.flathub === false);
+assert(inconsistentFlatpaks.length === 0, `Apps com kind=flatpak têm flathub=true consistente (inconsistentes: ${inconsistentFlatpaks.length})`);
+
+// Test 15: Code-split do catálogo (catalog.json gerado e referenciável)
+console.log('\n15. Verificação do Code-Split do Catálogo:');
+const catalogJsonPath = path.join(process.cwd(), 'public/data/catalog.json');
+const catalogJsonExists = fs.existsSync(catalogJsonPath);
+assert(catalogJsonExists, 'Arquivo public/data/catalog.json gerado para carregamento lazy');
+if (catalogJsonExists) {
+  const jsonSize = fs.statSync(catalogJsonPath).size;
+  const jsSize = fs.statSync(path.join(process.cwd(), 'src/data/initialApps.js')).size;
+  assert(jsonSize < jsSize, `JSON lazy é menor que o .js estático (json=${(jsonSize/1024).toFixed(0)}KB < js=${(jsSize/1024).toFixed(0)}KB)`);
+}
+const indexJsonPath = path.join(process.cwd(), 'public/data/catalog-index.json');
+assert(fs.existsSync(indexJsonPath), 'Índice leve public/data/catalog-index.json presente para LandingPage');
+
+// Test 16: Bug fixes de produção (regressões)
+console.log('\n16. Verificação de Bug Fixes Críticos (1.3.0 → 1.3.1):');
+const batchModalContent = fs.readFileSync(path.join(process.cwd(), 'src/components/BatchActionModal.jsx'), 'utf-8');
+assert(!batchModalContent.includes('isInstall ?'), 'Bug do `isInstall` indefinido corrigido em BatchActionModal.jsx');
+assert(batchModalContent.includes('progressBarColor'), 'Variável `progressBarColor` derivada de actionType');
+
+const headerBarContent2 = fs.readFileSync(path.join(process.cwd(), 'src/components/HeaderBar.jsx'), 'utf-8');
+assert(!headerBarContent2.includes('Versão 6.1.4'), 'String de versão hardcoded "6.1.4" removida do HeaderBar');
+assert(headerBarContent2.includes('APP_VERSION'), 'HeaderBar agora referencia APP_VERSION dinâmico');
+assert(headerBarContent2.includes('import.meta.env'), 'APP_VERSION deriva de import.meta.env (Vite inject)');
+
+// Vite config: define VITE_APP_VERSION injetado do package.json
+const viteConfigContent2 = fs.readFileSync(path.join(process.cwd(), 'vite.config.js'), 'utf-8');
+assert(viteConfigContent2.includes("VITE_APP_VERSION"), 'vite.config.js injeta VITE_APP_VERSION');
+
+// API: tratamento de ENOENT para flatpak ausente
+assert(viteConfigContent2.includes('flatpak_not_available'), 'API trata flatpak ausente com status 503');
+
+// Catalog loader lazy presente
+const catalogServiceContent = fs.readFileSync(path.join(process.cwd(), 'src/services/catalog.js'), 'utf-8');
+assert(catalogServiceContent.includes('loadFullCatalog'), 'Serviço de catálogo lazy (loadFullCatalog) presente');
+assert(catalogServiceContent.includes('requestIdleCallback'), 'Prefetch do catálogo usa requestIdleCallback');
+
+// App.jsx usa catálogo lazy e função isFlatpakApp centralizada
+const appJsxContent2 = fs.readFileSync(path.join(process.cwd(), 'src/App.jsx'), 'utf-8');
+assert(appJsxContent2.includes('loadFullCatalog'), 'App.jsx usa loadFullCatalog para carregar o catálogo');
+assert(!appJsxContent2.includes("from './data/initialApps'") || appJsxContent2.match(/from '\.\/data\/initialApps'/g).length === 1,
+  'App.jsx importa apenas categoriesList de initialApps (initialApps é lazy via catalog.js)');
+assert(appJsxContent2.includes('function isFlatpakApp'), 'Heurística isFlatpakApp centralizada em App.jsx');
 
 console.log(`\n========================================`);
 console.log(`Resultado dos Testes: ${passed} passaram, ${failed} falharam.`);
