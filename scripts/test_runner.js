@@ -284,6 +284,52 @@ assert(!appJsxContent2.includes("from './data/initialApps'") || appJsxContent2.m
   'App.jsx importa apenas categoriesList de initialApps (initialApps é lazy via catalog.js)');
 assert(appJsxContent2.includes('function isFlatpakApp'), 'Heurística isFlatpakApp centralizada em App.jsx');
 
+// Test 17: Loading state e tratamento de flatpak ausente (gauntlet loop, round 2)
+console.log('\n17. Loading state + tratamento de flatpak ausente:');
+assert(appJsxContent2.includes('catalogLoading'), 'App.jsx tem estado catalogLoading para o fetch lazy');
+assert(appJsxContent2.includes('flatpakStatus'), 'App.jsx tem estado flatpakStatus');
+assert(appJsxContent2.includes("status === 503"), 'App.jsx trata HTTP 503 do /api/installed (flatpak ausente)');
+assert(appJsxContent2.includes('loadCatalogIndex'), 'App.jsx importa loadCatalogIndex para o índice leve');
+
+const landingPageContent = fs.readFileSync(path.join(process.cwd(), 'src/components/LandingPage.jsx'), 'utf-8');
+assert(landingPageContent.includes('isLoading'), 'LandingPage aceita prop isLoading');
+assert(landingPageContent.includes('animate-pulse'), 'LandingPage tem skeleton de loading (animate-pulse)');
+assert(landingPageContent.includes('Carregando destaques'), 'LandingPage mostra mensagem clara durante loading');
+
+const appGridContent = fs.readFileSync(path.join(process.cwd(), 'src/components/AppGrid.jsx'), 'utf-8');
+assert(appGridContent.includes('isLoading'), 'AppGrid aceita prop isLoading');
+assert(appGridContent.includes('skel-'), 'AppGrid tem skeleton de loading com key prefix skel-');
+
+const headerBarContent3 = fs.readFileSync(path.join(process.cwd(), 'src/components/HeaderBar.jsx'), 'utf-8');
+assert(headerBarContent3.includes('flatpakStatus'), 'HeaderBar aceita prop flatpakStatus');
+assert(headerBarContent3.includes("flatpakStatus === 'missing'"), 'HeaderBar renderiza badge "Flatpak ausente" quando status=missing');
+assert(headerBarContent3.includes('AlertTriangle'), 'HeaderBar importa AlertTriangle (lucide-react)');
+
+const catalogServiceContent2 = fs.readFileSync(path.join(process.cwd(), 'src/services/catalog.js'), 'utf-8');
+assert(catalogServiceContent2.includes('export async function loadCatalogIndex'), 'catalog.js exporta loadCatalogIndex');
+
+// Test 18: Pacote .deb 1.3.1 regenera com sucesso
+console.log('\n18. Sanidade do .deb empacotado:');
+// (checado no CI pelo job deb-package; aqui só garantimos que o script
+// de build existe e referencia a versão correta)
+const buildDebContent = fs.readFileSync(path.join(process.cwd(), 'scripts/build_deb.py'), 'utf-8');
+assert(buildDebContent.includes('VERSION = "1.3.1"'), 'build_deb.py usa VERSION = "1.3.1"');
+assert(buildDebContent.includes('shutil.copytree(dist_dir'), 'build_deb.py copia o dist/ inteiro (incluindo data/)');
+
+// Test 19: Deduplicação cross-kind (gauntlet loop, fix débito 9.6)
+console.log('\n19. Deduplicação cross-kind no build_full_catalog.py:');
+const buildFullCatalogContent = fs.readFileSync(path.join(process.cwd(), 'scripts/build_full_catalog.py'), 'utf-8');
+assert(buildFullCatalogContent.includes('seen_pairs = set()'),
+  'build_full_catalog.py usa seen_pairs (tuplas id+kind) em vez de seen_ids simples');
+assert(buildFullCatalogContent.includes('(pkg_name, "apt")'),
+  'build_full_catalog.py registra APT como (id, "apt") no set');
+assert(buildFullCatalogContent.includes('(app_id, "flatpak")'),
+  'build_full_catalog.py registra Flatpak como (id, "flatpak") no set');
+assert(!buildFullCatalogContent.includes('seen_ids.add('),
+  'build_full_catalog.py não usa mais seen_ids.add (legado removido)');
+assert(buildFullCatalogContent.includes('"kind": "apt"') && buildFullCatalogContent.includes('"kind": "flatpak"'),
+  'build_full_catalog.py injeta tag `kind` explícita em todos os apps');
+
 console.log(`\n========================================`);
 console.log(`Resultado dos Testes: ${passed} passaram, ${failed} falharam.`);
 console.log(`========================================\n`);
