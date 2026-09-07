@@ -75,7 +75,11 @@ EXACT_ACCESSORIES = [
 ]
 
 catalog = []
-seen_ids = set()
+# Deduplicação cross-kind: (id, kind) garante que um app APT e um Flatpak
+# com mesmo id (raro mas possível, ex: 'firefox') entram como entradas
+# separadas. Anteriormente usava só id, o que silenciosamente descartava
+# o segundo. (Gauntlet loop round 2 — fix débito 9.6)
+seen_pairs = set()  # set de tuplas (id, kind)
 
 def resolve_icon(pkg_id):
     if os.path.exists(f"public/icons/{pkg_id}.png"):
@@ -98,7 +102,7 @@ def resolve_icon(pkg_id):
 # Inserir os 21 Acessórios base
 for acc in EXACT_ACCESSORIES:
     pkg_id = acc["id"]
-    seen_ids.add(pkg_id)
+    seen_pairs.add((pkg_id, "apt"))
     icon_path = resolve_icon(pkg_id)
     desc = "Utilitário do sistema Linux Mint"
     version = "1.0.0"
@@ -127,6 +131,7 @@ for acc in EXACT_ACCESSORIES:
         "version": version,
         "size": size,
         "packageType": "Pacote do Sistema (APT)",
+        "kind": "apt",
         "icon": icon_path,
         "fallbackIcon": "📦",
         "developer": "Equipe Linux Mint / Debian",
@@ -158,7 +163,7 @@ for cat_id, meta in category_map.items():
         if not p or not p.get("name") or not p.get("summary"):
             continue
         pkg_name = p["name"]
-        if pkg_name in seen_ids:
+        if (pkg_name, "apt") in seen_pairs:
             continue
         # Descartar bibliotecas e pacotes de cabeçalho puro
         if pkg_name.endswith(("-dbg", "-doc", "-dev", "-data")) or pkg_name.startswith("lib"):
@@ -177,7 +182,7 @@ for cat_id, meta in category_map.items():
     selected = candidates[:needed]
     
     for score, num_rev, pkg_name, p in selected:
-        seen_ids.add(pkg_name)
+        seen_pairs.add((pkg_name, "apt"))
         display_name = pkg_name.capitalize()
         summary = p.get("summary", "")
         desc = p.get("description", summary)
@@ -211,6 +216,7 @@ for cat_id, meta in category_map.items():
             "version": version,
             "size": size,
             "packageType": "Pacote do Sistema (APT)",
+            "kind": "apt",
             "icon": icon_path,
             "fallbackIcon": "📦",
             "developer": "Linux Mint / Debian",
@@ -239,9 +245,9 @@ try:
         if flatpak_count >= 200:
             break
         app_id = hit.get("app_id") or hit.get("id")
-        if not app_id or app_id in seen_ids:
+        if not app_id or (app_id, "flatpak") in seen_pairs:
             continue
-        seen_ids.add(app_id)
+        seen_pairs.add((app_id, "flatpak"))
         flatpak_count += 1
         
         name = hit.get("name") or app_id.split(".")[-1].capitalize()
@@ -267,6 +273,8 @@ try:
             "version": "latest",
             "size": downloads_str,
             "packageType": "Flatpak (Flathub)",
+            "kind": "flatpak",
+            "flathub": True,
             "icon": icon,
             "fallbackIcon": "📦",
             "developer": hit.get("developer_name") or "Comunidade Flathub",
