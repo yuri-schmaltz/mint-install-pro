@@ -9,7 +9,7 @@ import BatchActionModal from './components/BatchActionModal';
 import SettingsModal from './components/SettingsModal';
 import { categoriesList } from './data/categoriesList';
 import { searchFlathub } from './services/flathubApi';
-import { loadFullCatalog, prefetchCatalog, getCachedCatalog } from './services/catalog';
+import { loadFullCatalog, loadCatalogIndex, prefetchCatalog, getCachedCatalog } from './services/catalog';
 
 const STORAGE_KEY = 'mint_apps_state_v5';
 const SETTINGS_KEY = 'mint_settings_v1';
@@ -61,6 +61,7 @@ export default function App() {
   });
 
   // Carrega o catálogo completo de forma assíncrona (code-split via fetch)
+  const [catalogLoading, setCatalogLoading] = useState(true);
   useEffect(() => {
     let cancelled = false;
     loadFullCatalog().then((catalog) => {
@@ -78,11 +79,11 @@ export default function App() {
         }
         return catalog;
       });
+      setCatalogLoading(false);
     }).catch((err) => {
       console.error('Falha ao carregar catálogo:', err);
-      // Sem fallback estático aqui: se nem o JSON nem o import lazy funcionarem,
-      // o usuário verá o empty state com mensagem clara.
       setApps((prev) => (prev.length > 0 ? prev : []));
+      setCatalogLoading(false);
     });
     // Pré-carrega em idle para a próxima navegação
     prefetchCatalog();
@@ -106,10 +107,27 @@ export default function App() {
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
+  // Estado da integração com Flatpak: 'unknown' | 'available' | 'missing'
+  // 'missing' = backend respondeu 503 (flatpak não está instalado no sistema)
+  // 'unknown' = ainda não checou ou erro de rede
+  const [flatpakStatus, setFlatpakStatus] = useState('unknown');
+
   // Sincronizar status real de Flatpaks instalados com o sistema operacional
   useEffect(() => {
     fetch('/api/installed')
-      .then((res) => (res.ok ? res.json() : null))
+      .then((res) => {
+        // 503 = flatpak não instalado no sistema (warning explícito do backend)
+        if (res.status === 503) {
+          setFlatpakStatus('missing');
+          return null;
+        }
+        if (!res.ok) {
+          setFlatpakStatus('unknown');
+          return null;
+        }
+        setFlatpakStatus('available');
+        return res.json();
+      })
       .then((data) => {
         if (data && Array.isArray(data.flatpaks)) {
           const installedSet = new Set(data.flatpaks);
@@ -124,7 +142,9 @@ export default function App() {
           );
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        setFlatpakStatus('unknown');
+      });
   }, []);
 
   // Navigation and views - Destaques como aba inicial
@@ -435,6 +455,7 @@ export default function App() {
           onToggleInstalledOnly={handleToggleInstalledOnly}
           installedCount={installedCount}
           onOpenSettings={() => setIsSettingsOpen(true)}
+          flatpakStatus={flatpakStatus}
         />
 
         {/* Categories Bar */}
@@ -452,6 +473,7 @@ export default function App() {
             onSelectCategory={handleSelectCategory}
             onSelectApp={(app) => setSelectedApp(app)}
             apps={apps}
+            isLoading={catalogLoading}
           />
         ) : (
           <AppGrid
@@ -467,6 +489,7 @@ export default function App() {
             selectedCategory={selectedCategory}
             onSearchFlathubLive={handleSearchFlathubLive}
             isSearchingFlathub={isSearchingFlathub}
+            isLoading={catalogLoading}
           />
         )}
 
