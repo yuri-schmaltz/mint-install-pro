@@ -7,22 +7,24 @@ import {
   Menu,
   RefreshCw,
   Info,
-  Settings
+  Settings,
+  AlertTriangle
 } from 'lucide-react';
 
 // Versão injetada pelo Vite a partir de package.json. Default seguro para SSR/tests.
 const APP_VERSION = import.meta.env?.VITE_APP_VERSION || '1.3.0';
 
-export default function HeaderBar({ 
-  searchQuery, 
-  setSearchQuery, 
-  canGoBack, 
-  onBack, 
-  installedOnly, 
+export default function HeaderBar({
+  searchQuery,
+  setSearchQuery,
+  canGoBack,
+  onBack,
+  installedOnly,
   setInstalledOnly,
   onToggleInstalledOnly,
   installedCount = 0,
-  onOpenSettings
+  onOpenSettings,
+  flatpakStatus = 'unknown'
 }) {
   const [showMenu, setShowMenu] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
@@ -90,6 +92,18 @@ export default function HeaderBar({
             {installedLabel}
           </span>
         </button>
+
+        {/* Flatpak availability warning (only shown when backend reports ENOENT) */}
+        {flatpakStatus === 'missing' && (
+          <div
+            role="status"
+            title="Flatpak não está instalado neste sistema. Recursos de instalação Flatpak ficam desabilitados."
+            className="hidden sm:flex items-center space-x-1.5 h-[26px] px-2.5 rounded-full bg-amber-950/40 border border-amber-500/40 text-amber-300 text-[11px] font-medium select-none"
+          >
+            <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
+            <span>Flatpak ausente</span>
+          </div>
+        )}
 
         {/* Hamburger Menu button */}
         <div className="relative">
