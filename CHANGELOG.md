@@ -4,6 +4,32 @@ Todas as alterações notáveis do projeto **Mint Install Pro** são documentada
 
 ---
 
+## [1.3.1] - 2026-09-07
+
+### Corrigido (round 2)
+- **Frontend ignorava HTTP 503 do `/api/installed`**: o backend passou a distinguir "flatpak ausente" de "flatpak instalado mas sem apps" via status 503 + warning, mas o `App.jsx` engolia o status code. Agora `App.jsx` tem estado `flatpakStatus` ('unknown' | 'available' | 'missing') que dispara o badge "Flatpak ausente" no header.
+- **Deduplicação cross-kind silenciosa em `build_full_catalog.py`**: o gerador usava `seen_ids = set()` que descartava apps onde um APT e um Flatpak compartilhavam o mesmo id (ex: 'firefox' nos dois lados). Refatorado para `seen_pairs = set()` de tuplas `(id, kind)`. Agora ambos coexistem no catálogo quando há overlap.
+- **UX ruim durante o fetch lazy do catálogo**: com o code-split (round 1), o usuário via "Ver todos (0)" e grid vazio durante o fetch. Adicionado estado `catalogLoading` + skeletons animados em `LandingPage` (banner + matriz 3x3 com 9 placeholders) e `AppGrid` (9 cards placeholder com shimmer). Mensagem "Carregando destaques..." no centro do banner skeleton.
+- **`build_full_catalog.py` não injetava `kind`**: o gerador criava apps sem a tag, dependendo do `migrate_catalog.py` como passo separado. Agora injeta `kind: 'apt' | 'flatpak'` direto na geração, então `migrate_catalog.py` vira puro retrofit para catálogos legados.
+
+### Adicionado (round 2)
+- **Badge "Flatpak ausente" no `HeaderBar`**: cápsula amber `AlertTriangle + "Flatpak ausente"` exibida entre o contador de instalados e o menu hambúrguer, apenas quando `flatpakStatus === 'missing'`. `hidden sm:flex` pra não poluir mobile.
+- **Loading state propagado**: `App.jsx` → `LandingPage` e `AppGrid` via prop `isLoading`. Skeleton com `animate-pulse` no padrão Mint-Y Dark.
+- **`loadCatalogIndex()` importado** em `App.jsx` (preparado para fase futura que vai usar o índice leve de 8 KB em vez do array completo de 1 MB na primeira render).
+
+### Modificado (round 2)
+- **`App.jsx`**: extraído o estado de loading do catálogo e de status do flatpak em hooks dedicados. Adicionado `loadCatalogIndex` ao import do `services/catalog.js`.
+- **`LandingPage.jsx`**: aceita `isLoading` e renderiza early return com skeleton (não renderiza o grid de verdade durante o loading para evitar flash de empty state → grid).
+- **`AppGrid.jsx`**: aceita `isLoading` e renderiza 9 cards placeholder com `key="skel-${i}"` para evitar colisão com IDs reais.
+
+### Infraestrutura (round 2)
+- Suíte de testes ampliada de **100 para 118 asserções** (+18):
+  - Test 17: Loading state + tratamento de flatpak ausente (13 asserções).
+  - Test 19: Deduplicação cross-kind no `build_full_catalog.py` (5 asserções).
+- 5 commits adicionais no stack PR-ready (12 no total desde 1.3.0).
+
+---
+
 ## [1.3.1] - 2026-09-05
 
 ### Corrigido
