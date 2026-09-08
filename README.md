@@ -10,9 +10,9 @@
 </p>
 
   <a href="https://github.com/yuri-schmaltz/mint-install-pro"><img src="https://img.shields.io/badge/GitHub-mint--install--pro-87cf3e?style=flat-square&logo=github" alt="GitHub Repo"></a>
-  <a href="https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.3.1"><img src="https://img.shields.io/badge/Release-v1.3.1%20.deb-blue?style=flat-square&logo=debian" alt="Download .deb"></a>
+  <a href="https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.3.2"><img src="https://img.shields.io/badge/Release-v1.3.2%20.deb-blue?style=flat-square&logo=debian" alt="Download .deb"></a>
   <img src="https://img.shields.io/badge/AI%20Enhanced-%E2%9C%A8%20Google%20DeepMind-7928CA?style=flat-square&logo=google" alt="AI Enhanced">
-  <img src="https://img.shields.io/badge/Testes-69%20Passando-87cf3e?style=flat-square&logo=vitest" alt="Testes 69/69">
+  <img src="https://img.shields.io/badge/Testes-119%20Passando-87cf3e?style=flat-square&logo=vitest" alt="Testes 119/120">
   <img src="https://img.shields.io/badge/Linux%20Mint-22.3%20Zena-87cf3e?style=flat-square&logo=linuxmint" alt="Linux Mint 22.3">
   <img src="https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react" alt="React 18">
   <img src="https://img.shields.io/badge/Vite-5-646cff?style=flat-square&logo=vite" alt="Vite 5">
@@ -124,11 +124,11 @@ Esta é a forma mais prática para o usuário final, integrando a aplicação di
 
 1. **Baixe o arquivo `.deb` mais recente:**
    ```bash
-   wget https://github.com/yuri-schmaltz/mint-install-pro/releases/download/v1.3.1/mint-install-pro_1.3.1_all.deb
+   wget https://github.com/yuri-schmaltz/mint-install-pro/releases/download/v1.3.2/mint-install-pro_1.3.2_all.deb
    ```
 2. **Instale via terminal:**
    ```bash
-   sudo dpkg -i mint-install-pro_1.3.1_all.deb
+   sudo dpkg -i mint-install-pro_1.3.2_all.deb
    sudo apt-get install -f # resolve dependências de sistema se necessário
    ```
    *(Ou dê um duplo clique no arquivo baixado para instalar pela interface gráfica do GDebi).*

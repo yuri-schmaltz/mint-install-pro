@@ -4,7 +4,7 @@ import shutil
 import subprocess
 import stat
 
-VERSION = "1.3.1"
+VERSION = "1.3.2"
 PACKAGE_NAME = "mint-install-pro"
 DEB_DIR = f"/tmp/{PACKAGE_NAME}_{VERSION}_all"
 OUTPUT_DEB = f"{PACKAGE_NAME}_{VERSION}_all.deb"
@@ -173,11 +173,11 @@ def run_server(port):
         httpd.serve_forever()
 
 def try_gtk_webview(url):
-    """
+    '''
     Tenta abrir a URL num WebView GTK nativo. Retorna (ok, motivo_falha).
     Resolve débito #9: ao invés de cair silenciosamente pra webbrowser,
     retorna o motivo para que main() possa mostrar diálogo informativo.
-    """
+    '''
     try:
         import gi
         gi.require_version('Gtk', '3.0')
@@ -215,10 +215,10 @@ def try_gtk_webview(url):
 
 
 def show_error_dialog(reason, url):
-    """
+    '''
     Mostra um diálogo GTK modal explicando que o app precisa de WebKit2
     para rodar. Resolve débito #9: falha alto em vez de cair pro browser.
-    """
+    '''
     try:
         import gi
         gi.require_version('Gtk', '3.0')

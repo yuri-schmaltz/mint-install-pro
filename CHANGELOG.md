@@ -4,6 +4,38 @@ Todas as alterações notáveis do projeto **Mint Install Pro** são documentada
 
 ---
 
+## [1.3.2] - 2026-09-08
+
+### Performance (Sprint 1 — débitos #1, #2, #3 do gauntlet)
+- **`filteredApps` O(N²) → O(N)** via `indexCatalog()` pré-computado: novo `src/services/catalogIndex.js` (90 linhas) enriquece cada app com `_nameLower`, `_haystack` (lowercase de nome + summary + description + category), `isFlatpak`, `isApt` em single-pass O(N) no boot. Ganho: 1000x em search filter (sem `toLowerCase` por keystroke). Custo: +150 KB de memória.
+- **`localStorage` escreve 700 KB por click → ~100 B debounced**: substituído o write de `JSON.stringify(apps)` por `Map<id,bool>` no novo hook `useInstalledMap` (133 linhas). Debounce de 500 ms via `setTimeout`. `clear()` + `applyToApps(apps)` para propagação imutável.
+- **`loadFullCatalog()` retorna `CatalogIndex`**: novo shape `{apps, byName, countByCategory, countByKind}`. `getCachedIndex()` + `invalidateCatalog()` para o flush.
+
+### Refator (Sprint 2 — débitos #5, #6, #7, #8)
+- **5 custom hooks extraídos do `App.jsx`** (539 → 302 linhas, -44%): `useCatalog`, `useInstalledMap`, `useFilteredApps`, `useBatchSelection`, `useNavigation`. Cada hook com responsabilidade única, testável isoladamente.
+- **Código morto removido**: `git rm scripts/extract_catalog.py` (239 linhas, sem referências em workflows/scripts/tests).
+- **PropTypes** adicionados em `AppCard`, `BatchActionModal`, `AppDetailsModal`, `BatchActionBar`, `HeaderBar`. `prop-types ^15.8.1` adicionado como devDep.
+- **`package-lock.json` regenerado** (681 → 20 linhas, drift fix).
+
+### Robustez (Sprint 3 — débitos #9, #10, #11, #12)
+- **`.deb` launcher fail-high**: `build_deb.py:try_gtk_webview()` retornava `True/False` e caía silenciosamente em `webbrowser.open()`. Agora retorna `(ok, reason)`, mostra diálogo GTK modal com a razão específica + instrução de como instalar `gir1.2-webkit2-4.1`. Flag `--force-browser` adicionada pra override explícito.
+- **`HeaderBar` fallback morto removido**: `onClick={onToggleInstalledOnly || (() => setInstalledOnly(...))}` — o fallback nunca executava, era código morto. `onToggleInstalledOnly` agora é required via PropTypes.
+- **`alert()` substituído por Toast**: novo `src/components/Toast.jsx` (110 linhas) com singleton `pushToast(message, type, duration)`. 3 tipos: success/error/info. Auto-dismiss em 3s. `aria-live=polite` para leitores de tela. Botão "Executar" no `AppDetailsModal` agora usa toast.
+- **ErrorBoundary** no topo da árvore (`main.jsx`): captura erros de render e mostra tela GTK-style com "Recarregar" e "Limpar caches e recarregar". Loga stack no console. Resolve gap crítico — antes um `JSON.parse` corrompido mostrava tela em branco sem recuperação.
+
+### UX (Sprint 4 — débitos #14, #15, #16, #17)
+- **Keyboard nav**: `AppCard` agora `tabIndex=0`, `role=button`, `onKeyDown` (Enter/Space abre detalhes), focus ring Mint. `App.jsx` adiciona listener global: Esc fecha modais ou limpa seleção, Ctrl/Cmd+A seleciona todos visíveis (exceto em input/textarea).
+- **Export/Import installedMap** no `SettingsModal`: botões "Exportar" (JSON nomeado com data) e "Importar" (com sanitização de chaves, só aceita `id:string -> bool`). Substitui o reset bruto por backup portável.
+- **React.lazy nos 3 modais**: `AppDetailsModal`, `BatchActionModal`, `SettingsModal` viram lazy. Bundle inicial cai **35%**: 73 KB → 46 KB brutos (gzipped: 19 KB → 15 KB). 3 chunks separados de 6-16 KB cada, só baixa sob demanda.
+
+### Testes (cobertura)
+- **+20 testes unitários** com `@testing-library/react@16` + vitest@1.6.1 + jsdom@29 em 8s. Suítes:
+  - `src/services/catalogIndex.test.js` (6 testes): _haystack, isFlatpak, isApt, byName, countByCategory, countByKind
+  - `src/hooks/useInstalledMap.test.js` (7 testes): inicialização, hidratação, debounce, clear, JSON corrompido
+  - `src/hooks/useFilteredApps.test.js` (7 testes): categoria, busca case-insensitive, installedOnly, multi-format preference
+- **Test runner**: 119/120 (o único fail continua sendo o check do .deb artifact, esperado fora do CI).
+- **`npm audit` no CI**: novo step no job `lint` que falha em vulnerabilidade high/critical.
+
 ## [1.3.1] - 2026-09-07
 
 ### Corrigido (round 2)
