@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Check, Star } from 'lucide-react';
 
-function AppCard({ 
-  app, 
+function AppCard({
+  app,
   onClick, 
   isSelected = false, 
   onToggleSelect 
@@ -126,3 +127,27 @@ function AppCard({
 }
 
 export default React.memo(AppCard);
+
+AppCard.propTypes = {
+  app: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    summary: PropTypes.string,
+    fullSummary: PropTypes.string,
+    rating: PropTypes.number,
+    installed: PropTypes.bool,
+    icon: PropTypes.string,
+    fallbackIcon: PropTypes.string,
+    isFlatpak: PropTypes.bool,
+    isApt: PropTypes.bool,
+    packageType: PropTypes.string
+  }).isRequired,
+  onClick: PropTypes.func.isRequired,
+  isSelected: PropTypes.bool,
+  onToggleSelect: PropTypes.func
+};
+
+AppCard.defaultProps = {
+  isSelected: false,
+  onToggleSelect: null
+};

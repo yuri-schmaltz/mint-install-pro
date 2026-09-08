@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
   Check,
   Loader2,
@@ -10,10 +11,10 @@ import {
 } from 'lucide-react';
 import { executeInstall, executeUninstall } from '../services/packageManager';
 
-export default function BatchActionModal({ 
+export default function BatchActionModal({
   actionType, // 'install' | 'uninstall' | 'mixed'
-  targetApps, 
-  onClose, 
+  targetApps,
+  onClose,
   onComplete
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -229,3 +230,16 @@ export default function BatchActionModal({
     </div>
   );
 }
+
+BatchActionModal.propTypes = {
+  actionType: PropTypes.oneOf(['install', 'uninstall', 'mixed']).isRequired,
+  targetApps: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    icon: PropTypes.string,
+    installed: PropTypes.bool,
+    batchAction: PropTypes.string
+  })).isRequired,
+  onClose: PropTypes.func.isRequired,
+  onComplete: PropTypes.func.isRequired
+};

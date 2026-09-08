@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { 
-  X, 
-  Star, 
-  Check, 
-  Download, 
-  Trash2, 
-  Play, 
-  ShieldCheck, 
-  Layers, 
-  HardDrive, 
-  FileCode, 
+import PropTypes from 'prop-types';
+import {
+  X,
+  Star,
+  Check,
+  Download,
+  Trash2,
+  Play,
+  ShieldCheck,
+  Layers,
+  HardDrive,
+  FileCode,
   ExternalLink,
   CheckCircle2,
   Loader2
@@ -237,3 +238,25 @@ export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
     </div>
   );
 }
+
+AppDetailsModal.propTypes = {
+  app: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    installed: PropTypes.bool,
+    rating: PropTypes.number,
+    version: PropTypes.string,
+    size: PropTypes.string,
+    fullSummary: PropTypes.string,
+    summary: PropTypes.string,
+    description: PropTypes.string,
+    packageType: PropTypes.string,
+    categoryLabel: PropTypes.string,
+    icon: PropTypes.string,
+    fallbackIcon: PropTypes.string,
+    developer: PropTypes.string,
+    license: PropTypes.string
+  }).isRequired,
+  onClose: PropTypes.func.isRequired,
+  onToggleInstall: PropTypes.func.isRequired
+};

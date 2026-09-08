@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Play, X, CheckSquare } from 'lucide-react';
 
 export default function BatchActionBar({
@@ -77,3 +78,21 @@ export default function BatchActionBar({
     </div>
   );
 }
+
+BatchActionBar.propTypes = {
+  selectedCount: PropTypes.number.isRequired,
+  toInstallCount: PropTypes.number.isRequired,
+  toUninstallCount: PropTypes.number.isRequired,
+  onExecuteBatch: PropTypes.func,
+  onInstallBatch: PropTypes.func,
+  onUninstallBatch: PropTypes.func,
+  onClearSelection: PropTypes.func.isRequired,
+  onSelectAllVisible: PropTypes.func.isRequired,
+  isAllVisibleSelected: PropTypes.bool.isRequired
+};
+
+BatchActionBar.defaultProps = {
+  onExecuteBatch: null,
+  onInstallBatch: null,
+  onUninstallBatch: null
+};
