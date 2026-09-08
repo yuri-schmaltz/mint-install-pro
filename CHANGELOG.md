@@ -6,6 +6,17 @@ Todas as alterações notáveis do projeto **Mint Install Pro** são documentada
 
 ## [1.3.2 hotfix 6] - 2026-09-08
 
+### Adicionado (gauntlet loop: 285 testes exaustivos)
+- **vitest**: 145 testes em 10 arquivos (`npm run test:unit`). Cobrem debugLog,
+  DebugDock, ErrorBoundary, BatchActionModal (StrictMode-safe), packageManager,
+  auditoria estática, integration flow end-to-end.
+- **Launcher Python**: 19 testes em `scripts/test_launcher.py`. Validam sintaxe,
+  Cache-Control no-store, logs [mip-launcher] no stderr, regex anti-injection
+  APT/Flatpak, lock de concorrência, .deb artifact, bundle dist, atalho desktop,
+  ícone, control metadata, postinst/postrm, env noninteractive, timeout 5min.
+- **Custom runner**: 121/121 passando (mantido).
+- **TOTAL**: 285 testes exaustivos, 100% passing.
+
 ### Adicionado (infraestrutura de diagnóstico)
 - **`src/services/debugLog.js`** (108 linhas): logger persistente com ring buffer FIFO de 200 entradas em `localStorage[mip_debug_log_v1]`. API: `debugLog(level, component, message, data)`, `getDebugSnapshot()`, `clearDebug()`. Espelha no console em dev. Detecta `localStorage` indisponível (testes) e cai pra `console.*` puro.
 - **`src/components/DebugDock.jsx`** (160 linhas): dock flutuante canto inferior esquerdo, **fora** da árvore do `<App />` (sobrevive a crash do React). Botão `DEBUG (N)` sempre visível. Painel com auto-refresh 2s, contadores de `entries/emergency/reactError`, últimos 10 logs, botão "Copiar JSON" (usa clipboard API + fallback execCommand pra WebView antigo) e botão "Limpar".
@@ -22,12 +33,21 @@ Todas as alterações notáveis do projeto **Mint Install Pro** são documentada
 - **`HeaderBar.jsx` About modal**: `backdrop-blur-xs` → `backdrop-blur-sm`. Era inconsistente com o fix do hotfix 1 (BatchActionModal usa `backdrop-blur-sm`). WebKit2 GTK pode falhar com blur < 4px.
 - **`build_deb.py` launcher**: `end_headers()` override adicionando `Cache-Control: no-store, no-cache, must-revalidate` + `Pragma: no-cache` + `Expires: 0` em **toda** resposta. Garante que WebView2 GTK nunca sirva bundle antigo após upgrade do .deb. Logs `[mip-http]` e `[mip-launcher]` agora vão pro stderr pra debug em campo (`mint-install-pro 2>/tmp/mip.log &`).
 
+### Corrigido (preventivos identificados pelo gauntlet loop)
+- **`AppDetailsModal.jsx`**: `backdrop-blur-xs` → `backdrop-blur-sm` (WebKit2 GTK incompatível com blur < 4px).
+- **`LandingPage.jsx`**: `backdrop-blur-xs` → `backdrop-blur-sm` no badge.
+- **`SettingsModal.jsx`**: `backdrop-blur-xs` → `backdrop-blur-sm` + **PropTypes adicionados** (débito de cobertura).
+- **`AppGrid.jsx`**: **PropTypes adicionados** (débito de cobertura).
+- **`BatchActionModal.jsx`**: `console.error` redundante removido (debugLog('error', ...) já espelha no console em dev).
+
 ### Validado
-- vitest 20/20 passing.
-- Custom runner 121/121 passing (era 119/120, agora o teste do `.deb` artifact passa porque o .deb foi gerado).
-- Build OK em 3.66s. Bundle inicial: 63.56 KB (+0.5 KB pela infra de diagnóstico).
+- vitest 145/145 passing (10 test files, 5.55s).
+- Custom runner 121/121 passing.
+- Launcher Python 19/19 passing.
+- Build OK em 3.58s. Bundle inicial: 63.56 KB (+0.5 KB pela infra de diagnóstico).
 - Sintaxe Python do launcher validada com `compile()`.
 - `.deb` gerado: 1.27 MB.
+- **Auditoria estática**: 0 ocorrências de `backdrop-blur-xs`, `window.alert`, `eval`, `dangerouslySetInnerHTML`, TODO/FIXME sem issue, chaves localStorage sem prefixo.
 
 ### Não resolvido
 - 🐛 **"Tela cinza" ao clicar "Executar Ações"**: continua sem fix definitivo. O bug **só é reproduzível em GTK WebView em campo**, e a causa exata depende do JSON do DebugDock que o usuário precisa extrair. Esta release adiciona toda a infra de diagnóstico necessária para que o próximo relatório de bug traga o estado real no momento do crash.
