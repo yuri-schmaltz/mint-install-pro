@@ -289,7 +289,8 @@ console.log('\n17. Loading state + tratamento de flatpak ausente:');
 assert(appJsxContent2.includes('catalogLoading'), 'App.jsx tem estado catalogLoading para o fetch lazy');
 assert(appJsxContent2.includes('flatpakStatus'), 'App.jsx tem estado flatpakStatus');
 assert(appJsxContent2.includes("status === 503"), 'App.jsx trata HTTP 503 do /api/installed (flatpak ausente)');
-assert(appJsxContent2.includes('loadCatalogIndex'), 'App.jsx importa loadCatalogIndex para o índice leve');
+assert(appJsxContent2.includes('getCachedIndex') || appJsxContent2.includes('catalogIndex'),
+  'App.jsx usa catalogIndex/getCachedIndex (índice pré-computado) do services/catalog');
 
 const landingPageContent = fs.readFileSync(path.join(process.cwd(), 'src/components/LandingPage.jsx'), 'utf-8');
 assert(landingPageContent.includes('isLoading'), 'LandingPage aceita prop isLoading');

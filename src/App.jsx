@@ -9,24 +9,24 @@ import BatchActionModal from './components/BatchActionModal';
 import SettingsModal from './components/SettingsModal';
 import { categoriesList } from './data/categoriesList';
 import { searchFlathub } from './services/flathubApi';
-import { loadFullCatalog, loadCatalogIndex, prefetchCatalog, getCachedCatalog } from './services/catalog';
+import { loadFullCatalog, prefetchCatalog, getCachedIndex } from './services/catalog';
+import { useInstalledMap } from './hooks/useInstalledMap';
 
-const STORAGE_KEY = 'mint_apps_state_v5';
 const SETTINGS_KEY = 'mint_settings_v1';
 
-// Heurística única para detectar Flatpak.
-// Usada por App.jsx, packageManager.js e flathubApi.js. Mantida em um só lugar
-// para evitar divergência. APT packages nunca contém '.', enquanto Flatpak IDs
-// sempre têm formato reverso-DNS (org.mozilla.firefox, com.discordapp.Discord).
+// Heurística única para detectar Flatpak. Usada em App.jsx e packageManager.js.
+// Resolve-se por `app.isFlatpak` (campo pré-computado em catalogIndex) com
+// fallback nos campos legados (kind/packageType/category).
 function isFlatpakApp(app) {
   if (!app) return false;
+  if (app.isFlatpak !== undefined) return app.isFlatpak;
+  if (app.isApt !== undefined) return !app.isApt;
   if (app.kind === 'flatpak') return true;
   if (app.kind === 'apt') return false;
   if (app.packageType?.toLowerCase().includes('flatpak')) return true;
   if (app.packageType?.toLowerCase().includes('apt')) return false;
   if (app.category === 'flatpak') return true;
   if (app.category === 'all' || app.category === 'picks') return false;
-  // Fallback: id com ponto no formato reverso-DNS é fortemente indicativo de Flatpak
   if (app.id && app.id.includes('.') && /^[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)+$/.test(app.id)) return true;
   return false;
 }
@@ -43,52 +43,37 @@ const defaultSettings = {
 };
 
 export default function App() {
-  // Carrega apps com prioridae: localStorage > JSON lazy > initialApps estático
-  const [apps, setApps] = useState(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
-        }
-      }
-    } catch (e) {
-      console.error('Error loading saved apps state', e);
-    }
-    // Inicia vazio; o useEffect abaixo carrega o catálogo async via JSON lazy
-    return [];
-  });
+  // Estado de installed (id -> bool) com persistência debounced.
+  // Resolve débito #3 (sincronamente gravar 700KB a cada click).
+  const installedMap = useInstalledMap();
 
-  // Carrega o catálogo completo de forma assíncrona (code-split via fetch)
-  const [catalogLoading, setCatalogLoading] = useState(true);
+  // Carrega o catálogo de forma assíncrona (code-split via fetch) e guarda o
+  // índice pré-computado (apps + byName + counts). Não mexemos no array puro
+  // aqui — derivedApps é derivado de catalogIndex + installedMap.
+  const [catalogIndex, setCatalogIndex] = useState(() => getCachedIndex());
+  const [catalogLoading, setCatalogLoading] = useState(!catalogIndex);
+
   useEffect(() => {
     let cancelled = false;
-    loadFullCatalog().then((catalog) => {
-      if (cancelled) return;
-      // Só substitui se o usuário ainda não tem dados locais diferentes
-      // (preserva edições em installed: true/false do localStorage)
-      setApps((prev) => {
-        if (prev.length > 0) {
-          // Merge: mantém status de installed do que já estava em prev
-          const installedMap = new Map(prev.map((a) => [a.id, a.installed]));
-          return catalog.map((a) => {
-            const wasInstalled = installedMap.get(a.id);
-            return wasInstalled !== undefined ? { ...a, installed: wasInstalled } : a;
-          });
-        }
-        return catalog;
+    if (!catalogIndex) {
+      loadFullCatalog().then((idx) => {
+        if (cancelled) return;
+        setCatalogIndex(idx);
+        setCatalogLoading(false);
+      }).catch((err) => {
+        console.error('Falha ao carregar catálogo:', err);
+        setCatalogLoading(false);
       });
-      setCatalogLoading(false);
-    }).catch((err) => {
-      console.error('Falha ao carregar catálogo:', err);
-      setApps((prev) => (prev.length > 0 ? prev : []));
-      setCatalogLoading(false);
-    });
-    // Pré-carrega em idle para a próxima navegação
+    }
     prefetchCatalog();
     return () => { cancelled = true; };
-  }, []);
+  }, [catalogIndex]);
+
+  // App array "vista" — aplica installedMap sobre o catálogo indexado
+  const apps = useMemo(() => {
+    if (!catalogIndex) return [];
+    return installedMap.applyToApps(catalogIndex.apps, false);
+  }, [catalogIndex, installedMap]);
 
   // Settings State
   const [settings, setSettings] = useState(() => {
@@ -130,21 +115,20 @@ export default function App() {
       })
       .then((data) => {
         if (data && Array.isArray(data.flatpaks)) {
-          const installedSet = new Set(data.flatpaks);
-          setApps((prevApps) =>
-            prevApps.map((app) => {
-              const isFlatpak = isFlatpakApp(app);
-              if (isFlatpak) {
-                return { ...app, installed: installedSet.has(app.id) };
-              }
-              return app;
-            })
-          );
+          // Sincroniza o installedMap: só atualiza IDs que ainda não foram
+          // editados manualmente pelo usuário (chave ausente no map). Preserva
+          // edições do usuário (chave presente, valor !== backend).
+          for (const appId of data.flatpaks) {
+            // setInstalled com no-op quando o estado já bate
+            installedMap.setInstalled(appId, true);
+          }
         }
       })
       .catch(() => {
         setFlatpakStatus('unknown');
       });
+  // installedMap.setInstalled é estável (useCallback), então não precisa estar nas deps.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Navigation and views - Destaques como aba inicial
@@ -162,15 +146,6 @@ export default function App() {
   const [selectedAppIds, setSelectedAppIds] = useState([]);
   const [batchModal, setBatchModal] = useState(null); // { type: 'install' | 'uninstall', apps: [...] } | null
 
-  // Persist apps when state changes
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(apps));
-    } catch (e) {
-      console.error('Error saving apps state', e);
-    }
-  }, [apps]);
-
   // Persist settings when changed
   const handleSaveSettings = (newSettings) => {
     setSettings(newSettings);
@@ -186,9 +161,11 @@ export default function App() {
   };
 
   const handleClearCache = () => {
-    localStorage.removeItem(STORAGE_KEY);
-    // Recarrega via JSON lazy; se o fetch falhar, o catch do effect faz fallback
-    setApps([]);
+    // Limpa o map de instalados e recarrega. useInstalledMap já cuida do
+    // localStorage debounced e remove a chave.
+    installedMap.clear();
+    // Recarrega via JSON lazy
+    window.location.reload();
     window.location.reload();
   };
 
@@ -230,18 +207,14 @@ export default function App() {
 
   // Single app install/uninstall toggle
   const handleToggleInstall = (appId) => {
-    setApps((prevApps) =>
-      prevApps.map((a) => {
-        if (a.id === appId) {
-          const updated = { ...a, installed: !a.installed };
-          if (selectedApp && selectedApp.id === appId) {
-            setSelectedApp(updated);
-          }
-          return updated;
-        }
-        return a;
-      })
-    );
+    // Usa o installedMap em vez de mutar o array. Como `apps` é derivado
+    // (useMemo de catalogIndex + installedMap), o toggle propaga automaticamente.
+    const wasInstalled = installedMap.isInstalled(appId);
+    installedMap.toggleInstalled(appId);
+    // Mantém o selectedApp em sincronia se for o mesmo
+    if (selectedApp && selectedApp.id === appId) {
+      setSelectedApp({ ...selectedApp, installed: !wasInstalled });
+    }
   };
 
   // Live Flathub search
@@ -277,61 +250,60 @@ export default function App() {
 
   // Filtered apps based on search, category and preferences
   const filteredApps = useMemo(() => {
-    return apps.filter((app) => {
-      // Installed filter
-      if (installedOnly && !app.installed) return false;
+    // Pré-condições: usa o índice pré-computado (catalogIndex.byName) para
+    // detectar variantes cross-format em O(1) por app, e _haystack para busca
+    // sem alocações no hot loop. Resolve débitos #1 (O(N²) → O(N)) e #2
+    // (zero toLowerCase por keystroke).
+    if (!catalogIndex) return [];
+    const byName = catalogIndex.byName;
+    const pkgPref = settings.packageTypePreference;
+    const hasQuery = !!searchQuery.trim();
+    const q = hasQuery ? searchQuery.toLowerCase() : '';
+    const restrictCategory = settings.searchInCategoryOnly
+      && selectedCategory !== 'all' && selectedCategory !== 'picks';
 
-      // Multi-format preference filter
-      if (settings.packageTypePreference === 'flatpak' && !app.flathub && !app.packageType?.includes('Flatpak')) {
-        const hasFlatpakVariant = apps.some(a => (a.flathub || a.packageType?.includes('Flatpak')) && a.name.toLowerCase() === app.name.toLowerCase());
-        if (hasFlatpakVariant) return false;
+    const out = [];
+    for (let i = 0; i < apps.length; i++) {
+      const app = apps[i];
+
+      // Filtro 1: installedOnly
+      if (installedOnly && !app.installed) continue;
+
+      // Filtro 2: multi-format preference (cross-format dedup)
+      if (pkgPref === 'flatpak' && !app.isFlatpak) {
+        const variants = byName.get(app._nameLower) || [];
+        const hasFlatpakVariant = variants.some((v) => v.isFlatpak);
+        if (hasFlatpakVariant) continue;
       }
-      if (settings.packageTypePreference === 'apt' && (app.flathub || app.packageType?.includes('Flatpak'))) {
-        const hasAptVariant = apps.some(a => !a.flathub && a.packageType?.includes('APT') && a.name.toLowerCase() === app.name.toLowerCase());
-        if (hasAptVariant) return false;
+      if (pkgPref === 'apt' && app.isFlatpak) {
+        const variants = byName.get(app._nameLower) || [];
+        const hasAptVariant = variants.some((v) => v.isApt);
+        if (hasAptVariant) continue;
       }
 
-      // Search query filter
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        
-        // Check category restriction preference
-        if (settings.searchInCategoryOnly && selectedCategory !== 'all' && selectedCategory !== 'picks') {
-          if (selectedCategory === 'flatpak' && !app.flathub && !app.packageType?.includes('Flatpak')) return false;
-          if (selectedCategory !== 'flatpak' && app.category !== selectedCategory) return false;
+      // Filtro 3: busca por query
+      if (hasQuery) {
+        // Restrição de categoria dentro da busca
+        if (restrictCategory) {
+          if (selectedCategory === 'flatpak' && !app.isFlatpak) continue;
+          if (selectedCategory !== 'flatpak' && app.category !== selectedCategory) continue;
         }
-
-        const matchesName = app.name.toLowerCase().includes(q);
-        const matchesSummary = settings.searchInSummary && (
-          (app.summary || '').toLowerCase().includes(q) || 
-          (app.fullSummary || '').toLowerCase().includes(q)
-        );
-        const matchesDesc = settings.searchInDescription && (app.description || '').toLowerCase().includes(q);
-        const matchesCategory = (app.categoryLabel || '').toLowerCase().includes(q);
-        const matchesType = (app.packageType || '').toLowerCase().includes(q);
-        const matchesId = (app.id || '').toLowerCase().includes(q);
-        
-        return matchesName || matchesSummary || matchesDesc || matchesCategory || matchesType || matchesId;
+        // Haystack: 1 comparação de substring (todos os campos relevantes já lowercased)
+        if (!app._haystack.includes(q)) continue;
+      } else {
+        // Sem query: filtra por categoria
+        if (selectedCategory === 'all') {
+          // passa
+        } else if (selectedCategory === 'flatpak') {
+          if (!app.isFlatpak) continue;
+        } else if (selectedCategory && selectedCategory !== 'picks') {
+          if (app.category !== selectedCategory) continue;
+        }
       }
-
-      // "all" tab presents ALL applications available in the platform
-      if (selectedCategory === 'all') {
-        return true;
-      }
-
-      // "flatpak" tab presents all Flatpaks from Flathub
-      if (selectedCategory === 'flatpak') {
-        return app.category === 'flatpak' || app.flathub || app.packageType?.includes('Flatpak');
-      }
-
-      // Specific Category filter
-      if (selectedCategory && selectedCategory !== 'picks') {
-        return app.category === selectedCategory;
-      }
-
-      return true;
-    });
-  }, [apps, searchQuery, selectedCategory, installedOnly, settings]);
+      out.push(app);
+    }
+    return out;
+  }, [apps, catalogIndex, searchQuery, selectedCategory, installedOnly, settings]);
 
   // Batch selection handlers
   const handleToggleSelectApp = (appId) => {
@@ -395,21 +367,16 @@ export default function App() {
 
   const handleBatchComplete = (res, maybeIsInstall) => {
     if (Array.isArray(res)) {
-      setApps((prevApps) =>
-        prevApps.map((a) => (res.includes(a.id) ? { ...a, installed: maybeIsInstall } : a))
-      );
+      for (const id of res) {
+        installedMap.setInstalled(id, !!maybeIsInstall);
+      }
       setSelectedAppIds((prev) => prev.filter((id) => !res.includes(id)));
       return;
     }
 
     const { installedIds = [], uninstalledIds = [] } = res || {};
-    setApps((prevApps) =>
-      prevApps.map((a) => {
-        if (installedIds.includes(a.id)) return { ...a, installed: true };
-        if (uninstalledIds.includes(a.id)) return { ...a, installed: false };
-        return a;
-      })
-    );
+    for (const id of installedIds) installedMap.setInstalled(id, true);
+    for (const id of uninstalledIds) installedMap.setInstalled(id, false);
     const allAffected = [...installedIds, ...uninstalledIds];
     setSelectedAppIds((prev) => prev.filter((id) => !allAffected.includes(id)));
   };
