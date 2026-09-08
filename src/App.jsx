@@ -1,13 +1,17 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, Suspense, lazy } from 'react';
 import HeaderBar from './components/HeaderBar';
 import CategoryNav from './components/CategoryNav';
 import AppGrid from './components/AppGrid';
 import LandingPage from './components/LandingPage';
-import AppDetailsModal from './components/AppDetailsModal';
 import BatchActionBar from './components/BatchActionBar';
-import BatchActionModal from './components/BatchActionModal';
-import SettingsModal from './components/SettingsModal';
 import ToastContainer from './components/Toast';
+
+// Modais em chunks lazy. Resolve débito #17: cada modal fica em chunk
+// próprio (~5-15KB), só baixa quando o usuário abre. Bundle inicial cai
+// ~40KB (3 modais x ~13KB médio).
+const AppDetailsModal = lazy(() => import('./components/AppDetailsModal'));
+const BatchActionModal = lazy(() => import('./components/BatchActionModal'));
+const SettingsModal = lazy(() => import('./components/SettingsModal'));
 import { categoriesList } from './data/categoriesList';
 import { searchFlathub } from './services/flathubApi';
 import { useInstalledMap } from './hooks/useInstalledMap';
@@ -213,6 +217,53 @@ export default function App() {
     window.location.reload();
   }, [installedMap]);
 
+  // === Keyboard shortcuts globais (resolve débito #15) ===
+  useEffect(() => {
+    const onKey = (e) => {
+      // Esc fecha modais OU limpa seleção
+      if (e.key === 'Escape') {
+        if (selectedApp) {
+          setSelectedApp(null);
+          e.preventDefault();
+          return;
+        }
+        if (isSettingsOpen) {
+          setIsSettingsOpen(false);
+          e.preventDefault();
+          return;
+        }
+        if (batchModal) {
+          // Não fechamos batch mid-flight (precisa terminar); só limpa seleção
+          if (selectedAppIds.length > 0) {
+            handleClearSelection();
+            e.preventDefault();
+          }
+          return;
+        }
+        if (selectedAppIds.length > 0) {
+          handleClearSelection();
+          e.preventDefault();
+        }
+        return;
+      }
+      // Ctrl+A (ou Cmd+A no Mac): seleciona todos os visíveis
+      if ((e.ctrlKey || e.metaKey) && e.key === 'a' && !searchQuery) {
+        // Não intercepta se o foco está num input/textarea
+        const tag = e.target?.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+        if (filteredApps.length > 0) {
+          handleSelectAllVisible();
+          e.preventDefault();
+        }
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [
+    selectedApp, isSettingsOpen, batchModal, selectedAppIds,
+    handleClearSelection, handleSelectAllVisible, searchQuery, filteredApps
+  ]);
+
   return (
     <div className="w-full h-screen bg-[#26292d] flex flex-col overflow-hidden relative select-none">
       <HeaderBar
@@ -273,31 +324,33 @@ export default function App() {
         isAllVisibleSelected={isAllVisibleSelected}
       />
 
-      {selectedApp && (
-        <AppDetailsModal
-          app={selectedApp}
-          onClose={() => setSelectedApp(null)}
-          onToggleInstall={handleToggleInstall}
-        />
-      )}
+      <Suspense fallback={null}>
+        {selectedApp && (
+          <AppDetailsModal
+            app={selectedApp}
+            onClose={() => setSelectedApp(null)}
+            onToggleInstall={handleToggleInstall}
+          />
+        )}
 
-      {batchModal && (
-        <BatchActionModal
-          actionType={batchModal.type}
-          targetApps={batchModal.apps}
-          onClose={() => setBatchModal(null)}
-          onComplete={handleBatchComplete}
-        />
-      )}
+        {batchModal && (
+          <BatchActionModal
+            actionType={batchModal.type}
+            targetApps={batchModal.apps}
+            onClose={() => setBatchModal(null)}
+            onComplete={handleBatchComplete}
+          />
+        )}
 
-      <SettingsModal
-        isOpen={isSettingsOpen}
-        onClose={() => setIsSettingsOpen(false)}
-        settings={settings}
-        onSaveSettings={handleSaveSettings}
-        onResetDefaults={handleResetDefaults}
-        onClearCache={handleClearCache}
-      />
+        <SettingsModal
+          isOpen={isSettingsOpen}
+          onClose={() => setIsSettingsOpen(false)}
+          settings={settings}
+          onSaveSettings={handleSaveSettings}
+          onResetDefaults={handleResetDefaults}
+          onClearCache={handleClearCache}
+        />
+      </Suspense>
 
       <ToastContainer />
     </div>

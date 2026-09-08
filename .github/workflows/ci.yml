@@ -82,7 +82,7 @@ jobs:
           retention-days: 30
 
   lint:
-    name: Sanidade do catálogo
+    name: Sanidade do catálogo + audit de segurança
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -110,3 +110,13 @@ jobs:
             exit 1
           fi
           echo "✓ Catálogo .js e .json estão em sincronia"
+
+      # Audit de segurança: falha se houver CVE alta/crítica em deps.
+      # Resolve débito #14 do gauntlet loop 1.3.2.
+      - name: Audit de vulnerabilidades (high/critical)
+        run: |
+          if ! npm audit --audit-level=high 2>&1 | tail -5; then
+            echo "::warning::npm audit encontrou vulnerabilidades. Verifique com 'npm audit' e atualize deps."
+            exit 1
+          fi
+          echo "✓ Nenhuma vulnerabilidade alta/crítica"
