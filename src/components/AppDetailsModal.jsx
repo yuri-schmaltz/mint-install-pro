@@ -16,6 +16,7 @@ import {
   Loader2
 } from 'lucide-react';
 import { executeInstall, executeUninstall } from '../services/packageManager';
+import { pushToast } from './Toast';
 
 export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
   const [installing, setInstalling] = useState(false);
@@ -125,7 +126,12 @@ export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
                     <span>Remover</span>
                   </button>
                   <button
-                    onClick={() => alert(`Iniciando ${app.name}...`)}
+                    onClick={() => {
+                      // Resolve débito #11: substituir alert() por toast.
+                      // A integração real com xdg-open / gtk-launch fica para
+                      // uma fase futura; por ora, feedback visual.
+                      pushToast(`Iniciando ${app.name}...`, 'info', 2500);
+                    }}
                     className="flex items-center space-x-1.5 px-4 py-1.5 rounded text-xs font-semibold bg-[#87cf3e] hover:bg-[#97df4e] text-[#132802] transition-colors shadow-sm"
                   >
                     <Play className="w-3.5 h-3.5 fill-current" />

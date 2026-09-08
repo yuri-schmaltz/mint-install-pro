@@ -7,6 +7,7 @@ import AppDetailsModal from './components/AppDetailsModal';
 import BatchActionBar from './components/BatchActionBar';
 import BatchActionModal from './components/BatchActionModal';
 import SettingsModal from './components/SettingsModal';
+import ToastContainer from './components/Toast';
 import { categoriesList } from './data/categoriesList';
 import { searchFlathub } from './services/flathubApi';
 import { useInstalledMap } from './hooks/useInstalledMap';
@@ -297,6 +298,8 @@ export default function App() {
         onResetDefaults={handleResetDefaults}
         onClearCache={handleClearCache}
       />
+
+      <ToastContainer />
     </div>
   );
 }
