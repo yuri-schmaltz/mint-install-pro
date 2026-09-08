@@ -34,56 +34,83 @@ export default function BatchActionModal({
     let isCancelled = false;
 
     const processQueue = async () => {
-      setLogs(prev => [...prev, `[SISTEMA] Iniciando fila de operações em lote (${targetApps.length} pacotes)...`]);
+      try {
+        setLogs(prev => [...prev, `[SISTEMA] Iniciando fila de operações em lote (${targetApps.length} pacotes)...`]);
 
-      const successfullyInstalled = [];
-      const successfullyUninstalled = [];
+        const successfullyInstalled = [];
+        const successfullyUninstalled = [];
 
-      for (let i = 0; i < targetApps.length; i++) {
-        if (isCancelled) break;
-        const currentApp = targetApps[i];
-        const currentAction = currentApp.batchAction || (currentApp.installed ? 'uninstall' : 'install');
-        setCurrentIndex(i);
+        for (let i = 0; i < targetApps.length; i++) {
+          if (isCancelled) break;
+          const currentApp = targetApps[i];
+          const currentAction = currentApp.batchAction || (currentApp.installed ? 'uninstall' : 'install');
+          setCurrentIndex(i);
 
-        // Update to processing
-        setAppStatuses(prev => 
-          prev.map((item, idx) => idx === i ? { ...item, status: 'processing' } : item)
-        );
-
-        if (currentAction === 'install') {
-          const res = await executeInstall(currentApp, (msg) => {
-            if (!isCancelled) setLogs(prev => [...prev, msg]);
-          });
-          if (!isCancelled) {
-            if (res.success) {
-              successfullyInstalled.push(currentApp.id);
-              setLogs(prev => [...prev, `[SUCESSO] ${currentApp.name} instalado no sistema!`]);
-            } else {
-              setLogs(prev => [...prev, `[AVISO] ${currentApp.name}: ${res.output || 'Concluído com aviso'}`]);
-            }
-          }
-        } else {
-          const res = await executeUninstall(currentApp, (msg) => {
-            if (!isCancelled) setLogs(prev => [...prev, msg]);
-          });
-          if (!isCancelled) {
-            successfullyUninstalled.push(currentApp.id);
-            setLogs(prev => [...prev, `[SUCESSO] ${currentApp.name} removido do sistema!`]);
-          }
-        }
-
-        // Mark as done
-        if (!isCancelled) {
-          setAppStatuses(prev => 
-            prev.map((item, idx) => idx === i ? { ...item, status: 'done' } : item)
+          // Update to processing
+          setAppStatuses(prev =>
+            prev.map((item, idx) => idx === i ? { ...item, status: 'processing' } : item)
           );
-        }
-      }
 
-      if (!isCancelled) {
-        setLogs(prev => [...prev, `[SISTEMA] Todas as operações em lote foram concluídas com sucesso!`]);
-        setIsFinished(true);
-        onComplete({ installedIds: successfullyInstalled, uninstalledIds: successfullyUninstalled });
+          let res;
+          try {
+            if (currentAction === 'install') {
+              res = await executeInstall(currentApp, (msg) => {
+                if (!isCancelled) setLogs(prev => [...prev, msg]);
+              });
+            } else {
+              res = await executeUninstall(currentApp, (msg) => {
+                if (!isCancelled) setLogs(prev => [...prev, msg]);
+              });
+            }
+          } catch (opErr) {
+            // Defesa: se executeInstall/Uninstall rejeitar (raro, mas pode
+            // acontecer com timeout de rede ou backend caído), loga e segue
+            // para o próximo. Não derruba a fila inteira.
+            if (!isCancelled) {
+              setLogs(prev => [...prev, `[ERRO] ${currentApp.name}: ${String(opErr.message || opErr)}`]);
+            }
+            res = { success: false, output: String(opErr.message || opErr) };
+          }
+
+          if (!isCancelled) {
+            if (currentAction === 'install') {
+              if (res && res.success) {
+                successfullyInstalled.push(currentApp.id);
+                setLogs(prev => [...prev, `[SUCESSO] ${currentApp.name} instalado no sistema!`]);
+              } else {
+                setLogs(prev => [...prev, `[AVISO] ${currentApp.name}: ${(res && res.output) || 'Concluído com aviso'}`]);
+              }
+            } else {
+              // uninstall: só conta como sucesso se res.success for explicitamente true
+              if (res && res.success) {
+                successfullyUninstalled.push(currentApp.id);
+                setLogs(prev => [...prev, `[SUCESSO] ${currentApp.name} removido do sistema!`]);
+              } else {
+                setLogs(prev => [...prev, `[AVISO] ${currentApp.name}: ${(res && res.output) || 'Concluído com aviso'}`]);
+              }
+            }
+
+            // Mark as done
+            setAppStatuses(prev =>
+              prev.map((item, idx) => idx === i ? { ...item, status: 'done' } : item)
+            );
+          }
+        }
+
+        if (!isCancelled) {
+          setLogs(prev => [...prev, `[SISTEMA] Todas as operações em lote foram concluídas!`]);
+          setIsFinished(true);
+          onComplete({ installedIds: successfullyInstalled, uninstalledIds: successfullyUninstalled });
+        }
+      } catch (fatalErr) {
+        // Última rede de segurança: se algo muito errado acontecer (ex: bug
+        // no setState que causa loop infinito), pelo menos o modal fica em
+        // estado de erro visível ao usuário em vez de tela cinza.
+        console.error('[BatchActionModal] Erro fatal na fila:', fatalErr);
+        if (!isCancelled) {
+          setLogs(prev => [...prev, `[ERRO FATAL] ${String(fatalErr.message || fatalErr)}`]);
+          setIsFinished(true);
+        }
       }
     };
 
@@ -105,7 +132,7 @@ export default function BatchActionModal({
       : 'bg-[#87cf3e]';
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-xs flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
       <div className="bg-[#2a2d32] border border-[#3b3f46] rounded-lg max-w-xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden text-[#e0e0e0]">
         
         {/* Header */}
