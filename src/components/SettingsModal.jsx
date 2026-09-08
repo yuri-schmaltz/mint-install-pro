@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { 
-  X, 
-  Settings, 
-  Search, 
-  Boxes, 
-  RotateCcw, 
+import {
+  X,
+  Settings,
+  Search,
+  Boxes,
+  RotateCcw,
   AlertTriangle,
   Check,
   HardDrive,
   Monitor,
   ChevronDown
 } from 'lucide-react';
+import { pushToast } from './Toast';
 
 export default function SettingsModal({ 
   isOpen, 
@@ -269,6 +270,67 @@ export default function SettingsModal({
                     >
                       Limpar Cache
                     </button>
+                  </div>
+
+                  {/* Export/Import installed map (resolve débito #16) */}
+                  <div className="p-3.5 flex items-center justify-between">
+                    <div>
+                      <div className="text-white font-medium">Backup de apps instalados</div>
+                      <div className="text-[11px] text-[#8e95a0]">Exporta ou importa a lista de apps marcados como instalados</div>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={() => {
+                          try {
+                            const raw = localStorage.getItem('mint_installed_map_v1');
+                            const map = raw ? JSON.parse(raw) : {};
+                            const blob = new Blob([JSON.stringify(map, null, 2)], { type: 'application/json' });
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `mint-install-pro-installed-${new Date().toISOString().slice(0, 10)}.json`;
+                            a.click();
+                            URL.revokeObjectURL(url);
+                            pushToast('Backup exportado com sucesso', 'success');
+                          } catch (e) {
+                            pushToast('Falha ao exportar backup', 'error');
+                          }
+                        }}
+                        className="px-3 py-1.5 rounded bg-[#2b2e34] hover:bg-[#383c44] text-[#e0e0e0] border border-[#383d47] font-medium text-xs transition-colors"
+                      >
+                        Exportar
+                      </button>
+                      <label className="px-3 py-1.5 rounded bg-[#2b2e34] hover:bg-[#383c44] text-[#e0e0e0] border border-[#383d47] font-medium text-xs transition-colors cursor-pointer">
+                        Importar
+                        <input
+                          type="file"
+                          accept="application/json"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (!file) return;
+                            const reader = new FileReader();
+                            reader.onload = (ev) => {
+                              try {
+                                const map = JSON.parse(ev.target.result);
+                                if (typeof map !== 'object' || map === null) throw new Error('invalid');
+                                // Sanitiza: só aceita id -> bool
+                                const clean = {};
+                                for (const [k, v] of Object.entries(map)) {
+                                  if (typeof k === 'string' && typeof v === 'boolean') clean[k] = v;
+                                }
+                                localStorage.setItem('mint_installed_map_v1', JSON.stringify(clean));
+                                pushToast(`Backup importado (${Object.keys(clean).length} apps). Recarregue a página.`, 'success', 4000);
+                              } catch (err) {
+                                pushToast('Arquivo inválido', 'error');
+                              }
+                            };
+                            reader.readAsText(file);
+                            e.target.value = ''; // reset pra permitir re-import do mesmo arquivo
+                          }}
+                        />
+                      </label>
+                    </div>
                   </div>
 
                 </div>

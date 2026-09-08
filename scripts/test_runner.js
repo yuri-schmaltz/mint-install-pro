@@ -182,9 +182,9 @@ assert(allLabelsMatch, `Todos os 11 rótulos concisos coincidem: [${expectedLabe
 
 // Test 12: Verificação de Empacotamento Debian e Documentos Oficiais
 console.log('\n12. Verificação de Empacotamento Debian e Documentos Oficiais:');
-const debPath = path.join(process.cwd(), 'mint-install-pro_1.3.1_all.deb');
+const debPath = path.join(process.cwd(), 'mint-install-pro_1.3.2_all.deb');
 const debExists = fs.existsSync(debPath);
-assert(debExists, 'Pacote Debian "mint-install-pro_1.3.1_all.deb" gerado na raiz do projeto');
+assert(debExists, 'Pacote Debian "mint-install-pro_1.3.2_all.deb" gerado na raiz do projeto');
 if (debExists) {
   const debSize = fs.statSync(debPath).size;
   assert(debSize > 500 * 1024, `Pacote Debian possui tamanho válido de produção (${(debSize / 1024).toFixed(1)} KB)`);
@@ -277,19 +277,21 @@ const catalogServiceContent = fs.readFileSync(path.join(process.cwd(), 'src/serv
 assert(catalogServiceContent.includes('loadFullCatalog'), 'Serviço de catálogo lazy (loadFullCatalog) presente');
 assert(catalogServiceContent.includes('requestIdleCallback'), 'Prefetch do catálogo usa requestIdleCallback');
 
-// App.jsx usa catálogo lazy e função isFlatpakApp centralizada
+// App.jsx usa catálogo lazy e hooks customizados
 const appJsxContent2 = fs.readFileSync(path.join(process.cwd(), 'src/App.jsx'), 'utf-8');
-assert(appJsxContent2.includes('loadFullCatalog'), 'App.jsx usa loadFullCatalog para carregar o catálogo');
 assert(!appJsxContent2.includes("from './data/initialApps'") || appJsxContent2.match(/from '\.\/data\/initialApps'/g).length === 1,
   'App.jsx importa apenas categoriesList de initialApps (initialApps é lazy via catalog.js)');
-assert(appJsxContent2.includes('function isFlatpakApp'), 'Heurística isFlatpakApp centralizada em App.jsx');
+assert(appJsxContent2.includes('useCatalog'), 'App.jsx usa hook useCatalog');
+assert(appJsxContent2.includes('useFilteredApps'), 'App.jsx usa hook useFilteredApps');
+assert(appJsxContent2.includes('useBatchSelection'), 'App.jsx usa hook useBatchSelection');
+assert(appJsxContent2.includes('useNavigation'), 'App.jsx usa hook useNavigation');
+assert(appJsxContent2.includes('useInstalledMap'), 'App.jsx usa hook useInstalledMap');
 
 // Test 17: Loading state e tratamento de flatpak ausente (gauntlet loop, round 2)
 console.log('\n17. Loading state + tratamento de flatpak ausente:');
-assert(appJsxContent2.includes('catalogLoading'), 'App.jsx tem estado catalogLoading para o fetch lazy');
-assert(appJsxContent2.includes('flatpakStatus'), 'App.jsx tem estado flatpakStatus');
-assert(appJsxContent2.includes("status === 503"), 'App.jsx trata HTTP 503 do /api/installed (flatpak ausente)');
-assert(appJsxContent2.includes('loadCatalogIndex'), 'App.jsx importa loadCatalogIndex para o índice leve');
+const useCatalogHook = fs.readFileSync(path.join(process.cwd(), 'src/hooks/useCatalog.js'), 'utf-8');
+assert(useCatalogHook.includes('status === 503'), 'useCatalog trata HTTP 503 do /api/installed (flatpak ausente)');
+assert(useCatalogHook.includes('flatpakStatus'), 'useCatalog expõe flatpakStatus');
 
 const landingPageContent = fs.readFileSync(path.join(process.cwd(), 'src/components/LandingPage.jsx'), 'utf-8');
 assert(landingPageContent.includes('isLoading'), 'LandingPage aceita prop isLoading');
@@ -313,7 +315,7 @@ console.log('\n18. Sanidade do .deb empacotado:');
 // (checado no CI pelo job deb-package; aqui só garantimos que o script
 // de build existe e referencia a versão correta)
 const buildDebContent = fs.readFileSync(path.join(process.cwd(), 'scripts/build_deb.py'), 'utf-8');
-assert(buildDebContent.includes('VERSION = "1.3.1"'), 'build_deb.py usa VERSION = "1.3.1"');
+assert(buildDebContent.includes('VERSION = "1.3.2"'), 'build_deb.py usa VERSION = "1.3.2"');
 assert(buildDebContent.includes('shutil.copytree(dist_dir'), 'build_deb.py copia o dist/ inteiro (incluindo data/)');
 
 // Test 19: Deduplicação cross-kind (gauntlet loop, fix débito 9.6)

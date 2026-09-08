@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import { 
-  X, 
-  Star, 
-  Check, 
-  Download, 
-  Trash2, 
-  Play, 
-  ShieldCheck, 
-  Layers, 
-  HardDrive, 
-  FileCode, 
+import PropTypes from 'prop-types';
+import {
+  X,
+  Star,
+  Check,
+  Download,
+  Trash2,
+  Play,
+  ShieldCheck,
+  Layers,
+  HardDrive,
+  FileCode,
   ExternalLink,
   CheckCircle2,
   Loader2
 } from 'lucide-react';
 import { executeInstall, executeUninstall } from '../services/packageManager';
+import { pushToast } from './Toast';
 
 export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
   const [installing, setInstalling] = useState(false);
@@ -124,7 +126,12 @@ export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
                     <span>Remover</span>
                   </button>
                   <button
-                    onClick={() => alert(`Iniciando ${app.name}...`)}
+                    onClick={() => {
+                      // Resolve débito #11: substituir alert() por toast.
+                      // A integração real com xdg-open / gtk-launch fica para
+                      // uma fase futura; por ora, feedback visual.
+                      pushToast(`Iniciando ${app.name}...`, 'info', 2500);
+                    }}
                     className="flex items-center space-x-1.5 px-4 py-1.5 rounded text-xs font-semibold bg-[#87cf3e] hover:bg-[#97df4e] text-[#132802] transition-colors shadow-sm"
                   >
                     <Play className="w-3.5 h-3.5 fill-current" />
@@ -237,3 +244,25 @@ export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
     </div>
   );
 }
+
+AppDetailsModal.propTypes = {
+  app: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    installed: PropTypes.bool,
+    rating: PropTypes.number,
+    version: PropTypes.string,
+    size: PropTypes.string,
+    fullSummary: PropTypes.string,
+    summary: PropTypes.string,
+    description: PropTypes.string,
+    packageType: PropTypes.string,
+    categoryLabel: PropTypes.string,
+    icon: PropTypes.string,
+    fallbackIcon: PropTypes.string,
+    developer: PropTypes.string,
+    license: PropTypes.string
+  }).isRequired,
+  onClose: PropTypes.func.isRequired,
+  onToggleInstall: PropTypes.func.isRequired
+};

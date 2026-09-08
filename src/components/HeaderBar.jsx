@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   ChevronLeft,
   Search,
@@ -76,7 +77,7 @@ export default function HeaderBar({
       <div className="flex items-center space-x-2">
         {/* Installed apps count button - com o mesmo comportamento e estilo dos contadores de categoria */}
         <button
-          onClick={onToggleInstalledOnly || (() => setInstalledOnly(!installedOnly))}
+          onClick={onToggleInstalledOnly}
           title={installedOnly ? "Mostrar todos os aplicativos" : `Filtrar apenas instalados (${installedCount} ${installedLabel})`}
           className={`flex-shrink-0 h-[26px] px-2.5 rounded-full border transition-all flex items-center space-x-1.5 text-xs select-none shadow-xs cursor-pointer ${
             installedOnly 
@@ -167,3 +168,21 @@ export default function HeaderBar({
     </header>
   );
 }
+
+HeaderBar.propTypes = {
+  searchQuery: PropTypes.string.isRequired,
+  setSearchQuery: PropTypes.func.isRequired,
+  canGoBack: PropTypes.bool.isRequired,
+  onBack: PropTypes.func.isRequired,
+  installedOnly: PropTypes.bool.isRequired,
+  setInstalledOnly: PropTypes.func.isRequired,
+  onToggleInstalledOnly: PropTypes.func.isRequired,
+  installedCount: PropTypes.number,
+  onOpenSettings: PropTypes.func.isRequired,
+  flatpakStatus: PropTypes.oneOf(['unknown', 'available', 'missing'])
+};
+
+HeaderBar.defaultProps = {
+  installedCount: 0,
+  flatpakStatus: 'unknown'
+};

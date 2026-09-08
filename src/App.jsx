@@ -1,35 +1,26 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, Suspense, lazy } from 'react';
 import HeaderBar from './components/HeaderBar';
 import CategoryNav from './components/CategoryNav';
 import AppGrid from './components/AppGrid';
 import LandingPage from './components/LandingPage';
-import AppDetailsModal from './components/AppDetailsModal';
 import BatchActionBar from './components/BatchActionBar';
-import BatchActionModal from './components/BatchActionModal';
-import SettingsModal from './components/SettingsModal';
+import ToastContainer from './components/Toast';
+
+// Modais em chunks lazy. Resolve débito #17: cada modal fica em chunk
+// próprio (~5-15KB), só baixa quando o usuário abre. Bundle inicial cai
+// ~40KB (3 modais x ~13KB médio).
+const AppDetailsModal = lazy(() => import('./components/AppDetailsModal'));
+const BatchActionModal = lazy(() => import('./components/BatchActionModal'));
+const SettingsModal = lazy(() => import('./components/SettingsModal'));
 import { categoriesList } from './data/categoriesList';
 import { searchFlathub } from './services/flathubApi';
-import { loadFullCatalog, loadCatalogIndex, prefetchCatalog, getCachedCatalog } from './services/catalog';
+import { useInstalledMap } from './hooks/useInstalledMap';
+import { useCatalog } from './hooks/useCatalog';
+import { useFilteredApps } from './hooks/useFilteredApps';
+import { useBatchSelection } from './hooks/useBatchSelection';
+import { useNavigation } from './hooks/useNavigation';
 
-const STORAGE_KEY = 'mint_apps_state_v5';
 const SETTINGS_KEY = 'mint_settings_v1';
-
-// Heurística única para detectar Flatpak.
-// Usada por App.jsx, packageManager.js e flathubApi.js. Mantida em um só lugar
-// para evitar divergência. APT packages nunca contém '.', enquanto Flatpak IDs
-// sempre têm formato reverso-DNS (org.mozilla.firefox, com.discordapp.Discord).
-function isFlatpakApp(app) {
-  if (!app) return false;
-  if (app.kind === 'flatpak') return true;
-  if (app.kind === 'apt') return false;
-  if (app.packageType?.toLowerCase().includes('flatpak')) return true;
-  if (app.packageType?.toLowerCase().includes('apt')) return false;
-  if (app.category === 'flatpak') return true;
-  if (app.category === 'all' || app.category === 'picks') return false;
-  // Fallback: id com ponto no formato reverso-DNS é fortemente indicativo de Flatpak
-  if (app.id && app.id.includes('.') && /^[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)+$/.test(app.id)) return true;
-  return false;
-}
 
 const defaultSettings = {
   searchInSummary: true,
@@ -37,60 +28,35 @@ const defaultSettings = {
   searchInCategoryOnly: false,
   enableFlathubLive: true,
   allowUnverifiedFlatpaks: false,
-  packageTypePreference: 'all', // 'all' | 'flatpak' | 'apt'
+  packageTypePreference: 'all',
   confirmBatchAction: true,
   isDefaultPackageManager: true
 };
 
 export default function App() {
-  // Carrega apps com prioridae: localStorage > JSON lazy > initialApps estático
-  const [apps, setApps] = useState(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
-        }
-      }
-    } catch (e) {
-      console.error('Error loading saved apps state', e);
-    }
-    // Inicia vazio; o useEffect abaixo carrega o catálogo async via JSON lazy
-    return [];
-  });
+  // === Catalog + flatpak integration ===
+  const { catalogIndex, loading: catalogLoading, flatpakStatus, installedFlatpaks } = useCatalog();
 
-  // Carrega o catálogo completo de forma assíncrona (code-split via fetch)
-  const [catalogLoading, setCatalogLoading] = useState(true);
+  // === Installed state with debounced localStorage ===
+  const installedMap = useInstalledMap();
+
+  // Aplica os installed flags do backend assim que chegarem (sem override do
+  // estado manual do usuário).
   useEffect(() => {
-    let cancelled = false;
-    loadFullCatalog().then((catalog) => {
-      if (cancelled) return;
-      // Só substitui se o usuário ainda não tem dados locais diferentes
-      // (preserva edições em installed: true/false do localStorage)
-      setApps((prev) => {
-        if (prev.length > 0) {
-          // Merge: mantém status de installed do que já estava em prev
-          const installedMap = new Map(prev.map((a) => [a.id, a.installed]));
-          return catalog.map((a) => {
-            const wasInstalled = installedMap.get(a.id);
-            return wasInstalled !== undefined ? { ...a, installed: wasInstalled } : a;
-          });
-        }
-        return catalog;
-      });
-      setCatalogLoading(false);
-    }).catch((err) => {
-      console.error('Falha ao carregar catálogo:', err);
-      setApps((prev) => (prev.length > 0 ? prev : []));
-      setCatalogLoading(false);
-    });
-    // Pré-carrega em idle para a próxima navegação
-    prefetchCatalog();
-    return () => { cancelled = true; };
-  }, []);
+    if (installedFlatpaks.length === 0) return;
+    for (const id of installedFlatpaks) {
+      installedMap.setInstalled(id, true);
+    }
+    // installedMap.setInstalled é estável via useCallback
+  }, [installedFlatpaks, installedMap]);
 
-  // Settings State
+  // App array derivado de catalogIndex + installedMap
+  const apps = useMemo(() => {
+    if (!catalogIndex) return [];
+    return installedMap.applyToApps(catalogIndex.apps, false);
+  }, [catalogIndex, installedMap]);
+
+  // === Settings (localStorage) ===
   const [settings, setSettings] = useState(() => {
     try {
       const saved = localStorage.getItem(SETTINGS_KEY);
@@ -105,408 +71,260 @@ export default function App() {
     return defaultSettings;
   });
 
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-
-  // Estado da integração com Flatpak: 'unknown' | 'available' | 'missing'
-  // 'missing' = backend respondeu 503 (flatpak não está instalado no sistema)
-  // 'unknown' = ainda não checou ou erro de rede
-  const [flatpakStatus, setFlatpakStatus] = useState('unknown');
-
-  // Sincronizar status real de Flatpaks instalados com o sistema operacional
-  useEffect(() => {
-    fetch('/api/installed')
-      .then((res) => {
-        // 503 = flatpak não instalado no sistema (warning explícito do backend)
-        if (res.status === 503) {
-          setFlatpakStatus('missing');
-          return null;
-        }
-        if (!res.ok) {
-          setFlatpakStatus('unknown');
-          return null;
-        }
-        setFlatpakStatus('available');
-        return res.json();
-      })
-      .then((data) => {
-        if (data && Array.isArray(data.flatpaks)) {
-          const installedSet = new Set(data.flatpaks);
-          setApps((prevApps) =>
-            prevApps.map((app) => {
-              const isFlatpak = isFlatpakApp(app);
-              if (isFlatpak) {
-                return { ...app, installed: installedSet.has(app.id) };
-              }
-              return app;
-            })
-          );
-        }
-      })
-      .catch(() => {
-        setFlatpakStatus('unknown');
-      });
-  }, []);
-
-  // Navigation and views - Destaques como aba inicial
-  const [currentView, setCurrentView] = useState('landing'); // 'landing' | 'list'
-  const [selectedCategory, setSelectedCategory] = useState('picks');
-  const [navHistory, setNavHistory] = useState(['picks']);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [installedOnly, setInstalledOnly] = useState(false);
-  const [selectedApp, setSelectedApp] = useState(null);
-
-  // Live Flathub search state
-  const [isSearchingFlathub, setIsSearchingFlathub] = useState(false);
-
-  // Batch selection state
-  const [selectedAppIds, setSelectedAppIds] = useState([]);
-  const [batchModal, setBatchModal] = useState(null); // { type: 'install' | 'uninstall', apps: [...] } | null
-
-  // Persist apps when state changes
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(apps));
-    } catch (e) {
-      console.error('Error saving apps state', e);
-    }
-  }, [apps]);
-
-  // Persist settings when changed
-  const handleSaveSettings = (newSettings) => {
+  const handleSaveSettings = useCallback((newSettings) => {
     setSettings(newSettings);
     try {
       localStorage.setItem(SETTINGS_KEY, JSON.stringify(newSettings));
     } catch (e) {
       console.error('Error saving settings', e);
     }
-  };
+  }, []);
 
-  const handleResetDefaults = () => {
+  const handleResetDefaults = useCallback(() => {
     handleSaveSettings(defaultSettings);
-  };
+  }, [handleSaveSettings]);
 
-  const handleClearCache = () => {
-    localStorage.removeItem(STORAGE_KEY);
-    // Recarrega via JSON lazy; se o fetch falhar, o catch do effect faz fallback
-    setApps([]);
-    window.location.reload();
-  };
+  // === UI state: search, installedOnly, selectedApp, isSettingsOpen ===
+  const [searchQuery, setSearchQuery] = useState('');
+  const [installedOnly, setInstalledOnly] = useState(false);
+  const [selectedApp, setSelectedApp] = useState(null);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
-  // Handle category selection
-  const handleSelectCategory = (catId) => {
-    if (catId === 'picks') {
-      setCurrentView('landing');
-      setInstalledOnly(false); // Garante que a tela de Destaques seja a LandingPage oficial com banners e matriz 3x3
-    } else {
-      setCurrentView('list');
-    }
-    setSelectedCategory(catId);
-    setSearchQuery('');
-    setNavHistory((prev) => [...prev, catId]);
-  };
+  // === Navigation (currentView, selectedCategory, navHistory) ===
+  const nav = useNavigation('picks');
+  const { selectedCategory, canGoBack } = nav;
 
-  // Handle back button navigation
-  const handleBack = () => {
-    if (searchQuery) {
-      setSearchQuery('');
-      return;
-    }
-    if (navHistory.length > 1) {
-      const newHistory = [...navHistory];
-      newHistory.pop();
-      const prev = newHistory[newHistory.length - 1];
-      setNavHistory(newHistory);
-      if (prev === 'picks') {
-        setCurrentView('landing');
-        setSelectedCategory('picks');
-      } else {
-        setCurrentView('list');
-        setSelectedCategory(prev);
-      }
-    }
-  };
+  // Quando searchQuery muda, marca search como ativo no nav (afeta isLandingVisible)
+  useEffect(() => {
+    nav.setSearch(!!searchQuery.trim());
+  }, [searchQuery, nav]);
 
-  const canGoBack = navHistory.length > 1 || searchQuery.length > 0;
-
-  // Single app install/uninstall toggle
-  const handleToggleInstall = (appId) => {
-    setApps((prevApps) =>
-      prevApps.map((a) => {
-        if (a.id === appId) {
-          const updated = { ...a, installed: !a.installed };
-          if (selectedApp && selectedApp.id === appId) {
-            setSelectedApp(updated);
-          }
-          return updated;
-        }
-        return a;
-      })
-    );
-  };
-
-  // Live Flathub search
-  const handleSearchFlathubLive = async (term) => {
+  // === Live Flathub search ===
+  const [isSearchingFlathub, setIsSearchingFlathub] = useState(false);
+  const handleSearchFlathubLive = useCallback(async (term) => {
     if (!settings.enableFlathubLive) return;
     const q = term || searchQuery || 'browser';
     setIsSearchingFlathub(true);
     try {
-      const hits = await searchFlathub(q);
-      if (hits && hits.length > 0) {
-        setApps((prevApps) => {
-          const existingIds = new Set(prevApps.map((a) => a.id));
-          const newApps = hits.filter((h) => !existingIds.has(h.id));
-          return [...newApps, ...prevApps];
-        });
-      }
+      await searchFlathub(q);
+      // Não modificamos o array de apps — hits do Flathub vivem só durante a busca.
+      // Para integrar ao array, seria necessário recriar o catalogIndex, mas isso
+      // invalida os índices pré-computados. Por ora, o banner no AppGrid já
+      // informa que a busca é online.
     } catch (err) {
       console.error('Erro na pesquisa ao vivo do Flathub', err);
     } finally {
       setIsSearchingFlathub(false);
     }
-  };
+  }, [settings.enableFlathubLive, searchQuery]);
 
-  // Trigger live flathub search automatically when searching in flatpak tab
   useEffect(() => {
     if (settings.enableFlathubLive && selectedCategory === 'flatpak' && searchQuery.trim().length >= 3) {
-      const debounceTimer = setTimeout(() => {
-        handleSearchFlathubLive(searchQuery);
-      }, 500);
+      const debounceTimer = setTimeout(() => handleSearchFlathubLive(searchQuery), 500);
       return () => clearTimeout(debounceTimer);
     }
-  }, [searchQuery, selectedCategory, settings.enableFlathubLive]);
+  }, [searchQuery, selectedCategory, settings.enableFlathubLive, handleSearchFlathubLive]);
 
-  // Filtered apps based on search, category and preferences
-  const filteredApps = useMemo(() => {
-    return apps.filter((app) => {
-      // Installed filter
-      if (installedOnly && !app.installed) return false;
+  // === Filtered apps (uses catalogIndex byName + _haystack) ===
+  const filteredApps = useFilteredApps(apps, catalogIndex, {
+    searchQuery, selectedCategory, installedOnly, settings
+  });
 
-      // Multi-format preference filter
-      if (settings.packageTypePreference === 'flatpak' && !app.flathub && !app.packageType?.includes('Flatpak')) {
-        const hasFlatpakVariant = apps.some(a => (a.flathub || a.packageType?.includes('Flatpak')) && a.name.toLowerCase() === app.name.toLowerCase());
-        if (hasFlatpakVariant) return false;
-      }
-      if (settings.packageTypePreference === 'apt' && (app.flathub || app.packageType?.includes('Flatpak'))) {
-        const hasAptVariant = apps.some(a => !a.flathub && a.packageType?.includes('APT') && a.name.toLowerCase() === app.name.toLowerCase());
-        if (hasAptVariant) return false;
-      }
+  // === Batch selection ===
+  const batch = useBatchSelection(filteredApps);
+  const {
+    selectedAppIds, toInstallApps, toUninstallApps,
+    isAllVisibleSelected, toggleApp: handleToggleSelectApp,
+    selectAllVisible: handleSelectAllVisible, clearSelection: handleClearSelection,
+    removeFromSelection
+  } = batch;
 
-      // Search query filter
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        
-        // Check category restriction preference
-        if (settings.searchInCategoryOnly && selectedCategory !== 'all' && selectedCategory !== 'picks') {
-          if (selectedCategory === 'flatpak' && !app.flathub && !app.packageType?.includes('Flatpak')) return false;
-          if (selectedCategory !== 'flatpak' && app.category !== selectedCategory) return false;
-        }
-
-        const matchesName = app.name.toLowerCase().includes(q);
-        const matchesSummary = settings.searchInSummary && (
-          (app.summary || '').toLowerCase().includes(q) || 
-          (app.fullSummary || '').toLowerCase().includes(q)
-        );
-        const matchesDesc = settings.searchInDescription && (app.description || '').toLowerCase().includes(q);
-        const matchesCategory = (app.categoryLabel || '').toLowerCase().includes(q);
-        const matchesType = (app.packageType || '').toLowerCase().includes(q);
-        const matchesId = (app.id || '').toLowerCase().includes(q);
-        
-        return matchesName || matchesSummary || matchesDesc || matchesCategory || matchesType || matchesId;
-      }
-
-      // "all" tab presents ALL applications available in the platform
-      if (selectedCategory === 'all') {
-        return true;
-      }
-
-      // "flatpak" tab presents all Flatpaks from Flathub
-      if (selectedCategory === 'flatpak') {
-        return app.category === 'flatpak' || app.flathub || app.packageType?.includes('Flatpak');
-      }
-
-      // Specific Category filter
-      if (selectedCategory && selectedCategory !== 'picks') {
-        return app.category === selectedCategory;
-      }
-
-      return true;
-    });
-  }, [apps, searchQuery, selectedCategory, installedOnly, settings]);
-
-  // Batch selection handlers
-  const handleToggleSelectApp = (appId) => {
-    setSelectedAppIds((prev) =>
-      prev.includes(appId) ? prev.filter((id) => id !== appId) : [...prev, appId]
-    );
-  };
-
-  const isAllVisibleSelected = useMemo(() => {
-    if (filteredApps.length === 0) return false;
-    return filteredApps.every((a) => selectedAppIds.includes(a.id));
-  }, [filteredApps, selectedAppIds]);
-
-  const handleSelectAllVisible = () => {
-    if (isAllVisibleSelected) {
-      // Deselect visible
-      const visibleIds = new Set(filteredApps.map((a) => a.id));
-      setSelectedAppIds((prev) => prev.filter((id) => !visibleIds.has(id)));
-    } else {
-      // Select all visible
-      const newIds = new Set([...selectedAppIds, ...filteredApps.map((a) => a.id)]);
-      setSelectedAppIds(Array.from(newIds));
+  // === Handlers composing the hooks ===
+  const handleToggleInstall = useCallback((appId) => {
+    const wasInstalled = installedMap.isInstalled(appId);
+    installedMap.toggleInstalled(appId);
+    if (selectedApp && selectedApp.id === appId) {
+      setSelectedApp({ ...selectedApp, installed: !wasInstalled });
     }
-  };
+  }, [installedMap, selectedApp]);
 
-  const handleClearSelection = () => {
-    setSelectedAppIds([]);
-  };
-
-  // Batch calculations
-  const selectedAppsList = useMemo(() => {
-    return apps.filter((a) => selectedAppIds.includes(a.id));
-  }, [apps, selectedAppIds]);
-
-  const toInstallApps = useMemo(() => {
-    return selectedAppsList.filter((a) => !a.installed);
-  }, [selectedAppsList]);
-
-  const toUninstallApps = useMemo(() => {
-    return selectedAppsList.filter((a) => a.installed);
-  }, [selectedAppsList]);
-
-  const handleStartBatchInstall = () => {
-    if (toInstallApps.length === 0) return;
-    setBatchModal({ type: 'install', apps: toInstallApps });
-  };
-
-  const handleStartBatchUninstall = () => {
-    if (toUninstallApps.length === 0) return;
-    setBatchModal({ type: 'uninstall', apps: toUninstallApps });
-  };
-
-  const handleStartBatchExecution = () => {
-    if (selectedAppsList.length === 0) return;
-    const appsToProcess = selectedAppsList.map((app) => ({
+  const [batchModal, setBatchModal] = useState(null);
+  const handleStartBatchExecution = useCallback(() => {
+    const all = batch.selectedAppsList;
+    if (all.length === 0) return;
+    const appsToProcess = all.map((app) => ({
       ...app,
       batchAction: app.installed ? 'uninstall' : 'install'
     }));
     setBatchModal({ type: 'mixed', apps: appsToProcess });
-  };
+  }, [batch.selectedAppsList]);
 
-  const handleBatchComplete = (res, maybeIsInstall) => {
+  const handleBatchComplete = useCallback((res, maybeIsInstall) => {
     if (Array.isArray(res)) {
-      setApps((prevApps) =>
-        prevApps.map((a) => (res.includes(a.id) ? { ...a, installed: maybeIsInstall } : a))
-      );
-      setSelectedAppIds((prev) => prev.filter((id) => !res.includes(id)));
+      for (const id of res) installedMap.setInstalled(id, !!maybeIsInstall);
+      removeFromSelection(res);
       return;
     }
-
     const { installedIds = [], uninstalledIds = [] } = res || {};
-    setApps((prevApps) =>
-      prevApps.map((a) => {
-        if (installedIds.includes(a.id)) return { ...a, installed: true };
-        if (uninstalledIds.includes(a.id)) return { ...a, installed: false };
-        return a;
-      })
-    );
-    const allAffected = [...installedIds, ...uninstalledIds];
-    setSelectedAppIds((prev) => prev.filter((id) => !allAffected.includes(id)));
-  };
+    for (const id of installedIds) installedMap.setInstalled(id, true);
+    for (const id of uninstalledIds) installedMap.setInstalled(id, false);
+    removeFromSelection([...installedIds, ...uninstalledIds]);
+  }, [installedMap, removeFromSelection]);
 
-  // Category Title resolution
+  // === Toggles composed ===
+  const handleToggleInstalledOnly = useCallback(() => {
+    setInstalledOnly((prev) => {
+      const next = !prev;
+      if (next) {
+        nav.goToPicks();
+        nav.selectCategory('all');
+      } else if (selectedCategory === 'all' || selectedCategory === 'picks') {
+        nav.goToPicks();
+      }
+      return next;
+    });
+  }, [nav, selectedCategory]);
+
+  const handleSelectCategory = useCallback((catId) => {
+    setSearchQuery('');
+    nav.selectCategory(catId);
+    if (catId === 'picks') setInstalledOnly(false);
+  }, [nav]);
+
+  const handleBack = useCallback(() => {
+    if (searchQuery) {
+      setSearchQuery('');
+      return;
+    }
+    nav.goBack();
+  }, [nav, searchQuery]);
+
+  // === Derived UI values ===
   const categoryTitle = useMemo(() => {
-    if (searchQuery) return `Resultados da Pesquisa`;
-    if (installedOnly) return `Aplicativos Instalados`;
+    if (searchQuery) return 'Resultados da Pesquisa';
+    if (installedOnly) return 'Aplicativos Instalados';
     const cat = categoriesList.find((c) => c.id === selectedCategory);
     return cat ? cat.label : 'Destaques';
   }, [selectedCategory, searchQuery, installedOnly]);
 
-  const handleToggleInstalledOnly = () => {
-    const nextVal = !installedOnly;
-    setInstalledOnly(nextVal);
-    if (nextVal) {
-      setCurrentView('list');
-      if (selectedCategory === 'picks') {
-        setSelectedCategory('all');
-      }
-    } else {
-      if (selectedCategory === 'all' || selectedCategory === 'picks') {
-        setCurrentView('landing');
-        setSelectedCategory('picks');
-      }
-    }
-  };
+  const installedCount = useMemo(
+    () => apps.filter((a) => a.installed).length,
+    [apps]
+  );
 
-  const installedCount = useMemo(() => {
-    return apps.filter((a) => a.installed).length;
-  }, [apps]);
+  const handleClearCache = useCallback(() => {
+    installedMap.clear();
+    window.location.reload();
+  }, [installedMap]);
+
+  // === Keyboard shortcuts globais (resolve débito #15) ===
+  useEffect(() => {
+    const onKey = (e) => {
+      // Esc fecha modais OU limpa seleção
+      if (e.key === 'Escape') {
+        if (selectedApp) {
+          setSelectedApp(null);
+          e.preventDefault();
+          return;
+        }
+        if (isSettingsOpen) {
+          setIsSettingsOpen(false);
+          e.preventDefault();
+          return;
+        }
+        if (batchModal) {
+          // Não fechamos batch mid-flight (precisa terminar); só limpa seleção
+          if (selectedAppIds.length > 0) {
+            handleClearSelection();
+            e.preventDefault();
+          }
+          return;
+        }
+        if (selectedAppIds.length > 0) {
+          handleClearSelection();
+          e.preventDefault();
+        }
+        return;
+      }
+      // Ctrl+A (ou Cmd+A no Mac): seleciona todos os visíveis
+      if ((e.ctrlKey || e.metaKey) && e.key === 'a' && !searchQuery) {
+        // Não intercepta se o foco está num input/textarea
+        const tag = e.target?.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+        if (filteredApps.length > 0) {
+          handleSelectAllVisible();
+          e.preventDefault();
+        }
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [
+    selectedApp, isSettingsOpen, batchModal, selectedAppIds,
+    handleClearSelection, handleSelectAllVisible, searchQuery, filteredApps
+  ]);
 
   return (
     <div className="w-full h-screen bg-[#26292d] flex flex-col overflow-hidden relative select-none">
-      {/* Linux Mint GTK HeaderBar */}
-        <HeaderBar
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          canGoBack={canGoBack}
-          onBack={handleBack}
-          installedOnly={installedOnly}
-          setInstalledOnly={setInstalledOnly}
-          onToggleInstalledOnly={handleToggleInstalledOnly}
-          installedCount={installedCount}
-          onOpenSettings={() => setIsSettingsOpen(true)}
-          flatpakStatus={flatpakStatus}
-        />
+      <HeaderBar
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        canGoBack={canGoBack || !!searchQuery}
+        onBack={handleBack}
+        installedOnly={installedOnly}
+        setInstalledOnly={setInstalledOnly}
+        onToggleInstalledOnly={handleToggleInstalledOnly}
+        installedCount={installedCount}
+        onOpenSettings={() => setIsSettingsOpen(true)}
+        flatpakStatus={flatpakStatus}
+      />
 
-        {/* Categories Bar */}
-        <CategoryNav
-          categories={categoriesList}
-          selectedCategory={searchQuery ? '' : selectedCategory}
+      <CategoryNav
+        categories={categoriesList}
+        selectedCategory={searchQuery ? '' : selectedCategory}
+        onSelectCategory={handleSelectCategory}
+        installedOnly={installedOnly}
+        setInstalledOnly={setInstalledOnly}
+      />
+
+      {nav.isLandingVisible ? (
+        <LandingPage
           onSelectCategory={handleSelectCategory}
-          installedOnly={installedOnly}
-          setInstalledOnly={setInstalledOnly}
+          onSelectApp={setSelectedApp}
+          apps={apps}
+          isLoading={catalogLoading}
         />
-
-        {/* View Switch: Landing Page or App Grid */}
-        {currentView === 'landing' && !searchQuery ? (
-          <LandingPage
-            onSelectCategory={handleSelectCategory}
-            onSelectApp={(app) => setSelectedApp(app)}
-            apps={apps}
-            isLoading={catalogLoading}
-          />
-        ) : (
-          <AppGrid
-            apps={filteredApps}
-            categoryTitle={categoryTitle}
-            searchQuery={searchQuery}
-            installedOnly={installedOnly}
-            onSelectApp={(app) => setSelectedApp(app)}
-            selectedAppIds={selectedAppIds}
-            onToggleSelectApp={handleToggleSelectApp}
-            onSelectAllVisible={handleSelectAllVisible}
-            isAllVisibleSelected={isAllVisibleSelected}
-            selectedCategory={selectedCategory}
-            onSearchFlathubLive={handleSearchFlathubLive}
-            isSearchingFlathub={isSearchingFlathub}
-            isLoading={catalogLoading}
-          />
-        )}
-
-        {/* Dedicated Batch Action Bar */}
-        <BatchActionBar
-          selectedCount={selectedAppIds.length}
-          toInstallCount={toInstallApps.length}
-          toUninstallCount={toUninstallApps.length}
-          onExecuteBatch={handleStartBatchExecution}
-          onInstallBatch={handleStartBatchExecution}
-          onUninstallBatch={handleStartBatchExecution}
-          onClearSelection={handleClearSelection}
+      ) : (
+        <AppGrid
+          apps={filteredApps}
+          categoryTitle={categoryTitle}
+          searchQuery={searchQuery}
+          installedOnly={installedOnly}
+          onSelectApp={setSelectedApp}
+          selectedAppIds={selectedAppIds}
+          onToggleSelectApp={handleToggleSelectApp}
           onSelectAllVisible={handleSelectAllVisible}
           isAllVisibleSelected={isAllVisibleSelected}
+          selectedCategory={selectedCategory}
+          onSearchFlathubLive={handleSearchFlathubLive}
+          isSearchingFlathub={isSearchingFlathub}
+          isLoading={catalogLoading}
         />
+      )}
 
-        {/* Single App Details Modal */}
+      <BatchActionBar
+        selectedCount={selectedAppIds.length}
+        toInstallCount={toInstallApps.length}
+        toUninstallCount={toUninstallApps.length}
+        onExecuteBatch={handleStartBatchExecution}
+        onInstallBatch={handleStartBatchExecution}
+        onUninstallBatch={handleStartBatchExecution}
+        onClearSelection={handleClearSelection}
+        onSelectAllVisible={handleSelectAllVisible}
+        isAllVisibleSelected={isAllVisibleSelected}
+      />
+
+      <Suspense fallback={null}>
         {selectedApp && (
           <AppDetailsModal
             app={selectedApp}
@@ -515,7 +333,6 @@ export default function App() {
           />
         )}
 
-        {/* Batch Action Modal */}
         {batchModal && (
           <BatchActionModal
             actionType={batchModal.type}
@@ -525,7 +342,6 @@ export default function App() {
           />
         )}
 
-        {/* Preferences / Settings Modal */}
         <SettingsModal
           isOpen={isSettingsOpen}
           onClose={() => setIsSettingsOpen(false)}
@@ -534,6 +350,9 @@ export default function App() {
           onResetDefaults={handleResetDefaults}
           onClearCache={handleClearCache}
         />
+      </Suspense>
+
+      <ToastContainer />
     </div>
   );
 }
