@@ -12,11 +12,11 @@ import {
   ExternalLink
 } from 'lucide-react';
 
-export default function AppGrid({ 
-  apps, 
-  categoryTitle, 
-  searchQuery, 
-  installedOnly, 
+export default function AppGrid({
+  apps,
+  categoryTitle,
+  searchQuery,
+  installedOnly,
   onSelectApp,
   selectedAppIds = [],
   onToggleSelectApp,
@@ -26,7 +26,8 @@ export default function AppGrid({
   onSearchFlathubLive,
   isSearchingFlathub,
   flathubLiveQuery,
-  flathubQueryCount
+  flathubQueryCount,
+  isLoading = false
 }) {
   const [packageTypeFilter, setPackageTypeFilter] = useState('all'); // 'all' | 'apt' | 'flatpak'
   const [displayLimit, setDisplayLimit] = useState(60);
@@ -210,8 +211,27 @@ export default function AppGrid({
         </div>
       </div>
 
+      {/* Skeleton de carregamento do catálogo */}
+      {isLoading && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5">
+          {[...Array(9)].map((_, i) => (
+            <div
+              key={`skel-${i}`}
+              className="h-[74px] rounded-md bg-[#2a2d33] border border-[#2e3238] animate-pulse flex items-center px-3 space-x-3"
+            >
+              <div className="w-4 h-4 rounded bg-[#23262a]" />
+              <div className="w-11 h-11 rounded bg-[#23262a]" />
+              <div className="flex-1 space-y-2">
+                <div className="h-3 bg-[#23262a] rounded w-2/3" />
+                <div className="h-2.5 bg-[#23262a] rounded w-1/2" />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Grid of 3 Columns matching Linux Mint Software Manager */}
-      {visibleApps.length > 0 ? (
+      {!isLoading && visibleApps.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5">
             {visibleApps.map((app) => (

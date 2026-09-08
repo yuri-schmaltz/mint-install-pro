@@ -83,7 +83,7 @@ const categoryCards = [
   { id: "system", label: "Sistema", desc: "Monitoramento de disco, snapshots e particionador", icon: Cpu, color: "from-teal-800/40 to-teal-950/60" }
 ];
 
-export default function LandingPage({ onSelectCategory, onSelectApp, apps }) {
+export default function LandingPage({ onSelectCategory, onSelectApp, apps, isLoading = false }) {
   const [currentBanner, setCurrentBanner] = useState(0);
 
   // Automatic banner slide every 6 seconds
@@ -100,6 +100,32 @@ export default function LandingPage({ onSelectCategory, onSelectApp, apps }) {
   const topRatedApps = apps
     .filter((a) => a.rating >= 4.7)
     .slice(0, 6);
+
+  // Skeleton visível enquanto o catálogo lazy não chega
+  if (isLoading) {
+    return (
+      <div className="flex-1 min-h-0 overflow-y-auto px-5 py-4 bg-[#26292d] space-y-6">
+        {/* Banner skeleton */}
+        <div className="rounded-lg border border-[#3b3f46] h-52 sm:h-60 bg-[#2a2d33] animate-pulse flex items-center justify-center">
+          <span className="text-[#5f6570] text-xs">Carregando destaques...</span>
+        </div>
+        {/* Grid 3x3 skeleton */}
+        <div>
+          <h3 className="text-sm font-bold uppercase tracking-wider text-[#9aa0a6] mb-3">
+            Categorias de Aplicativos
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[...Array(9)].map((_, i) => (
+              <div
+                key={i}
+                className="h-[68px] rounded-lg bg-[#2a2d33] border border-[#32363c] animate-pulse"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex-1 min-h-0 overflow-y-auto px-5 py-4 bg-[#26292d] space-y-6">
