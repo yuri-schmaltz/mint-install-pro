@@ -139,7 +139,8 @@ export default function BatchActionModal({
           msg: String(fatalErr.message || fatalErr),
           stack: String(fatalErr.stack || '').slice(0, 800)
         });
-        console.error('[BatchActionModal] Erro fatal na fila:', fatalErr);
+        // console.error removido: debugLog('error', ...) já espelha no console
+        // em dev, evitando ruído duplicado. Em prod, persiste no DebugDock.
         if (!isCancelled) {
           setLogs(prev => [...prev, `[ERRO FATAL] ${String(fatalErr.message || fatalErr)}`]);
           setIsFinished(true);

@@ -138,7 +138,7 @@ export default function LandingPage({ onSelectCategory, onSelectApp, apps, isLoa
         >
           {/* Banner Text & Action */}
           <div className="max-w-md z-10 space-y-2">
-            <span className="inline-flex items-center text-[11px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-black/30 text-white backdrop-blur-xs">
+            <span className="inline-flex items-center text-[11px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-black/30 text-white backdrop-blur-sm">
               <Sparkles className="w-3 h-3 mr-1 text-[#87cf3e]" /> Em Destaque
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white drop-shadow-md">

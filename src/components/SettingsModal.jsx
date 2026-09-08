@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   X,
   Settings,
@@ -37,7 +38,7 @@ export default function SettingsModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/75 backdrop-blur-xs flex items-center justify-center z-50 p-4 animate-in fade-in duration-150">
+    <div className="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-150">
       <div className="bg-[#2a2d32] border border-[#3c4149] rounded-lg max-w-xl w-full h-[530px] max-h-[90vh] flex flex-col shadow-2xl overflow-hidden text-[#e0e0e0]">
         
         {/* Header */}
@@ -470,3 +471,12 @@ export default function SettingsModal({
     </div>
   );
 }
+
+SettingsModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  settings: PropTypes.object.isRequired,
+  onSaveSettings: PropTypes.func.isRequired,
+  onResetDefaults: PropTypes.func.isRequired,
+  onClearCache: PropTypes.func.isRequired
+};

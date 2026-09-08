@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import AppCard from './AppCard';
 import { 
   PackageOpen, 
@@ -286,3 +287,21 @@ export default function AppGrid({
     </div>
   );
 }
+
+AppGrid.propTypes = {
+  apps: PropTypes.array,
+  categoryTitle: PropTypes.string,
+  searchQuery: PropTypes.string,
+  installedOnly: PropTypes.bool,
+  onSelectApp: PropTypes.func,
+  selectedAppIds: PropTypes.arrayOf(PropTypes.string),
+  onToggleSelectApp: PropTypes.func,
+  onSelectAllVisible: PropTypes.func,
+  isAllVisibleSelected: PropTypes.bool,
+  selectedCategory: PropTypes.string,
+  onSearchFlathubLive: PropTypes.func,
+  isSearchingFlathub: PropTypes.bool,
+  flathubLiveQuery: PropTypes.string,
+  flathubQueryCount: PropTypes.number,
+  isLoading: PropTypes.bool
+};

@@ -51,7 +51,7 @@ export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/75 backdrop-blur-xs flex items-center justify-center z-50 p-4 animate-in fade-in duration-150">
+    <div className="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-150">
       <div className="bg-[#2a2d32] border border-[#383c43] rounded-lg max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden text-[#e0e0e0]">
         
         {/* Modal Top Header with Close */}
