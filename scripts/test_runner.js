@@ -277,20 +277,21 @@ const catalogServiceContent = fs.readFileSync(path.join(process.cwd(), 'src/serv
 assert(catalogServiceContent.includes('loadFullCatalog'), 'Serviço de catálogo lazy (loadFullCatalog) presente');
 assert(catalogServiceContent.includes('requestIdleCallback'), 'Prefetch do catálogo usa requestIdleCallback');
 
-// App.jsx usa catálogo lazy e função isFlatpakApp centralizada
+// App.jsx usa catálogo lazy e hooks customizados
 const appJsxContent2 = fs.readFileSync(path.join(process.cwd(), 'src/App.jsx'), 'utf-8');
-assert(appJsxContent2.includes('loadFullCatalog'), 'App.jsx usa loadFullCatalog para carregar o catálogo');
 assert(!appJsxContent2.includes("from './data/initialApps'") || appJsxContent2.match(/from '\.\/data\/initialApps'/g).length === 1,
   'App.jsx importa apenas categoriesList de initialApps (initialApps é lazy via catalog.js)');
-assert(appJsxContent2.includes('function isFlatpakApp'), 'Heurística isFlatpakApp centralizada em App.jsx');
+assert(appJsxContent2.includes('useCatalog'), 'App.jsx usa hook useCatalog');
+assert(appJsxContent2.includes('useFilteredApps'), 'App.jsx usa hook useFilteredApps');
+assert(appJsxContent2.includes('useBatchSelection'), 'App.jsx usa hook useBatchSelection');
+assert(appJsxContent2.includes('useNavigation'), 'App.jsx usa hook useNavigation');
+assert(appJsxContent2.includes('useInstalledMap'), 'App.jsx usa hook useInstalledMap');
 
 // Test 17: Loading state e tratamento de flatpak ausente (gauntlet loop, round 2)
 console.log('\n17. Loading state + tratamento de flatpak ausente:');
-assert(appJsxContent2.includes('catalogLoading'), 'App.jsx tem estado catalogLoading para o fetch lazy');
-assert(appJsxContent2.includes('flatpakStatus'), 'App.jsx tem estado flatpakStatus');
-assert(appJsxContent2.includes("status === 503"), 'App.jsx trata HTTP 503 do /api/installed (flatpak ausente)');
-assert(appJsxContent2.includes('getCachedIndex') || appJsxContent2.includes('catalogIndex'),
-  'App.jsx usa catalogIndex/getCachedIndex (índice pré-computado) do services/catalog');
+const useCatalogHook = fs.readFileSync(path.join(process.cwd(), 'src/hooks/useCatalog.js'), 'utf-8');
+assert(useCatalogHook.includes('status === 503'), 'useCatalog trata HTTP 503 do /api/installed (flatpak ausente)');
+assert(useCatalogHook.includes('flatpakStatus'), 'useCatalog expõe flatpakStatus');
 
 const landingPageContent = fs.readFileSync(path.join(process.cwd(), 'src/components/LandingPage.jsx'), 'utf-8');
 assert(landingPageContent.includes('isLoading'), 'LandingPage aceita prop isLoading');
