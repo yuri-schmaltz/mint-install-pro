@@ -10,8 +10,14 @@ import ToastContainer from './components/Toast';
 // próprio (~5-15KB), só baixa quando o usuário abre. Bundle inicial cai
 // ~40KB (3 modais x ~13KB médio).
 const AppDetailsModal = lazy(() => import('./components/AppDetailsModal'));
-const BatchActionModal = lazy(() => import('./components/BatchActionModal'));
 const SettingsModal = lazy(() => import('./components/SettingsModal'));
+
+// BatchActionModal fica eager (import direto) — estávamos tendo um problema
+// onde o chunk lazy demorava 50-200ms no GTK WebView e, durante esse
+// intervalo, o React renderizava um Suspense fallback=null sem overlay
+// visível, dando a impressão de "tela cinza vazia" ao usuário. O custo
+// de bundle é de ~6KB gzipped (pequeno, vale a previsibilidade).
+import BatchActionModal from './components/BatchActionModal';
 import { categoriesList } from './data/categoriesList';
 import { searchFlathub } from './services/flathubApi';
 import { useInstalledMap } from './hooks/useInstalledMap';
@@ -324,7 +330,17 @@ export default function App() {
         isAllVisibleSelected={isAllVisibleSelected}
       />
 
-      <Suspense fallback={null}>
+      <Suspense fallback={
+        // Fallback visual enquanto o chunk lazy do modal baixa.
+        // Era null antes, o que dava a impressão de "tela cinza" no
+        // GTK WebView (50-200ms de download). Agora mostra overlay + spinner.
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-40">
+          <div className="bg-[#2a2d32] border border-[#3c4149] rounded-lg px-6 py-4 flex items-center space-x-3 shadow-2xl">
+            <div className="w-4 h-4 border-2 border-[#87cf3e] border-t-transparent rounded-full animate-spin" />
+            <span className="text-sm text-[#e0e0e0]">Carregando...</span>
+          </div>
+        </div>
+      }>
         {selectedApp && (
           <AppDetailsModal
             app={selectedApp}
