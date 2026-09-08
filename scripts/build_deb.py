@@ -63,7 +63,19 @@ def find_free_port():
 def run_server(port):
     class QuietHandler(http.server.SimpleHTTPRequestHandler):
         def log_message(self, format, *args):
-            pass  # Silenciar logs HTTP padrão
+            # Redireciona logs HTTP pra stderr pra facilitar debug em campo
+            try:
+                sys.stderr.write("[mip-http] %s - %s\n" % (self.address_string(), format % args))
+            except Exception:
+                pass
+
+        def end_headers(self):
+            # No-store em TUDO: garante que WebView nunca sirva bundle antigo
+            # após upgrade do .deb (hotfix 5 do handoff).
+            self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate')
+            self.send_header('Pragma', 'no-cache')
+            self.send_header('Expires', '0')
+            super().end_headers()
 
         def do_GET(self):
             # Acesso restrito a loopback local
@@ -145,6 +157,11 @@ def run_server(port):
                         else:
                             cmd = ['pkexec', 'apt-get', 'remove', '-y', '--', app_id]
 
+                    try:
+                        sys.stderr.write("[mip-launcher] executando: %s\n" % ' '.join(cmd))
+                    except Exception:
+                        pass
+
                     proc = subprocess.run(
                         cmd,
                         stdout=subprocess.PIPE,
@@ -155,9 +172,17 @@ def run_server(port):
                     )
                     success = proc.returncode == 0
                     out = proc.stdout
+                    try:
+                        sys.stderr.write("[mip-launcher] resultado rc=%d success=%s\n" % (proc.returncode, success))
+                    except Exception:
+                        pass
                 except Exception as e:
                     success = False
                     out = str(e)
+                    try:
+                        sys.stderr.write("[mip-launcher] ERRO executando: %s\n" % e)
+                    except Exception:
+                        pass
                 finally:
                     is_processing_lock.release()
 

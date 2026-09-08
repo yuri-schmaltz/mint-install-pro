@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
   Check,
@@ -10,6 +10,7 @@ import {
   Terminal
 } from 'lucide-react';
 import { executeInstall, executeUninstall } from '../services/packageManager';
+import { debugLog } from '../services/debugLog';
 
 export default function BatchActionModal({
   actionType, // 'install' | 'uninstall' | 'mixed'
@@ -30,8 +31,22 @@ export default function BatchActionModal({
   const [logs, setLogs] = useState([]);
   const [isFinished, setIsFinished] = useState(false);
 
+  // Ref pra tracking de "primeira execução" (StrictMode-safe)
+  const hasStartedRef = useRef(false);
+
   useEffect(() => {
+    // Idempotência: em StrictMode dev, useEffect roda 2x. Sem esta guarda,
+    // processQueue() dispararia duas vezes, gerando logs duplicados e
+    // (mais grave) contadores de installedMap inflados.
+    if (hasStartedRef.current) return;
+    hasStartedRef.current = true;
+
     let isCancelled = false;
+
+    debugLog('info', 'BatchActionModal', 'mount, iniciando processQueue', {
+      total: targetApps.length,
+      type: actionType
+    });
 
     const processQueue = async () => {
       try {
@@ -45,6 +60,7 @@ export default function BatchActionModal({
           const currentApp = targetApps[i];
           const currentAction = currentApp.batchAction || (currentApp.installed ? 'uninstall' : 'install');
           setCurrentIndex(i);
+          debugLog('debug', 'BatchActionModal', `processando ${currentApp.id}`, { i, action: currentAction });
 
           // Update to processing
           setAppStatuses(prev =>
@@ -57,15 +73,24 @@ export default function BatchActionModal({
               res = await executeInstall(currentApp, (msg) => {
                 if (!isCancelled) setLogs(prev => [...prev, msg]);
               });
+              debugLog('debug', 'BatchActionModal', `install result ${currentApp.id}`, {
+                ok: res?.success, simulated: res?.simulated
+              });
             } else {
               res = await executeUninstall(currentApp, (msg) => {
                 if (!isCancelled) setLogs(prev => [...prev, msg]);
+              });
+              debugLog('debug', 'BatchActionModal', `uninstall result ${currentApp.id}`, {
+                ok: res?.success, simulated: res?.simulated
               });
             }
           } catch (opErr) {
             // Defesa: se executeInstall/Uninstall rejeitar (raro, mas pode
             // acontecer com timeout de rede ou backend caído), loga e segue
             // para o próximo. Não derruba a fila inteira.
+            debugLog('error', 'BatchActionModal', `op threw para ${currentApp.id}`, {
+              msg: String(opErr.message || opErr)
+            });
             if (!isCancelled) {
               setLogs(prev => [...prev, `[ERRO] ${currentApp.name}: ${String(opErr.message || opErr)}`]);
             }
@@ -100,12 +125,20 @@ export default function BatchActionModal({
         if (!isCancelled) {
           setLogs(prev => [...prev, `[SISTEMA] Todas as operações em lote foram concluídas!`]);
           setIsFinished(true);
+          debugLog('info', 'BatchActionModal', 'queue completa', {
+            installed: successfullyInstalled.length,
+            uninstalled: successfullyUninstalled.length
+          });
           onComplete({ installedIds: successfullyInstalled, uninstalledIds: successfullyUninstalled });
         }
       } catch (fatalErr) {
         // Última rede de segurança: se algo muito errado acontecer (ex: bug
         // no setState que causa loop infinito), pelo menos o modal fica em
         // estado de erro visível ao usuário em vez de tela cinza.
+        debugLog('error', 'BatchActionModal', 'FATAL na fila', {
+          msg: String(fatalErr.message || fatalErr),
+          stack: String(fatalErr.stack || '').slice(0, 800)
+        });
         console.error('[BatchActionModal] Erro fatal na fila:', fatalErr);
         if (!isCancelled) {
           setLogs(prev => [...prev, `[ERRO FATAL] ${String(fatalErr.message || fatalErr)}`]);
@@ -119,7 +152,7 @@ export default function BatchActionModal({
     return () => {
       isCancelled = true;
     };
-  }, []);
+  }, [targetApps, actionType, onComplete]);
 
   const total = targetApps.length;
   const completedCount = appStatuses.filter(s => s.status === 'done').length;

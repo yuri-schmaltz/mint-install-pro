@@ -1,10 +1,14 @@
 // Serviço de Gerenciamento Real de Pacotes (Flatpak e APT)
 
+import { debugLog } from './debugLog';
+
 export async function executeInstall(app, onLog) {
-  const isFlatpak = app.packageType?.toLowerCase().includes('flatpak') || 
-                    app.category === 'flatpak' || 
+  const isFlatpak = app.packageType?.toLowerCase().includes('flatpak') ||
+                    app.category === 'flatpak' ||
                     (app.id && app.id.includes('.'));
-  
+
+  debugLog('info', 'packageManager', 'executeInstall', { id: app.id, isFlatpak });
+
   if (onLog) {
     onLog(`[${isFlatpak ? 'FLATPAK' : 'APT'}] Preparando instalação de ${app.name} (${app.id})...`);
   }
@@ -20,6 +24,10 @@ export async function executeInstall(app, onLog) {
       })
     });
 
+    debugLog('debug', 'packageManager', 'install response', {
+      id: app.id, status: response.status, ok: response.ok
+    });
+
     if (response.ok) {
       const result = await response.json();
       if (result.output && onLog) {
@@ -31,6 +39,9 @@ export async function executeInstall(app, onLog) {
       return result;
     }
   } catch (err) {
+    debugLog('warn', 'packageManager', 'install fetch falhou, caindo no simulado', {
+      id: app.id, msg: String(err?.message || err)
+    });
     if (onLog) {
       onLog(`[AVISO] Backend de execução offline, executando em modo seguro.`);
     }
@@ -42,9 +53,11 @@ export async function executeInstall(app, onLog) {
 }
 
 export async function executeUninstall(app, onLog) {
-  const isFlatpak = app.packageType?.toLowerCase().includes('flatpak') || 
-                    app.category === 'flatpak' || 
+  const isFlatpak = app.packageType?.toLowerCase().includes('flatpak') ||
+                    app.category === 'flatpak' ||
                     (app.id && app.id.includes('.'));
+
+  debugLog('info', 'packageManager', 'executeUninstall', { id: app.id, isFlatpak });
 
   if (onLog) {
     onLog(`[${isFlatpak ? 'FLATPAK' : 'APT'}] Desinstalando ${app.name} (${app.id})...`);
@@ -61,6 +74,10 @@ export async function executeUninstall(app, onLog) {
       })
     });
 
+    debugLog('debug', 'packageManager', 'uninstall response', {
+      id: app.id, status: response.status, ok: response.ok
+    });
+
     if (response.ok) {
       const result = await response.json();
       if (result.output && onLog) {
@@ -72,6 +89,9 @@ export async function executeUninstall(app, onLog) {
       return result;
     }
   } catch (err) {
+    debugLog('warn', 'packageManager', 'uninstall fetch falhou, caindo no simulado', {
+      id: app.id, msg: String(err?.message || err)
+    });
     if (onLog) {
       onLog(`[AVISO] Backend offline, simulando desinstalação.`);
     }

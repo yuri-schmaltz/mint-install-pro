@@ -4,6 +4,36 @@ Todas as alterações notáveis do projeto **Mint Install Pro** são documentada
 
 ---
 
+## [1.3.2 hotfix 6] - 2026-09-08
+
+### Adicionado (infraestrutura de diagnóstico)
+- **`src/services/debugLog.js`** (108 linhas): logger persistente com ring buffer FIFO de 200 entradas em `localStorage[mip_debug_log_v1]`. API: `debugLog(level, component, message, data)`, `getDebugSnapshot()`, `clearDebug()`. Espelha no console em dev. Detecta `localStorage` indisponível (testes) e cai pra `console.*` puro.
+- **`src/components/DebugDock.jsx`** (160 linhas): dock flutuante canto inferior esquerdo, **fora** da árvore do `<App />` (sobrevive a crash do React). Botão `DEBUG (N)` sempre visível. Painel com auto-refresh 2s, contadores de `entries/emergency/reactError`, últimos 10 logs, botão "Copiar JSON" (usa clipboard API + fallback execCommand pra WebView antigo) e botão "Limpar".
+- **`window.onerror` + `unhandledrejection` no main.jsx**: captura erros síncronos (`setTimeout`, event handlers) e async (promises rejeitadas) que o `ErrorBoundary` não pega. Persiste em `localStorage[mip_emergency_log]` com kind + info + stack. Ring de 50 entradas.
+- **`pushLastReactError` no `ErrorBoundary`**: persiste último erro React em `localStorage[mip_last_error]` com stack + componentStack. Aparece automaticamente no DebugDock.
+
+### Instrumentado (telemetria de execução)
+- **`App.jsx`**: `debugLog('info', 'App', 'Iniciando batch execution', ...)` ao chamar `setBatchModal(...)` + `useEffect` de render que loga estado de UI em cada render (selectedCategory, searchQuery, selectedCount, batchModal shape, catalogLoading). Útil pra ver o estado no momento do crash.
+- **`BatchActionModal.jsx`**: logs de mount, de cada item processando (id + action), de cada result (ok/simulated), de erro fatal com stack truncada. UseEffect agora idempotente via `useRef` (StrictMode-safe) — em dev, evita disparar `processQueue` 2x.
+- **`packageManager.js`**: logs de executeInstall/Uninstall + status HTTP do response + fallback pro simulado. Visível no DebugDock mesmo se o fetch falhar com CORS/rede.
+
+### Corrigido (preventivos, sem fix definitivo do bug "tela cinza")
+- **`BatchActionModal.jsx` useEffect StrictMode-safe**: deps array `[]` → `[targetApps, actionType, onComplete]` + `hasStartedRef` guard. Em dev, useEffect roda 2x e `processQueue` disparava duas vezes; agora dispara uma só.
+- **`HeaderBar.jsx` About modal**: `backdrop-blur-xs` → `backdrop-blur-sm`. Era inconsistente com o fix do hotfix 1 (BatchActionModal usa `backdrop-blur-sm`). WebKit2 GTK pode falhar com blur < 4px.
+- **`build_deb.py` launcher**: `end_headers()` override adicionando `Cache-Control: no-store, no-cache, must-revalidate` + `Pragma: no-cache` + `Expires: 0` em **toda** resposta. Garante que WebView2 GTK nunca sirva bundle antigo após upgrade do .deb. Logs `[mip-http]` e `[mip-launcher]` agora vão pro stderr pra debug em campo (`mint-install-pro 2>/tmp/mip.log &`).
+
+### Validado
+- vitest 20/20 passing.
+- Custom runner 121/121 passing (era 119/120, agora o teste do `.deb` artifact passa porque o .deb foi gerado).
+- Build OK em 3.66s. Bundle inicial: 63.56 KB (+0.5 KB pela infra de diagnóstico).
+- Sintaxe Python do launcher validada com `compile()`.
+- `.deb` gerado: 1.27 MB.
+
+### Não resolvido
+- 🐛 **"Tela cinza" ao clicar "Executar Ações"**: continua sem fix definitivo. O bug **só é reproduzível em GTK WebView em campo**, e a causa exata depende do JSON do DebugDock que o usuário precisa extrair. Esta release adiciona toda a infra de diagnóstico necessária para que o próximo relatório de bug traga o estado real no momento do crash.
+
+---
+
 ## [1.3.2] - 2026-09-08
 
 ### Performance (Sprint 1 — débitos #1, #2, #3 do gauntlet)

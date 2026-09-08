@@ -25,6 +25,7 @@ import { useCatalog } from './hooks/useCatalog';
 import { useFilteredApps } from './hooks/useFilteredApps';
 import { useBatchSelection } from './hooks/useBatchSelection';
 import { useNavigation } from './hooks/useNavigation';
+import { debugLog } from './services/debugLog';
 
 const SETTINGS_KEY = 'mint_settings_v1';
 
@@ -162,6 +163,10 @@ export default function App() {
       ...app,
       batchAction: app.installed ? 'uninstall' : 'install'
     }));
+    debugLog('info', 'App', 'Iniciando batch execution', {
+      total: appsToProcess.length,
+      ids: appsToProcess.map((a) => a.id)
+    });
     setBatchModal({ type: 'mixed', apps: appsToProcess });
   }, [batch.selectedAppsList]);
 
@@ -217,6 +222,19 @@ export default function App() {
     () => apps.filter((a) => a.installed).length,
     [apps]
   );
+
+  // Log estruturado de mudanças de UI state — útil pra debug remoto
+  useEffect(() => {
+    debugLog('debug', 'App', 'render', {
+      selectedCategory,
+      installedOnly,
+      searchQuery: searchQuery ? searchQuery.slice(0, 30) : '',
+      selectedCount: selectedAppIds.length,
+      batchModal: batchModal ? { type: batchModal.type, count: batchModal.apps.length } : null,
+      catalogLoading,
+      catalogCount: catalogIndex?.apps?.length ?? 0
+    });
+  });
 
   const handleClearCache = useCallback(() => {
     installedMap.clear();

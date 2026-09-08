@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
+import { pushLastReactError } from '../services/debugLog';
 
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -17,6 +18,13 @@ export default class ErrorBoundary extends React.Component {
 
   componentDidCatch(error, errorInfo) {
     console.error('[ErrorBoundary] Erro não-tratado:', error, errorInfo);
+    // Persiste pra DebugDock conseguir mostrar mesmo se usuário não abrir
+    // o painel — fica em localStorage e aparece na próxima sessão.
+    try {
+      pushLastReactError(error, errorInfo?.componentStack);
+    } catch (_) {
+      // ignore — debugLog não pode quebrar ErrorBoundary
+    }
     this.setState({ errorInfo });
   }
 
