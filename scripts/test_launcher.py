@@ -23,6 +23,11 @@ import shutil
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, 'scripts'))
 
+import json
+with open(os.path.join(REPO, 'package.json')) as _f:
+    PKG_VERSION = json.load(_f).get('version', '1.4.0')
+DEB_FILENAME = f'mint-install-pro_{PKG_VERSION}_all.deb'
+
 # === Helpers ===
 
 def extract_launcher_from_deb(deb_path):
@@ -47,7 +52,7 @@ def run_build_deb():
         print('STDOUT:', result.stdout)
         print('STDERR:', result.stderr)
         raise RuntimeError('build:deb falhou')
-    deb = os.path.join(REPO, 'mint-install-pro_1.3.2_all.deb')
+    deb = os.path.join(REPO, DEB_FILENAME)
     assert os.path.exists(deb), f'.deb não encontrado em {deb}'
     return deb
 
@@ -178,7 +183,7 @@ def test_gtk_webview_tem_fallback_dialog():
 
 def test_deb_artifact_presente():
     """O .deb existe após build."""
-    deb = os.path.join(REPO, 'mint-install-pro_1.3.2_all.deb')
+    deb = os.path.join(REPO, DEB_FILENAME)
     assert os.path.exists(deb), f'.deb não encontrado em {deb}'
     size_mb = os.path.getsize(deb) / (1024 * 1024)
     assert 1.0 <= size_mb <= 2.0, f'Size suspeito: {size_mb:.2f}MB'
@@ -187,7 +192,7 @@ def test_deb_artifact_presente():
 
 def test_deb_contem_bundle_dist():
     """O .deb contém o bundle de produção em /usr/share/mint-install-pro."""
-    deb = os.path.join(REPO, 'mint-install-pro_1.3.2_all.deb')
+    deb = os.path.join(REPO, DEB_FILENAME)
     with tempfile.TemporaryDirectory() as tmp:
         subprocess.run(['dpkg-deb', '-x', deb, tmp], check=True)
         bundle = os.path.join(tmp, 'usr', 'share', 'mint-install-pro')
@@ -203,7 +208,7 @@ def test_deb_contem_bundle_dist():
 
 def test_deb_contem_atalho_desktop():
     """O .deb contém o arquivo .desktop para integração com menu."""
-    deb = os.path.join(REPO, 'mint-install-pro_1.3.2_all.deb')
+    deb = os.path.join(REPO, DEB_FILENAME)
     with tempfile.TemporaryDirectory() as tmp:
         subprocess.run(['dpkg-deb', '-x', deb, tmp], check=True)
         desktop = os.path.join(tmp, 'usr', 'share', 'applications', 'mint-install-pro.desktop')
@@ -218,7 +223,7 @@ def test_deb_contem_atalho_desktop():
 
 def test_deb_contem_icone():
     """O .deb contém o ícone do app."""
-    deb = os.path.join(REPO, 'mint-install-pro_1.3.2_all.deb')
+    deb = os.path.join(REPO, DEB_FILENAME)
     with tempfile.TemporaryDirectory() as tmp:
         subprocess.run(['dpkg-deb', '-x', deb, tmp], check=True)
         icon = os.path.join(tmp, 'usr', 'share', 'icons', 'hicolor', '96x96', 'apps', 'mint-install-pro.png')
@@ -228,7 +233,7 @@ def test_deb_contem_icone():
 
 def test_deb_control_metadata():
     """O arquivo DEBIAN/control tem metadata válida."""
-    deb = os.path.join(REPO, 'mint-install-pro_1.3.2_all.deb')
+    deb = os.path.join(REPO, DEB_FILENAME)
     with tempfile.TemporaryDirectory() as tmp:
         subprocess.run(['dpkg-deb', '-e', deb, tmp], check=True)
         control = os.path.join(tmp, 'control')
@@ -244,7 +249,7 @@ def test_deb_control_metadata():
 
 def test_postinst_e_postrm_presentes():
     """Scripts de post-instalação e remoção estão presentes."""
-    deb = os.path.join(REPO, 'mint-install-pro_1.3.2_all.deb')
+    deb = os.path.join(REPO, DEB_FILENAME)
     with tempfile.TemporaryDirectory() as tmp:
         subprocess.run(['dpkg-deb', '-e', deb, tmp], check=True)
         postinst = os.path.join(tmp, 'postinst')

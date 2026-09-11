@@ -6,7 +6,8 @@ function AppCard({
   app,
   onClick, 
   isSelected = false, 
-  onToggleSelect 
+  onToggleSelect,
+  compact = false
 }) {
   const [imgError, setImgError] = useState(false);
 
@@ -46,7 +47,9 @@ function AppCard({
       tabIndex={0}
       role="button"
       aria-label={`${app.name}. ${app.fullSummary || app.summary || ''}${isInstalled ? ' Instalado' : ''}`}
-      className={`gtk-card group relative flex items-center p-2.5 sm:p-3 rounded-md cursor-pointer select-none transition-all duration-150 h-[74px] focus:outline-none focus:ring-2 focus:ring-[#87cf3e] focus:ring-offset-1 focus:ring-offset-[#26292d] ${cardClass}`}
+      className={`gtk-card group relative flex items-center ${
+        compact ? 'p-2 sm:p-2.5 h-[62px]' : 'p-2.5 sm:p-3 h-[74px]'
+      } rounded-md cursor-pointer select-none transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#87cf3e] focus:ring-offset-1 focus:ring-offset-[#26292d] ${cardClass}`}
       title={
         isStagedForUninstall
           ? `${app.name}: Desmarcado para desinstalação em lote`
@@ -154,10 +157,7 @@ AppCard.propTypes = {
   }).isRequired,
   onClick: PropTypes.func.isRequired,
   isSelected: PropTypes.bool,
-  onToggleSelect: PropTypes.func
+  onToggleSelect: PropTypes.func,
+  compact: PropTypes.bool
 };
 
-AppCard.defaultProps = {
-  isSelected: false,
-  onToggleSelect: null
-};

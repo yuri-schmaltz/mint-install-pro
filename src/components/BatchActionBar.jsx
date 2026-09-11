@@ -6,9 +6,9 @@ export default function BatchActionBar({
   selectedCount,
   toInstallCount,
   toUninstallCount,
-  onExecuteBatch,
-  onInstallBatch,
-  onUninstallBatch,
+  onExecuteBatch = null,
+  onInstallBatch = null,
+  onUninstallBatch = null,
   onClearSelection,
   onSelectAllVisible,
   isAllVisibleSelected
@@ -91,8 +91,3 @@ BatchActionBar.propTypes = {
   isAllVisibleSelected: PropTypes.bool.isRequired
 };
 
-BatchActionBar.defaultProps = {
-  onExecuteBatch: null,
-  onInstallBatch: null,
-  onUninstallBatch: null
-};

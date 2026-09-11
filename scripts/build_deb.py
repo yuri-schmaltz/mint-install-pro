@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import os
+import sys
 import shutil
 import subprocess
 import stat
 
-VERSION = "1.3.2"
+VERSION = "1.4.0"
 PACKAGE_NAME = "mint-install-pro"
 DEB_DIR = f"/tmp/{PACKAGE_NAME}_{VERSION}_all"
 OUTPUT_DEB = f"{PACKAGE_NAME}_{VERSION}_all.deb"
@@ -378,6 +379,10 @@ exit 0
 with open(f"{DEB_DIR}/DEBIAN/postrm", "w", encoding="utf-8") as f:
     f.write(postrm_content)
 os.chmod(f"{DEB_DIR}/DEBIAN/postrm", 0o755)
+
+# Garantir permissões estritas no diretório raiz e DEBIAN (dpkg-deb requer 0755)
+os.chmod(DEB_DIR, 0o755)
+os.chmod(f"{DEB_DIR}/DEBIAN", 0o755)
 
 # 7. Empacotar usando dpkg-deb
 cmd = ["dpkg-deb", "--build", "--root-owner-group", DEB_DIR, OUTPUT_DEB]

@@ -1,10 +1,8 @@
 # mint-install-pro — Handoff de Desenvolvimento
 
-> **Status atual**: 1.3.2 publicada + hotfix 1 mergeado + hotfix 6 (infra diagnóstico) commitado localmente. Bug crítico de "tela cinza" no batch action **ainda NÃO resolvido** — agora com infra completa de DebugDock + emergency log pra capturar o estado em campo.
+> **Status atual**: v1.4.0 lançada e publicada com sucesso. Redesign da tela inicial (Início com descoberta paginada e matriz compacta sem barra de rolagem), nomes concisos de abas (Início, Código, Mídias), refinamento do painel de preferências com tooltips e 100% de largura horizontal, e remoção do DebugDock em produção.
 >
-> **Última release publicada**: [v1.3.2](https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.3.2) com `.deb` 1.27 MB.
->
-> **Próxima release (hotfix 6)**: branch local pronto, build OK, 121/121 testes, aguarda push + tag + release. **Inclui toda a infra de diagnóstico do handoff (hotfixes 2-5) + 3 fixes preventivos preemptivos** (StrictMode-safe, backdrop-blur-xs→sm, Cache-Control no-store).
+> **Última release publicada**: [v1.4.0](https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.4.0) com `.deb` 1.27 MB (`mint-install-pro_1.4.0_all.deb`).
 >
 > **Stack**: React 18 + Vite 5 + Tailwind 3 + Python launcher (GTK WebView via PyGObject) + Debian packaging.
 

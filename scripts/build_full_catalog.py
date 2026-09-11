@@ -226,8 +226,8 @@ for cat_id, meta in category_map.items():
     total_cat = sum(1 for c in catalog if c["category"] == cat_id)
     print(f"Categoria {meta['label']} ({cat_id}): {total_cat} aplicativos cadastrados.")
 
-# 6. 200 Flatpaks mais bem avaliados / com mais downloads da API Flathub
-print("Buscando 200 Flatpaks mais populares e baixados do Flathub...")
+# 6. Flatpaks mais bem avaliados / com mais downloads da API Flathub (sem limite máximo fixo de 200)
+print("Buscando Flatpaks mais populares e baixados do Flathub...")
 try:
     flathub_hits = []
     for page in [1, 2]:
@@ -242,8 +242,6 @@ try:
     
     flatpak_count = 0
     for hit in flathub_hits:
-        if flatpak_count >= 200:
-            break
         app_id = hit.get("app_id") or hit.get("id")
         if not app_id or (app_id, "flatpak") in seen_pairs:
             continue
@@ -289,15 +287,15 @@ print(f"Total consolidado no catálogo da plataforma: {len(catalog)} aplicativos
 
 # 7. Gravar src/data/initialApps.js com ordenação estrita das categorias
 categories_list = [
-  {"id": "picks", "label": "Destaques", "icon": "Sparkles"},
+  {"id": "picks", "label": "Início", "icon": "Sparkles"},
   {"id": "accessories", "label": "Acessórios", "icon": "Wrench"},
-  {"id": "development", "label": "Desenvolvimento", "icon": "Code"},
+  {"id": "development", "label": "Código", "icon": "Code"},
   {"id": "office", "label": "Escritório", "icon": "Briefcase"},
   {"id": "flatpak", "label": "Flatpak", "icon": "Boxes"},
   {"id": "graphics", "label": "Gráficos", "icon": "Image"},
   {"id": "internet", "label": "Internet", "icon": "Globe"},
   {"id": "games", "label": "Jogos", "icon": "Gamepad2"},
-  {"id": "sound-video", "label": "Mídia", "icon": "Film"},
+  {"id": "sound-video", "label": "Mídias", "icon": "Film"},
   {"id": "system", "label": "Sistema", "icon": "Cpu"},
   {"id": "all", "label": "Todos", "icon": "Grid"}
 ]

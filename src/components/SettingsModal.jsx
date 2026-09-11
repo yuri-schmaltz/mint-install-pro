@@ -10,7 +10,8 @@ import {
   Check,
   HardDrive,
   Monitor,
-  ChevronDown
+  ChevronDown,
+  HelpCircle
 } from 'lucide-react';
 import { pushToast } from './Toast';
 
@@ -58,53 +59,53 @@ export default function SettingsModal({
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex border-b border-[#32363c] bg-[#24272b] px-4 text-xs font-medium">
+        <div className="flex border-b border-[#32363c] bg-[#24272b] px-2 sm:px-4 text-xs font-medium w-full">
           <button
             onClick={() => setActiveTab('search')}
-            className={`px-3.5 py-2.5 flex items-center space-x-1.5 border-b-2 transition-colors ${
+            className={`flex-1 py-2.5 px-2 flex items-center justify-center space-x-1.5 border-b-2 transition-colors text-center ${
               activeTab === 'search'
-                ? 'border-[#87cf3e] text-white font-semibold'
-                : 'border-transparent text-[#9ca3af] hover:text-[#dcdcdc]'
+                ? 'border-[#87cf3e] text-white font-semibold bg-[#2a2e34]'
+                : 'border-transparent text-[#9ca3af] hover:text-[#dcdcdc] hover:bg-[#282b30]'
             }`}
           >
-            <Search className="w-3.5 h-3.5" />
-            <span>Pesquisa</span>
+            <Search className="w-3.5 h-3.5 flex-shrink-0" />
+            <span className="truncate">Pesquisa</span>
           </button>
 
           <button
             onClick={() => setActiveTab('flatpak')}
-            className={`px-3.5 py-2.5 flex items-center space-x-1.5 border-b-2 transition-colors ${
+            className={`flex-1 py-2.5 px-2 flex items-center justify-center space-x-1.5 border-b-2 transition-colors text-center ${
               activeTab === 'flatpak'
-                ? 'border-[#87cf3e] text-white font-semibold'
-                : 'border-transparent text-[#9ca3af] hover:text-[#dcdcdc]'
+                ? 'border-[#87cf3e] text-white font-semibold bg-[#2a2e34]'
+                : 'border-transparent text-[#9ca3af] hover:text-[#dcdcdc] hover:bg-[#282b30]'
             }`}
           >
-            <Boxes className="w-3.5 h-3.5" />
-            <span>Flatpaks</span>
+            <Boxes className="w-3.5 h-3.5 flex-shrink-0" />
+            <span className="truncate">Flatpaks</span>
           </button>
 
           <button
             onClick={() => setActiveTab('operations')}
-            className={`px-3.5 py-2.5 flex items-center space-x-1.5 border-b-2 transition-colors ${
+            className={`flex-1 py-2.5 px-2 flex items-center justify-center space-x-1.5 border-b-2 transition-colors text-center ${
               activeTab === 'operations'
-                ? 'border-[#87cf3e] text-white font-semibold'
-                : 'border-transparent text-[#9ca3af] hover:text-[#dcdcdc]'
+                ? 'border-[#87cf3e] text-white font-semibold bg-[#2a2e34]'
+                : 'border-transparent text-[#9ca3af] hover:text-[#dcdcdc] hover:bg-[#282b30]'
             }`}
           >
-            <HardDrive className="w-3.5 h-3.5" />
-            <span>Operações & Lote</span>
+            <HardDrive className="w-3.5 h-3.5 flex-shrink-0" />
+            <span className="truncate">Operações & Lote</span>
           </button>
 
           <button
             onClick={() => setActiveTab('system')}
-            className={`px-3.5 py-2.5 flex items-center space-x-1.5 border-b-2 transition-colors ${
+            className={`flex-1 py-2.5 px-2 flex items-center justify-center space-x-1.5 border-b-2 transition-colors text-center ${
               activeTab === 'system'
-                ? 'border-[#87cf3e] text-white font-semibold'
-                : 'border-transparent text-[#9ca3af] hover:text-[#dcdcdc]'
+                ? 'border-[#87cf3e] text-white font-semibold bg-[#2a2e34]'
+                : 'border-transparent text-[#9ca3af] hover:text-[#dcdcdc] hover:bg-[#282b30]'
             }`}
           >
-            <Monitor className="w-3.5 h-3.5" />
-            <span>Sistema & Padrão</span>
+            <Monitor className="w-3.5 h-3.5 flex-shrink-0" />
+            <span className="truncate">Sistema & Padrão</span>
           </button>
         </div>
 
@@ -195,7 +196,6 @@ export default function SettingsModal({
                     <div>
                       <div className="text-white font-medium flex items-center space-x-1.5">
                         <span>Mostrar Flatpaks não verificados</span>
-                        <span className="text-[10px] text-amber-400 font-semibold bg-amber-500/15 px-1.5 rounded border border-amber-500/30">Não recomendado</span>
                       </div>
                       <div className="text-[11px] text-[#8e95a0]">Exibe pacotes mantidos por terceiros não certificados pelos autores originais</div>
                     </div>
@@ -351,19 +351,18 @@ export default function SettingsModal({
                 <div className="bg-[#202226] border border-[#32363c] rounded-lg divide-y divide-[#2a2d33]">
                   
                   {/* Default App Manager Option */}
-                  <label className="p-3.5 flex items-center justify-between cursor-pointer hover:bg-[#25282e] transition-colors">
-                    <div className="pr-4">
-                      <div className="text-white font-medium flex items-center space-x-2">
-                        <span>Tornar o Mint Install Pro o gerenciador padrão do sistema</span>
-                        {localSettings.isDefaultPackageManager && (
-                          <span className="text-[10px] font-bold text-[#87cf3e] bg-[#87cf3e]/15 px-2 py-0.5 rounded-full border border-[#87cf3e]/30">
-                            Padrão Ativo
-                          </span>
-                        )}
-                      </div>
-                      <div className="text-[11px] text-[#8e95a0] mt-0.5">
-                        Registra o Mint Install Pro como o manipulador para protocolos <code className="text-[#87cf3e]">appstream://</code> e <code className="text-[#87cf3e]">apt://</code>.
-                      </div>
+                  <label
+                    title="Registra o Mint Install Pro como o manipulador para protocolos appstream:// e apt://"
+                    className="p-3.5 flex items-center justify-between cursor-pointer hover:bg-[#25282e] transition-colors"
+                  >
+                    <div className="pr-4 flex items-center space-x-2">
+                      <span className="text-white font-medium">Tornar o Mint Install Pro o gerenciador padrão do sistema</span>
+                      <span
+                        title="Registra o Mint Install Pro como o manipulador para protocolos appstream:// e apt://"
+                        className="text-[#8e95a0] hover:text-[#87cf3e] transition-colors"
+                      >
+                        <HelpCircle className="w-3.5 h-3.5" />
+                      </span>
                     </div>
                     <input
                       type="checkbox"
@@ -381,13 +380,16 @@ export default function SettingsModal({
 
                   {/* Action & Command Helper */}
                   <div className="p-3.5 bg-[#1a1c1f] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-                    <div>
-                      <div className="text-[11.5px] text-[#cfd3db] font-medium">
-                        Associação de Protocolos XDG no Linux Mint:
-                      </div>
-                      <div className="text-[10px] text-[#8e95a0] mt-0.5">
-                        Mapeado para <span className="text-[#e0e0e0] font-mono">mint-install-pro.desktop</span>
-                      </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-[12px] text-[#cfd3db] font-medium">
+                        Associação de Protocolos XDG no Linux Mint
+                      </span>
+                      <span
+                        title="Mapeado para mint-install-pro.desktop"
+                        className="text-[#8e95a0] hover:text-[#87cf3e] transition-colors cursor-help"
+                      >
+                        <HelpCircle className="w-3.5 h-3.5" />
+                      </span>
                     </div>
                     <button
                       onClick={() => {

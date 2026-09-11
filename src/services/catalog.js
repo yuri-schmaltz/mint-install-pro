@@ -64,7 +64,7 @@ export async function loadCatalogIndex() {
       };
       return _lightIndex;
     });
-  return _lightIndex;
+  return _lightIndexPromise;
 }
 
 /**

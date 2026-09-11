@@ -46,7 +46,8 @@ export function useFilteredApps(apps, catalogIndex, filters) {
           if (selectedCategory === 'flatpak' && !app.isFlatpak) continue;
           if (selectedCategory !== 'flatpak' && app.category !== selectedCategory) continue;
         }
-        if (!app._haystack.includes(q)) continue;
+        const haystack = app._haystack || (app.name + ' ' + (app.summary || '')).toLowerCase();
+        if (!haystack.includes(q)) continue;
       } else {
         if (selectedCategory === 'all') {
           // passa

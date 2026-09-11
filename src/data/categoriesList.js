@@ -3,7 +3,7 @@
 export const categoriesList = [
   {
     "id": "picks",
-    "label": "Destaques",
+    "label": "Início",
     "icon": "Sparkles"
   },
   {
@@ -13,7 +13,7 @@ export const categoriesList = [
   },
   {
     "id": "development",
-    "label": "Desenvolvimento",
+    "label": "Código",
     "icon": "Code"
   },
   {
@@ -43,13 +43,18 @@ export const categoriesList = [
   },
   {
     "id": "sound-video",
-    "label": "Mídia",
+    "label": "Mídias",
     "icon": "Film"
   },
   {
     "id": "system",
     "label": "Sistema",
     "icon": "Cpu"
+  },
+  {
+    "id": "installed",
+    "label": "Instalados",
+    "icon": "CheckCircle2"
   },
   {
     "id": "all",

@@ -184,6 +184,7 @@ export default function App() {
 
   // === Toggles composed ===
   const handleToggleInstalledOnly = useCallback(() => {
+    setSearchQuery('');
     setInstalledOnly((prev) => {
       const next = !prev;
       if (next) {
@@ -199,7 +200,7 @@ export default function App() {
   const handleSelectCategory = useCallback((catId) => {
     setSearchQuery('');
     nav.selectCategory(catId);
-    if (catId === 'picks') setInstalledOnly(false);
+    setInstalledOnly(false);
   }, [nav]);
 
   const handleBack = useCallback(() => {
@@ -215,7 +216,7 @@ export default function App() {
     if (searchQuery) return 'Resultados da Pesquisa';
     if (installedOnly) return 'Aplicativos Instalados';
     const cat = categoriesList.find((c) => c.id === selectedCategory);
-    return cat ? cat.label : 'Destaques';
+    return cat ? cat.label : 'Início';
   }, [selectedCategory, searchQuery, installedOnly]);
 
   const installedCount = useMemo(
@@ -295,10 +296,6 @@ export default function App() {
         setSearchQuery={setSearchQuery}
         canGoBack={canGoBack || !!searchQuery}
         onBack={handleBack}
-        installedOnly={installedOnly}
-        setInstalledOnly={setInstalledOnly}
-        onToggleInstalledOnly={handleToggleInstalledOnly}
-        installedCount={installedCount}
         onOpenSettings={() => setIsSettingsOpen(true)}
         flatpakStatus={flatpakStatus}
       />
@@ -308,7 +305,8 @@ export default function App() {
         selectedCategory={searchQuery ? '' : selectedCategory}
         onSelectCategory={handleSelectCategory}
         installedOnly={installedOnly}
-        setInstalledOnly={setInstalledOnly}
+        onToggleInstalledOnly={handleToggleInstalledOnly}
+        installedCount={installedCount}
       />
 
       {nav.isLandingVisible ? (

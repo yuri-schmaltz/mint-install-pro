@@ -60,7 +60,18 @@ export async function getPopularFlathub(page = 1, perPage = 100) {
     
     const hits1 = res1.ok ? (await res1.json()).hits || [] : [];
     const hits2 = res2.ok ? (await res2.json()).hits || [] : [];
-    const allHits = [...hits1, ...hits2].slice(0, 200);
+    
+    // Deduplica hits entre páginas sem impor teto fixo
+    const seen = new Set();
+    const uniqueHits = [];
+    for (const h of [...hits1, ...hits2]) {
+      const id = h.app_id || h.id;
+      if (id && !seen.has(id)) {
+        seen.add(id);
+        uniqueHits.push(h);
+      }
+    }
+    const allHits = uniqueHits;
 
     return allHits.map(hit => {
       const appId = hit.app_id || hit.id;

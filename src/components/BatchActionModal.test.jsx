@@ -33,7 +33,8 @@ vi.mock('lucide-react', () => ({
   Download: () => null,
   Trash2: () => null,
   Play: () => null,
-  Terminal: () => null
+  Terminal: () => null,
+  FileText: () => null
 }));
 
 import BatchActionModal from './BatchActionModal';
@@ -277,6 +278,39 @@ describe('BatchActionModal', () => {
       });
       fireEvent.click(screen.getByRole('button', { name: /Concluir/i }));
       expect(onClose).toHaveBeenCalledTimes(1);
+    });
+
+    it('exibe botão "Salvar Log" ao concluir e permite exportar', async () => {
+      // Mock createObjectURL e revokeObjectURL se não existirem no JSDOM
+      const createObjectURLMock = vi.fn(() => 'blob:mock-url');
+      const revokeObjectURLMock = vi.fn();
+      globalThis.URL.createObjectURL = createObjectURLMock;
+      globalThis.URL.revokeObjectURL = revokeObjectURLMock;
+
+      render(
+        <BatchActionModal
+          actionType="install"
+          targetApps={[{ id: 'app1', name: 'A', installed: false, batchAction: 'install' }]}
+          onClose={() => {}}
+          onComplete={() => {}}
+        />
+      );
+
+      // Aguarda finalizar
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: /Salvar Log/i })).toBeInTheDocument();
+      });
+
+      const saveBtn = screen.getByRole('button', { name: /Salvar Log/i });
+      fireEvent.click(saveBtn);
+
+      expect(createObjectURLMock).toHaveBeenCalled();
+      expect(debugLog).toHaveBeenCalledWith(
+        'info',
+        'BatchActionModal',
+        'log exportado pelo usuário',
+        expect.any(Object)
+      );
     });
   });
 

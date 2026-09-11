@@ -7,7 +7,8 @@ import {
   Download,
   Trash2,
   Play,
-  Terminal
+  Terminal,
+  FileText
 } from 'lucide-react';
 import { executeInstall, executeUninstall } from '../services/packageManager';
 import { debugLog } from '../services/debugLog';
@@ -165,6 +166,40 @@ export default function BatchActionModal({
       ? 'bg-rose-500'
       : 'bg-[#87cf3e]';
 
+  const handleExportLogs = () => {
+    try {
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const logContent = [
+        `==================================================`,
+        `Mint Install Pro - Registro de Operações em Lote`,
+        `Data: ${new Date().toLocaleString()}`,
+        `Tipo: ${actionType}`,
+        `Total de Aplicativos: ${total}`,
+        `Concluídos com Sucesso: ${completedCount}/${total}`,
+        `==================================================\n`,
+        ...logs
+      ].join('\n');
+
+      const blob = new Blob([logContent], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `mint-install-pro-batch-${timestamp}.log`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      debugLog('info', 'BatchActionModal', 'log exportado pelo usuário', {
+        lines: logs.length
+      });
+    } catch (err) {
+      debugLog('error', 'BatchActionModal', 'falha ao exportar log', {
+        error: String(err)
+      });
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
       <div className="bg-[#2a2d32] border border-[#3b3f46] rounded-lg max-w-xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden text-[#e0e0e0]">
@@ -271,9 +306,22 @@ export default function BatchActionModal({
 
         {/* Footer */}
         <div className="px-5 py-3 bg-[#202326] border-t border-[#1b1c1e] flex items-center justify-between">
-          <span className="text-xs text-[#7d828a]">
-            {isFinished ? 'Pronto para uso.' : 'Não feche esta janela durante a execução.'}
-          </span>
+          <div className="flex items-center space-x-3">
+            <span className="text-xs text-[#7d828a]">
+              {isFinished ? 'Pronto para uso.' : 'Não feche esta janela durante a execução.'}
+            </span>
+            {isFinished && (
+              <button
+                type="button"
+                onClick={handleExportLogs}
+                className="inline-flex items-center space-x-1.5 text-xs text-[#a4a9b2] hover:text-white px-2 py-1 rounded bg-[#2c2f35] hover:bg-[#383c44] border border-[#3b3f46] transition-colors"
+                title="Exportar registros da execução para arquivo .log"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>Salvar Log</span>
+              </button>
+            )}
+          </div>
           <button
             onClick={onClose}
             disabled={!isFinished}

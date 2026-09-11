@@ -10,9 +10,9 @@
 </p>
 
   <a href="https://github.com/yuri-schmaltz/mint-install-pro"><img src="https://img.shields.io/badge/GitHub-mint--install--pro-87cf3e?style=flat-square&logo=github" alt="GitHub Repo"></a>
-  <a href="https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.3.2"><img src="https://img.shields.io/badge/Release-v1.3.2%20.deb-blue?style=flat-square&logo=debian" alt="Download .deb"></a>
+  <a href="https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.4.0"><img src="https://img.shields.io/badge/Release-v1.4.0%20.deb-blue?style=flat-square&logo=debian" alt="Download .deb"></a>
   <img src="https://img.shields.io/badge/AI%20Enhanced-%E2%9C%A8%20Google%20DeepMind-7928CA?style=flat-square&logo=google" alt="AI Enhanced">
-  <img src="https://img.shields.io/badge/Testes-119%20Passando-87cf3e?style=flat-square&logo=vitest" alt="Testes 119/120">
+  <img src="https://img.shields.io/badge/Testes-212%20Unit%20%2B%20121%20Audit-87cf3e?style=flat-square&logo=vitest" alt="Testes 100% Passando">
   <img src="https://img.shields.io/badge/Linux%20Mint-22.3%20Zena-87cf3e?style=flat-square&logo=linuxmint" alt="Linux Mint 22.3">
   <img src="https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react" alt="React 18">
   <img src="https://img.shields.io/badge/Vite-5-646cff?style=flat-square&logo=vite" alt="Vite 5">
@@ -49,23 +49,23 @@ O **Mint Install Pro** é uma reengenharia completa do Gerenciador de Aplicativo
 - **Destaque Sutil nos Instalados:** Cards de aplicações instaladas recebem um fundo suave em degradê verde escuro (`#233126`).
 - **Transição de Desinstalação (Vermelho/Laranja):** Ao desmarcar o checkbox de um app instalado (marcando-o para remoção), o fundo transiciona suavemente para um tom vermelho/laranja escuro na mesma paleta e luminância do verde, acompanhado da tag `Desinstalar`.
 
-### 📐 4. Tela Inicial com Matriz 3x3 Simétrica de Categorias
-- 9 categorias regulares (*Acessórios, Desenvolvimento, Escritório, Flatpak, Gráficos, Internet, Jogos, Mídia, Sistema*) organizadas em grade simétrica 3x3 perfeita, sem lacunas.
+### 📐 4. Tela Inicial (Início) Otimizada & Descoberta
+- **Carrossel de Banners e Descoberta:** Banners em rotação com espaçamentos seguros anti-colisão e carrossel paginado de Descoberta com as 18 melhores aplicações (páginas de 6 apps com `<` e `>`).
+- 9 categorias regulares (*Acessórios, Código, Escritório, Flatpak, Gráficos, Internet, Jogos, Mídias, Sistema*) organizadas em grade simétrica 3x3 perfeita, sem lacunas e calibrada para não gerar rolagem vertical.
 - **Cápsulas de Contagem Fixas (82px):** Badges padronizados com suporte a contagens até 999 e adição automática do prefixo `+` (`+999 apps`) para grandes volumes.
-- **Carrossel de Destaques:** Rotação automática e manual dos banners oficiais do Linux Mint (Blender, LibreOffice, GIMP, VLC, Steam, Inkscape).
 
-### 📏 5. Barra de 11 Abas com Distribuição Uniforme (100% de Largura)
-- Ocupação total da largura horizontal da janela, eliminando espaços vazios à direita.
-- **Consistência Geométrica:** Cada aba ocupa exatamente a mesma fração de largura (`flex-1 min-w-0`), com ícones e textos perfeitamente centralizados.
-- **Ordenação Alfabética Estrita:** *Destaques* como aba inicial à extrema esquerda, *Todos* à extrema direita e as 9 intermediárias rigorosamente ordenadas de A a S.
+### 📏 5. Barra de 12 Abas com Distribuição Uniforme (100% de Largura)
+- Ocupação total da largura horizontal da janela, eliminando espaços vazios laterais.
+- **Consistência Geométrica:** Cada aba ocupa exatamente a mesma fração de largura (`flex-1 min-w-0`), com ícones e textos perfeitamente legíveis e centralizados.
+- **Rótulos Concisos e Ordenação:** *Início* como aba inicial à extrema esquerda, *Instalados* e *Todos* à direita, e as 9 intermediárias rigorosamente ordenadas de A a S (*Acessórios*, *Código*, *Escritório*, *Flatpak*, *Gráficos*, *Internet*, *Jogos*, *Mídias*, *Sistema*).
 
 ### 🌐 6. Catálogo Híbrido & Integração Online Flathub
-- Catálogo de **183 aplicações reais**, combinando os principais utilitários nativos do sistema APT e Flatpaks populares.
+- Catálogo de **1.800 aplicações reais**, combinando os principais utilitários nativos do sistema APT e Flatpaks populares com code-splitting lazy.
 - Busca ao vivo consumindo a **API REST v2 oficial do Flathub** (`flathub.org/api/v2/search`) com *debounce* inteligente e cache local.
 
-### ⚙️ 7. Central de Preferências Modular
-- Modal de configurações estilo GTK com 4 abas:
-  - **Pesquisa:** Configuração de escopo (título, resumo, descrição, ID do pacote).
+### ⚙️ 7. Central de Preferências Limpa & Intuitiva
+- Modal de configurações estilo GTK com abas distribuídas em 100% da largura:
+  - **Pesquisa:** Configuração de escopo com tooltips informativos e interface limpa.
   - **Flatpaks:** Alternador de busca ao vivo e preferências de empacotamento (Todos, Apenas Flatpak, Apenas APT).
   - **Operações & Lote:** Confirmação de ações e limpeza de cache da aplicação.
   - **Manutenção:** Restauração de padrões de fábrica.
@@ -124,11 +124,11 @@ Esta é a forma mais prática para o usuário final, integrando a aplicação di
 
 1. **Baixe o arquivo `.deb` mais recente:**
    ```bash
-   wget https://github.com/yuri-schmaltz/mint-install-pro/releases/download/v1.3.2/mint-install-pro_1.3.2_all.deb
+   wget https://github.com/yuri-schmaltz/mint-install-pro/releases/download/v1.4.0/mint-install-pro_1.4.0_all.deb
    ```
 2. **Instale via terminal:**
    ```bash
-   sudo dpkg -i mint-install-pro_1.3.2_all.deb
+   sudo dpkg -i mint-install-pro_1.4.0_all.deb
    sudo apt-get install -f # resolve dependências de sistema se necessário
    ```
    *(Ou dê um duplo clique no arquivo baixado para instalar pela interface gráfica do GDebi).*

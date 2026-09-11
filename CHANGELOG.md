@@ -4,6 +4,32 @@ Todas as alterações notáveis do projeto **Mint Install Pro** são documentada
 
 ---
 
+## [1.4.0] - 2026-09-11
+
+### Modificado (Refinamento de UI & Ergonomia)
+- **Nomenclatura Concisa de Abas**:
+  - Aba de destaque renomeada de "Destaques" para **"Início"** (id: `picks`).
+  - Categoria de desenvolvimento renomeada de "Desenvolvimento" para **"Código"** (id: `development`).
+  - Categoria de multimídia renomeada de "Mídia" para **"Mídias"** (id: `sound-video`).
+  - Todas as 12 abas agora possuem largura balanceada e uniforme (`flex-1 min-w-0`), ocupando 100% da largura horizontal sem barras de rolagem.
+- **Tela Inicial (LandingPage)**:
+  - Carrossel paginado de Descoberta com 18 aplicações top-rated distribuídas em páginas de 6 apps, com botões de navegação lateral (`<` e `>`), indicador de página ativa (`1/3`) e proteção de margem para evitar colisão visual com os botões.
+  - Cartões de aplicativos em modo compacto (`h-[62px]`) com tipografia ajustada para eliminar rolagem vertical na tela inicial.
+  - Grade 3x3 de categorias perfeitamente calibrada e espaçamentos verticais compactos (`space-y-3.5`).
+  - Remoção do link redundante "Ver todos (1800)" na seção de topo.
+- **Painel de Preferências (SettingsModal)**:
+  - Expansão horizontal uniforme das abas de navegação interna (`flex-1 min-w-0`).
+  - Remoção dos rótulos e badges "Não recomendado" e "Padrão Ativo".
+  - Conversão de textos explicativos longos em tooltips interativos acionados por ícone de ajuda (`<HelpCircle />`), preservando a limpeza da interface.
+- **Limpeza de Produção**:
+  - Remoção do botão flutuante e do componente `<DebugDock />` da tela principal de produção.
+
+### Empacotamento & Suíte de Testes
+- Atualização do gerador `.deb` para a versão `1.4.0` (`mint-install-pro_1.4.0_all.deb`).
+- Integração da suíte completa de testes: 121 verificações estáticas/funcionais no test runner customizado e 212 testes unitários no Vitest, todos 100% aprovados.
+
+---
+
 ## [1.3.2 hotfix 6] - 2026-09-08
 
 ### Adicionado (gauntlet loop: 285 testes exaustivos)

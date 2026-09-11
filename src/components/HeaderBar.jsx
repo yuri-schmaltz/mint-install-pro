@@ -4,7 +4,6 @@ import {
   ChevronLeft,
   Search,
   X,
-  CheckSquare,
   Menu,
   RefreshCw,
   Info,
@@ -13,27 +12,18 @@ import {
 } from 'lucide-react';
 
 // Versão injetada pelo Vite a partir de package.json. Default seguro para SSR/tests.
-const APP_VERSION = import.meta.env?.VITE_APP_VERSION || '1.3.0';
+const APP_VERSION = import.meta.env?.VITE_APP_VERSION || '1.4.0';
 
 export default function HeaderBar({
   searchQuery,
   setSearchQuery,
   canGoBack,
   onBack,
-  installedOnly,
-  setInstalledOnly,
-  onToggleInstalledOnly,
-  installedCount = 0,
   onOpenSettings,
   flatpakStatus = 'unknown'
 }) {
   const [showMenu, setShowMenu] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
-
-  // Comportamento idêntico aos contadores de categoria (suporte a até 999 e transbordo +999)
-  const isInstalledOverflow = installedCount > 999;
-  const displayInstalledCount = isInstalledOverflow ? '+999' : installedCount;
-  const installedLabel = installedCount === 1 ? 'app' : 'apps';
 
   return (
     <header className="bg-[#202326] border-b border-[#1b1c1e] text-[#dcdcdc] px-3 py-2 flex items-center justify-between select-none relative z-30 shadow-md">
@@ -73,27 +63,8 @@ export default function HeaderBar({
         </div>
       </div>
 
-      {/* Right controls: Installed Counter, Hamburger menu */}
+      {/* Right controls: Hamburger menu */}
       <div className="flex items-center space-x-2">
-        {/* Installed apps count button - com o mesmo comportamento e estilo dos contadores de categoria */}
-        <button
-          onClick={onToggleInstalledOnly}
-          title={installedOnly ? "Mostrar todos os aplicativos" : `Filtrar apenas instalados (${installedCount} ${installedLabel})`}
-          className={`flex-shrink-0 h-[26px] px-2.5 rounded-full border transition-all flex items-center space-x-1.5 text-xs select-none shadow-xs cursor-pointer ${
-            installedOnly 
-              ? 'bg-[#87cf3e]/20 border-[#87cf3e] text-[#87cf3e] ring-1 ring-[#87cf3e]/50' 
-              : 'bg-black/40 border-[#87cf3e]/30 hover:border-[#87cf3e] hover:bg-black/60'
-          }`}
-        >
-          <CheckSquare className="w-3.5 h-3.5 text-[#87cf3e]" />
-          <span className="font-semibold text-white">
-            {installedCount}
-          </span>
-          <span className="text-[#a4a9b2] text-[11px]">
-            {installedLabel}
-          </span>
-        </button>
-
         {/* Flatpak availability warning (only shown when backend reports ENOENT) */}
         {flatpakStatus === 'missing' && (
           <div
@@ -108,7 +79,7 @@ export default function HeaderBar({
 
         {/* Hamburger Menu button */}
         <div className="relative">
-          <button 
+          <button
             onClick={() => setShowMenu(!showMenu)}
             title="Menu do aplicativo"
             className="p-1.5 rounded hover:bg-[#35393f] text-[#cfd3d8] transition-colors"
@@ -118,7 +89,7 @@ export default function HeaderBar({
 
           {showMenu && (
             <div className="absolute right-0 mt-1 w-52 bg-[#2a2d32] border border-[#1b1c1e] rounded shadow-xl py-1 z-50 text-xs text-[#e4e4e4]">
-              <button 
+              <button
                 onClick={() => { onOpenSettings(); setShowMenu(false); }}
                 className="w-full text-left px-3 py-2 hover:bg-[#35393f] flex items-center space-x-2 text-white font-medium transition-colors"
               >
@@ -126,7 +97,7 @@ export default function HeaderBar({
                 <span>Preferências</span>
               </button>
               <div className="h-px bg-[#3b3f46] my-1" />
-              <button 
+              <button
                 onClick={() => { window.location.reload(); }}
                 className="w-full text-left px-3 py-2 hover:bg-[#35393f] flex items-center space-x-2"
               >
@@ -134,7 +105,7 @@ export default function HeaderBar({
                 <span>Atualizar Cache APT</span>
               </button>
               <div className="h-px bg-[#3b3f46] my-1" />
-              <button 
+              <button
                 onClick={() => { setShowAbout(true); setShowMenu(false); }}
                 className="w-full text-left px-3 py-2 hover:bg-[#35393f] flex items-center space-x-2"
               >
@@ -174,15 +145,7 @@ HeaderBar.propTypes = {
   setSearchQuery: PropTypes.func.isRequired,
   canGoBack: PropTypes.bool.isRequired,
   onBack: PropTypes.func.isRequired,
-  installedOnly: PropTypes.bool.isRequired,
-  setInstalledOnly: PropTypes.func.isRequired,
-  onToggleInstalledOnly: PropTypes.func.isRequired,
-  installedCount: PropTypes.number,
   onOpenSettings: PropTypes.func.isRequired,
   flatpakStatus: PropTypes.oneOf(['unknown', 'available', 'missing'])
 };
 
-HeaderBar.defaultProps = {
-  installedCount: 0,
-  flatpakStatus: 'unknown'
-};

@@ -92,3 +92,13 @@ select option {
   color: #ffffff !important;
 }
 
+/* Fallback gracioso para WebViews GTK ou aceleração reduzida sem suporte a backdrop-filter */
+@supports not ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur {
+    background-color: rgba(18, 20, 23, 0.94) !important;
+  }
+}
+
+

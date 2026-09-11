@@ -72,8 +72,9 @@ assert(categoriesList.length >= 8, `Pelo menos 8 categorias configuradas (config
 assert(categoriesList[0].id === 'picks', 'Aba "Destaques" está na extrema esquerda (primeira posição, índice 0)');
 assert(categoriesList[categoriesList.length - 1].id === 'all' && categoriesList[categoriesList.length - 1].label === 'Todos', 'Aba da extrema direita está configurada com id "all" e rótulo "Todos"');
 
-// Validação de ordem alfabética das abas intermediárias
-const intermediateLabels = categoriesList.slice(1, -1).map(c => c.label);
+// Validação de ordem das abas intermediárias de catálogo (excluindo Destaques, Todos e a aba especial Instalados)
+const regularCategories = categoriesList.filter(c => c.id !== 'picks' && c.id !== 'all' && c.id !== 'installed');
+const intermediateLabels = regularCategories.map(c => c.label);
 const sortedIntermediate = [...intermediateLabels].sort((a, b) => a.localeCompare(b, 'pt-BR'));
 const isAlphabetical = intermediateLabels.every((label, idx) => label === sortedIntermediate[idx]);
 assert(isAlphabetical, `Demais abas ordenadas alfabeticamente: [${intermediateLabels.join(', ')}]`);
@@ -170,21 +171,21 @@ assert(state4.isCheckboxChecked === true, 'App não instalado marcado para insta
 assert(state4.isStagedForInstall === true, 'App marcado é reconhecido como isStagedForInstall');
 assert(state4.colorTheme === 'green-highlight', 'App marcado para instalação tem fundo com anel verde');
 
-// Test 11: Verificação das 11 Abas e Rótulos Concisos
-console.log('\n11. Verificação da Integridade das 11 Abas e Rótulos Concisos:');
-assert(categoriesList.length === 11, `Exatamente 11 abas configuradas (total: ${categoriesList.length})`);
+// Test 11: Verificação das 12 Abas e Rótulos Concisos
+console.log('\n11. Verificação da Integridade das 12 Abas e Rótulos Concisos:');
+assert(categoriesList.length === 12, `Exatamente 12 abas configuradas (total: ${categoriesList.length})`);
 const expectedLabels = [
-  'Destaques', 'Acessórios', 'Desenvolvimento', 'Escritório', 'Flatpak',
-  'Gráficos', 'Internet', 'Jogos', 'Mídia', 'Sistema', 'Todos'
+  'Início', 'Acessórios', 'Código', 'Escritório', 'Flatpak',
+  'Gráficos', 'Internet', 'Jogos', 'Mídias', 'Sistema', 'Instalados', 'Todos'
 ];
 const allLabelsMatch = categoriesList.every((cat, idx) => cat.label === expectedLabels[idx]);
-assert(allLabelsMatch, `Todos os 11 rótulos concisos coincidem: [${expectedLabels.join(', ')}]`);
+assert(allLabelsMatch, `Todos os 12 rótulos concisos coincidem: [${expectedLabels.join(', ')}]`);
 
 // Test 12: Verificação de Empacotamento Debian e Documentos Oficiais
 console.log('\n12. Verificação de Empacotamento Debian e Documentos Oficiais:');
-const debPath = path.join(process.cwd(), 'mint-install-pro_1.3.2_all.deb');
+const debPath = path.join(process.cwd(), 'mint-install-pro_1.4.0_all.deb');
 const debExists = fs.existsSync(debPath);
-assert(debExists, 'Pacote Debian "mint-install-pro_1.3.2_all.deb" gerado na raiz do projeto');
+assert(debExists, 'Pacote Debian "mint-install-pro_1.4.0_all.deb" gerado na raiz do projeto');
 if (debExists) {
   const debSize = fs.statSync(debPath).size;
   assert(debSize > 500 * 1024, `Pacote Debian possui tamanho válido de produção (${(debSize / 1024).toFixed(1)} KB)`);
@@ -310,12 +311,12 @@ assert(headerBarContent3.includes('AlertTriangle'), 'HeaderBar importa AlertTria
 const catalogServiceContent2 = fs.readFileSync(path.join(process.cwd(), 'src/services/catalog.js'), 'utf-8');
 assert(catalogServiceContent2.includes('export async function loadCatalogIndex'), 'catalog.js exporta loadCatalogIndex');
 
-// Test 18: Pacote .deb 1.3.1 regenera com sucesso
+// Test 18: Pacote .deb regenera com sucesso
 console.log('\n18. Sanidade do .deb empacotado:');
 // (checado no CI pelo job deb-package; aqui só garantimos que o script
 // de build existe e referencia a versão correta)
 const buildDebContent = fs.readFileSync(path.join(process.cwd(), 'scripts/build_deb.py'), 'utf-8');
-assert(buildDebContent.includes('VERSION = "1.3.2"'), 'build_deb.py usa VERSION = "1.3.2"');
+assert(buildDebContent.includes('VERSION = "1.4.0"'), 'build_deb.py usa VERSION = "1.4.0"');
 assert(buildDebContent.includes('shutil.copytree(dist_dir'), 'build_deb.py copia o dist/ inteiro (incluindo data/)');
 
 // Test 19: Deduplicação cross-kind (gauntlet loop, fix débito 9.6)
