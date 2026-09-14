@@ -1,6 +1,10 @@
-// main.jsx — entry point. Renderiza <App /> dentro de <ErrorBoundary>, e
-// monta <DebugDock /> FORA da árvore do App. DebugDock sobrevive a crash
-// do React (que mata App+ErrorBoundary mas mantém o root).
+// main.jsx — entry point. Renderiza <App /> dentro de <ErrorBoundary>.
+//
+// O DebugDock foi removido da tela principal em v1.5.1 após o usuário
+// reportar que atrapalhava a UI. A infraestrutura de diagnóstico
+// (debugLog + emergency handlers + ErrorBoundary.pushLastReactError)
+// continua ativa e persiste em localStorage — basta montar o <DebugDock />
+// manualmente em debug builds pra ter acesso ao snapshot.
 //
 // Handlers globais (window.onerror + unhandledrejection) capturam erros
 // que ErrorBoundary não pega (setTimeout, promise, async event handler).
@@ -10,7 +14,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
-import DebugDock from './components/DebugDock.jsx';
 import { debugLog, pushEmergencyLog } from './services/debugLog';
 import './index.css';
 
@@ -45,9 +48,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ErrorBoundary>
       <App />
     </ErrorBoundary>
-    {/* DebugDock fica FORA do <ErrorBoundary> para sobreviver a crash do React
-        (que mata App+ErrorBoundary mas mantém o root). É o único elemento
-        sempre visível que dá acesso ao snapshot de logs em campo. */}
-    <DebugDock />
   </React.StrictMode>,
 );

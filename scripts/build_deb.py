@@ -5,7 +5,7 @@ import shutil
 import subprocess
 import stat
 
-VERSION = "1.5.0"
+VERSION = "1.5.2"
 PACKAGE_NAME = "mint-install-pro"
 DEB_DIR = f"/tmp/{PACKAGE_NAME}_{VERSION}_all"
 OUTPUT_DEB = f"{PACKAGE_NAME}_{VERSION}_all.deb"
@@ -193,7 +193,7 @@ def run_server(port):
                 self.wfile.write(json.dumps({'success': success, 'output': out[-1000:] if out else ''}).encode('utf-8'))
                 return
             self.send_error(404)
-            
+
     os.chdir(APP_DIR)
     with socketserver.TCPServer(("127.0.0.1", port), QuietHandler) as httpd:
         httpd.serve_forever()
@@ -203,6 +203,11 @@ def try_gtk_webview(url):
     Tenta abrir a URL num WebView GTK nativo. Retorna (ok, motivo_falha).
     Resolve débito #9: ao invés de cair silenciosamente pra webbrowser,
     retorna o motivo para que main() possa mostrar diálogo informativo.
+
+    v1.5.2: Adiciona detecção de load error (load-changed com WEBKIT_LOAD_FAILED)
+    e propaga o erro pra main(). Sem isso, um WebView que abria com sucesso
+    mas falhava em carregar a URL (ex: servidor offline) caía no fallback
+    silencioso pra webbrowser, exibindo uma página estranha pro usuário.
     '''
     try:
         import gi
@@ -230,11 +235,43 @@ def try_gtk_webview(url):
             win.set_icon_from_file(icon_path)
 
         webview = WebKit2.WebView()
+
+        # v1.5.2: Detecta falha de carregamento via signal load-changed.
+        # load_event WEBKIT_LOAD_FAILED = 4 (enum WebKit2.LoadEvent).
+        load_failed = [False]
+        load_status = [None]
+
+        def on_load_changed(webview, load_event, event_name):
+            load_status[0] = int(load_event)
+            try:
+                if int(load_event) == 4:  # WEBKIT_LOAD_FAILED
+                    load_failed[0] = True
+                    sys.stderr.write("[mip-launcher] WebView load_failed para %s\n" % url)
+            except (ValueError, TypeError):
+                pass
+
+        try:
+            webview.connect('load-changed', on_load_changed)
+        except Exception:
+            pass
+
         webview.load_uri(url)
         win.add(webview)
         win.connect("destroy", Gtk.main_quit)
         win.show_all()
+
+        # Polling simples: se load_failed em <3s, fechar e reportar
+        from gi.repository import GLib
+        def check_load():
+            if load_failed[0]:
+                Gtk.main_quit()
+                return False
+            return True
+        GLib.timeout_add(3000, check_load)
+
         Gtk.main()
+        if load_failed[0]:
+            return False, "WebView falhou ao carregar a URL (load_failed)"
         return True, None
     except Exception as e:
         return False, f"Erro ao abrir WebView: {e}"
@@ -244,6 +281,10 @@ def show_error_dialog(reason, url):
     '''
     Mostra um diálogo GTK modal explicando que o app precisa de WebKit2
     para rodar. Resolve débito #9: falha alto em vez de cair pro browser.
+
+    v1.5.2: Instruções mais específicas para diagnosticar. Adiciona
+    comando de teste manual ('mint-install-pro --force-browser') e
+    lista os arquivos que indicam sucesso de cada dependência.
     '''
     try:
         import gi
@@ -255,11 +296,15 @@ def show_error_dialog(reason, url):
             message_format="Mint Install Pro não pôde iniciar"
         )
         dialog.format_secondary_text(
-            f"{reason}\n\n"
-            "O Mint Install Pro precisa das bibliotecas GTK WebKit2 para abrir como aplicativo nativo.\n\n"
-            "Instale-as com:\n"
-            "  sudo apt install gir1.2-gtk-3.0 gir1.2-webkit2-4.1\n\n"
-            f"Como alternativa, abra manualmente no navegador:\n  {url}"
+            f"Causa: {reason}\n\n"
+            "O Mint Install Pro precisa de GTK + WebKit2 para abrir como app nativo.\n\n"
+            "1) Instale as dependências:\n"
+            "   sudo apt install gir1.2-gtk-3.0 gir1.2-webkit2-4.1\n\n"
+            "2) Se já estão instaladas mas persiste, teste o servidor:\n"
+            "   mint-install-pro --force-browser\n"
+            "   (abre no seu navegador padrão — útil pra confirmar se o\n"
+            "    problema é do WebView nativo ou do servidor)\n\n"
+            f"URL do servidor local: {url}"
         )
         dialog.run()
         dialog.destroy()
@@ -267,6 +312,7 @@ def show_error_dialog(reason, url):
         # Se nem o GTK pra diálogo tá disponível, cai pro stderr
         print(f"[mint-install-pro] ERRO: {reason}", file=sys.stderr)
         print(f"[mint-install-pro] URL: {url}", file=sys.stderr)
+        print("[mint-install-pro] Para forçar browser: mint-install-pro --force-browser", file=sys.stderr)
 
 
 def main():
@@ -280,13 +326,22 @@ def main():
         ok, reason = try_gtk_webview(url)
         if ok:
             return
-        # Falhou — mostra erro explícito. --force-browser pula o diálogo.
+        # Falhou — mostra erro explícito.
+        # --force-browser pula o diálogo (útil pra debug em CLI).
         if "--force-browser" in sys.argv:
+            sys.stderr.write("[mip-launcher] WebView falhou, mas --force-browser ativo. Abrindo no navegador padrão.\n")
+            sys.stderr.write("[mip-launcher] AVISO: isso pode mostrar páginas inesperadas se outro browser estiver aberto.\n")
             webbrowser.open(url)
-        else:
-            show_error_dialog(reason, url)
-            sys.exit(1)
+            try:
+                while True:
+                    time.sleep(1)
+            except KeyboardInterrupt:
+                pass
+            return
+        show_error_dialog(reason, url)
+        sys.exit(1)
 
+    # --browser explícito (modo legacy): pula WebView direto
     webbrowser.open(url)
     try:
         while True:

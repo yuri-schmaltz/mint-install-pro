@@ -4,6 +4,37 @@ Todas as alterações notáveis do projeto **Mint Install Pro** são documentada
 
 ---
 
+## [1.5.2] - 2026-09-14
+
+### Corrigido (Falha crítica do launcher Python — tela estranha após instalação)
+- **Problema reportado**: Ao rodar `sudo dpkg -i mint-install-pro_1.5.0_all.deb && mint-install-pro`, o usuário via uma tela "Directory listing for /" listando `hsts-storage.sqlite, localstorage/, mediakeys/, storage/` (artefatos do perfil WebKit2GTK em `~/.local/share/mint-install-pro/`).
+- **Causa raiz**: Quando o GTK WebView nativo falha ao carregar (ex: `gir1.2-webkit2-4.1` ausente), o código caía no fallback `webbrowser.open(url)`. Em ambientes com browser externo já aberto (Firefox/Chrome), `webbrowser.open()` reusava a sessão existente — que por sua vez estava mostrando o diretório do perfil WebKit2 (criado por algum teste anterior). O usuário via essa tela estranha em vez de uma mensagem clara de erro.
+- **Fix**:
+  1. **`try_gtk_webview()`** agora conecta o signal `load-changed` do WebKit2 e detecta `WEBKIT_LOAD_FAILED` (event=4) via polling de 3s com `GLib.timeout_add`. Se a URL falhar ao carregar, retorna `(False, "WebView falhou ao carregar a URL")` em vez de cair silencioso.
+  2. **`main()`** agora diferencia 3 cenários:
+     - `--browser` explícito (modo legacy): pula WebView direto, comportamento idêntico ao atual
+     - `--force-browser`: cai pro browser externo MAS com **stderr warning** explícito ("AVISO: isso pode mostrar páginas inesperadas se outro browser estiver aberto"). Útil pra debug em CLI.
+     - **Sem flag**: GTK WebView é obrigatório. Se falhar, mostra diálogo GTK modal com instruções específicas (instalar deps, testar com `--force-browser`, URL do servidor local).
+  3. **Mensagens de erro expandidas**: o diálogo GTK agora lista os 3 passos numerados pra diagnosticar (instalar deps, testar com `--force-browser`, verificar URL).
+- **Teste novo** (`scripts/test_runner.js` test #20): 4 asserções validam que o build_deb.py tem signal `load-changed`, trata `WEBKIT_LOAD_FAILED`, tem flag `--force-browser`, e mostra warning sobre sessão existente. Total: **131/131 custom runner**.
+- **Bump**: 1.5.1 → 1.5.2 (patch: fix crítico de fluxo de inicialização, não-breaking).
+
+---
+
+## [1.5.1] - 2026-09-14
+
+### Removido (Limpeza de UI — DebugDock desativado)
+- **`<DebugDock />` removido da tela principal**: Após o usuário reportar via screenshot que o painel de diagnóstico atrapalhava a visualização do app em uso normal, o componente foi desmontado de `src/main.jsx`. O botão `DEBUG (N)` que aparecia no canto inferior esquerdo **não é mais renderizado em produção**.
+- **Infraestrutura de diagnóstico preservada**: O arquivo `src/services/debugLog.js` continua exportando `debugLog`, `pushEmergencyLog` e `pushLastReactError`. Os handlers globais `window.onerror` + `window.unhandledrejection` continuam registrados. O `ErrorBoundary` continua persistindo último erro React em `localStorage`. **Tudo continua funcionando** — basta montar `<DebugDock />` manualmente em builds de debug para acessar o snapshot.
+- **Testes de regressão bidirecional** (`src/test/main-mount-debugdock.test.jsx`): agora valida AMBAS as direções — garante que o DebugDock NÃO está no DOM em produção E que a infra de logging continua importada. Protege contra alguém re-adicionar acidentalmente no futuro.
+- **Testes E2E atualizados**: `e2e/main-flow.spec.js` ajustado para validar ausência do botão DEBUG (3 testes que checavam presença foram reescritos).
+
+### Notas de design
+- O DebugDock já teve 3 ciclos na história: hotfix 6 (ativou), v1.4.0 (removeu), v1.4.1 (reativou após achado crítico), v1.5.1 (removeu novamente). Esta versão consolida a posição "removido da UI por padrão, mas disponível mediante build de debug".
+- Para diagnosticar bugs em campo no futuro: editar temporariamente `src/main.jsx` para incluir `<DebugDock />` no render(), gerar `.deb`, instalar e analisar.
+
+---
+
 ## [1.5.0] - 2026-09-14
 
 ### Modificado (Novo ícone oficial: "Grid Mint")

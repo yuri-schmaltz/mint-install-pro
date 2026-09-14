@@ -1,69 +1,76 @@
-// main-mount-debugdock.test.jsx — regressão do achado crítico #1.
+// main-mount-debugdock.test.jsx — regressão bidirecional do DebugDock.
 //
-// Verifica que o <DebugDock /> é montado no root junto com o <App />.
-// Este teste existe porque, em algum momento pós-release da v1.4.0,
-// alguém removeu a montagem e deixou o DebugDock desligado em produção
-// enquanto o CHANGELOG/HANDOFF afirmavam o contrário.
+// HISTÓRICO:
+//   - v1.3.2 hotfix 6: DebugDock implementado + montado em produção
+//   - v1.4.0:           DebugDock removido da tela principal (decisão UX)
+//   - v1.4.1:           DebugDock reativado após achado crítico #1 da auditoria
+//                       (estava implementado mas não montado — usuário sem
+//                       acesso ao snapshot de logs)
+//   - v1.5.1:           DebugDock removido novamente por pedido do usuário
+//                       (atrapalhava a UI em produção, screenshot anexo)
 //
-// Se este teste falhar, a infra de diagnóstico do bug "tela cinza" está
-// quebrada — o usuário não tem como extrair o snapshot de logs.
-//
-// Estratégia: como main.jsx monta o ReactDOM.createRoot no import,
-// mockamos App, ErrorBoundary e DebugDock (apenas o último é inspecionado
-// pelo title único do botão), garantimos que existe #root no DOM,
-// importamos main.jsx, e verificamos que o botão aparece.
+// DECISÃO ATUAL: DebugDock fica REMOVIDO de main.jsx por padrão. A
+// infraestrutura de diagnóstico (debugLog + emergency handlers +
+// ErrorBoundary.pushLastReactError) continua ativa e persiste em
+// localStorage, mas o painel visual está oculto. Para diagnosticar em
+// campo, basta adicionar manualmente <DebugDock /> no render() abaixo.
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import fs from 'fs';
+import path from 'path';
 
 vi.mock('../App', () => ({ default: () => null }));
-
 vi.mock('../components/ErrorBoundary', () => ({
   default: ({ children }) => children
 }));
 
-// Mock do DebugDock que renderiza SOMENTE o botão "DEBUG (...)" —
-// é o que precisa estar no DOM em produção. Outros comportamentos do
-// DebugDock já são cobertos por DebugDock.test.jsx.
-vi.mock('../components/DebugDock', () => ({
-  default: () => {
-    const React = require('react');
-    return React.createElement(
-      'button',
-      {
-        title: 'Abrir painel de diagnóstico',
-        'data-testid': 'debug-dock-button'
-      },
-      'DEBUG (0)'
-    );
-  }
-}));
-
-describe('main.jsx — montagem crítica do DebugDock (regressão)', () => {
+describe('main.jsx — DebugDock fora da tela principal (v1.5.1+)', () => {
   beforeEach(() => {
     document.body.innerHTML = '<div id="root"></div>';
-    // Limpa módulos cacheados pra garantir re-import
     vi.resetModules();
   });
 
-  it('monta <DebugDock /> no root junto com o <App />', async () => {
+  it('NÃO monta <DebugDock /> no root (removido da UI por UX)', async () => {
     await import('../main.jsx');
-    // Dá tempo do React processar createRoot
     await new Promise((r) => setTimeout(r, 50));
 
-    const btn = document.querySelector('[data-testid="debug-dock-button"]');
-    expect(btn).toBeTruthy();
-    expect(btn?.getAttribute('title')).toBe('Abrir painel de diagnóstico');
+    // Procura por sinais do DebugDock no DOM renderizado.
+    const debugBtn = document.querySelector('[title="Abrir painel de diagnóstico"]');
+    expect(debugBtn).toBeNull();
+    const debugText = document.body.textContent?.match(/DEBUG \(\d+\)/);
+    expect(debugText).toBeNull();
   });
 
-  it('o botão DEBUG fica FORA do ErrorBoundary (sobrevive a crash)', async () => {
-    await import('../main.jsx');
-    await new Promise((r) => setTimeout(r, 50));
+  it('NÃO importa o componente DebugDock (mantém bundle menor)', () => {
+    const source = fs.readFileSync(
+      path.join(process.cwd(), 'src/main.jsx'),
+      'utf-8'
+    );
+    // Detecta import statement real (não comentário nem string)
+    // `import DebugDock from` precisa estar no source (não em comentário // ou /* */)
+    const importLines = source
+      .split('\n')
+      .filter((l) => !l.trim().startsWith('//') && !l.trim().startsWith('*'))
+      .join('\n');
+    expect(importLines).not.toMatch(/import\s+DebugDock\s+from/);
+    // Detecta JSX element real (não dentro de comentário)
+    const jsxLines = source
+      .split('\n')
+      .filter((l) => !l.trim().startsWith('//') && !l.trim().startsWith('*'))
+      .join('\n');
+    expect(jsxLines).not.toMatch(/<DebugDock\s*\/>/);
+  });
 
-    // Sanidade: o root contém o botão do DebugDock. Se ele estivesse
-    // dentro do ErrorBoundary e o React crashasse, o root ficaria
-    // sem o botão (ErrorBoundary mostraria a tela de erro).
-    const root = document.getElementById('root');
-    expect(root).toBeTruthy();
-    expect(root?.querySelector('[data-testid="debug-dock-button"]')).toBeTruthy();
+  it('infra de logging continua importada (debugLog + pushEmergencyLog)', () => {
+    const source = fs.readFileSync(
+      path.join(process.cwd(), 'src/main.jsx'),
+      'utf-8'
+    );
+    // Mantém a infra de diagnóstico funcional para casos extremos
+    expect(source).toMatch(/import\s+\{[^}]*debugLog/);
+    expect(source).toMatch(/import\s+\{[^}]*pushEmergencyLog/);
+    // Handlers globais continuam registrados
+    expect(source).toMatch(/window\.addEventListener\('error'/);
+    expect(source).toMatch(/window\.addEventListener\('unhandledrejection'/);
   });
 });

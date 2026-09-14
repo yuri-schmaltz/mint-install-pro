@@ -183,9 +183,9 @@ assert(allLabelsMatch, `Todos os 12 rótulos concisos coincidem: [${expectedLabe
 
 // Test 12: Verificação de Empacotamento Debian e Documentos Oficiais
 console.log('\n12. Verificação de Empacotamento Debian e Documentos Oficiais:');
-const debPath = path.join(process.cwd(), 'mint-install-pro_1.5.0_all.deb');
+const debPath = path.join(process.cwd(), 'mint-install-pro_1.5.2_all.deb');
 const debExists = fs.existsSync(debPath);
-assert(debExists, 'Pacote Debian "mint-install-pro_1.5.0_all.deb" gerado na raiz do projeto');
+assert(debExists, 'Pacote Debian "mint-install-pro_1.5.2_all.deb" gerado na raiz do projeto');
 if (debExists) {
   const debSize = fs.statSync(debPath).size;
   assert(debSize > 500 * 1024, `Pacote Debian possui tamanho válido de produção (${(debSize / 1024).toFixed(1)} KB)`);
@@ -329,7 +329,7 @@ console.log('\n18. Sanidade do .deb empacotado:');
 // (checado no CI pelo job deb-package; aqui só garantimos que o script
 // de build existe e referencia a versão correta)
 const buildDebContent = fs.readFileSync(path.join(process.cwd(), 'scripts/build_deb.py'), 'utf-8');
-assert(buildDebContent.includes('VERSION = "1.5.0"'), 'build_deb.py usa VERSION = "1.5.0"');
+assert(buildDebContent.includes('VERSION = "1.5.2"'), 'build_deb.py usa VERSION = "1.5.2"');
 assert(buildDebContent.includes('shutil.copytree(dist_dir'), 'build_deb.py copia o dist/ inteiro (incluindo data/)');
 
 // Test 19: Deduplicação cross-kind (gauntlet loop, fix débito 9.6)
@@ -345,7 +345,16 @@ assert(!buildFullCatalogContent.includes('seen_ids.add('),
   'build_full_catalog.py não usa mais seen_ids.add (legado removido)');
 assert(buildFullCatalogContent.includes('"kind": "apt"') && buildFullCatalogContent.includes('"kind": "flatpak"'),
   'build_full_catalog.py injeta tag `kind` explícita em todos os apps');
-
+// Test 20: Launcher Python — detecção de load_failed e fallback seguro (v1.5.2)
+console.log('\n20. Launcher Python — diagnóstico de WebView (v1.5.2):');
+assert(buildDebContent.includes('load-changed'),
+  'build_deb.py conecta signal load-changed do WebKit2');
+assert(buildDebContent.includes('WEBKIT_LOAD_FAILED') || buildDebContent.includes('load_failed'),
+  'build_deb.py trata WEBKIT_LOAD_FAILED');
+assert(buildDebContent.includes('--force-browser'),
+  'build_deb.py tem flag --force-browser para diagnóstico');
+assert(buildDebContent.includes('AVISO: isso pode mostrar páginas inesperadas'),
+  'build_deb.py avisa sobre --force-browser abrindo em sessão existente');
 console.log(`\n========================================`);
 console.log(`Resultado dos Testes: ${passed} passaram, ${failed} falharam.`);
 console.log(`========================================\n`);

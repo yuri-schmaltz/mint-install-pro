@@ -1,8 +1,9 @@
 // e2e/main-flow.spec.js — testes end-to-end do fluxo principal.
 // Complementa vitest exercitando interações REAIS do navegador.
 //
-// Foco: reproduzir o bug "tela cinza ao clicar Executar Ações" e
-// validar que a infraestrutura de diagnóstico está acessível ao usuário.
+// Histórico: o DebugDock foi removido da tela principal em v1.5.1
+// por pedido do usuário (atrapalhava a UI). Os testes abaixo foram
+// ajustados para NÃO esperar a presença do botão DEBUG.
 
 import { test, expect } from '@playwright/test';
 
@@ -17,13 +18,13 @@ test.describe('Mint Install Pro — fluxo E2E principal', () => {
     await page.waitForLoadState('networkidle');
   });
 
-  test('app carrega com UI básica visível', async ({ page }) => {
+  test('app carrega com UI básica visível (sem DebugDock)', async ({ page }) => {
     // HeaderBar presente
     await expect(page.locator('input[placeholder*="Pesquisar"]')).toBeVisible();
     // CategoryNav presente (12 abas)
     await expect(page.locator('nav button')).toHaveCount(12);
-    // DebugDock presente em produção (achado crítico #1 — deve estar montado)
-    await expect(page.locator('[title="Abrir painel de diagnóstico"]')).toBeVisible();
+    // DebugDock NÃO deve estar visível (removido da UI em v1.5.1)
+    await expect(page.locator('[title="Abrir painel de diagnóstico"]')).toHaveCount(0);
   });
 
   test('navegação por abas funciona', async ({ page }) => {
@@ -32,16 +33,6 @@ test.describe('Mint Install Pro — fluxo E2E principal', () => {
     await page.waitForTimeout(200);
     // AppGrid deve aparecer (saiu da landing)
     await expect(page.locator('[role="button"][aria-label*="Instalado"], [role="button"][aria-label*="Não instalado"]').first()).toBeVisible({ timeout: 10_000 });
-  });
-
-  test('botão DEBUG abre painel de diagnóstico', async ({ page }) => {
-    const debugBtn = page.locator('[title="Abrir painel de diagnóstico"]');
-    await expect(debugBtn).toBeVisible();
-    await debugBtn.click();
-    // Dialog deve abrir
-    await expect(page.getByRole('dialog', { name: 'Painel de diagnóstico' })).toBeVisible();
-    // Mostra "entries" counter
-    await expect(page.locator('text=/entries: \\d+/')).toBeVisible();
   });
 
   test('busca atualiza o grid filtrado', async ({ page }) => {
@@ -59,10 +50,10 @@ test.describe('Mint Install Pro — fluxo E2E principal', () => {
     await page.locator('button[title="Menu do aplicativo"]').click();
     await page.locator('text="Sobre o Gerenciador"').click();
     // Modal aberto
-    await expect(page.locator('text=/Versão 1\\.4\\.1/')).toBeVisible();
+    await expect(page.locator('text=/Versão 1\\.5\\.0/')).toBeVisible();
     // Esc fecha
     await page.keyboard.press('Escape');
-    await expect(page.locator('text=/Versão 1\\.4\\.1/')).not.toBeVisible();
+    await expect(page.locator('text=/Versão 1\\.5\\.0/')).not.toBeVisible();
   });
 
   test('seleção em lote atualiza BatchActionBar', async ({ page }) => {
@@ -81,21 +72,16 @@ test.describe('Mint Install Pro — fluxo E2E principal', () => {
     // BatchActionBar deve aparecer com contador > 0
     await expect(page.locator('text=/\\d+ selecionado/')).toBeVisible({ timeout: 3000 });
   });
-});
 
-test.describe('DebugDock — diagnóstico de crash (regressão do achado #1)', () => {
-  test('botão DEBUG persiste através de re-renders', async ({ page }) => {
-    await page.goto('/');
-    const debugBtn = page.locator('[title="Abrir painel de diagnóstico"]');
-    await expect(debugBtn).toBeVisible();
-
-    // Força um re-render via navegação
+  test('navegação não ressuscita DebugDock (regressão)', async ({ page }) => {
+    // Força re-renders via navegação
     await page.locator('button:has-text("Início")').first().click();
     await page.locator('button:has-text("Acessórios")').first().click();
     await page.locator('button:has-text("Início")').first().click();
-    await page.waitForTimeout(200);
+    await page.waitForTimeout(300);
 
-    // Botão ainda visível (regrediu: removido em v1.4.0, restaurado em v1.4.1)
-    await expect(debugBtn).toBeVisible();
+    // DebugDock continua escondido
+    await expect(page.locator('[title="Abrir painel de diagnóstico"]')).toHaveCount(0);
+    await expect(page.locator('text=/DEBUG \\(\\d+\\)/')).toHaveCount(0);
   });
 });
