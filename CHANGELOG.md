@@ -4,6 +4,20 @@ Todas as alterações notáveis do projeto **Mint Install Pro** são documentada
 
 ---
 
+## [1.4.1] - 2026-09-14
+
+### Adicionado (Reativação do DebugDock para Diagnóstico em Campo)
+- **`<DebugDock />` reativado em produção**: O componente de diagnóstico que captura logs, emergency handlers e último erro do React em `localStorage` (implementado originalmente em v1.3.2 hotfix 6 e **removido da tela principal na v1.4.0**) foi reativado no `src/main.jsx`. O botão `DEBUG (N)` aparece fixo no canto inferior esquerdo, fora do `<ErrorBoundary>` para sobreviver a crash do React.
+- **Justificativa**: o bug "tela cinza ao clicar Executar Ações" continua sem root cause definitiva após 5+ iterações do gauntlet loop. Com o DebugDock ativo em produção, o usuário pode extrair o snapshot completo de logs/emergency/lastReactError reproduzindo o crash e clicando em **Copiar JSON**. Esse JSON é a única evidência empírica que destrava a análise real (a falha só acontece em GTK WebView, não reproduz em jsdom).
+- **Teste de regressão `src/test/main-mount-debugdock.test.jsx`**: 2 novos testes vitest validam que o `<DebugDock />` é montado no root junto com `<App />` e fica fora do `<ErrorBoundary>` (sobrevive a crash). Impede alguém remover o mount novamente sem perceber.
+- **Suíte ampliada**: vitest 212 → 214 (de 23 arquivos, 6.33s).
+
+### Notas para o usuário final
+- O botão **DEBUG (N)** aparece **sempre**, mesmo em produção. É um trade-off consciente: visibilidade do diagnóstico > pureza estética da UI.
+- Após o bug "tela cinza" ser resolvido com base no JSON coletado em campo, o DebugDock pode ser escondido novamente em uma release futura (1.4.2 ou 1.5.0).
+
+---
+
 ## [1.4.0] - 2026-09-11
 
 ### Modificado (Refinamento de UI & Ergonomia)

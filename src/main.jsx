@@ -10,6 +10,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
+import DebugDock from './components/DebugDock.jsx';
 import { debugLog, pushEmergencyLog } from './services/debugLog';
 import './index.css';
 
@@ -44,5 +45,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ErrorBoundary>
       <App />
     </ErrorBoundary>
+    {/* DebugDock fica FORA do <ErrorBoundary> para sobreviver a crash do React
+        (que mata App+ErrorBoundary mas mantém o root). É o único elemento
+        sempre visível que dá acesso ao snapshot de logs em campo. */}
+    <DebugDock />
   </React.StrictMode>,
 );
