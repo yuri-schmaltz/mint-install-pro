@@ -4,6 +4,25 @@ Todas as alterações notáveis do projeto **Mint Install Pro** são documentada
 
 ---
 
+## [1.5.4] - 2026-09-14
+
+### Corrigido (Janela indesejada durante instalação)
+- **Bug reportado pelo usuário**: Mesmo após v1.5.3 corrigir o crash de 12s, ao instalar o .deb via `sudo dpkg -i ... && sudo apt-get install -f`, abria uma janela do navegador padrão do sistema (Brave/Chrome) mostrando "Directory listing for /" com artefatos do perfil WebKit2GTK (`hsts-storage.sqlite, localstorage/, mediakeys/, storage/`).
+- **Causa raiz** (encontrada diagnosticando o launcher Python em runtime):
+  1. O `app_manager.desktop` tinha `MimeType=appstream://;apt://;x-scheme-handler/apt;x-scheme-handler/flatpak;` — declarando que o app sabia lidar com esses URI schemes.
+  2. O `postinst` do .deb rodava `xdg-mime default mint-install-pro.desktop x-scheme-handler/appstream ...` + `x-scheme-handler/apt` + `application/vnd.debian.binary-package` — registrando o app como **handler global** desses MIME types.
+  3. Quando o usuário instalava nosso próprio `.deb`, o sistema **disparava um desses MIME types** durante o processo (via algum trigger do `apt-get install -f`), e como o handler agora era o nosso app (que na verdade só abre como GUI, não como handler de URI), o sistema abria uma janela do **browser padrão externo** mostrando o diretório do perfil WebKit2GTK do nosso app.
+  4. Pior: `update-desktop-database` no postinst reindexava os `.desktop` files, disparando notificações em browsers externos.
+- **Fix**:
+  1. **`postinst` mínimo**: removidos `xdg-mime default` (3 comandos) e `update-desktop-database`. Mantido apenas `gtk-update-icon-cache -q` (silencioso, atualiza cache de ícones).
+  2. **`postrm` idem**: removido `update-desktop-database`.
+  3. **`app_manager.desktop`**: removido `MimeType=` — o app não deve se registrar como handler de URI schemes do sistema.
+  4. **Resultado**: instalação **completamente silenciosa**. Nenhuma janela abre. Apenas o cache de ícones é atualizado.
+- **Teste novo**: valida que postinst NÃO tem `xdg-mime default` e que o .desktop NÃO tem `MimeType=`.
+- **Bump**: 1.5.3 → 1.5.4 (patch: fix de UX de instalação, não-breaking).
+
+---
+
 ## [1.5.3] - 2026-09-14
 
 ### Corrigido (Crash do signal `load-changed` no WebKit2GTK)

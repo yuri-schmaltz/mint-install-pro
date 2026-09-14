@@ -5,7 +5,7 @@ import shutil
 import subprocess
 import stat
 
-VERSION = "1.5.3"
+VERSION = "1.5.4"
 PACKAGE_NAME = "mint-install-pro"
 DEB_DIR = f"/tmp/{PACKAGE_NAME}_{VERSION}_all"
 OUTPUT_DEB = f"{PACKAGE_NAME}_{VERSION}_all.deb"
@@ -419,18 +419,21 @@ with open(f"{DEB_DIR}/DEBIAN/control", "w", encoding="utf-8") as f:
     f.write(control_content)
 
 # 6. Criar scripts de post-instalação e pós-remoção
+# v1.5.4: postinst MÍNIMO — apenas atualiza cache de ícones.
+# REMOVIDOS (causa da janela indesejada durante instalação):
+#   - xdg-mime default mint-install-pro.desktop ...
+#     Registrava mint-install-pro como handler de appstream://, apt://,
+#     e .deb files. Combinado com MimeType no .desktop, isso fazia o
+#     sistema abrir uma janela de browser externo (Brave/Chrome) mostrando
+#     o diretório do perfil WebKit2GTK durante a instalação.
+#   - update-desktop-database
+#     Reindexava os .desktop files e disparava notificações/handlers
+#     em browsers externos.
 postinst_content = """#!/bin/sh
 set -e
-if which update-desktop-database >/dev/null 2>&1; then
-    update-desktop-database -q /usr/share/applications || true
-fi
+# Apenas atualiza o cache de ícones (operação silenciosa, sem UI).
 if which gtk-update-icon-cache >/dev/null 2>&1; then
     gtk-update-icon-cache -q /usr/share/icons/hicolor || true
-fi
-if which xdg-mime >/dev/null 2>&1; then
-    xdg-mime default mint-install-pro.desktop x-scheme-handler/appstream >/dev/null 2>&1 || true
-    xdg-mime default mint-install-pro.desktop x-scheme-handler/apt >/dev/null 2>&1 || true
-    xdg-mime default mint-install-pro.desktop application/vnd.debian.binary-package >/dev/null 2>&1 || true
 fi
 exit 0
 """
@@ -441,8 +444,9 @@ os.chmod(f"{DEB_DIR}/DEBIAN/postinst", 0o755)
 
 postrm_content = """#!/bin/sh
 set -e
-if which update-desktop-database >/dev/null 2>&1; then
-    update-desktop-database -q /usr/share/applications || true
+# Apenas atualiza o cache de ícones (operação silenciosa, sem UI).
+if which gtk-update-icon-cache >/dev/null 2>&1; then
+    gtk-update-icon-cache -q /usr/share/icons/hicolor || true
 fi
 exit 0
 """

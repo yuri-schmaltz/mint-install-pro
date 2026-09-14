@@ -10,7 +10,7 @@
 </p>
 
   <a href="https://github.com/yuri-schmaltz/mint-install-pro"><img src="https://img.shields.io/badge/GitHub-mint--install--pro-87cf3e?style=flat-square&logo=github" alt="GitHub Repo"></a>
-  <a href="https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.5.3"><img src="https://img.shields.io/badge/Release-v1.5.3%20.deb-blue?style=flat-square&logo=debian" alt="Download .deb"></a>
+  <a href="https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.5.4"><img src="https://img.shields.io/badge/Release-v1.5.4%20.deb-blue?style=flat-square&logo=debian" alt="Download .deb"></a>
   <img src="https://img.shields.io/badge/AI%20Enhanced-%E2%9C%A8%20Google%20DeepMind-7928CA?style=flat-square&logo=google" alt="AI Enhanced">
   <img src="https://img.shields.io/badge/Testes-212%20Unit%20%2B%20121%20Audit-87cf3e?style=flat-square&logo=vitest" alt="Testes 100% Passando">
   <img src="https://img.shields.io/badge/Linux%20Mint-22.3%20Zena-87cf3e?style=flat-square&logo=linuxmint" alt="Linux Mint 22.3">
@@ -124,7 +124,7 @@ Esta é a forma mais prática para o usuário final, integrando a aplicação di
 
 1. **Baixe o arquivo `.deb` mais recente:**
    ```bash
-   wget https://github.com/yuri-schmaltz/mint-install-pro/releases/download/v1.5.3/mint-install-pro_1.5.3_all.deb
+   wget https://github.com/yuri-schmaltz/mint-install-pro/releases/download/v1.5.4/mint-install-pro_1.5.4_all.deb
    ```
 2. **Instale via terminal:**
    ```bash

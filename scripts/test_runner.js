@@ -183,9 +183,9 @@ assert(allLabelsMatch, `Todos os 12 rótulos concisos coincidem: [${expectedLabe
 
 // Test 12: Verificação de Empacotamento Debian e Documentos Oficiais
 console.log('\n12. Verificação de Empacotamento Debian e Documentos Oficiais:');
-const debPath = path.join(process.cwd(), 'mint-install-pro_1.5.3_all.deb');
+const debPath = path.join(process.cwd(), 'mint-install-pro_1.5.4_all.deb');
 const debExists = fs.existsSync(debPath);
-assert(debExists, 'Pacote Debian "mint-install-pro_1.5.3_all.deb" gerado na raiz do projeto');
+assert(debExists, 'Pacote Debian "mint-install-pro_1.5.4_all.deb" gerado na raiz do projeto');
 if (debExists) {
   const debSize = fs.statSync(debPath).size;
   assert(debSize > 500 * 1024, `Pacote Debian possui tamanho válido de produção (${(debSize / 1024).toFixed(1)} KB)`);
@@ -329,7 +329,7 @@ console.log('\n18. Sanidade do .deb empacotado:');
 // (checado no CI pelo job deb-package; aqui só garantimos que o script
 // de build existe e referencia a versão correta)
 const buildDebContent = fs.readFileSync(path.join(process.cwd(), 'scripts/build_deb.py'), 'utf-8');
-assert(buildDebContent.includes('VERSION = "1.5.3"'), 'build_deb.py usa VERSION = "1.5.3"');
+assert(buildDebContent.includes('VERSION = "1.5.4"'), 'build_deb.py usa VERSION = "1.5.4"');
 assert(buildDebContent.includes('shutil.copytree(dist_dir'), 'build_deb.py copia o dist/ inteiro (incluindo data/)');
 
 // Test 19: Deduplicação cross-kind (gauntlet loop, fix débito 9.6)
@@ -368,6 +368,23 @@ assert(!callbackSig.includes('event_name'),
   'callback NÃO tem terceiro parâmetro event_name (causa do crash v1.5.2)');
 assert(!buildDebContent.includes('GLib.timeout_add'),
   'launcher não usa GLib.timeout_add (removido na v1.5.3 — crashava Gtk.main)');
+
+// Test 22: postinst NÃO dispara browser externo (v1.5.4)
+console.log('\n22. postinst silencioso (v1.5.4):');
+// Procura nas linhas executáveis (não comentários) por xdg-mime default
+const executableLines22 = buildDebContent
+  .split('\n')
+  .filter((l) => !l.trim().startsWith('#') && l.trim().length > 0)
+  .join('\n');
+assert(!executableLines22.includes('xdg-mime default'),
+  'build_deb.py NÃO chama xdg-mime default (causa da janela indesejada)');
+assert(!executableLines22.includes('update-desktop-database'),
+  'build_deb.py NÃO chama update-desktop-database (reindexava .desktop)');
+
+// app_manager.desktop NÃO deve ter MimeType= (que disparava o xdg-mime)
+const desktopContent22 = fs.readFileSync(path.join(process.cwd(), 'app_manager.desktop'), 'utf-8');
+assert(!desktopContent22.includes('MimeType='),
+  'app_manager.desktop NÃO tem MimeType (não se registra como handler de URI)');
 
 console.log(`\n========================================`);
 console.log(`Resultado dos Testes: ${passed} passaram, ${failed} falharam.`);
