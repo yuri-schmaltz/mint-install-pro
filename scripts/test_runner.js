@@ -284,8 +284,8 @@ assert(!appJsxContent2.includes("from './data/initialApps'") || appJsxContent2.m
   'App.jsx importa apenas categoriesList de initialApps (initialApps é lazy via catalog.js)');
 // Test 20: Ícone oficial aplicado em todos os pontos (v1.5.0)
 console.log('\n20. Verificação do ícone Grid Mint (v1.5.0):');
-const icon8Path = path.join(process.cwd(), 'icon-8-grid-mint.svg');
-assert(fs.existsSync(icon8Path), 'SVG canônico icon-8-grid-mint.svg presente na raiz');
+const iconMipPath = path.join(process.cwd(), 'icon_mip.svg');
+assert(fs.existsSync(iconMipPath), 'SVG canônico icon_mip.svg presente na raiz');
 assert(fs.existsSync(path.join(process.cwd(), 'public/icons/mint-install-pro.svg')), 'SVG copiado para public/icons/mint-install-pro.svg');
 assert(fs.existsSync(path.join(process.cwd(), 'public/icons/software-manager.png')), 'PNG 256x256 em public/icons/software-manager.png');
 assert(fs.existsSync(path.join(process.cwd(), 'public/favicon.png')), 'Favicon PNG em public/favicon.png');
