@@ -183,9 +183,9 @@ assert(allLabelsMatch, `Todos os 12 rótulos concisos coincidem: [${expectedLabe
 
 // Test 12: Verificação de Empacotamento Debian e Documentos Oficiais
 console.log('\n12. Verificação de Empacotamento Debian e Documentos Oficiais:');
-const debPath = path.join(process.cwd(), 'mint-install-pro_1.4.1_all.deb');
+const debPath = path.join(process.cwd(), 'mint-install-pro_1.5.0_all.deb');
 const debExists = fs.existsSync(debPath);
-assert(debExists, 'Pacote Debian "mint-install-pro_1.4.1_all.deb" gerado na raiz do projeto');
+assert(debExists, 'Pacote Debian "mint-install-pro_1.5.0_all.deb" gerado na raiz do projeto');
 if (debExists) {
   const debSize = fs.statSync(debPath).size;
   assert(debSize > 500 * 1024, `Pacote Debian possui tamanho válido de produção (${(debSize / 1024).toFixed(1)} KB)`);
@@ -282,7 +282,20 @@ assert(catalogServiceContent.includes('requestIdleCallback'), 'Prefetch do catá
 const appJsxContent2 = fs.readFileSync(path.join(process.cwd(), 'src/App.jsx'), 'utf-8');
 assert(!appJsxContent2.includes("from './data/initialApps'") || appJsxContent2.match(/from '\.\/data\/initialApps'/g).length === 1,
   'App.jsx importa apenas categoriesList de initialApps (initialApps é lazy via catalog.js)');
-assert(appJsxContent2.includes('useCatalog'), 'App.jsx usa hook useCatalog');
+// Test 20: Ícone oficial aplicado em todos os pontos (v1.5.0)
+console.log('\n20. Verificação do ícone Grid Mint (v1.5.0):');
+const icon8Path = path.join(process.cwd(), 'icon-8-grid-mint.svg');
+assert(fs.existsSync(icon8Path), 'SVG canônico icon-8-grid-mint.svg presente na raiz');
+assert(fs.existsSync(path.join(process.cwd(), 'public/icons/mint-install-pro.svg')), 'SVG copiado para public/icons/mint-install-pro.svg');
+assert(fs.existsSync(path.join(process.cwd(), 'public/icons/software-manager.png')), 'PNG 256x256 em public/icons/software-manager.png');
+assert(fs.existsSync(path.join(process.cwd(), 'public/favicon.png')), 'Favicon PNG em public/favicon.png');
+
+const desktopContent = fs.readFileSync(path.join(process.cwd(), 'app_manager.desktop'), 'utf-8');
+assert(desktopContent.includes('Icon=mint-install-pro'), 'app_manager.desktop aponta para Icon=mint-install-pro');
+
+const indexHtml = fs.readFileSync(path.join(process.cwd(), 'index.html'), 'utf-8');
+assert(indexHtml.includes('./icons/mint-install-pro.svg') || indexHtml.includes('mint-install-pro.svg'),
+  'index.html referencia o novo SVG');assert(appJsxContent2.includes('useCatalog'), 'App.jsx usa hook useCatalog');
 assert(appJsxContent2.includes('useFilteredApps'), 'App.jsx usa hook useFilteredApps');
 assert(appJsxContent2.includes('useBatchSelection'), 'App.jsx usa hook useBatchSelection');
 assert(appJsxContent2.includes('useNavigation'), 'App.jsx usa hook useNavigation');
@@ -316,7 +329,7 @@ console.log('\n18. Sanidade do .deb empacotado:');
 // (checado no CI pelo job deb-package; aqui só garantimos que o script
 // de build existe e referencia a versão correta)
 const buildDebContent = fs.readFileSync(path.join(process.cwd(), 'scripts/build_deb.py'), 'utf-8');
-assert(buildDebContent.includes('VERSION = "1.4.1"'), 'build_deb.py usa VERSION = "1.4.1"');
+assert(buildDebContent.includes('VERSION = "1.5.0"'), 'build_deb.py usa VERSION = "1.5.0"');
 assert(buildDebContent.includes('shutil.copytree(dist_dir'), 'build_deb.py copia o dist/ inteiro (incluindo data/)');
 
 // Test 19: Deduplicação cross-kind (gauntlet loop, fix débito 9.6)

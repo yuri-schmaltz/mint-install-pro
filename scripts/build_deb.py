@@ -5,7 +5,7 @@ import shutil
 import subprocess
 import stat
 
-VERSION = "1.4.1"
+VERSION = "1.5.0"
 PACKAGE_NAME = "mint-install-pro"
 DEB_DIR = f"/tmp/{PACKAGE_NAME}_{VERSION}_all"
 OUTPUT_DEB = f"{PACKAGE_NAME}_{VERSION}_all.deb"
@@ -328,10 +328,12 @@ StartupNotify=true
 with open(f"{DEB_DIR}/usr/share/applications/{PACKAGE_NAME}.desktop", "w", encoding="utf-8") as f:
     f.write(desktop_content)
 
-# 4. Copiar ícones
-shutil.copy("public/icons/software-manager.png", f"{DEB_DIR}/usr/share/icons/hicolor/96x96/apps/{PACKAGE_NAME}.png")
-if os.path.exists("public/mint-logo.svg"):
-    shutil.copy("public/mint-logo.svg", f"{DEB_DIR}/usr/share/icons/hicolor/scalable/apps/{PACKAGE_NAME}.svg")
+# 4. Copiar ícones (v1.5.0: Grid Mint — matriz 3x3 com folha centralizada)
+shutil.copy("public/icons/hicolor-96x96.png",
+            f"{DEB_DIR}/usr/share/icons/hicolor/96x96/apps/{PACKAGE_NAME}.png")
+if os.path.exists("public/icons/mint-install-pro.svg"):
+    shutil.copy("public/icons/mint-install-pro.svg",
+                f"{DEB_DIR}/usr/share/icons/hicolor/scalable/apps/{PACKAGE_NAME}.svg")
 
 # 5. Criar DEBIAN/control
 control_content = f"""Package: {PACKAGE_NAME}

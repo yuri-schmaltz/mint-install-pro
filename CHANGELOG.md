@@ -4,6 +4,38 @@ Todas as alterações notáveis do projeto **Mint Install Pro** são documentada
 
 ---
 
+## [1.5.0] - 2026-09-14
+
+### Modificado (Novo ícone oficial: "Grid Mint")
+- **Ícone8 "Grid Mint"** escolhido como identidade visual oficial após exploração de 10 conceitos (`icon-1` a `icon-10` + `icons-preview.html` para comparação visual).
+- **Conceito**: matriz 3x3 (referência à matriz 3x3 de categorias da LandingPage) com 1 quadrado verde central destacado contendo folha mint centralizada vertical e horizontalmente (diferença geométrica de 0px, margens simétricas de 14px).
+- **Renderização multi-tamanho via ImageMagick**:
+  - `public/icons/software-manager.png` 256×256 (substitui PNG antigo de 67 KB por nova versão de 25 KB)
+  - `public/icons/hicolor-96x96.png` 96×96 (tamanho padrão hicolor apps)
+  - `public/icons/mint-install-pro.svg` (vetorial escalável, fonte de verdade)
+  - `public/favicon.png` 48×48
+  - `public/favicon-32.png` 32×32
+  - `public/favicon-16.png` 16×16
+- **Pontos de uso atualizados**:
+  - `app_manager.desktop`: `Icon=mint-install-pro` (aponta para o PNG hicolor)
+  - `index.html`: favicon SVG + 3 favicons PNG (16/32/48) com sizes corretos
+  - `src/components/HeaderBar.jsx` modal About: usa o novo SVG
+  - `scripts/build_deb.py`: copia `hicolor-96x96.png` (96×96) + `mint-install-pro.svg` (scalable) para o `.deb`
+  - `README.md`: badge e wget atualizados para v1.5.0
+- **Suíte ampliada**:
+  - 7 testes novos no custom runner (test #20) validam presença dos arquivos, conteúdo do .desktop e referência no index.html
+  - Total: **127/127** (era 120/120)
+  - vitest: **214/214** (sem regressão)
+  - Lint: **0 erros, 0 warnings**
+
+### Notas técnicas
+- Folha mint centralizada: `M128 116 Q142 128 128 140 Q114 128 128 116` (centro y=128, margens 14px simétricas)
+- Quadrado verde destacado: `x=102..154, y=102..154` (52×52, centro 128,128)
+- Folha ocupa ~54% do quadrado (28×24 em 52×52), mantendo padding respiracional
+- Pequeno "pulse" verde no canto superior-direito do quadrado destacado (148, 108, r=4)
+
+---
+
 ## [1.4.1] - 2026-09-14
 
 ### Adicionado (Reativação do DebugDock para Diagnóstico em Campo)
