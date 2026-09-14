@@ -38,6 +38,11 @@ jobs:
       - name: Lint (ESLint)
         run: npm run lint
 
+      - name: Rodar testes E2E (Playwright)
+        run: |
+          npx playwright install --with-deps chromium
+          npm run test:e2e
+
       - name: Build de produção
         run: npm run build
 

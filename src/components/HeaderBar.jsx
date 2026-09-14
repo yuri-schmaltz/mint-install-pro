@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   ChevronLeft,
@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 // Versão injetada pelo Vite a partir de package.json. Default seguro para SSR/tests.
-const APP_VERSION = import.meta.env?.VITE_APP_VERSION || '1.4.0';
+const APP_VERSION = import.meta.env?.VITE_APP_VERSION || '1.4.1';
 
 export default function HeaderBar({
   searchQuery,
@@ -24,6 +24,19 @@ export default function HeaderBar({
 }) {
   const [showMenu, setShowMenu] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+
+  // Esc fecha About modal (escopo local — não interfere com outros handlers do App)
+  useEffect(() => {
+    if (!showAbout) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        e.stopPropagation();
+        setShowAbout(false);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [showAbout]);
 
   return (
     <header className="bg-[#202326] border-b border-[#1b1c1e] text-[#dcdcdc] px-3 py-2 flex items-center justify-between select-none relative z-30 shadow-md">
