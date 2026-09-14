@@ -183,9 +183,9 @@ assert(allLabelsMatch, `Todos os 12 rótulos concisos coincidem: [${expectedLabe
 
 // Test 12: Verificação de Empacotamento Debian e Documentos Oficiais
 console.log('\n12. Verificação de Empacotamento Debian e Documentos Oficiais:');
-const debPath = path.join(process.cwd(), 'mint-install-pro_1.5.4_all.deb');
+const debPath = path.join(process.cwd(), 'mint-install-pro_1.5.5_all.deb');
 const debExists = fs.existsSync(debPath);
-assert(debExists, 'Pacote Debian "mint-install-pro_1.5.4_all.deb" gerado na raiz do projeto');
+assert(debExists, 'Pacote Debian "mint-install-pro_1.5.5_all.deb" gerado na raiz do projeto');
 if (debExists) {
   const debSize = fs.statSync(debPath).size;
   assert(debSize > 500 * 1024, `Pacote Debian possui tamanho válido de produção (${(debSize / 1024).toFixed(1)} KB)`);
@@ -329,7 +329,7 @@ console.log('\n18. Sanidade do .deb empacotado:');
 // (checado no CI pelo job deb-package; aqui só garantimos que o script
 // de build existe e referencia a versão correta)
 const buildDebContent = fs.readFileSync(path.join(process.cwd(), 'scripts/build_deb.py'), 'utf-8');
-assert(buildDebContent.includes('VERSION = "1.5.4"'), 'build_deb.py usa VERSION = "1.5.4"');
+assert(buildDebContent.includes('VERSION = "1.5.5"'), 'build_deb.py usa VERSION = "1.5.5"');
 assert(buildDebContent.includes('shutil.copytree(dist_dir'), 'build_deb.py copia o dist/ inteiro (incluindo data/)');
 
 // Test 19: Deduplicação cross-kind (gauntlet loop, fix débito 9.6)
@@ -386,7 +386,22 @@ const desktopContent22 = fs.readFileSync(path.join(process.cwd(), 'app_manager.d
 assert(!desktopContent22.includes('MimeType='),
   'app_manager.desktop NÃO tem MimeType (não se registra como handler de URI)');
 
-console.log(`\n========================================`);
+// Test 23: postinst remove cópias obsoletas em ~/.local/bin/ (v1.5.5)
+console.log('\n23. postinst remove cópias obsoletas em ~/.local/bin (v1.5.5):');
+// Extrai o conteúdo do postinst template do build_deb.py e checa a presença
+// das linhas executáveis (não comentários)
+const postinstMatch = buildDebContent.match(/postinst_content = """([\s\S]*?)"""/);
+assert(postinstMatch, 'postinst_content está definido em build_deb.py');
+const postinstBody = postinstMatch[1];
+// Linhas executáveis: filtra comentários # e linhas vazias
+const executablePostinst = postinstBody
+  .split('\n')
+  .filter((l) => !l.trim().startsWith('#') && l.trim().length > 0)
+  .join('\n');
+assert(executablePostinst.includes('.local/bin/mint-install-pro'),
+  'postinst referencia ~/.local/bin/mint-install-pro (detecta cópias obsoletas)');
+assert(executablePostinst.includes('cmp'),
+  'postinst usa cmp para comparar launcher do .deb com cópia obsoleta');
 console.log(`Resultado dos Testes: ${passed} passaram, ${failed} falharam.`);
 console.log(`========================================\n`);
 

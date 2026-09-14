@@ -5,7 +5,7 @@ import shutil
 import subprocess
 import stat
 
-VERSION = "1.5.4"
+VERSION = "1.5.5"
 PACKAGE_NAME = "mint-install-pro"
 DEB_DIR = f"/tmp/{PACKAGE_NAME}_{VERSION}_all"
 OUTPUT_DEB = f"{PACKAGE_NAME}_{VERSION}_all.deb"
@@ -431,6 +431,20 @@ with open(f"{DEB_DIR}/DEBIAN/control", "w", encoding="utf-8") as f:
 #     em browsers externos.
 postinst_content = """#!/bin/sh
 set -e
+# v1.5.5: Detecta e remove cópias obsoletas em ~/.local/bin que precedem
+# /usr/bin no PATH padrão do Linux Mint (.local/bin vem antes). Sem essa
+# proteção, uma cópia antiga do launcher (instalada manualmente em
+# ~/.local/bin/) é executada em vez do /usr/bin/mint-install-pro, e o
+# usuário vê a tela 'Directory listing' do profile WebKit2.
+DUP="$HOME/.local/bin/mint-install-pro"
+if [ -f "$DUP" ] && [ ! -L "$DUP" ]; then
+    # Só remove se a versão em /usr/bin/mint-install-pro for diferente
+    if ! cmp -s "$DUP" "/usr/bin/mint-install-pro"; then
+        echo "mint-install-pro: removendo cópia obsoleta em $DUP" >&2
+        rm -f "$DUP" || true
+    fi
+fi
+
 # Apenas atualiza o cache de ícones (operação silenciosa, sem UI).
 if which gtk-update-icon-cache >/dev/null 2>&1; then
     gtk-update-icon-cache -q /usr/share/icons/hicolor || true

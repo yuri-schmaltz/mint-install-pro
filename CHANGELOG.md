@@ -4,6 +4,21 @@ Todas as alterações notáveis do projeto **Mint Install Pro** são documentada
 
 ---
 
+## [1.5.5] - 2026-09-14
+
+### Corrigido (Cópia obsoleta do launcher em `~/.local/bin/`)
+- **Bug reportado pelo usuário**: A janela "Directory listing" PERSISTIA mesmo após v1.5.4 corrigir o postinst. Após diagnóstico profundo, a causa raiz real foi identificada: **o usuário tinha uma cópia obsoleta do launcher em `/home/yuri/.local/bin/mint-install-pro`** (instalada em 2026-09-02, muito antes desta sessão de fixes).
+- **Por que isso causava o bug**: O `PATH` padrão do Linux Mint tem `~/.local/bin` ANTES de `/usr/bin`. Quando o usuário rodava `mint-install-pro`, o shell resolvia para a versão antiga em `~/.local/bin/` — que **não tinha nenhum dos fixes** que apliquei nas v1.5.2 a v1.5.4 (signal `load-changed` corrigido, diagnóstico de `WEBKIT_LOAD_FAILED`, etc.). A versão antiga tinha o `webbrowser.open(url)` sem fallback seguro, então abria uma janela do browser padrão (Brave) mostrando o diretório do profile WebKit2GTK.
+- **Diagnóstico**: `which mint-install-pro` retornava `/home/yuri/.local/bin/mint-install-pro` (não `/usr/bin/`). Havia **2 instâncias rodando simultaneamente** (`pgrep -af mint-install-pro` mostrava PIDs 613779 + 614119).
+- **Fix**:
+  1. **Cleanup imediato**: removido `/home/yuri/.local/bin/mint-install-pro` manualmente (versão obsoleta).
+  2. **Proteção no `postinst`**: v1.5.5 detecta e remove automaticamente cópias obsoletas em `~/.local/bin/mint-install-pro` que diferem do `/usr/bin/mint-install-pro`. Usa `cmp -s` para comparar byte-a-byte e só remove se forem diferentes (não remove se for symlink válido).
+  3. Log de aviso no stderr: `mint-install-pro: removendo cópia obsoleta em /home/yuri/.local/bin/mint-install-pro` (útil pra debug futuro).
+- **Teste novo**: valida que o postinst tem lógica de detecção de duplicação em `~/.local/bin`.
+- **Bump**: 1.5.4 → 1.5.5 (patch: fix de UX de instalação, não-breaking).
+
+---
+
 ## [1.5.4] - 2026-09-14
 
 ### Corrigido (Janela indesejada durante instalação)
