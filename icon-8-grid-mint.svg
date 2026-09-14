@@ -21,9 +21,11 @@
     <rect x="44" y="102" width="52" height="52" rx="8" fill="#2b2e33" stroke="#3c4149" stroke-width="2"/>
     <!-- Centro destacado -->
     <rect x="102" y="102" width="52" height="52" rx="8" fill="url(#gridHi)" stroke="#3d7c12" stroke-width="2.5"/>
-    <!-- Folha dentro do quadrado destacado -->
-    <path d="M128 110 Q140 120 128 134 Q116 120 128 110 Z" fill="#202326" opacity="0.5"/>
-    <line x1="128" y1="110" x2="128" y2="134" stroke="#202326" stroke-width="1.5"/>
+    <!-- Folha centralizada vertical+horizontalmente dentro do quadrado verde.
+         Quadrado: x=102..154, y=102..154 → centro (128, 128).
+         Folha ocupa y de 116 a 140 (centro em y=128) com altura 24px. -->
+    <path d="M128 116 Q142 128 128 140 Q114 128 128 116 Z" fill="#202326" opacity="0.55"/>
+    <line x1="128" y1="116" x2="128" y2="140" stroke="#202326" stroke-width="1.5"/>
     <rect x="160" y="102" width="52" height="52" rx="8" fill="#2b2e33" stroke="#3c4149" stroke-width="2"/>
 
     <!-- Linha 3 -->
