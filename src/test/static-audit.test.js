@@ -8,10 +8,7 @@ import { readdirSync, readFileSync, statSync } from 'fs';
 import { join } from 'path';
 
 const SRC = join(__dirname, '..');
-const ALLOW_CONSOLE_ERROR = [
-  // ErrorBoundary já tem console.error legado e debugLog — não duplicar é débito já tratado
-  // flathubApi legados que ficam pra debug em dev
-];
+// (placeholder para futuras exclusões de auditoria estática)
 
 function walk(dir, files = []) {
   for (const entry of readdirSync(dir)) {

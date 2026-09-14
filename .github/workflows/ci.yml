@@ -32,6 +32,12 @@ jobs:
       - name: Rodar suíte de testes (Gauntlet)
         run: npm test
 
+      - name: Rodar suíte de testes unitários (Vitest)
+        run: npm run test:unit
+
+      - name: Lint (ESLint)
+        run: npm run lint
+
       - name: Build de produção
         run: npm run build
 
@@ -67,6 +73,9 @@ jobs:
 
       - name: Rodar testes
         run: npm test
+
+      - name: Lint (ESLint)
+        run: npm run lint
 
       - name: Build de produção
         run: npm run build

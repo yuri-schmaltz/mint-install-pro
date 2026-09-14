@@ -52,7 +52,7 @@ export async function searchFlathub(query) {
   }
 }
 
-export async function getPopularFlathub(page = 1, perPage = 100) {
+export async function getPopularFlathub(_page = 1, _perPage = 100) {
   try {
     const page1Req = fetch(`https://flathub.org/api/v2/collection/popular?page=1&per_page=100`);
     const page2Req = fetch(`https://flathub.org/api/v2/collection/popular?page=2&per_page=100`);

@@ -1,6 +1,6 @@
 // Custom hook: gerencia navegação entre abas + view (landing vs list) + back.
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback } from 'react';
 
 /**
  * @param {string} initialCategory

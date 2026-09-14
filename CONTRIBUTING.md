@@ -2,6 +2,9 @@
 
 Obrigado pelo interesse em contribuir com o **Mint Install Pro**! Este projeto é de código aberto e recebe contribuições da comunidade Linux e entusiastas de interfaces modernas.
 
+> ⚠️ **ATENÇÃO — branches deprecated:**
+> A branch `origin/fix/batch-modal-tela-cinza` (commit `c140630`) é **pré-gauntlet-loop** e contém regressões severas (remove DebugDock, remove 100+ testes, remove infra de diagnóstico). **NÃO MERGEAR** — prefere sempre `master`. Foi renomeada para `_deprecated/batch-modal-tela-cinza-old-approach` para deixar isso explícito.
+
 ---
 
 ## 🛠️ Ambiente de Desenvolvimento

@@ -306,14 +306,20 @@ with open(launcher_path, "w", encoding="utf-8") as f:
 os.chmod(launcher_path, stat.S_IRWXU | stat.S_IRGRP | stat.S_IXGRP | stat.S_IROTH | stat.S_IXOTH)
 
 # 3. Criar arquivo de desktop /usr/share/applications/mint-install-pro.desktop
-desktop_content = """[Desktop Entry]
+# Lê app_manager.desktop da raiz (fonte de verdade) se existir, senão usa inline.
+desktop_src = "app_manager.desktop"
+if os.path.exists(desktop_src):
+    with open(desktop_src, "r", encoding="utf-8") as f:
+        desktop_content = f.read()
+else:
+    desktop_content = """[Desktop Entry]
+Type=Application
 Name=Mint Install Pro
 Comment=Gerenciador de Aplicativos Moderno para Linux Mint
 Comment[pt_BR]=Gerenciador de Aplicativos Moderno para Linux Mint
 Exec=mint-install-pro
 Icon=mint-install-pro
 Terminal=false
-Type=Application
 Categories=GNOME;GTK;System;Settings;PackageManager;
 Keywords=package;apt;software;install;uninstall;flatpak;flathub;
 StartupNotify=true

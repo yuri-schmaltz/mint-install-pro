@@ -3,16 +3,16 @@
 // debugLog, fluxo completo (mount → processQueue → done → onComplete).
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 
 // Mock do packageManager ANTES de importar o componente
 vi.mock('../services/packageManager', () => ({
-  executeInstall: vi.fn(async (app) => {
+  executeInstall: vi.fn(async () => {
     // Simula latência realista
     await new Promise(r => setTimeout(r, 10));
     return { success: true, simulated: true };
   }),
-  executeUninstall: vi.fn(async (app) => {
+  executeUninstall: vi.fn(async () => {
     await new Promise(r => setTimeout(r, 10));
     return { success: true, simulated: true };
   })

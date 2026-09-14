@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Mint Install Pro
+GenericName=Package Manager
+Comment=Gerenciador visual de pacotes para Linux Mint (APT + Flatpak + Flathub)
+Comment[pt_BR]=Gerenciador visual de pacotes para Linux Mint (APT + Flatpak + Flathub)
+Exec=/usr/bin/mint-install-pro
+Icon=mint-install-pro
+Terminal=false
+StartupNotify=true
+StartupWMClass=mint-install-pro
+Categories=System;PackageManager;Settings;GTK;
+Keywords=apt;flatpak;flathub;install;uninstall;package;mint;manager;aplicativo;pacote;
+MimeType=appstream://;apt://;x-scheme-handler/apt;x-scheme-handler/flatpak;
+SingleMainWindow=true
