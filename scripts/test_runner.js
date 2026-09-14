@@ -183,9 +183,9 @@ assert(allLabelsMatch, `Todos os 12 rótulos concisos coincidem: [${expectedLabe
 
 // Test 12: Verificação de Empacotamento Debian e Documentos Oficiais
 console.log('\n12. Verificação de Empacotamento Debian e Documentos Oficiais:');
-const debPath = path.join(process.cwd(), 'mint-install-pro_1.5.2_all.deb');
+const debPath = path.join(process.cwd(), 'mint-install-pro_1.5.3_all.deb');
 const debExists = fs.existsSync(debPath);
-assert(debExists, 'Pacote Debian "mint-install-pro_1.5.2_all.deb" gerado na raiz do projeto');
+assert(debExists, 'Pacote Debian "mint-install-pro_1.5.3_all.deb" gerado na raiz do projeto');
 if (debExists) {
   const debSize = fs.statSync(debPath).size;
   assert(debSize > 500 * 1024, `Pacote Debian possui tamanho válido de produção (${(debSize / 1024).toFixed(1)} KB)`);
@@ -329,7 +329,7 @@ console.log('\n18. Sanidade do .deb empacotado:');
 // (checado no CI pelo job deb-package; aqui só garantimos que o script
 // de build existe e referencia a versão correta)
 const buildDebContent = fs.readFileSync(path.join(process.cwd(), 'scripts/build_deb.py'), 'utf-8');
-assert(buildDebContent.includes('VERSION = "1.5.2"'), 'build_deb.py usa VERSION = "1.5.2"');
+assert(buildDebContent.includes('VERSION = "1.5.3"'), 'build_deb.py usa VERSION = "1.5.3"');
 assert(buildDebContent.includes('shutil.copytree(dist_dir'), 'build_deb.py copia o dist/ inteiro (incluindo data/)');
 
 // Test 19: Deduplicação cross-kind (gauntlet loop, fix débito 9.6)
@@ -355,6 +355,20 @@ assert(buildDebContent.includes('--force-browser'),
   'build_deb.py tem flag --force-browser para diagnóstico');
 assert(buildDebContent.includes('AVISO: isso pode mostrar páginas inesperadas'),
   'build_deb.py avisa sobre --force-browser abrindo em sessão existente');
+
+// Test 21: Callback load-changed do WebKit2GTK tem assinatura correta (v1.5.3)
+console.log('\n21. Callback load-changed do WebKit2GTK (v1.5.3):');
+// v1.5.2 tinha 3 params (bug); v1.5.3 tem 2
+const loadChangedMatch = buildDebContent.match(/def\s+on_load_changed\s*\([^)]*\)/);
+assert(loadChangedMatch, 'callback on_load_changed existe');
+const callbackSig = loadChangedMatch[0];
+assert(callbackSig.includes('webview') && callbackSig.includes('load_event'),
+  'callback on_load_changed recebe (webview, load_event) — 2 args');
+assert(!callbackSig.includes('event_name'),
+  'callback NÃO tem terceiro parâmetro event_name (causa do crash v1.5.2)');
+assert(!buildDebContent.includes('GLib.timeout_add'),
+  'launcher não usa GLib.timeout_add (removido na v1.5.3 — crashava Gtk.main)');
+
 console.log(`\n========================================`);
 console.log(`Resultado dos Testes: ${passed} passaram, ${failed} falharam.`);
 console.log(`========================================\n`);

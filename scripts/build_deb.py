@@ -5,7 +5,7 @@ import shutil
 import subprocess
 import stat
 
-VERSION = "1.5.2"
+VERSION = "1.5.3"
 PACKAGE_NAME = "mint-install-pro"
 DEB_DIR = f"/tmp/{PACKAGE_NAME}_{VERSION}_all"
 OUTPUT_DEB = f"{PACKAGE_NAME}_{VERSION}_all.deb"
@@ -236,38 +236,46 @@ def try_gtk_webview(url):
 
         webview = WebKit2.WebView()
 
-        # v1.5.2: Detecta falha de carregamento via signal load-changed.
-        # load_event WEBKIT_LOAD_FAILED = 4 (enum WebKit2.LoadEvent).
+        # v1.5.3: Detecta falha de carregamento via signal load-changed.
+        # ATENÇÃO: signal load-changed do WebKit2GTK chama callback com
+        # APENAS 2 argumentos (webview, load_event). A v1.5.2 tinha 3
+        # parâmetros e crashava o WebView no primeiro load-changed, fazendo
+        # o app ficar 12s em tela cinza até mostrar conteúdo.
         load_failed = [False]
-        load_status = [None]
 
-        def on_load_changed(webview, load_event, event_name):
-            load_status[0] = int(load_event)
+        def on_load_changed(webview, load_event):
             try:
-                if int(load_event) == 4:  # WEBKIT_LOAD_FAILED
+                # WebKit2.LoadEvent.WEBKIT_LOAD_FAILED = 4
+                if int(load_event) == 4:
                     load_failed[0] = True
-                    sys.stderr.write("[mip-launcher] WebView load_failed para %s\n" % url)
+                    try:
+                        sys.stderr.write(
+                            "[mip-launcher] WebView load_failed para %s\n" % url
+                        )
+                    except Exception:
+                        pass
+                    # Sai do loop principal imediatamente
+                    try:
+                        Gtk.main_quit()
+                    except Exception:
+                        pass
             except (ValueError, TypeError):
                 pass
 
         try:
             webview.connect('load-changed', on_load_changed)
-        except Exception:
-            pass
+        except Exception as e:
+            try:
+                sys.stderr.write(
+                    "[mip-launcher] Falha ao conectar load-changed: %s\n" % e
+                )
+            except Exception:
+                pass
 
         webview.load_uri(url)
         win.add(webview)
         win.connect("destroy", Gtk.main_quit)
         win.show_all()
-
-        # Polling simples: se load_failed em <3s, fechar e reportar
-        from gi.repository import GLib
-        def check_load():
-            if load_failed[0]:
-                Gtk.main_quit()
-                return False
-            return True
-        GLib.timeout_add(3000, check_load)
 
         Gtk.main()
         if load_failed[0]:

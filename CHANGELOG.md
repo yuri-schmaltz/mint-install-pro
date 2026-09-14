@@ -4,6 +4,20 @@ Todas as alterações notáveis do projeto **Mint Install Pro** são documentada
 
 ---
 
+## [1.5.3] - 2026-09-14
+
+### Corrigido (Crash do signal `load-changed` no WebKit2GTK)
+- **Bug reportado pelo usuário**: O app demorava cerca de 12 segundos para abrir após os comandos de instalação. A janela abria com tela cinza, depois ficava branca, e só então o app aparecia.
+- **Causa raiz**: O callback `on_load_changed` em `try_gtk_webview()` na v1.5.2 estava com **3 parâmetros** (`webview, load_event, event_name`), mas o signal `load-changed` do WebKit2GTK chama com **apenas 2** argumentos. Isso causava um `TypeError: missing 1 required positional argument: 'event_name'` no log, e o WebView **crashava no primeiro signal** disparado — fazendo o app ficar preso em estado indefinido por ~12s antes de mostrar conteúdo.
+- **Fix**:
+  1. Removido o terceiro parâmetro `event_name` da assinatura do callback (não existe no signal).
+  2. Removido o `GLib.timeout_add(3000, check_load)` que crashava o `Gtk.main()` — agora o `Gtk.main_quit()` é chamado **diretamente dentro do callback** quando detecta `WEBKIT_LOAD_FAILED`.
+  3. Adicionado tratamento defensivo `try/except` ao redor do `webview.connect()` para que uma falha ao registrar o signal não quebre a abertura do WebView.
+- **Teste novo**: valida que o callback de load-changed tem exatamente 2 parâmetros.
+- **Bump**: 1.5.2 → 1.5.3 (patch: fix crítico de crash loop, não-breaking).
+
+---
+
 ## [1.5.2] - 2026-09-14
 
 ### Corrigido (Falha crítica do launcher Python — tela estranha após instalação)

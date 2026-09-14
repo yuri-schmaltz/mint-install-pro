@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 // Versão injetada pelo Vite a partir de package.json. Default seguro para SSR/tests.
-const APP_VERSION = import.meta.env?.VITE_APP_VERSION || '1.5.2';
+const APP_VERSION = import.meta.env?.VITE_APP_VERSION || '1.5.3';
 
 export default function HeaderBar({
   searchQuery,
