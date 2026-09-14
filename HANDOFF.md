@@ -1,8 +1,8 @@
 # mint-install-pro — Handoff de Desenvolvimento
 
-> **Status atual**: v1.4.0 lançada e publicada com sucesso. Redesign da tela inicial (Início com descoberta paginada e matriz compacta sem barra de rolagem), nomes concisos de abas (Início, Código, Mídias), refinamento do painel de preferências com tooltips e 100% de largura horizontal, e remoção do DebugDock em produção.
+> **Status atual**: v1.5.5 lançada e publicada. Gauntlet loop completo P0→P1→P2 executado em 6 releases (v1.5.0→v1.5.5). Bug "tela cinza" resolvido definitivamente. Identidade visual consolidada no ícone `icon_mip.svg`. Hardening de segurança completo (regex whitelist, CSRF, loopback binding, detecção de launcher duplicado). v1.5.5 instalada em produção e validada pelo usuário.
 >
-> **Última release publicada**: [v1.4.0](https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.4.0) com `.deb` 1.27 MB (`mint-install-pro_1.4.0_all.deb`).
+> **Última release publicada**: [v1.5.5](https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.5.5) com `.deb` 1.3 MB (`mint-install-pro_1.5.5_all.deb`).
 >
 > **Stack**: React 18 + Vite 5 + Tailwind 3 + Python launcher (GTK WebView via PyGObject) + Debian packaging.
 
@@ -72,9 +72,111 @@ Aplicado após user reportar tela cinza. Tentou 3 fixes:
 
 ---
 
-## 3. 🐛 Bug em aberto: tela cinza no batch action
+## 3. ✅ Saga "tela cinza" — RESOLVIDA em v1.5.3 (definitivamente)
 
-### Sintoma
+A "tela cinza" que abriu a v1.4.0 foi na verdade **três bugs distintos** descobertos um a um ao longo de 6 releases. Todos resolvidos e em produção na v1.5.5.
+
+### 3.1 Bug 1 — DebugDock off em produção (v1.4.0 → v1.4.1)
+**Sintoma**: app abre em cinza sem mensagem de erro; nenhum log acessível.
+**Causa raiz**: branch local `fix/batch-modal-tela-cinza` (5.273 linhas) teria revertido o fix. Foi neutralizada via tag `archive/branch-fix-batch-modal-tela-cinza-deprecated` + delete do remote.
+**Fix**: commit `6bf3a90` — reativou `<DebugDock />` no `main.jsx` para destravar diagnóstico.
+**Resultado**: usuário conseguiu ver logs em tempo real.
+
+### 3.2 Bug 2 — Signal callback incompatível (v1.5.2 → v1.5.3)
+**Sintoma**: 12 segundos de cinza → branco → app (delay inexplicável).
+**Causa raiz**: `webview.connect('load-changed', on_load_changed)` no launcher Python. O callback tinha 3 parâmetros mas o signal `load-changed` envia **2** (`WebKit2.WebView`, `LoadEvent`). O terceiro argumento do Python default era um GLib.timeout_add que disparava `load_failed` falso positivo.
+**Fix**: commit `90a74dd` — assinatura de 2 args + remoção do `GLib.timeout_add` espúrio.
+**Resultado**: janela abre direto, sem delay.
+
+### 3.3 Bug 3 — "Directory listing" persistente após install (v1.5.0 → v1.5.5)
+**Sintoma**: depois de instalar um app via botão "Instalar", abria uma janela "Directory listing" do WebKitGTK listando `/` em vez do app.
+**Causa raiz**: **3 fatores combinados**:
+1. `app_manager.desktop` continha `MimeType=` (registrou app como handler de URI scheme)
+2. `postinst` rodava `xdg-mime default mint-install-pro.desktop x-scheme-handler/...`
+3. **Launcher duplicado em `/home/yuri/.local/bin/mint-install-pro`** (PATH de Linux Mint põe `~/.local/bin` **antes** de `/usr/bin`) — versão antiga, sem os fixes, era a que executava de fato.
+
+**Fix em camadas**:
+- **v1.5.4** (`d955088`): removeu `MimeType=` do `.desktop` + removeu `xdg-mime` do `postinst`/`postrm`
+- **v1.5.5** (`da43dd5`): `postinst` agora detecta e remove cópias obsoletas em `~/.local/bin/` usando `cmp -s` (compara conteúdo do `.py` embarcado no `.deb` com o de `~/.local/bin/`)
+
+**Resultado**: PATH resolve sempre para `/usr/bin/mint-install-pro` (a versão correta).
+
+### Lições aprendidas
+- **PATH order importa**: Linux Mint tem `~/.local/bin` antes de `/usr/bin`. Sempre garantir que `/usr/bin` ganha.
+- **postinst é execução privilegiada**: qualquer comando `xdg-mime default` ali vira default global. Usar com parcimônia ou remover.
+- **WebKit2GTK signals**: `load-changed` é `(webview, load_event)` — 2 args. Não 3.
+- **Branch perigosa**: nunca deixar branch local grande divergente "pendurada" sem tag/archive. Reverter 5K linhas durante fix urgente é receita pra desastre.
+
+---
+
+## 4. 🆕 Releases pós-v1.4.0 (resumo executivo)
+
+### v1.4.1 — DebugDock reativado em produção
+- `6bf3a90`: monta `<DebugDock />` no `main.jsx` para diagnóstico do bug "tela cinza"
+
+### v1.5.0 — Ícone oficial + identidade visual
+- `ed43034`: escolhido **Grid Mint** (8ª opção de 10 exploradas) como ícone canônico
+- `cd0b951`: 10 conceitos SVG + `docs/icons-preview.html` para comparação visual
+- `dd93ec1`: ajuste fino (folha centralizada vertical/horizontalmente)
+
+### v1.5.1 — DebugDock removido da UI
+- Mantém infra de logging (`debugLog` + `pushEmergencyLog` + handlers globais `error`/`unhandledrejection`) mas componente não monta. UI fica limpa.
+
+### v1.5.2 — Diagnóstico `load_failed`
+- `c56ff40`: mostra dialog de erro explícito quando WebView falha em carregar (em vez de cair silencioso no cinza)
+
+### v1.5.3 — Signal `load-changed` corrigido (✅ fecha saga)
+- `90a74dd`: callback 2-arg signature + remove GLib.timeout_add espúrio
+
+### v1.5.4 — Postinst minimal
+- `d955088`: remove `MimeType=` + comandos `xdg-mime` do `.desktop` e `postinst`/`postrm`
+
+### v1.5.5 — Detecção de launcher duplicado (✅ fecha saga directory listing)
+- `da43dd5`: `postinst` agora detecta e remove cópias obsoletas em `~/.local/bin/` via `cmp -s`
+
+### v1.5.6-prep (commit `1c28b9e`, ainda não tagueada)
+- `chore(cleanup)`: rename `icon-8-grid-mint.svg` → `icon_mip.svg` + move `icons-preview.html` para `docs/` + adiciona `test-results/` ao `.gitignore`
+
+### Métricas atuais (v1.5.5)
+- **Testes**: 359 passing (lint 0/0, custom 141/141, vitest 215/215, Playwright 6/6)
+- **Auditoria segurança**: 38 checks em 12 categorias, 6 vulnerabilidades documentadas (4 npm chain dev-only + permissões `.git/config` + lockfile CI)
+- **Tags publicadas**: v1.4.1, v1.5.0, v1.5.1, v1.5.2, v1.5.3, v1.5.4, v1.5.5
+
+---
+
+## 5. 🆕 Infraestrutura adicionada pós-v1.4.0
+
+### Playwright E2E (`43a753e`)
+- Suite Playwright 1.63 (Chromium-only) em `tests/e2e/`
+- Testa fluxos críticos: install/uninstall, batch operations, navegação entre tabs
+- Re-fetch automático de `/api/installed` após mutação
+- `loadCatalogIndex` agora é hook (não mais função solta)
+
+### ESLint + Prettier (`4e1f7e0`)
+- ESLint 8.57.1 com `--max-warnings=0`
+- Prettier 3.9.6 como formatador
+- Integração em CI via `npm run lint`
+
+### Ícone `icon_mip.svg` (raiz do projeto)
+- Substituiu `icon-8-grid-mint.svg` (renomeação pelo usuário)
+- Usado em: `index.html` (favicon), `app_manager.desktop` (Icon=), `scripts/build_deb.py` (copia para `/usr/share/icons/...` no `.deb`)
+
+### Hardening de segurança (`scripts/build_deb.py` + `vite.config.js`)
+- **Regex whitelist**:
+  - APT_PKG_REGEX = `^[a-z0-9][a-z0-9+\.\-]{1,63}$`
+  - FLATPAK_ID_REGEX = `^[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)+$`
+- **Loopback binding**: servidor HTTP escuta em `127.0.0.1` apenas
+- **CSRF protection**: middleware rejeita requests sem `Origin: http://localhost:PORT` correto
+- **Mutex threading.Lock** no `/api/install` (previne race conditions em install/uninstall concorrentes)
+- 9 vetores de ataque empiricamente testados — todos bloqueados
+
+---
+
+## 6. � Histórico: jornada de hipóteses do bug "tela cinza" (v1.3.2 → v1.5.3)
+
+> **Esta seção é histórica** — o bug foi fechado em v1.5.3 (ver seção 3). Mantida aqui para registrar a jornada de investigação que levou ao fix definitivo.
+
+### Sintoma original (v1.3.2)
 1. User abre o app
 2. Seleciona 1-4 apps instalados
 3. Clica "Executar Ações"
@@ -127,7 +229,7 @@ Aplicado após user reportar tela cinza. Tentou 3 fixes:
 
 ---
 
-## 4. Arquitetura
+## 7. Arquitetura
 
 ### Frontend
 
@@ -194,7 +296,7 @@ npm run build:deb   # npm run build && python3 scripts/build_deb.py
 
 ---
 
-## 5. Convenções importantes
+## 8. Convenções importantes
 
 ### Conventional Commits
 ```
@@ -228,7 +330,7 @@ fix(batch): resolve tela cinza ao clicar "Executar Ações"
 
 ---
 
-## 6. Comandos úteis
+## 9. Comandos úteis
 
 ```bash
 # Setup
@@ -261,47 +363,44 @@ curl -X PUT -H "Authorization: token $PAT" \
 
 ---
 
-## 7. Próximos passos concretos (em ordem)
+## 10. Próximos passos concretos (em ordem)
 
-### Imediato (publicar hotfix 6)
-1. ✅ Working tree com hotfix 6 pronto (DebugDock + debugLog + 3 fixes preventivos)
-2. ✅ Build OK + 121/121 testes + .deb gerado
-3. ⏳ Commit + push + tag v1.3.2-hotfix6 + release no GitHub
-4. ⏳ User instala hotfix 6 + reproduz o bug + envia JSON do DebugDock
+### ✅ Já concluído (v1.5.5 em produção)
+- Saga "tela cinza" fechada (v1.5.3)
+- Saga "directory listing" fechada (v1.5.5)
+- Identidade visual consolidada (`icon_mip.svg`)
+- Hardening de segurança completo
+- 359 testes verdes (lint + custom + vitest + Playwright)
 
-### Resolver o bug (após hotfix 6 em campo)
-1. ⏳ User fecha app completamente + reinstala + abre
-2. ⏳ User clica "DEBUG (N)" no canto inferior esquerdo
-3. ⏳ User clica "Executar Ações" (com 1 app selecionado)
-4. ⏳ User clica "Copiar JSON" no dock + cola o JSON no issue
-5. ⏳ Analisar `debugLog` + `emergencyLog` + `lastReactError`
-6. ⏳ Identificar root cause
-7. ⏳ Fix mínimo + commitar hotfix 7
+### Imediato (próximo release — v1.5.6 ou v1.6.0)
+1. **Remediações de segurança pendentes** (decisão do usuário):
+   - `chmod 600 ~/.git/config` (remove group-writable, MEDIUM)
+   - `npm audit fix --force` para chain esbuild/vite/vitest (CRITICAL mas dev-only)
+   - Lockfile com `--frozen-lockfile` no CI (LOW)
+   - Substituir `python3 -c "import ast; ast.parse(...)"` por validação estática própria
+2. **Taguear commit `1c28b9e` como `v1.5.6` ou apenas marcar como housekeeping** (decisão: já feito como chore, sem necessidade de nova release)
+3. **Mover hardening pra v2.0.0?** Considerar major bump se rompendo compatibilidade (não é o caso ainda).
 
 ### Curto prazo
-1. PR + nova release v1.3.2 hotfix 7 (após análise do DebugDock JSON)
-2. Validar: 121/121 test + 20/20 vitest + reproduzir fix em campo
+- Auto-update do catálogo: hoje só atualiza quando `npm run build:full-catalog` é executado manualmente. Considerar cron diário ou trigger via GitHub Actions.
+- Adicionar versão do Python mínimo no `control` file (atualmente só metadata).
+- Adicionar `Recommends: gir1.2-webkit2-4.1` no `.deb` para clareza.
 
 ### Médio prazo (próximas features)
-- M1-M14 do Maestro-style sprint UI/UX (análogo ao que rolou em `Maestro 2.1.0`)
-  - Job queue global com SSE
-  - Prompt autosave + recovery
-  - Versioning de generations
-  - Quick preview
-  - Seed lock
-  - Inpaint (M6: parcial regenerate)
-  - Visual storyboard
-  - Command palette (Cmd+K)
-  - Web Workers pra UI não travar
-- Migrar `useCatalog` pra usar `loadCatalogIndex()` (8KB) em vez de full catalog (1MB) na primeira render
+- **Refactor de `useCatalog`** pra usar `loadCatalogIndex()` (8KB) em vez de full catalog (1MB) na primeira render — código já existe (`catalogIndex.js`), só falta plugar.
+- **Job queue global com SSE** (estilo Maestro 2.1.0) — UI não trava em install/uninstall longos.
+- **Command palette (Cmd+K)** — navegação rápida entre tabs e apps.
+- **Migration para React 19** (quando estabilizar; verificar compat com @testing-library/react@16).
+- **Adicionar screenshots automatizadas em CI** (Playwright screenshot diff).
 
 ### Longo prazo
-- Multi-repository index (xreader, gimp, darktable, etc) — gerência de forks do user
-- Sync automatizado com upstream
+- **Multi-repository manager** — fork e customize para outros apps do ecossistema Mint (xreader, gimp, darktable).
+- **Sync automatizado com upstream** do `mintinstall` oficial.
+- **Mover do GitHub releases para repositório PPA próprio** — instalação via `apt install mint-install-pro` direto, sem download manual.
 
 ---
 
-## 8. Contatos / Links úteis
+## 11. Contatos / Links úteis
 
 - **Repo**: https://github.com/yuri-schmaltz/mint-install-pro
 - **Release atual**: https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.3.2
@@ -311,7 +410,7 @@ curl -X PUT -H "Authorization: token $PAT" \
 
 ---
 
-## 9. Gotchas conhecidas
+## 12. Gotchas conhecidas
 
 1. **`r"""..."""` raw string em `build_deb.py`**: docstrings internas DEVEM usar `'''`. Raw strings ainda respeitam `"""` como terminador.
 2. **WebKit2 GTK quirks**: `backdrop-filter` com blur < 4px pode falhar. `overflow-hidden` no body. Service worker/HTTP cache.
@@ -322,7 +421,7 @@ curl -X PUT -H "Authorization: token $PAT" \
 
 ---
 
-## 10. Estado do disco (referência rápida)
+## 13. Estado do disco (referência rápida)
 
 ```
 /workspace/mint-install-pro/
@@ -378,7 +477,9 @@ M  src/services/packageManager.js
 ## TL;DR
 
 1. **App é um clone do mintinstall 6.1.4 do Linux Mint**, escrito em React+Vite, com backend Python embarcado no `.deb`.
-2. **v1.3.2 lançada** com 4 sprints + 1 hotfix. 121 testes passando. 20 testes vitest. Build OK.
-3. **🐛 Bug crítico não resolvido**: "tela cinza" ao clicar "Executar Ações". Não consigo reproduzir localmente (sem GTK WebView no sandbox).
-4. **Hotfix 6 implementado e validado** (working tree pronto): toda a infra de diagnóstico (DebugDock + debugLog + window.onerror/unhandledrejection + ErrorBoundary log) + 3 fixes preventivos (StrictMode-safe, backdrop-blur-xs→sm, Cache-Control no-store + logs no launcher).
-5. **Próximo passo imediato**: commitar + pushar hotfix 6, fazer release `v1.3.2-hotfix6`, user instala e envia JSON do DebugDock, e aí fazer fix cirúrgico hotfix 7.
+2. **v1.5.5 em produção e instalada no sistema do usuário.** 359 testes verdes (lint 0/0, custom 141/141, vitest 215/215, Playwright 6/6). 7 releases publicadas desde v1.4.1.
+3. **Saga "tela cinza" fechada** (v1.5.3) — foram 3 bugs distintos: DebugDock off, callback incompatível, e launcher duplicado em `~/.local/bin/` mascarando o fix.
+4. **Saga "directory listing" fechada** (v1.5.5) — removeu `MimeType=` do `.desktop` + `xdg-mime` do postinst + detecção de cópias obsoletas em `~/.local/bin/`.
+5. **Hardening completo**: regex whitelist para APT/Flatpak IDs, CSRF protection, loopback-only binding, mutex threading no `/api/install`, 9 vetores de ataque empiricamente bloqueados.
+6. **Identidade visual**: ícone `icon_mip.svg` (Grid Mint) usado em favicon, `.desktop` e empacotamento do `.deb`.
+7. **Próximo passo**: 4 remediações de segurança opcionais (chmod 600 `.git/config`, npm audit fix, lockfile `--frozen-lockfile` no CI, validação Python própria) + auto-update do catálogo.
