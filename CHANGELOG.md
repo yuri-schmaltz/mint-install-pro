@@ -1,4 +1,4 @@
-# 1.5.6 — correções de confiabilidade (não publicada)
+# 1.5.6 — correções de confiabilidade — 2026-09-27
 
 - API Python compartilhada pelo Vite, preview e launcher GTK; validação de origem,
   limite de payload, tipo explícito de pacote e tratamento de erro consistente.

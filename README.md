@@ -3,8 +3,7 @@
 Gerenciador visual de aplicativos para Linux Mint, com interface React inspirada
 no Mint-Y Dark, catálogo APT + Flatpak e operações individuais ou em lote.
 
-A versão de desenvolvimento atual é **1.5.6**. Gerar um pacote local não publica
-uma release no GitHub.
+Versão **1.5.6** — [release e download do pacote .deb](https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.5.6).
 
 ## Funcionalidades
 

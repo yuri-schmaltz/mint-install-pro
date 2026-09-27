@@ -1,4 +1,4 @@
-> **Atualização de trabalho — 1.5.6 (não publicada):** as alegações históricas abaixo
+> **Release 1.5.6:** as alegações históricas abaixo
 > sobre segurança completa e ausência de falhas foram revistas. A API agora é
 > compartilhada em `scripts/package_backend.py`; a interface consulta APT/Flatpak,
 > trata falhas sem simulação e executa o lote sob StrictMode. Consulte o README,

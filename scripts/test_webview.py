@@ -25,6 +25,7 @@ class NativeWebViewTests(unittest.TestCase):
         installed = set()
         calls = []
         result = []
+        progress = []
         def snapshot():
             return {'apt': sorted(installed), 'flatpaks': [], 'aptStatus': 'available', 'flatpakStatus': 'available'}
         def operate(action, data):
@@ -34,22 +35,30 @@ class NativeWebViewTests(unittest.TestCase):
         script = '''
         (() => {
           const text = document.body.innerText;
+          const stage = window.__mipSmokeStage || 0;
           if (text.includes('Operação finalizada: 1 sucesso(s), 0 falha(s).')) return 'success';
-          if (text.includes('Confirmar e executar')) {
-            [...document.querySelectorAll('button')].find(b => b.textContent === 'Confirmar e executar').click();
-            return 'confirming';
-          }
-          if (!document.querySelector('.gtk-card')) {
+          if (stage === 0) {
             const all = [...document.querySelectorAll('nav button')].find(b => b.textContent === 'Todos');
-            if (all) all.click();
-            return 'loading';
+            if (all) { all.click(); window.__mipSmokeStage = 1; }
+            return 'navigating';
           }
           if (text.includes('Consultando os pacotes instalados')) return 'loading';
-          const execute = [...document.querySelectorAll('button')].find(b => b.textContent.includes('Executar Ações'));
-          if (execute) { execute.click(); return 'executing'; }
-          const checkbox = document.querySelector('[title="Não instalado (clique para marcar e instalar)"]');
-          if (checkbox) checkbox.click();
-          return 'selecting';
+          if (stage === 1) {
+            const checkbox = document.querySelector('[title="Não instalado (clique para marcar e instalar)"]');
+            if (checkbox) { checkbox.click(); window.__mipSmokeStage = 2; }
+            return 'selecting';
+          }
+          if (stage === 2) {
+            const execute = [...document.querySelectorAll('button')].find(b => b.textContent.includes('Executar Ações'));
+            if (execute) { execute.click(); window.__mipSmokeStage = 3; }
+            return 'executing';
+          }
+          if (stage === 3) {
+            const confirm = [...document.querySelectorAll('button')].find(b => b.textContent === 'Confirmar e executar');
+            if (confirm) { confirm.click(); window.__mipSmokeStage = 4; }
+            return 'confirming';
+          }
+          return 'waiting: ' + text.slice(-1000);
         })()
         '''
         with patch.object(backend, 'installed', snapshot), patch.object(backend, 'operate', operate):
@@ -64,6 +73,7 @@ class NativeWebViewTests(unittest.TestCase):
             def evaluated(view, task, _data=None):
                 try:
                     value = view.evaluate_javascript_finish(task).to_string()
+                    progress.append(value)
                     if value == 'success':
                         result.append(value)
                         Gtk.main_quit()
@@ -90,6 +100,6 @@ class NativeWebViewTests(unittest.TestCase):
                 server.shutdown()
                 server.server_close()
                 thread.join()
-        self.assertEqual(result, ['success'])
+        self.assertEqual(result, ['success'], f'Últimas etapas: {progress[-3:]}')
         self.assertEqual(len(calls), 1)
         self.assertEqual(calls[0][0], 'install')
