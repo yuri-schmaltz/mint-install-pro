@@ -183,14 +183,6 @@ assert(allLabelsMatch, `Todos os 12 rótulos concisos coincidem: [${expectedLabe
 
 // Test 12: Verificação de Empacotamento Debian e Documentos Oficiais
 console.log('\n12. Verificação de Empacotamento Debian e Documentos Oficiais:');
-const debPath = path.join(process.cwd(), 'mint-install-pro_1.5.5_all.deb');
-const debExists = fs.existsSync(debPath);
-assert(debExists, 'Pacote Debian "mint-install-pro_1.5.5_all.deb" gerado na raiz do projeto');
-if (debExists) {
-  const debSize = fs.statSync(debPath).size;
-  assert(debSize > 500 * 1024, `Pacote Debian possui tamanho válido de produção (${(debSize / 1024).toFixed(1)} KB)`);
-}
-
 const requiredDocs = [
   'README.md', 'ABOUT.md', 'LICENSE', 'CONTRIBUTING.md',
   'SECURITY.md', 'CHANGELOG.md', 'docs/acceptance_criteria_audit.md'
@@ -271,7 +263,7 @@ const viteConfigContent2 = fs.readFileSync(path.join(process.cwd(), 'vite.config
 assert(viteConfigContent2.includes("VITE_APP_VERSION"), 'vite.config.js injeta VITE_APP_VERSION');
 
 // API: tratamento de ENOENT para flatpak ausente
-assert(viteConfigContent2.includes('flatpak_not_available'), 'API trata flatpak ausente com status 503');
+assert(viteConfigContent2.includes('systemPackagePlugin'), 'Vite usa a API compartilhada com o pacote instalado');
 
 // Catalog loader lazy presente
 const catalogServiceContent = fs.readFileSync(path.join(process.cwd(), 'src/services/catalog.js'), 'utf-8');
@@ -304,7 +296,7 @@ assert(appJsxContent2.includes('useInstalledMap'), 'App.jsx usa hook useInstalle
 // Test 17: Loading state e tratamento de flatpak ausente (gauntlet loop, round 2)
 console.log('\n17. Loading state + tratamento de flatpak ausente:');
 const useCatalogHook = fs.readFileSync(path.join(process.cwd(), 'src/hooks/useCatalog.js'), 'utf-8');
-assert(useCatalogHook.includes('status === 503'), 'useCatalog trata HTTP 503 do /api/installed (flatpak ausente)');
+assert(useCatalogHook.includes('installedError'), 'useCatalog expõe falhas de consulta do sistema');
 assert(useCatalogHook.includes('flatpakStatus'), 'useCatalog expõe flatpakStatus');
 
 const landingPageContent = fs.readFileSync(path.join(process.cwd(), 'src/components/LandingPage.jsx'), 'utf-8');
@@ -329,7 +321,7 @@ console.log('\n18. Sanidade do .deb empacotado:');
 // (checado no CI pelo job deb-package; aqui só garantimos que o script
 // de build existe e referencia a versão correta)
 const buildDebContent = fs.readFileSync(path.join(process.cwd(), 'scripts/build_deb.py'), 'utf-8');
-assert(buildDebContent.includes('VERSION = "1.5.5"'), 'build_deb.py usa VERSION = "1.5.5"');
+assert(buildDebContent.includes('json.load(manifest)["version"]'), 'build_deb.py usa a versão do package.json');
 assert(buildDebContent.includes('shutil.copytree(dist_dir'), 'build_deb.py copia o dist/ inteiro (incluindo data/)');
 
 // Test 19: Deduplicação cross-kind (gauntlet loop, fix débito 9.6)
@@ -345,63 +337,14 @@ assert(!buildFullCatalogContent.includes('seen_ids.add('),
   'build_full_catalog.py não usa mais seen_ids.add (legado removido)');
 assert(buildFullCatalogContent.includes('"kind": "apt"') && buildFullCatalogContent.includes('"kind": "flatpak"'),
   'build_full_catalog.py injeta tag `kind` explícita em todos os apps');
-// Test 20: Launcher Python — detecção de load_failed e fallback seguro (v1.5.2)
-console.log('\n20. Launcher Python — diagnóstico de WebView (v1.5.2):');
-assert(buildDebContent.includes('load-changed'),
-  'build_deb.py conecta signal load-changed do WebKit2');
-assert(buildDebContent.includes('WEBKIT_LOAD_FAILED') || buildDebContent.includes('load_failed'),
-  'build_deb.py trata WEBKIT_LOAD_FAILED');
-assert(buildDebContent.includes('--force-browser'),
-  'build_deb.py tem flag --force-browser para diagnóstico');
-assert(buildDebContent.includes('AVISO: isso pode mostrar páginas inesperadas'),
-  'build_deb.py avisa sobre --force-browser abrindo em sessão existente');
-
-// Test 21: Callback load-changed do WebKit2GTK tem assinatura correta (v1.5.3)
-console.log('\n21. Callback load-changed do WebKit2GTK (v1.5.3):');
-// v1.5.2 tinha 3 params (bug); v1.5.3 tem 2
-const loadChangedMatch = buildDebContent.match(/def\s+on_load_changed\s*\([^)]*\)/);
-assert(loadChangedMatch, 'callback on_load_changed existe');
-const callbackSig = loadChangedMatch[0];
-assert(callbackSig.includes('webview') && callbackSig.includes('load_event'),
-  'callback on_load_changed recebe (webview, load_event) — 2 args');
-assert(!callbackSig.includes('event_name'),
-  'callback NÃO tem terceiro parâmetro event_name (causa do crash v1.5.2)');
-assert(!buildDebContent.includes('GLib.timeout_add'),
-  'launcher não usa GLib.timeout_add (removido na v1.5.3 — crashava Gtk.main)');
-
-// Test 22: postinst NÃO dispara browser externo (v1.5.4)
-console.log('\n22. postinst silencioso (v1.5.4):');
-// Procura nas linhas executáveis (não comentários) por xdg-mime default
-const executableLines22 = buildDebContent
-  .split('\n')
-  .filter((l) => !l.trim().startsWith('#') && l.trim().length > 0)
-  .join('\n');
-assert(!executableLines22.includes('xdg-mime default'),
-  'build_deb.py NÃO chama xdg-mime default (causa da janela indesejada)');
-assert(!executableLines22.includes('update-desktop-database'),
-  'build_deb.py NÃO chama update-desktop-database (reindexava .desktop)');
-
-// app_manager.desktop NÃO deve ter MimeType= (que disparava o xdg-mime)
-const desktopContent22 = fs.readFileSync(path.join(process.cwd(), 'app_manager.desktop'), 'utf-8');
-assert(!desktopContent22.includes('MimeType='),
-  'app_manager.desktop NÃO tem MimeType (não se registra como handler de URI)');
-
-// Test 23: postinst remove cópias obsoletas em ~/.local/bin/ (v1.5.5)
-console.log('\n23. postinst remove cópias obsoletas em ~/.local/bin (v1.5.5):');
-// Extrai o conteúdo do postinst template do build_deb.py e checa a presença
-// das linhas executáveis (não comentários)
-const postinstMatch = buildDebContent.match(/postinst_content = """([\s\S]*?)"""/);
-assert(postinstMatch, 'postinst_content está definido em build_deb.py');
-const postinstBody = postinstMatch[1];
-// Linhas executáveis: filtra comentários # e linhas vazias
-const executablePostinst = postinstBody
-  .split('\n')
-  .filter((l) => !l.trim().startsWith('#') && l.trim().length > 0)
-  .join('\n');
-assert(executablePostinst.includes('.local/bin/mint-install-pro'),
-  'postinst referencia ~/.local/bin/mint-install-pro (detecta cópias obsoletas)');
-assert(executablePostinst.includes('cmp'),
-  'postinst usa cmp para comparar launcher do .deb com cópia obsoleta');
+// The behavior of the shared API and launcher is covered by test:backend.
+const launcher = fs.readFileSync('scripts/launcher.py', 'utf8');
+assert(launcher.includes("connect('load-failed'"), 'Launcher trata o sinal load-failed do WebKit');
+assert(launcher.includes('--force-browser'), 'Launcher oferece diagnóstico no navegador');
+assert(buildDebContent.includes('scripts/package_backend.py'), 'Pacote inclui a API compartilhada');
+assert(!desktopContent.includes('MimeType='), 'Desktop não altera associações de arquivos');
+const postinst = buildDebContent.match(/postinst_content = """([\s\S]*?)"""/)[1];
+assert(!postinst.includes('rm -f') && !postinst.includes('xdg-mime'), 'Postinst preserva arquivos e associações do usuário');
 console.log(`Resultado dos Testes: ${passed} passaram, ${failed} falharam.`);
 console.log(`========================================\n`);
 

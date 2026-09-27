@@ -90,7 +90,7 @@ describe('flathubApi service tests', () => {
       expect(app.license).toBe('Open Source');
     });
 
-    it('retorna array vazio e não lança exceção em erro HTTP', async () => {
+    it('propaga erro HTTP para a interface', async () => {
       const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
       globalThis.fetch = vi.fn().mockResolvedValue({
@@ -98,18 +98,16 @@ describe('flathubApi service tests', () => {
         status: 500
       });
 
-      const results = await searchFlathub('teste');
-      expect(results).toEqual([]);
+      await expect(searchFlathub('teste')).rejects.toThrow();
       consoleErrorSpy.mockRestore();
     });
 
-    it('retorna array vazio e trata erro de rede', async () => {
+    it('propaga erro de rede para a interface', async () => {
       const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
       globalThis.fetch = vi.fn().mockRejectedValue(new Error('Network disconnected'));
 
-      const results = await searchFlathub('teste');
-      expect(results).toEqual([]);
+      await expect(searchFlathub('teste')).rejects.toThrow();
       consoleErrorSpy.mockRestore();
     });
   });

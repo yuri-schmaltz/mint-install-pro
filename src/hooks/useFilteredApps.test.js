@@ -93,3 +93,15 @@ describe('useFilteredApps', () => {
     expect(result.current).toEqual([]);
   });
 });
+
+it('respeita escopo de resumo e descrição e ignora espaços nas pontas', () => {
+  const index = indexCatalog(RAW);
+  const { result, rerender } = renderHook(({ settings, searchQuery }) => useFilteredApps(index.apps, index, {
+    searchQuery, selectedCategory: 'all', installedOnly: false, settings
+  }), { initialProps: { settings: { ...baseSettings, searchInSummary: false, searchInDescription: false }, searchQuery: 'Browser' } });
+  expect(result.current).toHaveLength(0);
+  rerender({ settings: { ...baseSettings, searchInSummary: true, searchInDescription: false }, searchQuery: '  Browser  ' });
+  expect(result.current).toHaveLength(2);
+  rerender({ settings: { ...baseSettings, searchInSummary: false, searchInDescription: true }, searchQuery: 'Plays' });
+  expect(result.current).toHaveLength(2);
+});

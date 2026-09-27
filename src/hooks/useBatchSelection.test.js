@@ -85,3 +85,20 @@ describe('useBatchSelection hook tests', () => {
     expect(result.current.selectedAppIds).toEqual([]);
   });
 });
+
+it('mantém operações selecionadas ao navegar para outra categoria', () => {
+  const all = [{ id: 'a', installed: false }, { id: 'b', installed: true }];
+  const { result, rerender } = renderHook(({ visible }) => useBatchSelection(visible, all), { initialProps: { visible: [all[0]] } });
+  act(() => result.current.toggleApp('a'));
+  rerender({ visible: [all[1]] });
+  act(() => result.current.toggleApp('b'));
+  expect(result.current.selectedAppsList.map(a => a.id)).toEqual(['a', 'b']);
+});
+
+it('preserva aplicativo online selecionado após sair da busca', () => {
+  const online = { id: 'org.example.Online', installed: false };
+  const { result, rerender } = renderHook(({ apps }) => useBatchSelection(apps, apps), { initialProps: { apps: [online] } });
+  act(() => result.current.toggleApp(online.id));
+  rerender({ apps: [] });
+  expect(result.current.selectedAppsList).toEqual([online]);
+});

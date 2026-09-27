@@ -32,8 +32,8 @@ export async function loadFullCatalog() {
     })
     .catch((err) => {
       console.error('[catalog] Falha ao carregar catálogo:', err.message);
-      _indexed = { apps: [], byName: new Map(), countByCategory: new Map(), countByKind: new Map() };
-      return _indexed;
+      _fullPromise = null;
+      throw err;
     });
   return _fullPromise;
 }
@@ -74,9 +74,9 @@ export async function loadCatalogIndex() {
 export function prefetchCatalog() {
   if (typeof window === 'undefined') return;
   if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(() => loadFullCatalog(), { timeout: 1500 });
+    window.requestIdleCallback(() => loadFullCatalog().catch(() => {}), { timeout: 1500 });
   } else {
-    setTimeout(() => loadFullCatalog(), 100);
+    setTimeout(() => loadFullCatalog().catch(() => {}), 100);
   }
 }
 

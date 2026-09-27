@@ -22,7 +22,7 @@ export function useFilteredApps(apps, catalogIndex, filters) {
     const byName = catalogIndex.byName;
     const pkgPref = settings.packageTypePreference;
     const hasQuery = !!searchQuery?.trim();
-    const q = hasQuery ? searchQuery.toLowerCase() : '';
+    const q = hasQuery ? searchQuery.trim().toLowerCase() : '';
     const restrictCategory = settings.searchInCategoryOnly
       && selectedCategory !== 'all' && selectedCategory !== 'picks';
 
@@ -46,8 +46,10 @@ export function useFilteredApps(apps, catalogIndex, filters) {
           if (selectedCategory === 'flatpak' && !app.isFlatpak) continue;
           if (selectedCategory !== 'flatpak' && app.category !== selectedCategory) continue;
         }
-        const haystack = app._haystack || (app.name + ' ' + (app.summary || '')).toLowerCase();
-        if (!haystack.includes(q)) continue;
+        const fields = [app.name, app.id, app.categoryLabel, app.packageType];
+        if (settings.searchInSummary) fields.push(app.summary, app.fullSummary);
+        if (settings.searchInDescription) fields.push(app.description);
+        if (!fields.filter(Boolean).join(' ').toLowerCase().includes(q)) continue;
       } else {
         if (selectedCategory === 'all') {
           // passa

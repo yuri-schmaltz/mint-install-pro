@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 // Versão injetada pelo Vite a partir de package.json. Default seguro para SSR/tests.
-const APP_VERSION = import.meta.env?.VITE_APP_VERSION || '1.5.5';
+const APP_VERSION = import.meta.env?.VITE_APP_VERSION || 'desenvolvimento';
 
 export default function HeaderBar({
   searchQuery,
@@ -82,7 +82,7 @@ export default function HeaderBar({
         {flatpakStatus === 'missing' && (
           <div
             role="status"
-            title="Flatpak não está instalado neste sistema. Recursos de instalação Flatpak ficam desabilitados."
+            title="Flatpak não está instalado neste sistema. Instale o utilitário para gerenciar aplicativos Flatpak."
             className="hidden sm:flex items-center space-x-1.5 h-[26px] px-2.5 rounded-full bg-amber-950/40 border border-amber-500/40 text-amber-300 text-[11px] font-medium select-none"
           >
             <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />

@@ -19,10 +19,10 @@ describe('useInstalledMap', () => {
     expect(result.current.isInstalled('firefox')).toBeUndefined();
   });
 
-  it('hidrata do localStorage na inicialização', () => {
+  it('não confia no localStorage como estado do sistema', () => {
     localStorage.setItem('mint_installed_map_v1', JSON.stringify({ firefox: true }));
     const { result } = renderHook(() => useInstalledMap());
-    expect(result.current.isInstalled('firefox')).toBe(true);
+    expect(result.current.isInstalled('firefox')).toBeUndefined();
   });
 
   it('setInstalled atualiza e propaga via applyToApps', () => {
@@ -40,7 +40,7 @@ describe('useInstalledMap', () => {
     act(() => result.current.toggleInstalled('firefox'));
     expect(result.current.isInstalled('firefox')).toBe(true);
     act(() => result.current.toggleInstalled('firefox'));
-    expect(result.current.isInstalled('firefox')).toBeUndefined();
+    expect(result.current.isInstalled('firefox')).toBe(false);
   });
 
   it('persiste no localStorage após 500ms (debounce)', () => {
@@ -66,4 +66,13 @@ describe('useInstalledMap', () => {
     const { result } = renderHook(() => useInstalledMap());
     expect(result.current.isInstalled('firefox')).toBeUndefined();
   });
+});
+
+it('ignora flags estáticas e reconcilia remoções externas até lista vazia', () => {
+  const { result } = renderHook(() => useInstalledMap());
+  expect(result.current.applyToApps([{ id: 'vlc', installed: true }])[0].installed).toBe(false);
+  act(() => result.current.replace(['vlc', 'org.test.App']));
+  expect(result.current.isInstalled('vlc')).toBe(true);
+  act(() => result.current.replace([]));
+  expect(result.current.applyToApps([{ id: 'vlc', installed: true }])[0].installed).toBe(false);
 });

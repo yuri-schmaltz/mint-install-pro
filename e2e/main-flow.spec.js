@@ -9,6 +9,13 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Mint Install Pro — fluxo E2E principal', () => {
   test.beforeEach(async ({ page }) => {
+    // No browser test may modify real system packages.
+    await page.route('**/api/**', route => {
+      if (new URL(route.request().url()).pathname === '/api/installed') {
+        return route.fulfill({ json: { apt: [], flatpaks: [], aptStatus: 'available', flatpakStatus: 'available' } });
+      }
+      return route.fulfill({ status: 503, json: { success: false, error: 'Operação não configurada no teste' } });
+    });
     // Limpa localStorage pra ter estado limpo entre testes
     await page.addInitScript(() => {
       window.localStorage.clear();
@@ -32,7 +39,7 @@ test.describe('Mint Install Pro — fluxo E2E principal', () => {
     await page.locator('button:has-text("Acessórios")').first().click();
     await page.waitForTimeout(200);
     // AppGrid deve aparecer (saiu da landing)
-    await expect(page.locator('[role="button"][aria-label*="Instalado"], [role="button"][aria-label*="Não instalado"]').first()).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator('.gtk-card').first()).toBeVisible({ timeout: 10_000 });
   });
 
   test('busca atualiza o grid filtrado', async ({ page }) => {
@@ -50,10 +57,10 @@ test.describe('Mint Install Pro — fluxo E2E principal', () => {
     await page.locator('button[title="Menu do aplicativo"]').click();
     await page.locator('text="Sobre o Gerenciador"').click();
     // Modal aberto
-    await expect(page.locator('text=/Versão 1\\.5\\.0/')).toBeVisible();
+    await expect(page.getByText(/Versão .*Clone Mint-Y Dark/)).toBeVisible();
     // Esc fecha
     await page.keyboard.press('Escape');
-    await expect(page.locator('text=/Versão 1\\.5\\.0/')).not.toBeVisible();
+    await expect(page.getByText(/Versão .*Clone Mint-Y Dark/)).not.toBeVisible();
   });
 
   test('seleção em lote atualiza BatchActionBar', async ({ page }) => {

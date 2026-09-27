@@ -51,6 +51,9 @@ describe('Gray Screen Stress & Batch Action Investigation', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     localStorage.clear();
+    globalThis.fetch = vi.fn(async () => ({ ok: true, json: async () => ({
+      apt: ['app-installed-1', 'app-installed-2', 'app-installed-3'], flatpaks: [], aptStatus: 'available', flatpakStatus: 'available'
+    }) }));
   });
 
   it('fluxo exato do bug report: seleciona 1-3 apps instalados e clica Executar Ações sem crash ou tela cinza', async () => {
@@ -66,7 +69,7 @@ describe('Gray Screen Stress & Batch Action Investigation', () => {
     });
 
     // Pega todos os checkboxes de instalados e clica no primeiro
-    const checkboxes = screen.getAllByTitle(/Instalado no sistema \(clique para desmarcar e desinstalar\)/i);
+    const checkboxes = await screen.findAllByTitle(/Instalado no sistema \(clique para desmarcar e desinstalar\)/i);
     expect(checkboxes.length).toBeGreaterThan(0);
     fireEvent.click(checkboxes[0]);
 
@@ -80,6 +83,7 @@ describe('Gray Screen Stress & Batch Action Investigation', () => {
 
     // Clica "Executar Ações" - este era o ponto do relato da TELA CINZA
     fireEvent.click(executeBtn);
+    fireEvent.click(await screen.findByRole('button', { name: 'Confirmar e executar' }));
 
     // O modal deve ser montado na DOM imediatamente
     await waitFor(() => {
@@ -91,7 +95,7 @@ describe('Gray Screen Stress & Batch Action Investigation', () => {
 
     // Aguarda conclusão do lote
     await waitFor(() => {
-      expect(screen.getByText(/Todas as operações em lote foram concluídas!/i)).toBeInTheDocument();
+      expect(screen.getByText(/Fila finalizada:/i)).toBeInTheDocument();
     }, { timeout: 4000 });
 
     // Clica no botão Concluir

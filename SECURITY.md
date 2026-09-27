@@ -1,39 +1,47 @@
-# Política de Segurança (Security Policy)
+# Segurança
 
-A segurança do sistema operacional hospedeiro é um pilar fundamental no desenvolvimento do **Mint Install Pro**.
+O Mint Install Pro executa operações reais de APT e Flatpak. Falhas de rede,
+HTTP, autenticação ou comando são apresentadas como falha; não há simulação
+implícita de sucesso.
 
----
+## API local
 
-## 🛡️ Arquitetura de Segurança e Blindagem de Execução
+O desenvolvimento, o preview e o pacote `.deb` usam `scripts/package_backend.py`.
+O Vite encaminha `/api/*` para uma instância local desse serviço. No pacote,
+o launcher GTK usa o mesmo servidor para a API e os arquivos da interface.
 
-O **Mint Install Pro** interage de forma nativa e segura com os subsistemas de gerenciamento de pacotes do Linux Mint (`APT` e `Flatpak`), implementando defesas multicamadas contra vulnerabilidades comuns:
+- Bind em `127.0.0.1`; validação de IP de loopback e hostname local.
+- POST exige `Origin` igual à origem do `Host` e `Content-Type: application/json`.
+- Requisições com origem estrangeira, `Origin: null` ou `Sec-Fetch-Site: cross-site`
+  são rejeitadas. O servidor não concede acesso CORS.
+- Corpo de POST limitado a 8 KiB e leitura com timeout.
+- `packageType` explícito (`apt` ou `flatpak`); IDs validados com `fullmatch`.
+- Comandos recebem uma lista de argumentos, sem shell, com `--` antes do ID nas
+  operações de instalação e remoção.
+- Uma transação por instância do servidor, protegida por lock. Operações externas
+  ou outras instâncias continuam sujeitas aos locks próprios do APT/Flatpak.
+- APT usa `pkexec apt-get`; o sistema solicita autorização quando necessária.
+- Flatpak instala no escopo do usuário. Remoções consultam e removem os escopos
+  de usuário e sistema em que o app estiver instalado.
+- A lista de instalados vem do `dpkg-query` e de `flatpak list`; flags do catálogo
+  e backups importados não comprovam instalação.
 
-### 1. Prevenção Contra Injeção de Argumentos e Comandos (CWE-88 / CWE-78)
-- **Whitelisting Rigoroso por Expressão Regular**:
-  - Pacotes APT são validados via regex: `^[a-z0-9][a-z0-9+\.\-]{1,63}$`.
-  - Aplicativos Flatpak são validados via regex: `^[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)+$`.
-  - Qualquer tentativa de submeter identificadores começando com hífen (`-`), com espaços, metacaracteres shell (`;`, `|`, `&`, `$`, `` ` ``), ou caracteres de travessia de diretório (`..`, `/`) é sumariamente rejeitada com erro `HTTP 400`.
-- **Delimitador de Fim de Opções (`--`)**:
-  - Todas as chamadas de subprocessos invocam os utilitários do sistema com o separador `--` antes dos nomes de pacotes (ex.: `flatpak install ... -- <appId>` e `apt-get install -y -- <pkgId>`). Isso garante que os utilitários processem os valores estritamente como operandos e nunca como parâmetros de linha de comando.
+A proteção de origem impede que páginas de outras origens usem a API pelo
+navegador. Ela não é uma barreira contra processos já executando como o usuário
+local, que podem enviar seus próprios cabeçalhos HTTP.
 
-### 2. Restrição Estrita de Loopback e Proteção CSRF
-- **Binding Localhost**: Os servidores de apoio (`vite` e `mint-install-pro` daemon) realizam bind estrito na interface `127.0.0.1`, impedindo acesso ou requisições oriundas de outros dispositivos na rede local (LAN).
-- **Validação de IP e Origem**: O middleware de API verifica se o IP de origem pertence ao loopback (`127.0.0.1` / `::1`) e rejeita requisições cross-origin não autorizadas.
+## Verificação
 
-### 3. Prevenção de Condições de Corrida e Travas do DPKG (CWE-362)
-- **Mutex de Execução**: Um mecanismo de lock atômico garante que apenas uma transação de gerenciamento de pacotes ocorra por vez, evitando erros de concorrência e corrupção de bloqueios em `/var/lib/dpkg/lock-frontend`.
+`npm run test:backend` testa a API com executor simulado, inclusive origem,
+validação, concorrência, falhas e escopos Flatpak. `npm run test:e2e` verifica
+os fluxos de interface em desenvolvimento e produção com transações interceptadas.
+Nenhum desses testes instala ou remove pacotes reais.
 
-### 4. Execução Não-Interativa e Timeout
-- Todas as operações executam com `DEBIAN_FRONTEND=noninteractive` e timeout seguro de 300 segundos, prevenindo bloqueios indefinidos de processos.
+`npm audit --audit-level=moderate` é uma etapa bloqueante do CI. A ausência de
+avisos nessa ferramenta não substitui os testes de comportamento.
 
----
+## Relato de problemas
 
-## 🔒 Notificação de Vulnerabilidades
-
-Caso você descubra uma vulnerabilidade de segurança:
-
-1. **Não abra uma issue pública** detalhando a exploração.
-2. Envie um e-mail com os detalhes técnicos e passos para reprodução para o mantenedor do repositório:
-   - **Responsável:** Yuri Schmaltz
-   - **GitHub:** [@yuri-schmaltz](https://github.com/yuri-schmaltz)
-3. Você receberá uma resposta com avaliação inicial e cronograma de correção.
+Não publique detalhes de exploração em uma issue pública. Entre em contato com
+[Yuri Schmaltz](https://github.com/yuri-schmaltz), mantenedor do projeto, para
+combinar o envio privado de um relato reproduzível.

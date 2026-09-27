@@ -28,7 +28,8 @@ export default function AppGrid({
   isSearchingFlathub,
   flathubLiveQuery,
   flathubQueryCount,
-  isLoading = false
+  isLoading = false,
+  onVisibleAppsChange
 }) {
   const [packageTypeFilter, setPackageTypeFilter] = useState('all'); // 'all' | 'apt' | 'flatpak'
   const [displayLimit, setDisplayLimit] = useState(60);
@@ -39,7 +40,7 @@ export default function AppGrid({
   const isAllAppsTab = selectedCategory === 'all';
 
   // Secondary filter for "Todos os Aplicativos"
-  const displayedApps = apps.filter(app => {
+  const displayedApps = React.useMemo(() => apps.filter(app => {
     if (packageTypeFilter === 'apt') {
       return !app.flathub && app.packageType?.includes('APT');
     }
@@ -47,7 +48,9 @@ export default function AppGrid({
       return app.flathub || app.packageType?.includes('Flatpak');
     }
     return true;
-  });
+  }), [apps, packageTypeFilter]);
+
+  React.useEffect(() => { onVisibleAppsChange?.(displayedApps); }, [displayedApps, onVisibleAppsChange]);
 
   const visibleApps = displayedApps.slice(0, displayLimit);
   const hasMore = displayedApps.length > displayLimit;

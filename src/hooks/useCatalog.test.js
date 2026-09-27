@@ -31,7 +31,7 @@ describe('useCatalog hook tests', () => {
         return Promise.resolve({
           ok: true,
           status: 200,
-          json: async () => ({ flatpaks: ['org.mozilla.firefox'] })
+          json: async () => ({ apt: ['docker.io'], flatpaks: ['org.mozilla.firefox'], aptStatus: 'available', flatpakStatus: 'available' })
         });
       }
       return Promise.resolve({ ok: false, status: 404 });
@@ -47,18 +47,19 @@ describe('useCatalog hook tests', () => {
 
     expect(result.current.catalogIndex).toBe(mockIndexed);
     expect(result.current.flatpakStatus).toBe('available');
-    expect(result.current.installedFlatpaks).toEqual(['org.mozilla.firefox']);
+    expect(result.current.installedSnapshot.flatpaks).toEqual(['org.mozilla.firefox']);
   });
 
-  it('identifica flatpak ausente quando backend retorna 503', async () => {
+  it('identifica flatpak ausente sem perder o estado APT', async () => {
     vi.spyOn(catalogService, 'getCachedIndex').mockReturnValue({ apps: [] });
     vi.spyOn(catalogService, 'prefetchCatalog').mockImplementation(() => {});
 
     globalThis.fetch = vi.fn().mockImplementation((url) => {
       if (url === '/api/installed') {
         return Promise.resolve({
-          ok: false,
-          status: 503
+          ok: true,
+          status: 200,
+          json: async () => ({ apt: ['vlc'], flatpaks: [], aptStatus: 'available', flatpakStatus: 'missing' })
         });
       }
       return Promise.resolve({ ok: false, status: 404 });
@@ -70,6 +71,6 @@ describe('useCatalog hook tests', () => {
       expect(result.current.flatpakStatus).toBe('missing');
     });
 
-    expect(result.current.installedFlatpaks).toEqual([]);
+    expect(result.current.installedSnapshot.flatpaks).toEqual([]);
   });
 });

@@ -25,17 +25,11 @@ export default defineConfig({
   },
 
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
-    }
-    // Futuras adições: firefox, webkit (especialmente webkit pra simular GTK WebView)
+    { name: 'chromium-dev', use: { ...devices['Desktop Chrome'] } },
+    { name: 'chromium-production', use: { ...devices['Desktop Chrome'], baseURL: 'http://127.0.0.1:4173' } }
   ],
-
-  webServer: {
-    command: 'npm run dev -- --port 3000',
-    url: 'http://127.0.0.1:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: 60_000
-  }
+  webServer: [
+    { command: 'npm run dev -- --port 3000 --strictPort', url: 'http://127.0.0.1:3000', reuseExistingServer: false, timeout: 60000 },
+    { command: 'npm run build && npm run preview -- --host 127.0.0.1 --port 4173 --strictPort', url: 'http://127.0.0.1:4173', reuseExistingServer: false, timeout: 60000 }
+  ]
 });

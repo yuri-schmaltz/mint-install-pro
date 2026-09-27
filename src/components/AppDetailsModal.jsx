@@ -15,10 +15,10 @@ import {
   CheckCircle2,
   Loader2
 } from 'lucide-react';
-import { executeInstall, executeUninstall } from '../services/packageManager';
+import { executeInstall, executeUninstall, executeLaunch } from '../services/packageManager';
 import { pushToast } from './Toast';
 
-export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
+export default function AppDetailsModal({ app, onClose, onToggleInstall, operationsAvailable = true, onBusyChange = () => {} }) {
   const [installing, setInstalling] = useState(false);
   const [installStep, setInstallStep] = useState('');
   const [progress, setProgress] = useState(0);
@@ -27,27 +27,32 @@ export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
 
   const handleAction = async () => {
     setInstalling(true);
+    onBusyChange(true);
     const isInstalling = !app.installed;
     
-    if (isInstalling) {
-      setInstallStep('Iniciando transação e conectando aos repositórios...');
-      setProgress(25);
-      const res = await executeInstall(app, (msg) => {
-        setInstallStep(msg.replace(/^\[.*?\]\s*/, ''));
-      });
-      setProgress(100);
+    setInstallStep(isInstalling ? 'Instalando aplicativo...' : 'Removendo aplicativo...');
+    setProgress(25);
+    try {
+      const result = await (isInstalling ? executeInstall : executeUninstall)(app, setInstallStep);
+      if (result.success === true) {
+        setProgress(100);
+        onToggleInstall(app.id, isInstalling);
+      } else {
+        pushToast(result.error || result.output || 'A operação falhou.', 'error', 6000);
+        setProgress(0);
+        onToggleInstall(app.id, undefined);
+      }
+    } catch (error) {
+      pushToast(error.message || 'A operação falhou.', 'error');
+    } finally {
       setInstalling(false);
-      onToggleInstall(app.id);
-    } else {
-      setInstallStep('Removendo arquivos do pacote do sistema...');
-      setProgress(40);
-      const res = await executeUninstall(app, (msg) => {
-        setInstallStep(msg.replace(/^\[.*?\]\s*/, ''));
-      });
-      setProgress(100);
-      setInstalling(false);
-      onToggleInstall(app.id);
+      onBusyChange(false);
     }
+  };
+
+  const handleLaunch = async () => {
+    const result = await executeLaunch(app);
+    pushToast(result.success ? 'Solicitação de abertura enviada ao sistema.' : result.error, result.success ? 'info' : 'error');
   };
 
   return (
@@ -65,6 +70,8 @@ export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
           </div>
           <button
             onClick={onClose}
+            disabled={installing}
+            aria-label="Fechar detalhes"
             className="p-1 rounded hover:bg-[#35393f] text-[#9ca3af] hover:text-white transition-colors"
           >
             <X className="w-4 h-4" />
@@ -120,18 +127,15 @@ export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={handleAction}
+                    disabled={!operationsAvailable}
                     className="flex items-center space-x-1.5 px-4 py-1.5 rounded text-xs font-semibold bg-[#3c4149] hover:bg-rose-900/60 hover:text-rose-200 text-[#d0d4dc] border border-[#4c525d] transition-all"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                     <span>Remover</span>
                   </button>
                   <button
-                    onClick={() => {
-                      // Resolve débito #11: substituir alert() por toast.
-                      // A integração real com xdg-open / gtk-launch fica para
-                      // uma fase futura; por ora, feedback visual.
-                      pushToast(`Iniciando ${app.name}...`, 'info', 2500);
-                    }}
+                    onClick={handleLaunch}
+                    disabled={!operationsAvailable}
                     className="flex items-center space-x-1.5 px-4 py-1.5 rounded text-xs font-semibold bg-[#87cf3e] hover:bg-[#97df4e] text-[#132802] transition-colors shadow-sm"
                   >
                     <Play className="w-3.5 h-3.5 fill-current" />
@@ -141,6 +145,7 @@ export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
               ) : (
                 <button
                   onClick={handleAction}
+                    disabled={!operationsAvailable}
                   className="flex items-center space-x-1.5 px-5 py-2 rounded text-xs font-bold bg-[#87cf3e] hover:bg-[#97df4e] text-[#132802] transition-all shadow-md active:scale-95"
                 >
                   <Download className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -234,6 +239,8 @@ export default function AppDetailsModal({ app, onClose, onToggleInstall }) {
           </div>
           <button
             onClick={onClose}
+            disabled={installing}
+            aria-label="Fechar detalhes"
             className="px-4 py-1 rounded bg-[#35393f] hover:bg-[#434850] text-[#dcdcdc] font-medium transition-colors"
           >
             Fechar

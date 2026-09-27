@@ -1,3 +1,4 @@
+import React, { StrictMode } from 'react';
 // BatchActionModal.test.jsx — testes do modal de execução em lote.
 // Foco: StrictMode-safe (useRef hasStartedRef), instrumentação com
 // debugLog, fluxo completo (mount → processQueue → done → onComplete).
@@ -129,7 +130,7 @@ describe('BatchActionModal', () => {
   });
 
   describe('StrictMode-safe: useEffect idempotente', () => {
-    it('useRef hasStartedRef garante que processQueue só roda 1x em StrictMode', async () => {
+    it('conclui a fila uma única vez sob StrictMode', async () => {
       // Em StrictMode, useEffect dispara 2x no mount. O guard hasStartedRef
       // deve garantir que processQueue só executa uma vez.
       // Para testar isso, contamos quantas vezes executeInstall é chamado
@@ -139,12 +140,12 @@ describe('BatchActionModal', () => {
       // é chamado — deve ser 1, não 2.
       const onComplete = vi.fn();
       render(
-        <BatchActionModal
+        <StrictMode><BatchActionModal
           actionType="install"
           targetApps={[{ id: 'app1', name: 'App One', installed: false, batchAction: 'install' }]}
           onClose={() => {}}
           onComplete={onComplete}
-        />
+        /></StrictMode>
       );
       await waitFor(() => {
         expect(onComplete).toHaveBeenCalledTimes(1);
@@ -483,4 +484,13 @@ describe('BatchActionModal', () => {
 
   // Helper import for fireEvent
   const { fireEvent } = require('@testing-library/react');
+});
+it('aguarda confirmação e aceita cancelar sem executar', async () => {
+  executeInstall.mockClear();
+  const close = vi.fn();
+  const { getByRole } = render(<BatchActionModal confirmBeforeStart actionType="install" targetApps={[{ id: 'test', name: 'Test' }]} onClose={close} onComplete={() => {}} />);
+  expect(executeInstall).not.toHaveBeenCalled();
+  getByRole('button', { name: 'Cancelar' }).click();
+  expect(close).toHaveBeenCalledOnce();
+  expect(executeInstall).not.toHaveBeenCalled();
 });

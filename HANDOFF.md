@@ -1,3 +1,10 @@
+> **Atualização de trabalho — 1.5.6 (não publicada):** as alegações históricas abaixo
+> sobre segurança completa e ausência de falhas foram revistas. A API agora é
+> compartilhada em `scripts/package_backend.py`; a interface consulta APT/Flatpak,
+> trata falhas sem simulação e executa o lote sob StrictMode. Consulte o README,
+> SECURITY e CHANGELOG atuais para o comportamento vigente. Os registros abaixo
+> preservam o histórico das versões anteriores, não o estado atual.
+
 # mint-install-pro — Handoff de Desenvolvimento
 
 > **Status atual**: v1.5.5 lançada e publicada. Gauntlet loop completo P0→P1→P2 executado em 6 releases (v1.5.0→v1.5.5). Bug "tela cinza" resolvido definitivamente. Identidade visual consolidada no ícone `icon_mip.svg`. Hardening de segurança completo (regex whitelist, CSRF, loopback binding, detecção de launcher duplicado). v1.5.5 instalada em produção e validada pelo usuário.

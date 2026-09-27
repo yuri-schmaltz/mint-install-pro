@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   X,
@@ -7,7 +7,6 @@ import {
   Boxes,
   RotateCcw,
   AlertTriangle,
-  Check,
   HardDrive,
   Monitor,
   ChevronDown,
@@ -21,14 +20,17 @@ export default function SettingsModal({
   settings, 
   onSaveSettings,
   onResetDefaults,
-  onClearCache
+  onClearCache,
+  installedApps = [],
+  onImportApps = () => {}
 }) {
-  if (!isOpen) return null;
 
   const [activeTab, setActiveTab] = useState('search'); // 'search' | 'flatpak' | 'security' | 'system'
   const [localSettings, setLocalSettings] = useState(settings);
   const [savedToast, setSavedToast] = useState(false);
-  const [defaultApplied, setDefaultApplied] = useState(false);
+  useEffect(() => { setLocalSettings(settings); }, [settings]);
+
+  if (!isOpen) return null;
 
   const handleChange = (key, value) => {
     const updated = { ...localSettings, [key]: value };
@@ -195,7 +197,7 @@ export default function SettingsModal({
                   <label className="p-3.5 flex items-center justify-between cursor-pointer hover:bg-[#25282e] transition-colors">
                     <div>
                       <div className="text-white font-medium flex items-center space-x-1.5">
-                        <span>Mostrar Flatpaks não verificados</span>
+                        <span>Incluir resultados online não verificados</span>
                       </div>
                       <div className="text-[11px] text-[#8e95a0]">Exibe pacotes mantidos por terceiros não certificados pelos autores originais</div>
                     </div>
@@ -277,14 +279,13 @@ export default function SettingsModal({
                   <div className="p-3.5 flex items-center justify-between">
                     <div>
                       <div className="text-white font-medium">Backup de apps instalados</div>
-                      <div className="text-[11px] text-[#8e95a0]">Exporta ou importa a lista de apps marcados como instalados</div>
+                      <div className="text-[11px] text-[#8e95a0]">Exporta a lista de instalados. Importar prepara uma seleção para instalação.</div>
                     </div>
                     <div className="flex items-center space-x-2">
                       <button
                         onClick={() => {
                           try {
-                            const raw = localStorage.getItem('mint_installed_map_v1');
-                            const map = raw ? JSON.parse(raw) : {};
+                            const map = Object.fromEntries(installedApps.map(app => [app.id, true]));
                             const blob = new Blob([JSON.stringify(map, null, 2)], { type: 'application/json' });
                             const url = URL.createObjectURL(blob);
                             const a = document.createElement('a');
@@ -314,14 +315,13 @@ export default function SettingsModal({
                             reader.onload = (ev) => {
                               try {
                                 const map = JSON.parse(ev.target.result);
-                                if (typeof map !== 'object' || map === null) throw new Error('invalid');
+                                if (typeof map !== 'object' || map === null || Array.isArray(map)) throw new Error('invalid');
                                 // Sanitiza: só aceita id -> bool
                                 const clean = {};
                                 for (const [k, v] of Object.entries(map)) {
                                   if (typeof k === 'string' && typeof v === 'boolean') clean[k] = v;
                                 }
-                                localStorage.setItem('mint_installed_map_v1', JSON.stringify(clean));
-                                pushToast(`Backup importado (${Object.keys(clean).length} apps). Recarregue a página.`, 'success', 4000);
+                                onImportApps(Object.keys(clean).filter(id => clean[id]));
                               } catch (err) {
                                 pushToast('Arquivo inválido', 'error');
                               }
@@ -349,60 +349,8 @@ export default function SettingsModal({
                   <span>Integração com o Sistema Operacional</span>
                 </h3>
                 <div className="bg-[#202226] border border-[#32363c] rounded-lg divide-y divide-[#2a2d33]">
-                  
-                  {/* Default App Manager Option */}
-                  <label
-                    title="Registra o Mint Install Pro como o manipulador para protocolos appstream:// e apt://"
-                    className="p-3.5 flex items-center justify-between cursor-pointer hover:bg-[#25282e] transition-colors"
-                  >
-                    <div className="pr-4 flex items-center space-x-2">
-                      <span className="text-white font-medium">Tornar o Mint Install Pro o gerenciador padrão do sistema</span>
-                      <span
-                        title="Registra o Mint Install Pro como o manipulador para protocolos appstream:// e apt://"
-                        className="text-[#8e95a0] hover:text-[#87cf3e] transition-colors"
-                      >
-                        <HelpCircle className="w-3.5 h-3.5" />
-                      </span>
-                    </div>
-                    <input
-                      type="checkbox"
-                      checked={localSettings.isDefaultPackageManager !== false}
-                      onChange={(e) => {
-                        handleChange('isDefaultPackageManager', e.target.checked);
-                        if (e.target.checked) {
-                          setDefaultApplied(true);
-                          setTimeout(() => setDefaultApplied(false), 2500);
-                        }
-                      }}
-                      className="w-4 h-4 rounded text-[#87cf3e] accent-[#87cf3e] cursor-pointer flex-shrink-0"
-                    />
-                  </label>
 
-                  {/* Action & Command Helper */}
-                  <div className="p-3.5 bg-[#1a1c1f] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-[12px] text-[#cfd3db] font-medium">
-                        Associação de Protocolos XDG no Linux Mint
-                      </span>
-                      <span
-                        title="Mapeado para mint-install-pro.desktop"
-                        className="text-[#8e95a0] hover:text-[#87cf3e] transition-colors cursor-help"
-                      >
-                        <HelpCircle className="w-3.5 h-3.5" />
-                      </span>
-                    </div>
-                    <button
-                      onClick={() => {
-                        handleChange('isDefaultPackageManager', true);
-                        setDefaultApplied(true);
-                        setTimeout(() => setDefaultApplied(false), 2500);
-                      }}
-                      className="px-3.5 py-1.5 rounded bg-[#35393f] hover:bg-[#434850] text-[#e0e0e0] font-medium text-xs border border-[#444a53] transition-colors whitespace-nowrap self-start sm:self-center shadow-xs flex items-center space-x-1.5"
-                    >
-                      <Check className="w-3.5 h-3.5 text-[#87cf3e]" />
-                      <span>{defaultApplied ? 'Padrão Aplicado!' : 'Definir como Padrão do Sistema'}</span>
-                    </button>
-                  </div>
+                  <p className="p-4 text-xs text-[#a4a9b2]">A instalação do pacote .deb adiciona o aplicativo ao menu do sistema. Associações de arquivos e o gerenciador padrão são configurados nas preferências do Linux Mint.</p>
 
                 </div>
               </div>

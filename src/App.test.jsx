@@ -94,7 +94,7 @@ describe('App Integration & End-to-End User Scenarios', () => {
         return Promise.resolve({
           ok: true,
           status: 200,
-          json: async () => ({ flatpaks: [] })
+          json: async () => ({ apt: ['gimp'], flatpaks: [], aptStatus: 'available', flatpakStatus: 'available' })
         });
       }
       return Promise.resolve({ ok: false, status: 404 });

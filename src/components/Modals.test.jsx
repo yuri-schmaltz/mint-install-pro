@@ -3,8 +3,10 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 import AppDetailsModal from './AppDetailsModal';
 import SettingsModal from './SettingsModal';
+import { executeLaunch } from '../services/packageManager';
 
 vi.mock('../services/packageManager', () => ({
+  executeLaunch: vi.fn(async () => ({ success: true })),
   executeInstall: vi.fn(async (app, onLog) => {
     onLog?.('[APT] Instalando teste...');
     return { success: true };
@@ -50,6 +52,12 @@ describe('AppDetailsModal Component Tests', () => {
     expect(screen.getByRole('button', { name: /Remover/i })).toBeInTheDocument();
   });
 
+  it('Executar solicita abertura ao backend', async () => {
+    render(<AppDetailsModal app={installedApp} onClose={() => {}} onToggleInstall={() => {}} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Executar' }));
+    await waitFor(() => expect(executeLaunch).toHaveBeenCalledWith(installedApp));
+  });
+
   it('executa instalação e chama onToggleInstall', async () => {
     const onToggle = vi.fn();
     render(<AppDetailsModal app={uninstalledApp} onClose={() => {}} onToggleInstall={onToggle} />);
@@ -57,7 +65,7 @@ describe('AppDetailsModal Component Tests', () => {
     fireEvent.click(installBtn);
 
     await waitFor(() => {
-      expect(onToggle).toHaveBeenCalledWith('gimp');
+      expect(onToggle).toHaveBeenCalledWith('gimp', true);
     });
   });
 });

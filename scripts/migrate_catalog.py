@@ -100,7 +100,7 @@ def main():
         "byKind": {"apt": apt_count, "flatpak": fp_count},
         "featured": sorted(apps, key=lambda a: a.get("rating", 0), reverse=True)[:6]
     }
-    for cat in {a.get("category", "all") for a in apps}:
+    for cat in sorted({a.get("category", "all") for a in apps}):
         index["byCategory"][cat] = sum(1 for a in apps if a.get("category") == cat)
 
     with open(JSON_INDEX, "w", encoding="utf-8") as f:

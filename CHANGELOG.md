@@ -1,3 +1,16 @@
+# 1.5.6 — correções de confiabilidade (não publicada)
+
+- API Python compartilhada pelo Vite, preview e launcher GTK; validação de origem,
+  limite de payload, tipo explícito de pacote e tratamento de erro consistente.
+- Estado instalado consultado no APT e Flatpak, incluindo remoções externas.
+- Removido sucesso simulado em falhas; detalhes e lote distinguem resultado real.
+- Fila corrigida sob StrictMode e confirmação em lote respeitada.
+- Resultados Flathub integrados, preferências de busca aplicadas e abertura real de apps.
+- Backup importado prepara seleção; removido controle que apenas fingia alterar o
+  gerenciador padrão do sistema.
+- WebView trata o sinal `load-failed`; build usa versão do manifesto e dependências GTK.
+- CI e testes não dependem de um .deb previamente gerado; dependências atualizadas.
+
 # Histórico de Alterações (Changelog)
 
 Todas as alterações notáveis do projeto **Mint Install Pro** são documentadas neste arquivo, seguindo as diretrizes do [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/) e aderindo ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).

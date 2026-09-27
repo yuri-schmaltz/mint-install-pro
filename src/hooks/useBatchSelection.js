@@ -1,7 +1,7 @@
 // Custom hook: gerencia seleção em lote (selectedAppIds) + deriva listas
 // toInstall/toUninstall + helpers de select-all/deselect.
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useRef } from 'react';
 
 /**
  * @param {Array} visibleApps - subset visível (filtrado) que aparece no grid
@@ -17,14 +17,17 @@ import { useState, useMemo, useCallback } from 'react';
  *   removeFromSelection: (ids: string[]) => void
  * }}
  */
-export function useBatchSelection(visibleApps) {
+export function useBatchSelection(visibleApps, allApps = visibleApps, isInstalled) {
   const [selectedAppIds, setSelectedAppIds] = useState([]);
+  const selectedCache = useRef(new Map());
 
   const selectedAppsList = useMemo(() => {
     if (selectedAppIds.length === 0) return [];
-    const set = new Set(selectedAppIds);
-    return visibleApps.filter((a) => set.has(a.id));
-  }, [visibleApps, selectedAppIds]);
+    const current = new Map(allApps.map(app => [app.id, app]));
+    const selected = selectedAppIds.map(id => current.get(id) || selectedCache.current.get(id)).filter(Boolean);
+    selectedCache.current = new Map(selected.map(app => [app.id, app]));
+    return isInstalled ? selected.map(app => ({ ...app, installed: isInstalled(app.id) === true })) : selected;
+  }, [allApps, selectedAppIds, isInstalled]);
 
   const toInstallApps = useMemo(
     () => selectedAppsList.filter((a) => !a.installed),
@@ -74,6 +77,7 @@ export function useBatchSelection(visibleApps) {
 
   return {
     selectedAppIds,
+    selectIds: setSelectedAppIds,
     selectedAppsList,
     toInstallApps,
     toUninstallApps,

@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useCallback, useMemo, Suspense, lazy } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef, Suspense, lazy } from 'react';
 import HeaderBar from './components/HeaderBar';
 import CategoryNav from './components/CategoryNav';
 import AppGrid from './components/AppGrid';
 import LandingPage from './components/LandingPage';
 import BatchActionBar from './components/BatchActionBar';
-import ToastContainer from './components/Toast';
+import ToastContainer, { pushToast } from './components/Toast';
+import { indexCatalog } from './services/catalogIndex';
 
 // Modais em chunks lazy. Resolve débito #17: cada modal fica em chunk
 // próprio (~5-15KB), só baixa quando o usuário abre. Bundle inicial cai
@@ -37,25 +38,28 @@ const defaultSettings = {
   allowUnverifiedFlatpaks: false,
   packageTypePreference: 'all',
   confirmBatchAction: true,
-  isDefaultPackageManager: true
 };
 
 export default function App() {
   // === Catalog + flatpak integration ===
-  const { catalogIndex, loading: catalogLoading, flatpakStatus, installedFlatpaks } = useCatalog();
+  const { catalogIndex: localIndex, loading: catalogLoading, catalogError, flatpakStatus, installedSnapshot, installedError, refreshInstalled } = useCatalog();
+  const [onlineApps, setOnlineApps] = useState([]);
+  const catalogIndex = useMemo(() => {
+    if (!localIndex) return null;
+    if (!onlineApps.length) return localIndex;
+    const merged = new Map(localIndex.apps.map(app => [app.id, app]));
+    for (const app of onlineApps) merged.set(app.id, { ...merged.get(app.id), ...app });
+    return indexCatalog([...merged.values()]);
+  }, [localIndex, onlineApps]);
 
   // === Installed state with debounced localStorage ===
   const installedMap = useInstalledMap();
 
-  // Aplica os installed flags do backend assim que chegarem (sem override do
-  // estado manual do usuário).
+  const { replace: replaceInstalled } = installedMap;
   useEffect(() => {
-    if (installedFlatpaks.length === 0) return;
-    for (const id of installedFlatpaks) {
-      installedMap.setInstalled(id, true);
-    }
-    // installedMap.setInstalled é estável via useCallback
-  }, [installedFlatpaks, installedMap]);
+    if (installedSnapshot) replaceInstalled([...installedSnapshot.apt, ...installedSnapshot.flatpaks]);
+  }, [installedSnapshot, replaceInstalled]);
+  const operationsAvailable = !!installedSnapshot && !installedError;
 
   // App array derivado de catalogIndex + installedMap
   const apps = useMemo(() => {
@@ -70,6 +74,7 @@ export default function App() {
       if (saved) {
         const parsed = JSON.parse(saved);
         delete parsed.associateMimeTypes;
+        delete parsed.isDefaultPackageManager;
         return { ...defaultSettings, ...parsed };
       }
     } catch (e) {
@@ -95,6 +100,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [installedOnly, setInstalledOnly] = useState(false);
   const [selectedApp, setSelectedApp] = useState(null);
+  const [detailsBusy, setDetailsBusy] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   // === Navigation (currentView, selectedCategory, navHistory) ===
@@ -106,30 +112,42 @@ export default function App() {
     nav.setSearch(!!searchQuery.trim());
   }, [searchQuery, nav]);
 
-  // === Live Flathub search ===
+  // Only the latest live query may update the visible catalog.
   const [isSearchingFlathub, setIsSearchingFlathub] = useState(false);
+  const [flathubError, setFlathubError] = useState('');
+  const searchController = useRef(null);
   const handleSearchFlathubLive = useCallback(async (term) => {
     if (!settings.enableFlathubLive) return;
-    const q = term || searchQuery || 'browser';
+    const q = (term || searchQuery || 'browser').trim();
+    searchController.current?.abort();
+    const controller = new AbortController();
+    searchController.current = controller;
     setIsSearchingFlathub(true);
+    setFlathubError('');
     try {
-      await searchFlathub(q);
-      // Não modificamos o array de apps — hits do Flathub vivem só durante a busca.
-      // Para integrar ao array, seria necessário recriar o catalogIndex, mas isso
-      // invalida os índices pré-computados. Por ora, o banner no AppGrid já
-      // informa que a busca é online.
+      const hits = await searchFlathub(q, { signal: controller.signal });
+      if (!controller.signal.aborted) {
+        setOnlineApps(hits.filter(app => settings.allowUnverifiedFlatpaks || app.verified));
+      }
     } catch (err) {
-      console.error('Erro na pesquisa ao vivo do Flathub', err);
+      if (!controller.signal.aborted) {
+        setOnlineApps([]);
+        setFlathubError(err.message || 'Falha ao consultar o Flathub.');
+      }
     } finally {
-      setIsSearchingFlathub(false);
+      if (!controller.signal.aborted) setIsSearchingFlathub(false);
     }
-  }, [settings.enableFlathubLive, searchQuery]);
+  }, [settings.enableFlathubLive, settings.allowUnverifiedFlatpaks, searchQuery]);
 
   useEffect(() => {
+    setOnlineApps([]);
+    setFlathubError('');
+    setIsSearchingFlathub(false);
     if (settings.enableFlathubLive && selectedCategory === 'flatpak' && searchQuery.trim().length >= 3) {
-      const debounceTimer = setTimeout(() => handleSearchFlathubLive(searchQuery), 500);
-      return () => clearTimeout(debounceTimer);
+      const timer = setTimeout(() => handleSearchFlathubLive(searchQuery), 500);
+      return () => { clearTimeout(timer); searchController.current?.abort(); };
     }
+    return () => searchController.current?.abort();
   }, [searchQuery, selectedCategory, settings.enableFlathubLive, handleSearchFlathubLive]);
 
   // === Filtered apps (uses catalogIndex byName + _haystack) ===
@@ -138,7 +156,8 @@ export default function App() {
   });
 
   // === Batch selection ===
-  const batch = useBatchSelection(filteredApps);
+  const [gridApps, setGridApps] = useState([]);
+  const batch = useBatchSelection(gridApps, apps, installedMap.isInstalled);
   const {
     selectedAppIds, toInstallApps, toUninstallApps,
     isAllVisibleSelected, toggleApp: handleToggleSelectApp,
@@ -147,40 +166,37 @@ export default function App() {
   } = batch;
 
   // === Handlers composing the hooks ===
-  const handleToggleInstall = useCallback((appId) => {
-    const wasInstalled = installedMap.isInstalled(appId);
-    installedMap.toggleInstalled(appId);
-    if (selectedApp && selectedApp.id === appId) {
-      setSelectedApp({ ...selectedApp, installed: !wasInstalled });
-    }
-  }, [installedMap, selectedApp]);
+  const { setInstalled } = installedMap;
+  const handleToggleInstall = useCallback((appId, value) => {
+    if (typeof value === 'boolean') setInstalled(appId, value);
+    refreshInstalled();
+  }, [setInstalled, refreshInstalled]);
 
   const [batchModal, setBatchModal] = useState(null);
   const handleStartBatchExecution = useCallback(() => {
+    if (!operationsAvailable) {
+      pushToast('Atualize a lista de instalados antes de executar operações.', 'error');
+      return;
+    }
     const all = batch.selectedAppsList;
     if (all.length === 0) return;
     const appsToProcess = all.map((app) => ({
       ...app,
-      batchAction: app.installed ? 'uninstall' : 'install'
+      batchAction: installedMap.isInstalled(app.id) ? 'uninstall' : 'install'
     }));
     debugLog('info', 'App', 'Iniciando batch execution', {
       total: appsToProcess.length,
       ids: appsToProcess.map((a) => a.id)
     });
     setBatchModal({ type: 'mixed', apps: appsToProcess });
-  }, [batch.selectedAppsList]);
+  }, [batch.selectedAppsList, operationsAvailable, installedMap]);
 
-  const handleBatchComplete = useCallback((res, maybeIsInstall) => {
-    if (Array.isArray(res)) {
-      for (const id of res) installedMap.setInstalled(id, !!maybeIsInstall);
-      removeFromSelection(res);
-      return;
-    }
-    const { installedIds = [], uninstalledIds = [] } = res || {};
-    for (const id of installedIds) installedMap.setInstalled(id, true);
-    for (const id of uninstalledIds) installedMap.setInstalled(id, false);
+  const handleBatchComplete = useCallback(({ installedIds = [], uninstalledIds = [] } = {}) => {
+    for (const id of installedIds) setInstalled(id, true);
+    for (const id of uninstalledIds) setInstalled(id, false);
     removeFromSelection([...installedIds, ...uninstalledIds]);
-  }, [installedMap, removeFromSelection]);
+    refreshInstalled();
+  }, [setInstalled, removeFromSelection, refreshInstalled]);
 
   // === Toggles composed ===
   const handleToggleInstalledOnly = useCallback(() => {
@@ -248,7 +264,7 @@ export default function App() {
       // Esc fecha modais OU limpa seleção
       if (e.key === 'Escape') {
         if (selectedApp) {
-          setSelectedApp(null);
+          if (!detailsBusy) setSelectedApp(null);
           e.preventDefault();
           return;
         }
@@ -276,7 +292,7 @@ export default function App() {
         // Não intercepta se o foco está num input/textarea
         const tag = e.target?.tagName;
         if (tag === 'INPUT' || tag === 'TEXTAREA') return;
-        if (filteredApps.length > 0) {
+        if (gridApps.length > 0) {
           handleSelectAllVisible();
           e.preventDefault();
         }
@@ -285,8 +301,8 @@ export default function App() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [
-    selectedApp, isSettingsOpen, batchModal, selectedAppIds,
-    handleClearSelection, handleSelectAllVisible, searchQuery, filteredApps
+    selectedApp, detailsBusy, isSettingsOpen, batchModal, selectedAppIds,
+    handleClearSelection, handleSelectAllVisible, searchQuery, gridApps
   ]);
 
   return (
@@ -309,6 +325,13 @@ export default function App() {
         installedCount={installedCount}
       />
 
+      {!installedSnapshot && !installedError && <div role="status" className="px-5 py-2 text-sm text-[#a4a9b2]">Consultando os pacotes instalados...</div>}
+      {(catalogError || installedError) && <div role="alert" className="px-5 py-2 bg-amber-950 text-amber-200 text-sm">
+        {catalogError ? `Não foi possível carregar o catálogo: ${catalogError}` : installedError}
+        <button className="ml-3 underline" onClick={() => catalogError ? window.location.reload() : refreshInstalled()}>Tentar novamente</button>
+      </div>}
+      {flathubError && <div role="alert" className="px-5 py-2 text-amber-200 text-sm">{flathubError}</div>}
+
       {nav.isLandingVisible ? (
         <LandingPage
           onSelectCategory={handleSelectCategory}
@@ -319,6 +342,7 @@ export default function App() {
       ) : (
         <AppGrid
           apps={filteredApps}
+          onVisibleAppsChange={setGridApps}
           categoryTitle={categoryTitle}
           searchQuery={searchQuery}
           installedOnly={installedOnly}
@@ -328,7 +352,10 @@ export default function App() {
           onSelectAllVisible={handleSelectAllVisible}
           isAllVisibleSelected={isAllVisibleSelected}
           selectedCategory={selectedCategory}
-          onSearchFlathubLive={handleSearchFlathubLive}
+          onSearchFlathubLive={term => {
+            if (!settings.enableFlathubLive) { pushToast('Ative a busca online nas preferências.', 'info'); return; }
+            if (searchQuery !== term) setSearchQuery(term); else handleSearchFlathubLive(term);
+          }}
           isSearchingFlathub={isSearchingFlathub}
           isLoading={catalogLoading}
         />
@@ -359,14 +386,17 @@ export default function App() {
       }>
         {selectedApp && (
           <AppDetailsModal
-            app={selectedApp}
-            onClose={() => setSelectedApp(null)}
+            app={apps.find(app => app.id === selectedApp.id) || selectedApp}
+            operationsAvailable={operationsAvailable && (!selectedApp.isFlatpak || flatpakStatus === 'available')}
+            onBusyChange={setDetailsBusy}
+            onClose={() => { if (!detailsBusy) setSelectedApp(null); }}
             onToggleInstall={handleToggleInstall}
           />
         )}
 
         {batchModal && (
           <BatchActionModal
+            confirmBeforeStart={settings.confirmBatchAction}
             actionType={batchModal.type}
             targetApps={batchModal.apps}
             onClose={() => setBatchModal(null)}
@@ -374,14 +404,22 @@ export default function App() {
           />
         )}
 
-        <SettingsModal
+        {isSettingsOpen && <SettingsModal
           isOpen={isSettingsOpen}
           onClose={() => setIsSettingsOpen(false)}
           settings={settings}
           onSaveSettings={handleSaveSettings}
           onResetDefaults={handleResetDefaults}
+          installedApps={apps.filter(app => app.installed)}
+          onImportApps={ids => {
+            const selected = apps.filter(app => ids.includes(app.id) && !app.installed).map(app => app.id);
+            batch.selectIds(selected);
+            setIsSettingsOpen(false);
+            handleSelectCategory('all');
+            pushToast(`${selected.length} aplicativo(s) selecionado(s) para instalação. Itens já instalados ou fora do catálogo foram ignorados.`, 'info', 6000);
+          }}
           onClearCache={handleClearCache}
-        />
+        />}
       </Suspense>
 
       <ToastContainer />

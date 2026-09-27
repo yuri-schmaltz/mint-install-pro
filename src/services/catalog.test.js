@@ -54,7 +54,7 @@ describe('catalog service tests', () => {
       expect(getCachedIndex()).toBe(indexed);
     });
 
-    it('em caso de falha no fetch, retorna índice vazio seguro em vez de crashar', async () => {
+    it('propaga falha no fetch e permite tentar novamente', async () => {
       const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
       globalThis.fetch = vi.fn().mockResolvedValue({
@@ -62,9 +62,9 @@ describe('catalog service tests', () => {
         status: 404
       });
 
-      const indexed = await loadFullCatalog();
-      expect(indexed.apps).toEqual([]);
-      expect(indexed.byName.size).toBe(0);
+      await expect(loadFullCatalog()).rejects.toThrow('HTTP 404');
+      globalThis.fetch.mockResolvedValue({ ok: true, json: async () => [] });
+      expect((await loadFullCatalog()).apps).toEqual([]);
 
       consoleErrorSpy.mockRestore();
     });

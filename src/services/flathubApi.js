@@ -1,12 +1,13 @@
 // Fallback único para ícones do Flathub quando a API não retorna `icon`
 const FALLBACK_FLATPAK_ICON = '/icons/software-manager.png';
 
-export async function searchFlathub(query) {
+export async function searchFlathub(query, { signal } = {}) {
   if (!query || !query.trim()) return [];
   
   try {
     const response = await fetch('https://flathub.org/api/v2/search', {
       method: 'POST',
+      signal,
       headers: {
         'Content-Type': 'application/json'
       },
@@ -34,21 +35,23 @@ export async function searchFlathub(query) {
         description: cleanDesc,
         category: 'flatpak',
         categoryLabel: 'Flatpak',
-        rating: 4.8,
+        rating: 0,
         installed: false,
         version: 'stable',
-        size: '50 MB',
+        size: 'Não informado',
         packageType: 'Flatpak (Flathub)',
         icon: hit.icon || FALLBACK_FLATPAK_ICON,
         fallbackIcon: '📦',
         developer: hit.developer_name || 'Flathub Publisher',
         license: hit.project_license || 'Open Source',
-        flathub: true
+        flathub: true,
+        kind: 'flatpak',
+        verified: hit.verification_verified === true
       };
     });
   } catch (err) {
     console.error('Erro na busca ao vivo do Flathub:', err);
-    return [];
+    throw err;
   }
 }
 

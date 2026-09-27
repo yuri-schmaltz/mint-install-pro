@@ -17,14 +17,15 @@ export default function BatchActionModal({
   actionType, // 'install' | 'uninstall' | 'mixed'
   targetApps,
   onClose,
-  onComplete
+  onComplete,
+  confirmBeforeStart = false
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [appStatuses, setAppStatuses] = useState(() => 
-    targetApps.map(app => ({ 
-      id: app.id, 
-      name: app.name, 
-      icon: app.icon, 
+  const [appStatuses, setAppStatuses] = useState(() =>
+    targetApps.map(app => ({
+      id: app.id,
+      name: app.name,
+      icon: app.icon,
       status: 'pending',
       action: app.batchAction || (app.installed ? 'uninstall' : 'install')
     }))
@@ -32,23 +33,17 @@ export default function BatchActionModal({
   const [logs, setLogs] = useState([]);
   const [isFinished, setIsFinished] = useState(false);
 
-  // Ref pra tracking de "primeira execução" (StrictMode-safe)
-  const hasStartedRef = useRef(false);
+  const [confirmed, setConfirmed] = useState(!confirmBeforeStart);
+  const queueRef = useRef(targetApps);
+  const actionRef = useRef(actionType);
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
 
   useEffect(() => {
-    // Idempotência: em StrictMode dev, useEffect roda 2x. Sem esta guarda,
-    // processQueue() dispararia duas vezes, gerando logs duplicados e
-    // (mais grave) contadores de installedMap inflados.
-    if (hasStartedRef.current) return;
-    hasStartedRef.current = true;
-
+    if (!confirmed) return undefined;
     let isCancelled = false;
-
-    debugLog('info', 'BatchActionModal', 'mount, iniciando processQueue', {
-      total: targetApps.length,
-      type: actionType
-    });
-
+    const targetApps = queueRef.current;
+    debugLog('info', 'BatchActionModal', 'mount, iniciando processQueue', { total: targetApps.length, type: actionRef.current });
     const processQueue = async () => {
       try {
         setLogs(prev => [...prev, `[SISTEMA] Iniciando fila de operações em lote (${targetApps.length} pacotes)...`]);
@@ -100,7 +95,7 @@ export default function BatchActionModal({
 
           if (!isCancelled) {
             if (currentAction === 'install') {
-              if (res && res.success) {
+              if (res?.success === true) {
                 successfullyInstalled.push(currentApp.id);
                 setLogs(prev => [...prev, `[SUCESSO] ${currentApp.name} instalado no sistema!`]);
               } else {
@@ -108,7 +103,7 @@ export default function BatchActionModal({
               }
             } else {
               // uninstall: só conta como sucesso se res.success for explicitamente true
-              if (res && res.success) {
+              if (res?.success === true) {
                 successfullyUninstalled.push(currentApp.id);
                 setLogs(prev => [...prev, `[SUCESSO] ${currentApp.name} removido do sistema!`]);
               } else {
@@ -118,19 +113,19 @@ export default function BatchActionModal({
 
             // Mark as done
             setAppStatuses(prev =>
-              prev.map((item, idx) => idx === i ? { ...item, status: 'done' } : item)
+              prev.map((item, idx) => idx === i ? { ...item, status: res?.success === true ? 'done' : 'error' } : item)
             );
           }
         }
 
         if (!isCancelled) {
-          setLogs(prev => [...prev, `[SISTEMA] Todas as operações em lote foram concluídas!`]);
+          setLogs(prev => [...prev, `[SISTEMA] Fila finalizada: ${successfullyInstalled.length + successfullyUninstalled.length} sucesso(s), ${targetApps.length - successfullyInstalled.length - successfullyUninstalled.length} falha(s).`]);
           setIsFinished(true);
           debugLog('info', 'BatchActionModal', 'queue completa', {
             installed: successfullyInstalled.length,
             uninstalled: successfullyUninstalled.length
           });
-          onComplete({ installedIds: successfullyInstalled, uninstalledIds: successfullyUninstalled });
+          onCompleteRef.current({ installedIds: successfullyInstalled, uninstalledIds: successfullyUninstalled });
         }
       } catch (fatalErr) {
         // Última rede de segurança: se algo muito errado acontecer (ex: bug
@@ -149,16 +144,20 @@ export default function BatchActionModal({
       }
     };
 
-    processQueue();
+    // Deferred start lets StrictMode clean up its probe without issuing an operation.
+    const timer = setTimeout(processQueue, 0);
 
     return () => {
       isCancelled = true;
+      clearTimeout(timer);
     };
-  }, [targetApps, actionType, onComplete]);
+  }, [confirmed]);
 
   const total = targetApps.length;
   const completedCount = appStatuses.filter(s => s.status === 'done').length;
-  const progressPercent = total > 0 ? Math.round((completedCount / total) * 100) : 0;
+  const failedCount = appStatuses.filter(s => s.status === 'error').length;
+  const processedCount = completedCount + failedCount;
+  const progressPercent = total > 0 ? Math.round((processedCount / total) * 100) : 0;
 
   // Determina a cor da barra: instalação (verde), desinstalação (rosa), mista usa verde (ação predominante no Mint)
   const progressBarColor =
@@ -176,6 +175,7 @@ export default function BatchActionModal({
         `Tipo: ${actionType}`,
         `Total de Aplicativos: ${total}`,
         `Concluídos com Sucesso: ${completedCount}/${total}`,
+        `Falhas: ${failedCount}`,
         `==================================================\n`,
         ...logs
       ].join('\n');
@@ -200,10 +200,25 @@ export default function BatchActionModal({
     }
   };
 
+  if (!confirmed) return (
+    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-label="Confirmar operações em lote">
+      <div className="bg-[#2a2d32] border border-[#3b3f46] rounded-lg p-6 max-w-xl text-white space-y-4">
+        <h3 className="font-bold">Confirmar operações em lote</h3>
+        <p>{appStatuses.filter(a => a.action === 'install').length} para instalar e {appStatuses.filter(a => a.action === 'uninstall').length} para remover.</p>
+        <ul className="max-h-48 overflow-y-auto text-sm">{appStatuses.map(a => <li key={a.id}>{a.action === 'install' ? 'Instalar' : 'Remover'}: {a.name}</li>)}</ul>
+        <p className="text-xs text-[#a4a9b2]">Flatpaks serão instalados para seu usuário. A remoção inclui as instalações do usuário e do sistema.</p>
+        <div className="flex gap-3 justify-end">
+          <button onClick={onClose} className="px-4 py-2">Cancelar</button>
+          <button onClick={() => setConfirmed(true)} className="px-4 py-2 rounded bg-[#87cf3e] text-black">Confirmar e executar</button>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
       <div className="bg-[#2a2d32] border border-[#3b3f46] rounded-lg max-w-xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden text-[#e0e0e0]">
-        
+
         {/* Header */}
         <div className="px-5 py-3.5 bg-[#202326] border-b border-[#1b1c1e] flex items-center justify-between">
           <div className="flex items-center space-x-2.5">
@@ -221,10 +236,10 @@ export default function BatchActionModal({
               </div>
             )}
             <h3 className="text-sm font-bold text-white">
-              {actionType === 'install' 
-                ? 'Instalação em Lote' 
-                : actionType === 'uninstall' 
-                  ? 'Desinstalação em Lote' 
+              {actionType === 'install'
+                ? 'Instalação em Lote'
+                : actionType === 'uninstall'
+                  ? 'Desinstalação em Lote'
                   : 'Execução de Ações em Lote'} ({targetApps.length} {targetApps.length === 1 ? 'aplicativo' : 'aplicativos'})
             </h3>
           </div>
@@ -236,12 +251,12 @@ export default function BatchActionModal({
           <div>
             <div className="flex items-center justify-between text-xs mb-1.5">
               <span className="text-[#a4a9b2]">
-                {isFinished 
-                  ? 'Operação finalizada!' 
+                {isFinished
+                  ? `Operação finalizada: ${completedCount} sucesso(s), ${failedCount} falha(s).`
                   : `Processando item ${Math.min(currentIndex + 1, total)} de ${total}...`}
               </span>
               <span className="font-semibold text-white font-mono">
-                {progressPercent}% ({completedCount}/{total})
+                {progressPercent}% ({processedCount}/{total})
               </span>
             </div>
             <div className="w-full bg-[#1b1c1e] rounded-full h-2.5 overflow-hidden border border-[#35393f]">
@@ -277,6 +292,7 @@ export default function BatchActionModal({
                       {app.action === 'install' ? 'Instalando' : 'Removendo'}
                     </span>
                   )}
+                  {app.status === 'error' && <span className="text-rose-400">Falhou</span>}
                   {app.status === 'done' && (
                     <span className="inline-flex items-center text-[#55b335] text-[11px] font-semibold">
                       <Check className="w-3.5 h-3.5 mr-0.5 stroke-[3]" />
@@ -292,7 +308,7 @@ export default function BatchActionModal({
           <div>
             <div className="flex items-center space-x-1.5 text-[11px] font-bold text-[#8e95a0] mb-1 uppercase tracking-wider">
               <Terminal className="w-3 h-3" />
-              <span>Saída do Processo (Terminal APT)</span>
+              <span>Saída do Processo (Registro da operação)</span>
             </div>
             <div className="bg-[#161719] border border-[#2b2e33] rounded p-2.5 font-mono text-[11px] text-[#a0a5ad] h-24 overflow-y-auto space-y-0.5">
               {logs.map((log, idx) => (
@@ -308,7 +324,7 @@ export default function BatchActionModal({
         <div className="px-5 py-3 bg-[#202326] border-t border-[#1b1c1e] flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <span className="text-xs text-[#7d828a]">
-              {isFinished ? 'Pronto para uso.' : 'Não feche esta janela durante a execução.'}
+              {isFinished ? (failedCount ? 'Revise as falhas no registro.' : 'Operações concluídas.') : 'Não feche esta janela durante a execução.'}
             </span>
             {isFinished && (
               <button
