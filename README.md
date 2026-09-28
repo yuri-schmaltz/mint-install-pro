@@ -3,7 +3,7 @@
 Gerenciador visual de aplicativos para Linux Mint, com interface React inspirada
 no Mint-Y Dark, catálogo APT + Flatpak e operações individuais ou em lote.
 
-Versão **1.5.6** — [release e download do pacote .deb](https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.5.6).
+Versão **1.5.7** — [release e download do pacote .deb](https://github.com/yuri-schmaltz/mint-install-pro/releases/tag/v1.5.7).
 
 ## Funcionalidades
 
@@ -53,10 +53,10 @@ npm run build:deb
 python3 scripts/verify_deb.py
 ```
 
-Isso gera `mint-install-pro_1.5.6_all.deb`. Para instalá-lo no sistema desejado:
+Isso gera `mint-install-pro_1.5.7_all.deb`. Para instalá-lo no sistema desejado:
 
 ```bash
-sudo apt install ./mint-install-pro_1.5.6_all.deb
+sudo apt install ./mint-install-pro_1.5.7_all.deb
 ```
 
 Abra pelo menu ou execute `mint-install-pro`. Para diagnosticar a interface no

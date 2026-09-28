@@ -6,11 +6,10 @@ import {
   Search,
   Boxes,
   RotateCcw,
-  AlertTriangle,
+  Check,
   HardDrive,
   Monitor,
-  ChevronDown,
-  HelpCircle
+  ChevronDown
 } from 'lucide-react';
 import { pushToast } from './Toast';
 

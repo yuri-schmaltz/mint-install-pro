@@ -8,11 +8,6 @@ import {
   Trash2,
   Play,
   ShieldCheck,
-  Layers,
-  HardDrive,
-  FileCode,
-  ExternalLink,
-  CheckCircle2,
   Loader2
 } from 'lucide-react';
 import { executeInstall, executeUninstall, executeLaunch } from '../services/packageManager';

@@ -6,11 +6,8 @@ import {
   CheckSquare, 
   Square, 
   Boxes, 
-  Globe2, 
   Search, 
   Loader2, 
-  Sparkles,
-  ExternalLink
 } from 'lucide-react';
 
 export default function AppGrid({
@@ -26,8 +23,6 @@ export default function AppGrid({
   selectedCategory,
   onSearchFlathubLive,
   isSearchingFlathub,
-  flathubLiveQuery,
-  flathubQueryCount,
   isLoading = false,
   onVisibleAppsChange
 }) {
@@ -282,7 +277,7 @@ export default function AppGrid({
               className="mt-4 px-4 py-1.5 rounded bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold transition-colors flex items-center space-x-1.5"
             >
               <Search className="w-3.5 h-3.5" />
-              <span>Buscar "{searchQuery || 'todos'}" diretamente no Flathub</span>
+              <span>Buscar &quot;{searchQuery || 'todos'}&quot; diretamente no Flathub</span>
             </button>
           )}
         </div>

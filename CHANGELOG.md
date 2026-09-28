@@ -1,3 +1,9 @@
+# 1.5.7 — correção das preferências — 2026-09-28
+
+- Corrige erro `Check is not defined` ao salvar preferências, incluindo a opção de Flatpaks não verificados.
+- Inclui arquivos JSX no lint para detectar componentes usados sem importação.
+- Testes cobrem ativação, desativação e persistência da opção após recarregar o app.
+
 # 1.5.6 — correções de confiabilidade — 2026-09-27
 
 - API Python compartilhada pelo Vite, preview e launcher GTK; validação de origem,

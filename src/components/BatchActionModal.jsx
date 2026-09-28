@@ -269,7 +269,7 @@ export default function BatchActionModal({
 
           {/* Apps List Status */}
           <div className="bg-[#202226] border border-[#32363c] rounded-md divide-y divide-[#2a2d33] max-h-48 overflow-y-auto">
-            {appStatuses.map((app, index) => (
+            {appStatuses.map((app) => (
               <div key={app.id} className="p-2.5 flex items-center justify-between text-xs">
                 <div className="flex items-center space-x-2.5 min-w-0">
                   <div className="w-6 h-6 rounded bg-[#2e3136] flex items-center justify-center flex-shrink-0">

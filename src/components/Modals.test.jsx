@@ -115,6 +115,21 @@ describe('SettingsModal Component Tests', () => {
     expect(screen.getByText(/Gerenciamento de Flatpaks & Flathub/i)).toBeInTheDocument();
   });
 
+  it('ativa e desativa Flatpaks não verificados exibindo a confirmação de salvamento', () => {
+    const onSaveSettings = vi.fn();
+    render(<SettingsModal isOpen settings={mockSettings} onClose={() => {}}
+      onSaveSettings={onSaveSettings} onResetDefaults={() => {}} onClearCache={() => {}} />);
+    fireEvent.click(screen.getByRole('button', { name: /Flatpaks/i }));
+    const checkbox = screen.getByRole('checkbox', { name: /Incluir resultados online não verificados/i });
+    fireEvent.click(checkbox);
+    expect(checkbox).toBeChecked();
+    expect(onSaveSettings).toHaveBeenLastCalledWith({ ...mockSettings, allowUnverifiedFlatpaks: true });
+    expect(screen.getByText('Preferências salvas automaticamente!')).toBeInTheDocument();
+    fireEvent.click(checkbox);
+    expect(checkbox).not.toBeChecked();
+    expect(onSaveSettings).toHaveBeenLastCalledWith(mockSettings);
+  });
+
   it('chama onClose ao clicar no botão fechar', () => {
     const onClose = vi.fn();
     render(
