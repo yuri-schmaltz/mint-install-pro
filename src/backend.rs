@@ -326,13 +326,68 @@ fn protection_reason(
     if priority == "required" {
         return Some("Pacote obrigatório da base do sistema.".to_string());
     }
+    let base_packages = [
+        "apt",
+        "dpkg",
+        "libc6",
+        "init",
+        "systemd",
+        "systemd-sysv",
+        "udev",
+        "dbus",
+        "dbus-user-session",
+        "sudo",
+        "policykit-1",
+        "polkitd",
+        "pkexec",
+        "network-manager",
+        "linux-firmware",
+        "linux-generic",
+        "linux-image-generic",
+        "initramfs-tools",
+        "initramfs-tools-core",
+        "mintsystem",
+        "ubuntu-system-adjustments",
+        "mint-install-pro",
+        "python3",
+        "python3-minimal",
+    ];
+    if base_packages.contains(&app_id)
+        || app_id.starts_with("mint-meta-")
+        || app_id.starts_with("grub-")
+        || app_id.starts_with("shim-")
+    {
+        return Some(
+            "Componente de base necessário para manter o sistema funcionando.".to_string(),
+        );
+    }
+    let base_packages = [
+        "apt", "dpkg", "libc6", "init", "systemd", "systemd-sysv", "udev",
+        "dbus", "dbus-user-session", "sudo", "policykit-1", "polkitd", "pkexec",
+        "network-manager", "linux-firmware", "linux-generic", "linux-image-generic",
+        "initramfs-tools", "initramfs-tools-core", "mintsystem",
+        "ubuntu-system-adjustments", "mint-install-pro", "python3", "python3-minimal",
+    ];
+    if base_packages.contains(&app_id) || app_id.starts_with("mint-meta-") || app_id.starts_with("grub-") || app_id.starts_with("shim-") {
+        return Some("Componente de base necessário para manter o sistema funcionando.".to_string());
+    }
     let desktop = [
-        "muffin",
-        "lightdm",
-        "slick-greeter",
-        "xorg",
-        "xserver-xorg",
-        "xserver-xorg-core",
+        "cinnamon",
+        "cinnamon-core",
+        "cinnamon-session",
+        "cinnamon-settings-daemon",
+        "cinnamon", "cinnamon-core", "cinnamon-session", "cinnamon-settings-daemon",
+        "muffin", "lightdm", "slick-greeter", "xorg", "xserver-xorg", "xserver-xorg-core",
+        "mate-desktop", "mate-session-manager", "mate-panel", "marco",
+        "xfce4", "xfce4-session", "xfwm4", "xfce4-panel",
+        "mate-desktop",
+        "mate-session-manager",
+        "mate-panel",
+        "marco",
+        "xfce4",
+        "xfce4-session",
+        "xfwm4",
+        "xfce4-panel",
     ];
     if desktop.contains(&app_id) {
         return Some("Componente da interface gráfica e da sessão do sistema.".to_string());

@@ -684,12 +684,22 @@ async fn handle_simulate_remove(Json(payload): Json<OperationItem>) -> impl Into
 }
 
 async fn handle_gpg_import(Json(req): Json<GpgImportRequest>) -> impl IntoResponse {
-    let url = req.url.unwrap_or_default();
-    let name = req.name.unwrap_or_default();
-    if url.is_empty() || name.is_empty() {
+    let url = req.url.unwrap_or_default().trim().to_string();
+    let name = req.name.unwrap_or_default().trim().to_string();
+    if url.is_empty() || name.is_empty() || name.contains('/') || name.contains("..") {
         return (
             StatusCode::BAD_REQUEST,
-            Json(serde_json::json!({ "success": false, "error": "URL e nome obrigatórios." })),
+            Json(
+                serde_json::json!({ "success": false, "error": "URL e nome válidos são obrigatórios." }),
+            ),
+        );
+    }
+    if !url.starts_with("https://") && !url.starts_with("http://") {
+        return (
+            StatusCode::BAD_REQUEST,
+            Json(
+                serde_json::json!({ "success": false, "error": "URL deve usar protocolo HTTP ou HTTPS." }),
+            ),
         );
     }
     let target = format!(
@@ -700,29 +710,75 @@ async fn handle_gpg_import(Json(req): Json<GpgImportRequest>) -> impl IntoRespon
             format!("{}.gpg", name)
         }
     );
-    let cmd = format!(
-        "mkdir -p /etc/apt/keyrings && (wget -qO- {} || curl -fsSL {}) | gpg --dearmor -o {}",
-        url, url, target
-    );
-    let _ = Command::new("pkexec").args(["sh", "-c", &cmd]).output();
-    (
-        StatusCode::OK,
-        Json(serde_json::json!({ "success": true, "output": "Chave GPG importada com sucesso." })),
-    )
+    // Use curl and gpg securely via piped stdin rather than building an unescaped shell string
+    let curl_res = Command::new("curl").args(["-fsSL", "--", &url]).output();
+    match curl_res {
+        Ok(curl_out) if curl_out.status.success() => {
+            let _ = Command::new("pkexec")
+                .args(["mkdir", "-p", "/etc/apt/keyrings"])
+                .output();
+            let mut gpg_child = match Command::new("pkexec")
+                .args(["gpg", "--dearmor", "-o", &target])
+                .stdin(std::process::Stdio::piped())
+                .stdout(std::process::Stdio::null())
+                .stderr(std::process::Stdio::piped())
+                .spawn()
+            {
+                Ok(c) => c,
+                Err(e) => {
+                    return (
+                        StatusCode::INTERNAL_SERVER_ERROR,
+                        Json(
+                            serde_json::json!({ "success": false, "error": format!("Falha ao invocar GPG: {}", e) }),
+                        ),
+                    );
+                }
+            };
+            if let Some(mut stdin) = gpg_child.stdin.take() {
+                use std::io::Write;
+                let _ = stdin.write_all(&curl_out.stdout);
+            }
+            let res = gpg_child.wait_with_output();
+            if res.map(|o| o.status.success()).unwrap_or(false) {
+                (
+                    StatusCode::OK,
+                    Json(
+                        serde_json::json!({ "success": true, "output": "Chave GPG importada com sucesso." }),
+                    ),
+                )
+            } else {
+                (
+                    StatusCode::INTERNAL_SERVER_ERROR,
+                    Json(
+                        serde_json::json!({ "success": false, "error": "Falha ao desarmar chave GPG." }),
+                    ),
+                )
+            }
+        }
+        _ => (
+            StatusCode::BAD_REQUEST,
+            Json(
+                serde_json::json!({ "success": false, "error": "Falha ao baixar chave da URL especificada." }),
+            ),
+        ),
+    }
 }
 
 async fn handle_gpg_remove(Json(req): Json<GpgRemoveRequest>) -> impl IntoResponse {
-    let path = req.path.unwrap_or_default();
-    if !path.starts_with("/etc/apt/trusted.gpg.d/")
-        && !path.starts_with("/usr/share/keyrings/")
-        && !path.starts_with("/etc/apt/keyrings/")
+    let path = req.path.unwrap_or_default().trim().to_string();
+    if path.contains("..")
+        || (!path.starts_with("/etc/apt/trusted.gpg.d/")
+            && !path.starts_with("/usr/share/keyrings/")
+            && !path.starts_with("/etc/apt/keyrings/"))
     {
         return (
             StatusCode::BAD_REQUEST,
             Json(serde_json::json!({ "success": false, "error": "Caminho inválido." })),
         );
     }
-    let _ = Command::new("pkexec").args(["rm", "-f", &path]).output();
+    let _ = Command::new("pkexec")
+        .args(["rm", "-f", "--", &path])
+        .output();
     (
         StatusCode::OK,
         Json(serde_json::json!({ "success": true, "output": "Chave GPG removida com sucesso." })),
