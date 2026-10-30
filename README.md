@@ -1,4 +1,4 @@
-# Mint Install Pro (Rust Nativo)
+# Mint Install Pro
 
 Gerenciador e instalador avançado de aplicativos para Linux Mint e distribuições Debian/Ubuntu-like, reescrito totalmente em Rust nativo utilizando GTK4.
 
