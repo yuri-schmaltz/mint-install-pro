@@ -1,8 +1,8 @@
-# Sobre o Mint Install Pro (Rust Nativo)
+# Sobre o Mint Install Pro
 
 O **Mint Install Pro** é um gerenciador e instalador de aplicativos moderno e de alta performance desenvolvido por **Yuri Schmaltz** para Linux Mint e distribuições Debian/Ubuntu-like.
 
-Esta versão representa a evolução arquitetural completa do projeto: o backend monolítico anterior em Python foi totalmente reescrito em **Rust nativo**, utilizando **GTK4**, **WebKit6**, **Tokio** e **Axum**, mantendo a identidade visual refinada inspirada no Linux Mint e no tema Mint-Y Dark.
+Esta versão representa a evolução arquitetural completa do projeto: o backend monolítico anterior em Python foi totalmente reescrito com arquitetura nativa utilizando **GTK4**, **WebKit6**, **Tokio** e **Axum**, mantendo a identidade visual refinada inspirada no Linux Mint e no tema Mint-Y Dark.
 
 ---
 
@@ -30,12 +30,12 @@ Esta versão representa a evolução arquitetural completa do projeto: o backend
 
 ---
 
-## Arquitetura da Versão Rust
+## Arquitetura da Versão Pro
 
 | Camada | Tecnologia / Implementação |
 |---|---|
-| **Janela & WebView Nativo** | Rust, GTK4 (`gtk4`), WebKitGTK 6.0 (`webkit6`), janela de proporção fixa com aceleração gráfica |
-| **Backend & Servidor Local** | Rust assíncrono, Tokio, Axum, Serde JSON (execução no mesmo processo do app) |
+| **Janela & WebView Nativo** | GTK4 (`gtk4`), WebKitGTK 6.0 (`webkit6`), janela de proporção fixa com aceleração gráfica |
+| **Backend & Servidor Local** | Servidor assíncrono interno, Tokio, Axum, Serde JSON (execução no mesmo processo do app) |
 | **Interface do Usuário** | React 18, Tailwind CSS, Vite (empacotada em `dist/`) |
 | **Segurança & Pacotes** | Validação estrita de identificadores, sanitização contra command injection e lista de pacotes protegidos |
 | **Distribuição** | Pacote Debian autônomo (`.deb`) com metadados para o instalador oficial e integração com menu iniciar |

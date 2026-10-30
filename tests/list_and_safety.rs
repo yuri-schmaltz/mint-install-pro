@@ -1,8 +1,8 @@
 use gio::ListStore;
 use gtk4::prelude::*;
 use gtk4::{CustomFilter, FilterListModel};
-use mintinstall_rust::backend;
-use mintinstall_rust::list_item::AppItem;
+use mintinstall_pro::backend;
+use mintinstall_pro::list_item::AppItem;
 
 #[test]
 fn test_app_item_and_store_filtering() {

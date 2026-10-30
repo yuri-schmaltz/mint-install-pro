@@ -1,12 +1,12 @@
-# Changelog - Mint Install Pro (Rust)
+# Changelog - Mint Install Pro
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 ## [2.0.0] - 2026-10-30
 
-### Marco da Versão 2.0 (Reescrita Completa em Rust Nativo)
+### Marco da Versão 2.0 (Evolução da Linha Pro)
 - **Nova Arquitetura de Alta Performance**:
-  - Reescrita integral de todo o backend monolítico anterior para Rust nativo.
+  - Reescrita integral de todo o backend monolítico anterior para arquitetura compilada nativa.
   - Servidor interno local baseado em **Axum** e **Tokio**, executando de forma assíncrona no mesmo processo do aplicativo.
   - Janela nativa em **GTK4** utilizando **WebKit6**, eliminando overhead de processos externos.
 - **Interface e Layout Refinados**:
@@ -22,5 +22,5 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
   - Triggers automáticos de atualização de banco de dados desktop e cache de ícones.
 
 ## [0.1.0] - 2026-10-30
-- Protótipo inicial da migração para Rust.
+- Protótipo inicial da migração de arquitetura.
 

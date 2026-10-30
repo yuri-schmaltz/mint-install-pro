@@ -680,7 +680,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "mintinstall_rust"
+name = "mintinstall-pro"
 version = "2.0.0"
 dependencies = [
  "axum",

@@ -1,12 +1,12 @@
 # Mint Install Pro
 
-Gerenciador e instalador avançado de aplicativos para Linux Mint e distribuições Debian/Ubuntu-like, reescrito totalmente em Rust nativo utilizando GTK4, WebKit6 e Axum.
+Gerenciador e instalador avançado de aplicativos para Linux Mint e distribuições Debian/Ubuntu-like, desenvolvido com alta performance utilizando GTK4, WebKit6 e Axum.
 
 Para mais detalhes sobre a concepção e arquitetura do projeto, consulte o arquivo [ABOUT.md](ABOUT.md).
 
-## Destaques da Versão Rust
+## Destaques da Versão Pro
 - **Interface Gráfica Refinada**: Experiência visual nativa com layout de proporção fixa, carrosséis em destaque, grid de categorias e modais completos.
-- **Backend Rust Integrado**: Servidor local em Axum/Tokio incorporado no mesmo processo do executável, dispensando daemons externos e dependências de runtime Python/Node.
+- **Backend Integrado de Alta Performance**: Servidor local em Axum/Tokio incorporado no mesmo processo do executável, dispensando daemons externos e dependências de runtime Python/Node.
 - **Catálogo Resiliente**: Busca catálogo no sistema de arquivos ou utiliza o catálogo JSON embarcado diretamente no binário (`include_str!`).
 - **Segurança APT Reforçada**: Verificação e bloqueio preventivo de componentes essenciais e pacotes base do sistema antes de qualquer remoção (`assert_safe_apt_removal`).
 - **Gerenciamento Completo**:
@@ -45,18 +45,18 @@ cargo fmt -- --check
 ```bash
 cargo build --release
 ```
-O binário será gerado em `target/release/mintinstall_rust`.
+O binário será gerado em `target/release/mintinstall-pro`.
 
 ## Geração do Pacote Debian (.deb)
 Para gerar o instalador `.deb` autônomo:
 ```bash
 python3 build_deb_rust.py
 ```
-O pacote `mintinstall-rust_0.1.0_amd64.deb` será gerado na raiz do diretório.
+O pacote `mintinstall-pro_2.0.0_amd64.deb` será gerado na raiz do diretório.
 
 Para instalar no sistema:
 ```bash
-sudo dpkg -i mintinstall-rust_0.1.0_amd64.deb
+sudo dpkg -i mintinstall-pro_2.0.0_amd64.deb
 sudo apt-get install -f # se houver dependências pendentes
 ```
 

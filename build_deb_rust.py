@@ -8,7 +8,7 @@ import sys
 # Executar a partir do diretório mintinstall_rust
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-PACKAGE_NAME = "mintinstall-rust"
+PACKAGE_NAME = "mintinstall-pro"
 VERSION = "2.0.0"
 DEB_DIR = f"/tmp/{PACKAGE_NAME}_{VERSION}_amd64"
 OUTPUT_DEB = f"{PACKAGE_NAME}_{VERSION}_amd64.deb"
@@ -35,7 +35,7 @@ os.makedirs(f"{DEB_DIR}/usr/share/icons/hicolor/scalable/apps", exist_ok=True)
 os.makedirs(f"{DEB_DIR}/usr/share/icons/hicolor/32x32/apps", exist_ok=True)
 
 # Copiar binário executável
-shutil.copy("target/release/mintinstall_rust", f"{DEB_DIR}/usr/bin/{PACKAGE_NAME}")
+shutil.copy("target/release/mintinstall-pro", f"{DEB_DIR}/usr/bin/{PACKAGE_NAME}")
 os.chmod(f"{DEB_DIR}/usr/bin/{PACKAGE_NAME}", 0o755)
 
 # Copiar assets web dist e ícone
@@ -87,7 +87,7 @@ Depends: libgtk-4-1, libwebkitgtk-6.0-4
 Recommends: flatpak, policykit-1
 Maintainer: Yuri Schmaltz <yuri.schmaltz@gmail.com>
 Homepage: https://github.com/yuri-schmaltz/mintinstall_pro
-Description: Gerenciador de Aplicativos Moderno para Linux Mint (Rust Nativo)
+Description: Gerenciador de Aplicativos Moderno para Linux Mint (Pro)
  Interface inspirada no Linux Mint com catálogo completo de pacotes APT
  e Flatpak (Flathub), categorias dinâmicas, busca instantânea e carrosséis
  de aplicativos em destaque e mais bem avaliados.

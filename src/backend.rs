@@ -234,7 +234,7 @@ fn default_pref() -> String {
 
 fn settings_path() -> PathBuf {
     PathBuf::from(std::env::var("HOME").unwrap_or_default())
-        .join(".config/mintinstall-rust/settings.json")
+        .join(".config/mintinstall-pro/settings.json")
 }
 
 pub fn load_settings() -> Settings {

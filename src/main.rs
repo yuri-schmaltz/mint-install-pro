@@ -6,9 +6,9 @@ use webkit6::WebView;
 
 fn find_dist_dir() -> PathBuf {
     let candidates = [
-        PathBuf::from("/usr/share/mintinstall-rust/dist"),
-        PathBuf::from("/usr/share/mintinstall_rust/dist"),
+        PathBuf::from("/usr/share/mintinstall-pro/dist"),
         PathBuf::from("/usr/share/mint-install-pro/dist"),
+        PathBuf::from("/usr/share/mintinstall-rust/dist"),
         PathBuf::from("dist"),
     ];
     for p in candidates {
@@ -19,7 +19,7 @@ fn find_dist_dir() -> PathBuf {
     // Also check relative to current exe
     if let Ok(exe) = std::env::current_exe() {
         if let Some(parent) = exe.parent() {
-            let relative = parent.join("../share/mintinstall-rust/dist");
+            let relative = parent.join("../share/mintinstall-pro/dist");
             if relative.exists() && relative.join("index.html").exists() {
                 return relative;
             }
@@ -42,7 +42,7 @@ fn main() {
     std::thread::spawn(move || {
         let rt = tokio::runtime::Runtime::new().unwrap();
         rt.block_on(async move {
-            let app = mintinstall_rust::web_server::create_router(dist_dir_server);
+            let app = mintinstall_pro::web_server::create_router(dist_dir_server);
             let listener = tokio::net::TcpListener::bind("127.0.0.1:0").await.unwrap();
             let port = listener.local_addr().unwrap().port();
             tx.send(port).unwrap();
@@ -56,7 +56,7 @@ fn main() {
     let target_url = format!("http://127.0.0.1:{}/index.html", port);
 
     // Launch GTK4 Application with WebKit6 WebView
-    let app = Application::new(Some("com.mintinstall.pro.rust"), Default::default());
+    let app = Application::new(Some("com.mintinstall.pro"), Default::default());
 
     app.connect_activate(move |app| {
         let window = ApplicationWindow::new(app);

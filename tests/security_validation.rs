@@ -1,4 +1,4 @@
-use mintinstall_rust::backend::*;
+use mintinstall_pro::backend::*;
 
 #[test]
 fn test_id_sanitization_attacks() {

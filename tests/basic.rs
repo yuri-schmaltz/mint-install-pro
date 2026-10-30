@@ -1,4 +1,4 @@
-use mintinstall_rust::backend;
+use mintinstall_pro::backend;
 
 #[test]
 fn catalog_loads() {
