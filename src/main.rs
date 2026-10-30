@@ -6,13 +6,27 @@ use webkit6::WebView;
 
 fn find_dist_dir() -> PathBuf {
     let candidates = [
-        PathBuf::from("dist"),
+        PathBuf::from("/usr/share/mintinstall-rust/dist"),
         PathBuf::from("/usr/share/mintinstall_rust/dist"),
         PathBuf::from("/usr/share/mint-install-pro/dist"),
+        PathBuf::from("dist"),
     ];
     for p in candidates {
         if p.exists() && p.join("index.html").exists() {
             return p;
+        }
+    }
+    // Also check relative to current exe
+    if let Ok(exe) = std::env::current_exe() {
+        if let Some(parent) = exe.parent() {
+            let relative = parent.join("../share/mintinstall-rust/dist");
+            if relative.exists() && relative.join("index.html").exists() {
+                return relative;
+            }
+            let local_dist = parent.join("dist");
+            if local_dist.exists() && local_dist.join("index.html").exists() {
+                return local_dist;
+            }
         }
     }
     PathBuf::from("dist")

@@ -1,22 +1,23 @@
 # Mint Install Pro
 
-Gerenciador e instalador avançado de aplicativos para Linux Mint e distribuições Debian/Ubuntu-like, reescrito totalmente em Rust nativo utilizando GTK4.
+Gerenciador e instalador avançado de aplicativos para Linux Mint e distribuições Debian/Ubuntu-like, reescrito totalmente em Rust nativo utilizando GTK4, WebKit6 e Axum.
+
+Para mais detalhes sobre a concepção e arquitetura do projeto, consulte o arquivo [ABOUT.md](ABOUT.md).
 
 ## Destaques da Versão Rust
-- **GTK4 Nativo & Virtualizado**: Renderização moderna com `gtk4::ListView`, `gio::ListStore` e `SignalListItemFactory` com reciclagem de widgets para fluidez mesmo com milhares de itens.
-- **Filtros Reativos**: Filtro em tempo real por busca de texto (nome e resumo) e categorização via `gtk4::CustomFilter` e `gtk4::FilterListModel`.
-- **Desempenho & Memória**: Consumo mínimo de memória e CPU; tempo de inicialização instantâneo.
+- **Interface Gráfica Refinada**: Experiência visual nativa com layout de proporção fixa, carrosséis em destaque, grid de categorias e modais completos.
+- **Backend Rust Integrado**: Servidor local em Axum/Tokio incorporado no mesmo processo do executável, dispensando daemons externos e dependências de runtime Python/Node.
 - **Catálogo Resiliente**: Busca catálogo no sistema de arquivos ou utiliza o catálogo JSON embarcado diretamente no binário (`include_str!`).
-- **Segurança APT Reforçada**: Verificação de componentes protegidos/essenciais do sistema antes de remoções em lote (`assert_safe_apt_removal`).
+- **Segurança APT Reforçada**: Verificação e bloqueio preventivo de componentes essenciais e pacotes base do sistema antes de qualquer remoção (`assert_safe_apt_removal`).
 - **Gerenciamento Completo**:
   - Suporte híbrido APT e Flatpak (Flathub).
-  - Operações em lote (instalação e desinstalação sequencial com barra de progresso).
+  - Operações em lote (instalação e desinstalação sequencial protegida com uma única autorização por lote).
   - Verificação de atualizações (`apt` e `flatpak`).
   - Histórico de operações persistente e notificações desktop via `notify-send`.
   - Preferências do usuário persistidas em JSON.
   - Exportação e importação de listas de backup.
   - Inventário e execução de AppImages locais.
-  - Ferramentas de sistema: Limpeza de pacotes órfãos, Repositórios/PPAs, Chaves GPG, Snapshots Timeshift, Instalação avulsa por ID e `.deb` local.
+  - Ferramentas de sistema: Limpeza de pacotes órfãos, Repositórios/PPAs, Chaves GPG seguras, Snapshots Timeshift, Instalação por ID e `.deb` local.
 
 ## Compilação e Desenvolvimento
 
