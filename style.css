@@ -1,0 +1,50 @@
+window {
+  background-color: #26292d;
+  color: #e0e0e0;
+}
+
+headerbar, .header {
+  background-color: #202326;
+  border-bottom: 1px solid #1b1c1e;
+}
+
+button {
+  background-color: #2b2e33;
+  color: #e0e0e0;
+  border: 1px solid #232528;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+button:hover {
+  background-color: #383c42;
+}
+
+button.suggested-action {
+  background-color: #87cf3e;
+  color: #132802;
+}
+
+entry, searchentry {
+  background-color: #18191c;
+  color: #f0f0f0;
+  border: 1px solid #2b2e33;
+  border-radius: 12px;
+  padding: 4px 8px;
+}
+
+listbox row {
+  background-color: #2a2d33;
+  border: 1px solid #2e3238;
+  border-radius: 4px;
+  margin: 2px 8px;
+  padding: 8px;
+}
+
+listbox row:hover {
+  background-color: #32363e;
+}
+
+label {
+  color: #e0e0e0;
+}
